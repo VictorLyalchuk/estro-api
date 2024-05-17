@@ -76,20 +76,18 @@ namespace Core.Specification
                 }
                 int pageSize = 6;
                 var query = Query.OrderBy(p => p.Id)
-                     .Skip((page - 1) * pageSize)
-                     .Take(pageSize)
                      .Include(p => p.Images)
                      .Include(p => p.Category)
                      .Include(p => p.Storages)
                      .Where(p => p.Category.URLName == urlName);
                 if (Colors.Any())
                 {
-                    query = (IIncludableSpecificationBuilder<ProductEntity, List<StorageEntity>?>)query.Where(p => Colors.Contains(p.Color));
+                    query = query.Where(p => Colors.Contains(p.Color.ToLower()));
                 }
 
                 if (Materials.Any())
                 {
-                    query = (IIncludableSpecificationBuilder<ProductEntity, List<StorageEntity>?>)query.Where(p => Materials.Contains(p.Material));
+                    query = query.Where(p => Materials.Contains(p.Material.ToLower()));
                 }
                 if (Sizes.Any())
                 {
@@ -97,9 +95,10 @@ namespace Core.Specification
                 }
                 if (Purpose.Any())
                 {
-                    query = (IIncludableSpecificationBuilder<ProductEntity, List<StorageEntity>?>)query.Where(p => Purpose.Contains(p.Purpose));
+                    query = query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
                 }
-                var results = query;
+                var results = query.Skip((page - 1) * pageSize)
+                     .Take(pageSize);
             }
         }
         public class FilterProductsQuantity : Specification<ProductEntity>
@@ -133,12 +132,12 @@ namespace Core.Specification
                      .Where(p => p.Category.URLName == urlName);
                 if (Colors.Any())
                 {
-                    query = (IIncludableSpecificationBuilder<ProductEntity, List<StorageEntity>?>)query.Where(p => Colors.Contains(p.Color));
+                    query = query.Where(p => Colors.Contains(p.Color.ToLower()));
                 }
 
                 if (Materials.Any())
                 {
-                    query = (IIncludableSpecificationBuilder<ProductEntity, List<StorageEntity>?>)query.Where(p => Materials.Contains(p.Material));
+                    query = query.Where(p => Materials.Contains(p.Material.ToLower()));
                 }
                 if (Sizes.Any())
                 {
@@ -146,7 +145,7 @@ namespace Core.Specification
                 }
                 if (Purpose.Any())
                 {
-                    query = (IIncludableSpecificationBuilder<ProductEntity, List<StorageEntity>?>)query.Where(p => Purpose.Contains(p.Purpose));
+                    query = query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
                 }
                 var results = query;
             }
