@@ -2,6 +2,9 @@
 using Core.Helpers;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {

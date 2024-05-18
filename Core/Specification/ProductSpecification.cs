@@ -95,6 +95,7 @@ namespace Core.Specification
                 }
                 if (Purpose.Any())
                 {
+                    string value = Purpose[0];
                     query = query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
                 }
                 var results = query.Skip((page - 1) * pageSize)
