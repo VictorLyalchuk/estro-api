@@ -547,7 +547,7 @@ namespace Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 4,
                             Name = "Purpose"
                         });
                 });
@@ -763,30 +763,30 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 30,
-                            InfoId = 5,
+                            InfoId = 4,
                             Label = "Winter",
                             Value = "winter"
                         },
                         new
                         {
                             Id = 31,
-                            InfoId = 5,
+                            InfoId = 4,
                             Label = "Spring",
                             Value = "spring"
                         },
                         new
                         {
                             Id = 32,
-                            InfoId = 5,
+                            InfoId = 4,
                             Label = "Summer",
                             Value = "summer"
                         },
                         new
                         {
                             Id = 33,
-                            InfoId = 5,
+                            InfoId = 4,
                             Label = "Autumn",
-                            Value = "autumn "
+                            Value = "autumn"
                         });
                 });
 
@@ -910,565 +910,565 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ImagePath = "Product1_1.jpg",
+                            ImagePath = "Product1_1.webp",
                             ProductId = 1
                         },
                         new
                         {
                             Id = 2,
-                            ImagePath = "Product1_2.jpg",
+                            ImagePath = "Product1_2.webp",
                             ProductId = 1
                         },
                         new
                         {
                             Id = 3,
-                            ImagePath = "Product1_3.jpg",
+                            ImagePath = "Product1_3.webp",
                             ProductId = 1
                         },
                         new
                         {
                             Id = 4,
-                            ImagePath = "Product1_4.jpg",
+                            ImagePath = "Product1_4.webp",
                             ProductId = 1
                         },
                         new
                         {
                             Id = 5,
-                            ImagePath = "Product1_5.jpg",
+                            ImagePath = "Product1_5.webp",
                             ProductId = 1
                         },
                         new
                         {
                             Id = 6,
-                            ImagePath = "Product1_6.jpg",
+                            ImagePath = "Product1_6.webp",
                             ProductId = 1
                         },
                         new
                         {
                             Id = 7,
-                            ImagePath = "Product2_1.jpg",
+                            ImagePath = "Product2_1.webp",
                             ProductId = 2
                         },
                         new
                         {
                             Id = 8,
-                            ImagePath = "Product2_2.jpg",
+                            ImagePath = "Product2_2.webp",
                             ProductId = 2
                         },
                         new
                         {
                             Id = 9,
-                            ImagePath = "Product2_3.jpg",
+                            ImagePath = "Product2_3.webp",
                             ProductId = 2
                         },
                         new
                         {
                             Id = 10,
-                            ImagePath = "Product2_4.jpg",
+                            ImagePath = "Product2_4.webp",
                             ProductId = 2
                         },
                         new
                         {
                             Id = 11,
-                            ImagePath = "Product2_5.jpg",
+                            ImagePath = "Product2_5.webp",
                             ProductId = 2
                         },
                         new
                         {
                             Id = 12,
-                            ImagePath = "Product2_6.jpg",
+                            ImagePath = "Product2_6.webp",
                             ProductId = 2
                         },
                         new
                         {
                             Id = 13,
-                            ImagePath = "Product2_7.jpg",
+                            ImagePath = "Product2_7.webp",
                             ProductId = 2
                         },
                         new
                         {
                             Id = 14,
-                            ImagePath = "Product2_8.jpg",
+                            ImagePath = "Product2_8.webp",
                             ProductId = 2
                         },
                         new
                         {
                             Id = 15,
-                            ImagePath = "Product2_9.jpg",
+                            ImagePath = "Product2_9.webp",
                             ProductId = 2
                         },
                         new
                         {
                             Id = 16,
-                            ImagePath = "Product3_1.jpg",
+                            ImagePath = "Product3_1.webp",
                             ProductId = 3
                         },
                         new
                         {
                             Id = 17,
-                            ImagePath = "Product3_2.jpg",
+                            ImagePath = "Product3_2.webp",
                             ProductId = 3
                         },
                         new
                         {
                             Id = 18,
-                            ImagePath = "Product3_3.jpg",
+                            ImagePath = "Product3_3.webp",
                             ProductId = 3
                         },
                         new
                         {
                             Id = 19,
-                            ImagePath = "Product3_4.jpg",
+                            ImagePath = "Product3_4.webp",
                             ProductId = 3
                         },
                         new
                         {
                             Id = 20,
-                            ImagePath = "Product3_5.jpg",
+                            ImagePath = "Product3_5.webp",
                             ProductId = 3
                         },
                         new
                         {
                             Id = 21,
-                            ImagePath = "Product4_1.jpg",
+                            ImagePath = "Product4_1.webp",
                             ProductId = 4
                         },
                         new
                         {
                             Id = 22,
-                            ImagePath = "Product4_2.jpg",
+                            ImagePath = "Product4_2.webp",
                             ProductId = 4
                         },
                         new
                         {
                             Id = 23,
-                            ImagePath = "Product4_3.jpg",
+                            ImagePath = "Product4_3.webp",
                             ProductId = 4
                         },
                         new
                         {
                             Id = 24,
-                            ImagePath = "Product4_4.jpg",
+                            ImagePath = "Product4_4.webp",
                             ProductId = 4
                         },
                         new
                         {
                             Id = 25,
-                            ImagePath = "Product4_5.jpg",
+                            ImagePath = "Product4_5.webp",
                             ProductId = 4
                         },
                         new
                         {
                             Id = 26,
-                            ImagePath = "Product4_6.jpg",
+                            ImagePath = "Product4_6.webp",
                             ProductId = 4
                         },
                         new
                         {
                             Id = 27,
-                            ImagePath = "Product5_1.jpg",
+                            ImagePath = "Product5_1.webp",
                             ProductId = 5
                         },
                         new
                         {
                             Id = 28,
-                            ImagePath = "Product5_2.jpg",
+                            ImagePath = "Product5_2.webp",
                             ProductId = 5
                         },
                         new
                         {
                             Id = 29,
-                            ImagePath = "Product5_3.jpg",
+                            ImagePath = "Product5_3.webp",
                             ProductId = 5
                         },
                         new
                         {
                             Id = 30,
-                            ImagePath = "Product5_4.jpg",
+                            ImagePath = "Product5_4.webp",
                             ProductId = 5
                         },
                         new
                         {
                             Id = 31,
-                            ImagePath = "Product5_5.jpg",
+                            ImagePath = "Product5_5.webp",
                             ProductId = 5
                         },
                         new
                         {
                             Id = 32,
-                            ImagePath = "Product5_6.jpg",
+                            ImagePath = "Product5_6.webp",
                             ProductId = 5
                         },
                         new
                         {
                             Id = 33,
-                            ImagePath = "Product6_1.jpg",
+                            ImagePath = "Product6_1.webp",
                             ProductId = 6
                         },
                         new
                         {
                             Id = 34,
-                            ImagePath = "Product6_2.jpg",
+                            ImagePath = "Product6_2.webp",
                             ProductId = 6
                         },
                         new
                         {
                             Id = 35,
-                            ImagePath = "Product6_3.jpg",
+                            ImagePath = "Product6_3.webp",
                             ProductId = 6
                         },
                         new
                         {
                             Id = 36,
-                            ImagePath = "Product6_4.jpg",
+                            ImagePath = "Product6_4.webp",
                             ProductId = 6
                         },
                         new
                         {
                             Id = 37,
-                            ImagePath = "Product6_5.jpg",
+                            ImagePath = "Product6_5.webp",
                             ProductId = 6
                         },
                         new
                         {
                             Id = 38,
-                            ImagePath = "Product6_6.jpg",
+                            ImagePath = "Product6_6.webp",
                             ProductId = 6
                         },
                         new
                         {
                             Id = 39,
-                            ImagePath = "Product7_1.jpg",
+                            ImagePath = "Product7_1.webp",
                             ProductId = 7
                         },
                         new
                         {
                             Id = 40,
-                            ImagePath = "Product7_2.jpg",
+                            ImagePath = "Product7_2.webp",
                             ProductId = 7
                         },
                         new
                         {
                             Id = 41,
-                            ImagePath = "Product7_3.jpg",
+                            ImagePath = "Product7_3.webp",
                             ProductId = 7
                         },
                         new
                         {
                             Id = 42,
-                            ImagePath = "Product7_4.jpg",
+                            ImagePath = "Product7_4.webp",
                             ProductId = 7
                         },
                         new
                         {
                             Id = 43,
-                            ImagePath = "Product7_5.jpg",
+                            ImagePath = "Product7_5.webp",
                             ProductId = 7
                         },
                         new
                         {
                             Id = 44,
-                            ImagePath = "Product8_1.jpg",
+                            ImagePath = "Product8_1.webp",
                             ProductId = 8
                         },
                         new
                         {
                             Id = 45,
-                            ImagePath = "Product8_2.jpg",
+                            ImagePath = "Product8_2.webp",
                             ProductId = 8
                         },
                         new
                         {
                             Id = 46,
-                            ImagePath = "Product8_3.jpg",
+                            ImagePath = "Product8_3.webp",
                             ProductId = 8
                         },
                         new
                         {
                             Id = 47,
-                            ImagePath = "Product8_4.jpg",
+                            ImagePath = "Product8_4.webp",
                             ProductId = 8
                         },
                         new
                         {
                             Id = 48,
-                            ImagePath = "Product8_5.jpg",
+                            ImagePath = "Product8_5.webp",
                             ProductId = 8
                         },
                         new
                         {
                             Id = 49,
-                            ImagePath = "Product8_6.jpg",
+                            ImagePath = "Product8_6.webp",
                             ProductId = 8
                         },
                         new
                         {
                             Id = 50,
-                            ImagePath = "Product8_7.jpg",
+                            ImagePath = "Product8_7.webp",
                             ProductId = 8
                         },
                         new
                         {
                             Id = 51,
-                            ImagePath = "Product9_1.jpg",
+                            ImagePath = "Product9_1.webp",
                             ProductId = 9
                         },
                         new
                         {
                             Id = 52,
-                            ImagePath = "Product9_2.jpg",
+                            ImagePath = "Product9_2.webp",
                             ProductId = 9
                         },
                         new
                         {
                             Id = 53,
-                            ImagePath = "Product9_3.jpg",
+                            ImagePath = "Product9_3.webp",
                             ProductId = 9
                         },
                         new
                         {
                             Id = 54,
-                            ImagePath = "Product9_4.jpg",
+                            ImagePath = "Product9_4.webp",
                             ProductId = 9
                         },
                         new
                         {
                             Id = 55,
-                            ImagePath = "Product9_5.jpg",
+                            ImagePath = "Product9_5.webp",
                             ProductId = 9
                         },
                         new
                         {
                             Id = 56,
-                            ImagePath = "Product9_6.jpg",
+                            ImagePath = "Product9_6.webp",
                             ProductId = 9
                         },
                         new
                         {
                             Id = 57,
-                            ImagePath = "Product10_1.jpg",
+                            ImagePath = "Product10_1.webp",
                             ProductId = 10
                         },
                         new
                         {
                             Id = 58,
-                            ImagePath = "Product10_2.jpg",
+                            ImagePath = "Product10_2.webp",
                             ProductId = 10
                         },
                         new
                         {
                             Id = 59,
-                            ImagePath = "Product10_3.jpg",
+                            ImagePath = "Product10_3.webp",
                             ProductId = 10
                         },
                         new
                         {
                             Id = 60,
-                            ImagePath = "Product10_4.jpg",
+                            ImagePath = "Product10_4.webp",
                             ProductId = 10
                         },
                         new
                         {
                             Id = 61,
-                            ImagePath = "Product10_5.jpg",
+                            ImagePath = "Product10_5.webp",
                             ProductId = 10
                         },
                         new
                         {
                             Id = 62,
-                            ImagePath = "Product10_6.jpg",
+                            ImagePath = "Product10_6.webp",
                             ProductId = 10
                         },
                         new
                         {
                             Id = 63,
-                            ImagePath = "Product10_7.jpg",
+                            ImagePath = "Product10_7.webp",
                             ProductId = 10
                         },
                         new
                         {
                             Id = 64,
-                            ImagePath = "Product10_8.jpg",
+                            ImagePath = "Product10_8.webp",
                             ProductId = 10
                         },
                         new
                         {
                             Id = 65,
-                            ImagePath = "Product11_1.jpg",
+                            ImagePath = "Product11_1.webp",
                             ProductId = 11
                         },
                         new
                         {
                             Id = 66,
-                            ImagePath = "Product11_2.jpg",
+                            ImagePath = "Product11_2.webp",
                             ProductId = 11
                         },
                         new
                         {
                             Id = 67,
-                            ImagePath = "Product11_3.jpg",
+                            ImagePath = "Product11_3.webp",
                             ProductId = 11
                         },
                         new
                         {
                             Id = 68,
-                            ImagePath = "Product11_4.jpg",
+                            ImagePath = "Product11_4.webp",
                             ProductId = 11
                         },
                         new
                         {
                             Id = 69,
-                            ImagePath = "Product11_5.jpg",
+                            ImagePath = "Product11_5.webp",
                             ProductId = 11
                         },
                         new
                         {
                             Id = 70,
-                            ImagePath = "Product11_6.jpg",
+                            ImagePath = "Product11_6.webp",
                             ProductId = 11
                         },
                         new
                         {
                             Id = 71,
-                            ImagePath = "Product12_1.jpg",
+                            ImagePath = "Product12_1.webp",
                             ProductId = 12
                         },
                         new
                         {
                             Id = 72,
-                            ImagePath = "Product12_2.jpg",
+                            ImagePath = "Product12_2.webp",
                             ProductId = 12
                         },
                         new
                         {
                             Id = 73,
-                            ImagePath = "Product12_3.jpg",
+                            ImagePath = "Product12_3.webp",
                             ProductId = 12
                         },
                         new
                         {
                             Id = 74,
-                            ImagePath = "Product12_4.jpg",
+                            ImagePath = "Product12_4.webp",
                             ProductId = 12
                         },
                         new
                         {
                             Id = 75,
-                            ImagePath = "Product12_5.jpg",
+                            ImagePath = "Product12_5.webp",
                             ProductId = 12
                         },
                         new
                         {
                             Id = 76,
-                            ImagePath = "Product12_6.jpg",
+                            ImagePath = "Product12_6.webp",
                             ProductId = 12
                         },
                         new
                         {
                             Id = 77,
-                            ImagePath = "Product13_1.jpg",
+                            ImagePath = "Product13_1.webp",
                             ProductId = 13
                         },
                         new
                         {
                             Id = 78,
-                            ImagePath = "Product13_2.jpg",
+                            ImagePath = "Product13_2.webp",
                             ProductId = 13
                         },
                         new
                         {
                             Id = 79,
-                            ImagePath = "Product13_3.jpg",
+                            ImagePath = "Product13_3.webp",
                             ProductId = 13
                         },
                         new
                         {
                             Id = 80,
-                            ImagePath = "Product13_4.jpg",
+                            ImagePath = "Product13_4.webp",
                             ProductId = 13
                         },
                         new
                         {
                             Id = 81,
-                            ImagePath = "Product13_5.jpg",
+                            ImagePath = "Product13_5.webp",
                             ProductId = 13
                         },
                         new
                         {
                             Id = 82,
-                            ImagePath = "Product13_6.jpg",
+                            ImagePath = "Product13_6.webp",
                             ProductId = 13
                         },
                         new
                         {
                             Id = 83,
-                            ImagePath = "Product14_1.jpg",
+                            ImagePath = "Product14_1.webp",
                             ProductId = 14
                         },
                         new
                         {
                             Id = 84,
-                            ImagePath = "Product14_2.jpg",
+                            ImagePath = "Product14_2.webp",
                             ProductId = 14
                         },
                         new
                         {
                             Id = 85,
-                            ImagePath = "Product14_3.jpg",
+                            ImagePath = "Product14_3.webp",
                             ProductId = 14
                         },
                         new
                         {
                             Id = 86,
-                            ImagePath = "Product14_4.jpg",
+                            ImagePath = "Product14_4.webp",
                             ProductId = 14
                         },
                         new
                         {
                             Id = 87,
-                            ImagePath = "Product14_5.jpg",
+                            ImagePath = "Product14_5.webp",
                             ProductId = 14
                         },
                         new
                         {
                             Id = 88,
-                            ImagePath = "Product14_6.jpg",
+                            ImagePath = "Product14_6.webp",
                             ProductId = 14
                         },
                         new
                         {
                             Id = 89,
-                            ImagePath = "Product15_1.jpg",
+                            ImagePath = "Product15_1.webp",
                             ProductId = 15
                         },
                         new
                         {
                             Id = 90,
-                            ImagePath = "Product15_2.jpg",
+                            ImagePath = "Product15_2.webp",
                             ProductId = 15
                         },
                         new
                         {
                             Id = 91,
-                            ImagePath = "Product15_3.jpg",
+                            ImagePath = "Product15_3.webp",
                             ProductId = 15
                         },
                         new
                         {
                             Id = 92,
-                            ImagePath = "Product15_4.jpg",
+                            ImagePath = "Product15_4.webp",
                             ProductId = 15
                         },
                         new
                         {
                             Id = 93,
-                            ImagePath = "Product15_5.jpg",
+                            ImagePath = "Product15_5.webp",
                             ProductId = 15
                         },
                         new
                         {
                             Id = 94,
-                            ImagePath = "Product15_6.jpg",
+                            ImagePath = "Product15_6.webp",
                             ProductId = 15
                         });
                 });
@@ -1508,6 +1508,61 @@ namespace Infrastructure.Migrations
                         {
                             Id = 4,
                             ImagePath = "800_home_page_4.webp"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImagePath = "800_home_page_5.webp"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImagePath = "800_home_page_6.webp"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImagePath = "800_home_page_7.webp"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ImagePath = "800_home_page_8.webp"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ImagePath = "800_home_page_9.webp"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ImagePath = "800_home_page_10.webp"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ImagePath = "800_home_page_11.webp"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ImagePath = "800_home_page_12.webp"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ImagePath = "800_home_page_13.webp"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ImagePath = "800_home_page_14.webp"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ImagePath = "800_home_page_15.webp"
                         });
                 });
 
@@ -2745,14 +2800,14 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ee263e43-6587-43ce-b118-0c09f4ee9bef",
+                            Id = "93f0809e-5767-4923-a8e8-f2ef242a2bf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "56a9c67d-2930-47b2-8431-73bd911aa9b0",
+                            ConcurrencyStamp = "5f67bb04-3e9b-46f8-bbcd-8fc204bc49ee",
                             Email = "admin@ukr.net",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "eb62485b-99ca-4064-9fb8-b0da58908535",
+                            SecurityStamp = "e6cc00f6-5b86-4b7d-b792-7c353bdb87cd",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             Birthday = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),

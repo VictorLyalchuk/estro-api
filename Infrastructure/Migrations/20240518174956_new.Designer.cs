@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240405174846_start")]
-    partial class start
+    [Migration("20240518174956_new")]
+    partial class @new
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,443 +25,7 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Core.Entities.Information.Bag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CountProduct")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UserEmail")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Bag");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.BagItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BagId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BagId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("BagItems");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.Info", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Info");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Color"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Material"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Size"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Purpose"
-                        });
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.Options", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("InfoId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Label")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Value")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InfoId");
-
-                    b.ToTable("Options");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            InfoId = 1,
-                            Label = "Black",
-                            Value = "black"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            InfoId = 1,
-                            Label = "Brown",
-                            Value = "brown"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            InfoId = 1,
-                            Label = "Gray",
-                            Value = "gray"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            InfoId = 1,
-                            Label = "Light Gray",
-                            Value = "lightgray"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            InfoId = 1,
-                            Label = "White",
-                            Value = "white"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            InfoId = 1,
-                            Label = "Milk",
-                            Value = "milk"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            InfoId = 1,
-                            Label = "Navi",
-                            Value = "navi"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            InfoId = 1,
-                            Label = "Blue",
-                            Value = "blue"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            InfoId = 2,
-                            Label = "Leather",
-                            Value = "leather"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            InfoId = 2,
-                            Label = "Suede",
-                            Value = "suede"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            InfoId = 2,
-                            Label = "Nubuck",
-                            Value = "nubuck"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            InfoId = 2,
-                            Label = "Textile",
-                            Value = "textile"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            InfoId = 2,
-                            Label = "Synthetic",
-                            Value = "synthetic"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            InfoId = 2,
-                            Label = "Eco Leather",
-                            Value = "ecoleather"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            InfoId = 3,
-                            Label = "35",
-                            Value = "35"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            InfoId = 3,
-                            Label = "36",
-                            Value = "36"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            InfoId = 3,
-                            Label = "37",
-                            Value = "37"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            InfoId = 3,
-                            Label = "38",
-                            Value = "38"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            InfoId = 3,
-                            Label = "39",
-                            Value = "39"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            InfoId = 3,
-                            Label = "40",
-                            Value = "40"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            InfoId = 3,
-                            Label = "41",
-                            Value = "41"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            InfoId = 3,
-                            Label = "42",
-                            Value = "42"
-                        },
-                        new
-                        {
-                            Id = 26,
-                            InfoId = 3,
-                            Label = "43",
-                            Value = "43"
-                        },
-                        new
-                        {
-                            Id = 27,
-                            InfoId = 3,
-                            Label = "44",
-                            Value = "44"
-                        },
-                        new
-                        {
-                            Id = 28,
-                            InfoId = 3,
-                            Label = "45",
-                            Value = "45"
-                        },
-                        new
-                        {
-                            Id = 29,
-                            InfoId = 3,
-                            Label = "46",
-                            Value = "46"
-                        },
-                        new
-                        {
-                            Id = 30,
-                            InfoId = 5,
-                            Label = "Winter",
-                            Value = "winter"
-                        },
-                        new
-                        {
-                            Id = 31,
-                            InfoId = 5,
-                            Label = "Spring",
-                            Value = "spring"
-                        },
-                        new
-                        {
-                            Id = 32,
-                            InfoId = 5,
-                            Label = "Summer",
-                            Value = "summer"
-                        },
-                        new
-                        {
-                            Id = 33,
-                            InfoId = 5,
-                            Label = "Autumn",
-                            Value = "autumn "
-                        });
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("EmailUser")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Payment")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.OrderItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Article")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderItems");
-                });
-
-            modelBuilder.Entity("Core.Entities.Site.Category", b =>
+            modelBuilder.Entity("Core.Entities.Category.CategoryEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -776,632 +340,7 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Core.Entities.Site.Image", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Images");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ImagePath = "Product1_1.jpg",
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ImagePath = "Product1_2.jpg",
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ImagePath = "Product1_3.jpg",
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ImagePath = "Product1_4.jpg",
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ImagePath = "Product1_5.jpg",
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ImagePath = "Product1_6.jpg",
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ImagePath = "Product2_1.jpg",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ImagePath = "Product2_2.jpg",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ImagePath = "Product2_3.jpg",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ImagePath = "Product2_4.jpg",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 11,
-                            ImagePath = "Product2_5.jpg",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 12,
-                            ImagePath = "Product2_6.jpg",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 13,
-                            ImagePath = "Product2_7.jpg",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 14,
-                            ImagePath = "Product2_8.jpg",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 15,
-                            ImagePath = "Product2_9.jpg",
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 16,
-                            ImagePath = "Product3_1.jpg",
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 17,
-                            ImagePath = "Product3_2.jpg",
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 18,
-                            ImagePath = "Product3_3.jpg",
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 19,
-                            ImagePath = "Product3_4.jpg",
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 20,
-                            ImagePath = "Product3_5.jpg",
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 21,
-                            ImagePath = "Product4_1.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 22,
-                            ImagePath = "Product4_2.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 23,
-                            ImagePath = "Product4_3.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 24,
-                            ImagePath = "Product4_4.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 25,
-                            ImagePath = "Product4_5.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 26,
-                            ImagePath = "Product4_6.jpg",
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 27,
-                            ImagePath = "Product5_1.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 28,
-                            ImagePath = "Product5_2.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 29,
-                            ImagePath = "Product5_3.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 30,
-                            ImagePath = "Product5_4.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 31,
-                            ImagePath = "Product5_5.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 32,
-                            ImagePath = "Product5_6.jpg",
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 33,
-                            ImagePath = "Product6_1.jpg",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 34,
-                            ImagePath = "Product6_2.jpg",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 35,
-                            ImagePath = "Product6_3.jpg",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 36,
-                            ImagePath = "Product6_4.jpg",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 37,
-                            ImagePath = "Product6_5.jpg",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 38,
-                            ImagePath = "Product6_6.jpg",
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 39,
-                            ImagePath = "Product7_1.jpg",
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 40,
-                            ImagePath = "Product7_2.jpg",
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 41,
-                            ImagePath = "Product7_3.jpg",
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 42,
-                            ImagePath = "Product7_4.jpg",
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 43,
-                            ImagePath = "Product7_5.jpg",
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 44,
-                            ImagePath = "Product8_1.jpg",
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 45,
-                            ImagePath = "Product8_2.jpg",
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 46,
-                            ImagePath = "Product8_3.jpg",
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 47,
-                            ImagePath = "Product8_4.jpg",
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 48,
-                            ImagePath = "Product8_5.jpg",
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 49,
-                            ImagePath = "Product8_6.jpg",
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 50,
-                            ImagePath = "Product8_7.jpg",
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 51,
-                            ImagePath = "Product9_1.jpg",
-                            ProductId = 9
-                        },
-                        new
-                        {
-                            Id = 52,
-                            ImagePath = "Product9_2.jpg",
-                            ProductId = 9
-                        },
-                        new
-                        {
-                            Id = 53,
-                            ImagePath = "Product9_3.jpg",
-                            ProductId = 9
-                        },
-                        new
-                        {
-                            Id = 54,
-                            ImagePath = "Product9_4.jpg",
-                            ProductId = 9
-                        },
-                        new
-                        {
-                            Id = 55,
-                            ImagePath = "Product9_5.jpg",
-                            ProductId = 9
-                        },
-                        new
-                        {
-                            Id = 56,
-                            ImagePath = "Product9_6.jpg",
-                            ProductId = 9
-                        },
-                        new
-                        {
-                            Id = 57,
-                            ImagePath = "Product10_1.jpg",
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 58,
-                            ImagePath = "Product10_2.jpg",
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 59,
-                            ImagePath = "Product10_3.jpg",
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 60,
-                            ImagePath = "Product10_4.jpg",
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 61,
-                            ImagePath = "Product10_5.jpg",
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 62,
-                            ImagePath = "Product10_6.jpg",
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 63,
-                            ImagePath = "Product10_7.jpg",
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 64,
-                            ImagePath = "Product10_8.jpg",
-                            ProductId = 10
-                        },
-                        new
-                        {
-                            Id = 65,
-                            ImagePath = "Product11_1.jpg",
-                            ProductId = 11
-                        },
-                        new
-                        {
-                            Id = 66,
-                            ImagePath = "Product11_2.jpg",
-                            ProductId = 11
-                        },
-                        new
-                        {
-                            Id = 67,
-                            ImagePath = "Product11_3.jpg",
-                            ProductId = 11
-                        },
-                        new
-                        {
-                            Id = 68,
-                            ImagePath = "Product11_4.jpg",
-                            ProductId = 11
-                        },
-                        new
-                        {
-                            Id = 69,
-                            ImagePath = "Product11_5.jpg",
-                            ProductId = 11
-                        },
-                        new
-                        {
-                            Id = 70,
-                            ImagePath = "Product11_6.jpg",
-                            ProductId = 11
-                        },
-                        new
-                        {
-                            Id = 71,
-                            ImagePath = "Product12_1.jpg",
-                            ProductId = 12
-                        },
-                        new
-                        {
-                            Id = 72,
-                            ImagePath = "Product12_2.jpg",
-                            ProductId = 12
-                        },
-                        new
-                        {
-                            Id = 73,
-                            ImagePath = "Product12_3.jpg",
-                            ProductId = 12
-                        },
-                        new
-                        {
-                            Id = 74,
-                            ImagePath = "Product12_4.jpg",
-                            ProductId = 12
-                        },
-                        new
-                        {
-                            Id = 75,
-                            ImagePath = "Product12_5.jpg",
-                            ProductId = 12
-                        },
-                        new
-                        {
-                            Id = 76,
-                            ImagePath = "Product12_6.jpg",
-                            ProductId = 12
-                        },
-                        new
-                        {
-                            Id = 77,
-                            ImagePath = "Product13_1.jpg",
-                            ProductId = 13
-                        },
-                        new
-                        {
-                            Id = 78,
-                            ImagePath = "Product13_2.jpg",
-                            ProductId = 13
-                        },
-                        new
-                        {
-                            Id = 79,
-                            ImagePath = "Product13_3.jpg",
-                            ProductId = 13
-                        },
-                        new
-                        {
-                            Id = 80,
-                            ImagePath = "Product13_4.jpg",
-                            ProductId = 13
-                        },
-                        new
-                        {
-                            Id = 81,
-                            ImagePath = "Product13_5.jpg",
-                            ProductId = 13
-                        },
-                        new
-                        {
-                            Id = 82,
-                            ImagePath = "Product13_6.jpg",
-                            ProductId = 13
-                        },
-                        new
-                        {
-                            Id = 83,
-                            ImagePath = "Product14_1.jpg",
-                            ProductId = 14
-                        },
-                        new
-                        {
-                            Id = 84,
-                            ImagePath = "Product14_2.jpg",
-                            ProductId = 14
-                        },
-                        new
-                        {
-                            Id = 85,
-                            ImagePath = "Product14_3.jpg",
-                            ProductId = 14
-                        },
-                        new
-                        {
-                            Id = 86,
-                            ImagePath = "Product14_4.jpg",
-                            ProductId = 14
-                        },
-                        new
-                        {
-                            Id = 87,
-                            ImagePath = "Product14_5.jpg",
-                            ProductId = 14
-                        },
-                        new
-                        {
-                            Id = 88,
-                            ImagePath = "Product14_6.jpg",
-                            ProductId = 14
-                        },
-                        new
-                        {
-                            Id = 89,
-                            ImagePath = "Product15_1.jpg",
-                            ProductId = 15
-                        },
-                        new
-                        {
-                            Id = 90,
-                            ImagePath = "Product15_2.jpg",
-                            ProductId = 15
-                        },
-                        new
-                        {
-                            Id = 91,
-                            ImagePath = "Product15_3.jpg",
-                            ProductId = 15
-                        },
-                        new
-                        {
-                            Id = 92,
-                            ImagePath = "Product15_4.jpg",
-                            ProductId = 15
-                        },
-                        new
-                        {
-                            Id = 93,
-                            ImagePath = "Product15_5.jpg",
-                            ProductId = 15
-                        },
-                        new
-                        {
-                            Id = 94,
-                            ImagePath = "Product15_6.jpg",
-                            ProductId = 15
-                        });
-                });
-
-            modelBuilder.Entity("Core.Entities.Site.ImageForHome", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ImageForHome");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ImagePath = "800_home_page_1.webp"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ImagePath = "800_home_page_2.webp"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ImagePath = "800_home_page_3.webp"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ImagePath = "800_home_page_4.webp"
-                        });
-                });
-
-            modelBuilder.Entity("Core.Entities.Site.MainCategory", b =>
+            modelBuilder.Entity("Core.Entities.Category.MainCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1440,7 +379,1197 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Core.Entities.Site.Product", b =>
+            modelBuilder.Entity("Core.Entities.Category.SubCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("MainCategoryId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(180)
+                        .HasColumnType("character varying(180)");
+
+                    b.Property<string>("URLName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MainCategoryId");
+
+                    b.ToTable("SubCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MainCategoryId = 1,
+                            Name = "Woman Shoes",
+                            URLName = "woman_shoes"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MainCategoryId = 2,
+                            Name = "Man Shoes",
+                            URLName = "man_shoes"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MainCategoryId = 1,
+                            Name = "Woman Clothing",
+                            URLName = "woman_clothing"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            MainCategoryId = 2,
+                            Name = "Man Clothing",
+                            URLName = "man_clothing"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            MainCategoryId = 1,
+                            Name = "Woman Accessories",
+                            URLName = "woman_accessories"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            MainCategoryId = 2,
+                            Name = "Man Accessories",
+                            URLName = "man_accessories"
+                        });
+                });
+
+            modelBuilder.Entity("Core.Entities.Information.Bag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CountProduct")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Bag");
+                });
+
+            modelBuilder.Entity("Core.Entities.Information.BagItems", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BagId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BagId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("BagItems");
+                });
+
+            modelBuilder.Entity("Core.Entities.Information.Info", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Info");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Color"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Material"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Size"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Purpose"
+                        });
+                });
+
+            modelBuilder.Entity("Core.Entities.Information.Options", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("InfoId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Label")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InfoId");
+
+                    b.ToTable("Options");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            InfoId = 1,
+                            Label = "Black",
+                            Value = "black"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            InfoId = 1,
+                            Label = "Brown",
+                            Value = "brown"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            InfoId = 1,
+                            Label = "Gray",
+                            Value = "gray"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            InfoId = 1,
+                            Label = "Light Gray",
+                            Value = "lightgray"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            InfoId = 1,
+                            Label = "White",
+                            Value = "white"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            InfoId = 1,
+                            Label = "Milk",
+                            Value = "milk"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            InfoId = 1,
+                            Label = "Navi",
+                            Value = "navi"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            InfoId = 1,
+                            Label = "Blue",
+                            Value = "blue"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            InfoId = 2,
+                            Label = "Leather",
+                            Value = "leather"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            InfoId = 2,
+                            Label = "Suede",
+                            Value = "suede"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            InfoId = 2,
+                            Label = "Nubuck",
+                            Value = "nubuck"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            InfoId = 2,
+                            Label = "Textile",
+                            Value = "textile"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            InfoId = 2,
+                            Label = "Synthetic",
+                            Value = "synthetic"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            InfoId = 2,
+                            Label = "Eco Leather",
+                            Value = "ecoleather"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            InfoId = 3,
+                            Label = "35",
+                            Value = "35"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            InfoId = 3,
+                            Label = "36",
+                            Value = "36"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            InfoId = 3,
+                            Label = "37",
+                            Value = "37"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            InfoId = 3,
+                            Label = "38",
+                            Value = "38"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            InfoId = 3,
+                            Label = "39",
+                            Value = "39"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            InfoId = 3,
+                            Label = "40",
+                            Value = "40"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            InfoId = 3,
+                            Label = "41",
+                            Value = "41"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            InfoId = 3,
+                            Label = "42",
+                            Value = "42"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            InfoId = 3,
+                            Label = "43",
+                            Value = "43"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            InfoId = 3,
+                            Label = "44",
+                            Value = "44"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            InfoId = 3,
+                            Label = "45",
+                            Value = "45"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            InfoId = 3,
+                            Label = "46",
+                            Value = "46"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            InfoId = 4,
+                            Label = "Winter",
+                            Value = "winter"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            InfoId = 4,
+                            Label = "Spring",
+                            Value = "spring"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            InfoId = 4,
+                            Label = "Summer",
+                            Value = "summer"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            InfoId = 4,
+                            Label = "Autumn",
+                            Value = "autumn"
+                        });
+                });
+
+            modelBuilder.Entity("Core.Entities.Information.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EmailUser")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Payment")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Core.Entities.Information.OrderItems", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Article")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("Core.Entities.Product.ImageEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Images");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImagePath = "Product1_1.webp",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImagePath = "Product1_2.webp",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ImagePath = "Product1_3.webp",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ImagePath = "Product1_4.webp",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImagePath = "Product1_5.webp",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImagePath = "Product1_6.webp",
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImagePath = "Product2_1.webp",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ImagePath = "Product2_2.webp",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ImagePath = "Product2_3.webp",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ImagePath = "Product2_4.webp",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ImagePath = "Product2_5.webp",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ImagePath = "Product2_6.webp",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ImagePath = "Product2_7.webp",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ImagePath = "Product2_8.webp",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ImagePath = "Product2_9.webp",
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ImagePath = "Product3_1.webp",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ImagePath = "Product3_2.webp",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ImagePath = "Product3_3.webp",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ImagePath = "Product3_4.webp",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ImagePath = "Product3_5.webp",
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ImagePath = "Product4_1.webp",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ImagePath = "Product4_2.webp",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ImagePath = "Product4_3.webp",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ImagePath = "Product4_4.webp",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ImagePath = "Product4_5.webp",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ImagePath = "Product4_6.webp",
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 27,
+                            ImagePath = "Product5_1.webp",
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 28,
+                            ImagePath = "Product5_2.webp",
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 29,
+                            ImagePath = "Product5_3.webp",
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 30,
+                            ImagePath = "Product5_4.webp",
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 31,
+                            ImagePath = "Product5_5.webp",
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 32,
+                            ImagePath = "Product5_6.webp",
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 33,
+                            ImagePath = "Product6_1.webp",
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            Id = 34,
+                            ImagePath = "Product6_2.webp",
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            Id = 35,
+                            ImagePath = "Product6_3.webp",
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            Id = 36,
+                            ImagePath = "Product6_4.webp",
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            Id = 37,
+                            ImagePath = "Product6_5.webp",
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            Id = 38,
+                            ImagePath = "Product6_6.webp",
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            Id = 39,
+                            ImagePath = "Product7_1.webp",
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            Id = 40,
+                            ImagePath = "Product7_2.webp",
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            Id = 41,
+                            ImagePath = "Product7_3.webp",
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            Id = 42,
+                            ImagePath = "Product7_4.webp",
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            Id = 43,
+                            ImagePath = "Product7_5.webp",
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            Id = 44,
+                            ImagePath = "Product8_1.webp",
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            Id = 45,
+                            ImagePath = "Product8_2.webp",
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            Id = 46,
+                            ImagePath = "Product8_3.webp",
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            Id = 47,
+                            ImagePath = "Product8_4.webp",
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            Id = 48,
+                            ImagePath = "Product8_5.webp",
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            Id = 49,
+                            ImagePath = "Product8_6.webp",
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            Id = 50,
+                            ImagePath = "Product8_7.webp",
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            Id = 51,
+                            ImagePath = "Product9_1.webp",
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            Id = 52,
+                            ImagePath = "Product9_2.webp",
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            Id = 53,
+                            ImagePath = "Product9_3.webp",
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            Id = 54,
+                            ImagePath = "Product9_4.webp",
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            Id = 55,
+                            ImagePath = "Product9_5.webp",
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            Id = 56,
+                            ImagePath = "Product9_6.webp",
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            Id = 57,
+                            ImagePath = "Product10_1.webp",
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            Id = 58,
+                            ImagePath = "Product10_2.webp",
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            Id = 59,
+                            ImagePath = "Product10_3.webp",
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            Id = 60,
+                            ImagePath = "Product10_4.webp",
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            Id = 61,
+                            ImagePath = "Product10_5.webp",
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            Id = 62,
+                            ImagePath = "Product10_6.webp",
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            Id = 63,
+                            ImagePath = "Product10_7.webp",
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            Id = 64,
+                            ImagePath = "Product10_8.webp",
+                            ProductId = 10
+                        },
+                        new
+                        {
+                            Id = 65,
+                            ImagePath = "Product11_1.webp",
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            Id = 66,
+                            ImagePath = "Product11_2.webp",
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            Id = 67,
+                            ImagePath = "Product11_3.webp",
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            Id = 68,
+                            ImagePath = "Product11_4.webp",
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            Id = 69,
+                            ImagePath = "Product11_5.webp",
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            Id = 70,
+                            ImagePath = "Product11_6.webp",
+                            ProductId = 11
+                        },
+                        new
+                        {
+                            Id = 71,
+                            ImagePath = "Product12_1.webp",
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            Id = 72,
+                            ImagePath = "Product12_2.webp",
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            Id = 73,
+                            ImagePath = "Product12_3.webp",
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            Id = 74,
+                            ImagePath = "Product12_4.webp",
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            Id = 75,
+                            ImagePath = "Product12_5.webp",
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            Id = 76,
+                            ImagePath = "Product12_6.webp",
+                            ProductId = 12
+                        },
+                        new
+                        {
+                            Id = 77,
+                            ImagePath = "Product13_1.webp",
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            Id = 78,
+                            ImagePath = "Product13_2.webp",
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            Id = 79,
+                            ImagePath = "Product13_3.webp",
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            Id = 80,
+                            ImagePath = "Product13_4.webp",
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            Id = 81,
+                            ImagePath = "Product13_5.webp",
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            Id = 82,
+                            ImagePath = "Product13_6.webp",
+                            ProductId = 13
+                        },
+                        new
+                        {
+                            Id = 83,
+                            ImagePath = "Product14_1.webp",
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            Id = 84,
+                            ImagePath = "Product14_2.webp",
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            Id = 85,
+                            ImagePath = "Product14_3.webp",
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            Id = 86,
+                            ImagePath = "Product14_4.webp",
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            Id = 87,
+                            ImagePath = "Product14_5.webp",
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            Id = 88,
+                            ImagePath = "Product14_6.webp",
+                            ProductId = 14
+                        },
+                        new
+                        {
+                            Id = 89,
+                            ImagePath = "Product15_1.webp",
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            Id = 90,
+                            ImagePath = "Product15_2.webp",
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            Id = 91,
+                            ImagePath = "Product15_3.webp",
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            Id = 92,
+                            ImagePath = "Product15_4.webp",
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            Id = 93,
+                            ImagePath = "Product15_5.webp",
+                            ProductId = 15
+                        },
+                        new
+                        {
+                            Id = 94,
+                            ImagePath = "Product15_6.webp",
+                            ProductId = 15
+                        });
+                });
+
+            modelBuilder.Entity("Core.Entities.Product.ImageForHome", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ImageForHome");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImagePath = "800_home_page_1.webp"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImagePath = "800_home_page_2.webp"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ImagePath = "800_home_page_3.webp"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ImagePath = "800_home_page_4.webp"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImagePath = "800_home_page_5.webp"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImagePath = "800_home_page_6.webp"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImagePath = "800_home_page_7.webp"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ImagePath = "800_home_page_8.webp"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ImagePath = "800_home_page_9.webp"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ImagePath = "800_home_page_10.webp"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ImagePath = "800_home_page_11.webp"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ImagePath = "800_home_page_12.webp"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ImagePath = "800_home_page_13.webp"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ImagePath = "800_home_page_14.webp"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ImagePath = "800_home_page_15.webp"
+                        });
+                });
+
+            modelBuilder.Entity("Core.Entities.Product.ProductEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1669,7 +1798,7 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Core.Entities.Site.Storage", b =>
+            modelBuilder.Entity("Core.Entities.Product.StorageEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -2434,80 +2563,6 @@ namespace Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Core.Entities.Site.SubCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("MainCategoryId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(180)
-                        .HasColumnType("character varying(180)");
-
-                    b.Property<string>("URLName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MainCategoryId");
-
-                    b.ToTable("SubCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            MainCategoryId = 1,
-                            Name = "Woman Shoes",
-                            URLName = "woman_shoes"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            MainCategoryId = 2,
-                            Name = "Man Shoes",
-                            URLName = "man_shoes"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            MainCategoryId = 1,
-                            Name = "Woman Clothing",
-                            URLName = "woman_clothing"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            MainCategoryId = 2,
-                            Name = "Man Clothing",
-                            URLName = "man_clothing"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            MainCategoryId = 1,
-                            Name = "Woman Accessories",
-                            URLName = "woman_accessories"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            MainCategoryId = 2,
-                            Name = "Man Accessories",
-                            URLName = "man_accessories"
-                        });
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -2748,14 +2803,14 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "602f8858-2f37-43aa-afab-15ed412db616",
+                            Id = "93f0809e-5767-4923-a8e8-f2ef242a2bf3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "405dceca-cc05-4a0a-861e-ad8b1e518813",
+                            ConcurrencyStamp = "5f67bb04-3e9b-46f8-bbcd-8fc204bc49ee",
                             Email = "admin@ukr.net",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9491db3f-97e5-4edc-9a8c-7070afb3702f",
+                            SecurityStamp = "e6cc00f6-5b86-4b7d-b792-7c353bdb87cd",
                             TwoFactorEnabled = false,
                             UserName = "Admin",
                             Birthday = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -2765,6 +2820,24 @@ namespace Infrastructure.Migrations
                             Password = "Qwerty-7",
                             Role = "Admin"
                         });
+                });
+
+            modelBuilder.Entity("Core.Entities.Category.CategoryEntity", b =>
+                {
+                    b.HasOne("Core.Entities.Category.SubCategory", "SubCategory")
+                        .WithMany("Categories")
+                        .HasForeignKey("SubCategoryId");
+
+                    b.Navigation("SubCategory");
+                });
+
+            modelBuilder.Entity("Core.Entities.Category.SubCategory", b =>
+                {
+                    b.HasOne("Core.Entities.Category.MainCategory", "MainCategory")
+                        .WithMany("SubCategories")
+                        .HasForeignKey("MainCategoryId");
+
+                    b.Navigation("MainCategory");
                 });
 
             modelBuilder.Entity("Core.Entities.Information.Bag", b =>
@@ -2786,7 +2859,7 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core.Entities.Site.Product", "Product")
+                    b.HasOne("Core.Entities.Product.ProductEntity", "Product")
                         .WithMany("BagItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2826,27 +2899,18 @@ namespace Infrastructure.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("Core.Entities.Site.Category", b =>
+            modelBuilder.Entity("Core.Entities.Product.ImageEntity", b =>
                 {
-                    b.HasOne("Core.Entities.Site.SubCategory", "SubCategory")
-                        .WithMany("Categories")
-                        .HasForeignKey("SubCategoryId");
-
-                    b.Navigation("SubCategory");
-                });
-
-            modelBuilder.Entity("Core.Entities.Site.Image", b =>
-                {
-                    b.HasOne("Core.Entities.Site.Product", "Product")
+                    b.HasOne("Core.Entities.Product.ProductEntity", "Product")
                         .WithMany("Images")
                         .HasForeignKey("ProductId");
 
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Core.Entities.Site.Product", b =>
+            modelBuilder.Entity("Core.Entities.Product.ProductEntity", b =>
                 {
-                    b.HasOne("Core.Entities.Site.Category", "Category")
+                    b.HasOne("Core.Entities.Category.CategoryEntity", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -2855,24 +2919,15 @@ namespace Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Core.Entities.Site.Storage", b =>
+            modelBuilder.Entity("Core.Entities.Product.StorageEntity", b =>
                 {
-                    b.HasOne("Core.Entities.Site.Product", "Product")
+                    b.HasOne("Core.Entities.Product.ProductEntity", "Product")
                         .WithMany("Storages")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Core.Entities.Site.SubCategory", b =>
-                {
-                    b.HasOne("Core.Entities.Site.MainCategory", "MainCategory")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("MainCategoryId");
-
-                    b.Navigation("MainCategory");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -2926,6 +2981,21 @@ namespace Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Core.Entities.Category.CategoryEntity", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Core.Entities.Category.MainCategory", b =>
+                {
+                    b.Navigation("SubCategories");
+                });
+
+            modelBuilder.Entity("Core.Entities.Category.SubCategory", b =>
+                {
+                    b.Navigation("Categories");
+                });
+
             modelBuilder.Entity("Core.Entities.Information.Bag", b =>
                 {
                     b.Navigation("BagItems");
@@ -2941,28 +3011,13 @@ namespace Infrastructure.Migrations
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("Core.Entities.Site.Category", b =>
-                {
-                    b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Core.Entities.Site.MainCategory", b =>
-                {
-                    b.Navigation("SubCategories");
-                });
-
-            modelBuilder.Entity("Core.Entities.Site.Product", b =>
+            modelBuilder.Entity("Core.Entities.Product.ProductEntity", b =>
                 {
                     b.Navigation("BagItems");
 
                     b.Navigation("Images");
 
                     b.Navigation("Storages");
-                });
-
-            modelBuilder.Entity("Core.Entities.Site.SubCategory", b =>
-                {
-                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("Core.Entities.DashBoard.User", b =>

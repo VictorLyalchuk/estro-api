@@ -317,6 +317,17 @@ namespace Infrastructure.Data
             new ImageForHome(){ Id = 2, ImagePath = "800_home_page_2.webp"},
             new ImageForHome(){ Id = 3, ImagePath = "800_home_page_3.webp"},
             new ImageForHome(){ Id = 4, ImagePath = "800_home_page_4.webp"},
+            new ImageForHome(){ Id = 5, ImagePath = "800_home_page_5.webp"},
+            new ImageForHome(){ Id = 6, ImagePath = "800_home_page_6.webp"},
+            new ImageForHome(){ Id = 7, ImagePath = "800_home_page_7.webp"},
+            new ImageForHome(){ Id = 8, ImagePath = "800_home_page_8.webp"},
+            new ImageForHome(){ Id = 9, ImagePath = "800_home_page_9.webp"},
+            new ImageForHome(){ Id = 10, ImagePath = "800_home_page_10.webp"},
+            new ImageForHome(){ Id = 11, ImagePath = "800_home_page_11.webp"},
+            new ImageForHome(){ Id = 12, ImagePath = "800_home_page_12.webp"},
+            new ImageForHome(){ Id = 13, ImagePath = "800_home_page_13.webp"},
+            new ImageForHome(){ Id = 14, ImagePath = "800_home_page_14.webp"},
+            new ImageForHome(){ Id = 15, ImagePath = "800_home_page_15.webp"},
             };
 
         public static List<User> SeedUser() =>
