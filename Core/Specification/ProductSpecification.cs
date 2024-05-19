@@ -42,7 +42,7 @@ namespace Core.Specification
                      .Take(pageSize)
                      .Include(p => p.Images)
                      .Include(p => p.Category)
-                     .Include(p => p.Storages);
+                     .Include(p => p.Storages.OrderBy(s => s.Size));
             }
         }
         public class FilterProducts : Specification<ProductEntity>
@@ -158,7 +158,7 @@ namespace Core.Specification
                 Query
                     .Where(p => p.Id == id)
                     .Include(p => p.Images)
-                    .Include(p => p.Storages)
+                    .Include(p => p.Storages.OrderBy(s => s.Size))
                     .Include(p => p.Category)
                     .ThenInclude(p => p.SubCategory)
                     .ThenInclude(p => p.MainCategory);

@@ -10,7 +10,8 @@ namespace Core.Specification
             public GetStorageByProductId(int id)
             {
                 Query
-                    .Where(p => p.ProductId == id);
+                    .Where(p => p.ProductId == id)
+                    .OrderByDescending(p => p.Size);
             }
         }
     }
