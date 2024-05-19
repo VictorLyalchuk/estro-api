@@ -332,7 +332,7 @@ namespace Infrastructure.Data
 
         public static List<User> SeedUser() =>
     new List<User>() {
-            new User(){ Email = "admin@ukr.net", Role = "Admin", UserName = "Admin", FirstName = "Admin", Password = "Qwerty-7"  },
+            new User(){ Email = "admin@ukr.net", Role = "Admin", UserName = "admin@ukr.net", FirstName = "Admin", Password = "Qwerty-7", PasswordHash = "AQAAAAIAAYagAAAAEJCIhVwbRroBfbxDxSgaFTUin9PBQGhAEFwNqdOoJ0evkIlwjeYF9EaysDkepPluNw=="  },
 
     };
 
