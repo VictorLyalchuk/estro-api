@@ -2,6 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure;
 using Core;
 using WebApi;
+using Core.Entities.DashBoard;
+using Microsoft.AspNetCore.Identity;
+using Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,7 @@ string connection = builder.Configuration.GetConnectionString("EstroDataConnecti
 //string connection = builder.Configuration.GetConnectionString("EstroDataConnectionSomee") ?? throw new InvalidOperationException("Connection string 'EstroDataConnection' not found.");
 
 builder.Services.AddDBContext(connection);
+
 
 //builder.Services.AddInfrastuctureService();
 

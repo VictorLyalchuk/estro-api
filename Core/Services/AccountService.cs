@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.DTOs.GoogleUser;
 using Core.DTOs.User;
 using Core.Entities.DashBoard;
 using Core.Helpers;
@@ -20,6 +21,7 @@ namespace Core.Services
         private readonly UserManager<User> _userManager;
         private readonly EmailService _emailService;
         private readonly IConfiguration _configuration;
+        
         private readonly IMapper _mapper;
         private readonly IImageService _image;
         private readonly IWebHostEnvironment _env;
@@ -41,19 +43,18 @@ namespace Core.Services
                 return _mapper.Map<UserDTO>(user);
             }
             else
+            {
                 throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.NotFound);
+            }
         }
+    
         public async Task<string> Login(UserLoginDTO loginDTO)
         {
-            var user = await _userManager.FindByNameAsync(loginDTO.Email);
-            var pass = await _userManager.CheckPasswordAsync(user, loginDTO.Password);
+            var user = await _userManager.FindByEmailAsync(loginDTO.Email);
+          
             if (user == null)
             {
                 throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
-            }
-            if (user == null || !pass)
-            {
-                throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
             }
 
             var claimsList = new List<Claim>()
@@ -63,6 +64,7 @@ namespace Core.Services
                 new Claim("LastName", user.LastName),
                 new Claim("ImagePath", user.ImagePath),
                 new Claim("Role", user.Role),
+                new Claim("AuthType", user.AuthType),
                 new Claim("Id", user.Id),
             };
             var jwtOptions = _configuration.GetSection("Jwt").Get<JwtOptions>();
@@ -78,39 +80,61 @@ namespace Core.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        
+
         public async Task Registration(UserRegistrationDTO registrationDTO)
         {
             User user = _mapper.Map<User>(registrationDTO);
             user.UserName = registrationDTO.Email;
 
-            if(registrationDTO.ImageFile != null)
+            if(user.AuthType == "standard")
             {
-                user.ImagePath = await _image.CreateUserImageAsync(registrationDTO.ImageFile);
+                if (registrationDTO.ImageFile != null)
+                {
+                    user.ImagePath = await _image.CreateUserImageAsync(registrationDTO.ImageFile);
+                }
+                var result = await _userManager.CreateAsync(user, registrationDTO.Password);
+
+                await SendConfirmationEmailAsync(registrationDTO.Email);
+                
+                if (!result.Succeeded)
+                {
+                    var messageError = string.Join(",", result.Errors.Select(er => er.Description));
+                    throw new CustomHttpException(messageError, System.Net.HttpStatusCode.BadRequest);
+                }
+                return;
             }
-            var result = await _userManager.CreateAsync(user, registrationDTO.Password);
 
-            await SendConfirmationEmailAsync(registrationDTO.Email);
+            user.EmailConfirmed = true;
+            user.ImagePath = registrationDTO.ImagePath;
+            user.ClientId = registrationDTO.ClientId;
 
-            if (!result.Succeeded)
+            var resultgoogle = await _userManager.CreateAsync(user);
+            if (!resultgoogle.Succeeded)
             {
-                var messageError = string.Join(",", result.Errors.Select(er => er.Description));
+                var messageError = string.Join(",", resultgoogle.Errors.Select(er => er.Description));
                 throw new CustomHttpException(messageError, System.Net.HttpStatusCode.BadRequest);
             }
         }
+        
         public async Task Edit(UserEditDTO editDTO)
         {
             var user = await _userManager.FindByEmailAsync(editDTO.Email);
-            var pass = await _userManager.CheckPasswordAsync(user, editDTO.Password);
 
-            if (user == null || !pass)
+            if (user.AuthType == "standard")
             {
-                throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
+                var pass = await _userManager.CheckPasswordAsync(user, editDTO.Password);
+                if (user == null || !pass)
+                {
+                    throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
+                }
+                if (user.Email != editDTO.Email)
+                {
+                    user.EmailConfirmed = false;
+                    var confirmationResut = await _userManager.UpdateAsync(user);
+                }
             }
-            if (user.Email != editDTO.Email)
-            {
-                user.EmailConfirmed = false;
-                var confirmationResut = await _userManager.UpdateAsync(user);
-            }
+          
             if (user != null)
             {
                 User updatedUser = _mapper.Map<User>(user);
