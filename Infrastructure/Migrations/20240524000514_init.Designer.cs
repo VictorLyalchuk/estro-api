@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240518174956_new")]
-    partial class @new
+    [Migration("20240524000514_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2772,11 +2772,19 @@ namespace Infrastructure.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("AuthType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int?>("BagId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ClientId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -2803,17 +2811,20 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "93f0809e-5767-4923-a8e8-f2ef242a2bf3",
+                            Id = "e1c39943-a613-4949-982f-8aacd8c394ea",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5f67bb04-3e9b-46f8-bbcd-8fc204bc49ee",
+                            ConcurrencyStamp = "d2939511-6f69-4123-af74-ab54c8fd9cec",
                             Email = "admin@ukr.net",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
+                            PasswordHash = "AQAAAAIAAYagAAAAEJCIhVwbRroBfbxDxSgaFTUin9PBQGhAEFwNqdOoJ0evkIlwjeYF9EaysDkepPluNw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e6cc00f6-5b86-4b7d-b792-7c353bdb87cd",
+                            SecurityStamp = "9629e6b0-e775-4924-989f-32635bee4562",
                             TwoFactorEnabled = false,
-                            UserName = "Admin",
+                            UserName = "admin@ukr.net",
+                            AuthType = "",
                             Birthday = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ClientId = "",
                             FirstName = "Admin",
                             ImagePath = "",
                             LastName = "",

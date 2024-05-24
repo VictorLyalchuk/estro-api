@@ -2,12 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure;
 using Core;
 using WebApi;
+using Core.Entities.DashBoard;
+using Microsoft.AspNetCore.Identity;
+using Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 string connection = builder.Configuration.GetConnectionString("EstroDataConnectionPostgres") ?? throw new InvalidOperationException("Connection string 'EstroDataConnectionPostgres' not found.");
 
 builder.Services.AddDBContext(connection);
+
 
 //builder.Services.AddInfrastuctureService();
 

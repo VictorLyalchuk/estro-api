@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Core.DTOs.User
+namespace Core.DTOs.GoogleUser
 {
-    public class UserRegistrationDTO
+    public class GoogleUserRegistrationDTO
     {
         public string? UserName { get; set; }
         public string? FirstName { get; set; }

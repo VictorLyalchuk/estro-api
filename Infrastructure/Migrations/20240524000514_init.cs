@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class @new : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,6 +41,8 @@ namespace Infrastructure.Migrations
                     ImagePath = table.Column<string>(type: "text", nullable: true),
                     Birthday = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     BagId = table.Column<int>(type: "integer", nullable: true),
+                    ClientId = table.Column<string>(type: "text", nullable: true),
+                    AuthType = table.Column<string>(type: "text", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -444,8 +446,8 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "BagId", "Birthday", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "93f0809e-5767-4923-a8e8-f2ef242a2bf3", 0, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5f67bb04-3e9b-46f8-bbcd-8fc204bc49ee", "User", "admin@ukr.net", false, "Admin", "", "", false, null, null, null, "Qwerty-7", null, null, false, "Admin", "e6cc00f6-5b86-4b7d-b792-7c353bdb87cd", false, "Admin" });
+                columns: new[] { "Id", "AccessFailedCount", "AuthType", "BagId", "Birthday", "ClientId", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "e1c39943-a613-4949-982f-8aacd8c394ea", 0, "", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "d2939511-6f69-4123-af74-ab54c8fd9cec", "User", "admin@ukr.net", false, "Admin", "", "", false, null, null, null, "Qwerty-7", "AQAAAAIAAYagAAAAEJCIhVwbRroBfbxDxSgaFTUin9PBQGhAEFwNqdOoJ0evkIlwjeYF9EaysDkepPluNw==", null, false, "Admin", "9629e6b0-e775-4924-989f-32635bee4562", false, "admin@ukr.net" });
 
             migrationBuilder.InsertData(
                 table: "ImageForHome",
