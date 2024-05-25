@@ -9,8 +9,6 @@ using Infrastructure.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 string connection = builder.Configuration.GetConnectionString("EstroDataConnectionPostgres") ?? throw new InvalidOperationException("Connection string 'EstroDataConnectionPostgres' not found.");
-//string connection = builder.Configuration.GetConnectionString("EstroDataConnection") ?? throw new InvalidOperationException("Connection string 'EstroDataConnection' not found.");
-//string connection = builder.Configuration.GetConnectionString("EstroDataConnectionSomee") ?? throw new InvalidOperationException("Connection string 'EstroDataConnection' not found.");
 
 builder.Services.AddDBContext(connection);
 

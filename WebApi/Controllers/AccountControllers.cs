@@ -1,4 +1,5 @@
-﻿using Core.DTOs.User;
+﻿using Core.DTOs.GoogleUser;
+using Core.DTOs.User;
 using Core.Helpers;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
