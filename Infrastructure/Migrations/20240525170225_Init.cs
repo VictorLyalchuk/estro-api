@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -447,7 +447,7 @@ namespace Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "AuthType", "BagId", "Birthday", "ClientId", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "e1c39943-a613-4949-982f-8aacd8c394ea", 0, "", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "d2939511-6f69-4123-af74-ab54c8fd9cec", "User", "admin@ukr.net", false, "Admin", "", "", false, null, null, null, "Qwerty-7", "AQAAAAIAAYagAAAAEJCIhVwbRroBfbxDxSgaFTUin9PBQGhAEFwNqdOoJ0evkIlwjeYF9EaysDkepPluNw==", null, false, "Admin", "9629e6b0-e775-4924-989f-32635bee4562", false, "admin@ukr.net" });
+                values: new object[] { "88165b3b-d5fa-4e9b-8922-acaae39b7cbd", 0, "standard", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "48fc7c4e-ba41-430c-ba1f-ad295a486e58", "User", "admin@ukr.net", true, "Admin", "", "", false, null, null, null, "Qwerty-7", "AQAAAAIAAYagAAAAEJCIhVwbRroBfbxDxSgaFTUin9PBQGhAEFwNqdOoJ0evkIlwjeYF9EaysDkepPluNw==", null, false, "Admin", "29c2e53b-c0b5-47cc-b700-62b651b4b411", false, "admin@ukr.net" });
 
             migrationBuilder.InsertData(
                 table: "ImageForHome",

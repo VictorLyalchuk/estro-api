@@ -1,5 +1,4 @@
 ﻿using Core.DTOs.Category;
-using Core.DTOs.GoogleUser;
 using Core.DTOs.Image;
 using Core.DTOs.Information;
 using Core.DTOs.Product;
@@ -20,9 +19,6 @@ namespace Core.Mapper
             CreateMap<UserDTO, User>().ReverseMap();
             CreateMap<UserEditDTO, User>().ReverseMap();
             CreateMap<UserRegistrationDTO, User>().ReverseMap();
-
-            CreateMap<GoogleUserRegistrationDTO, User>().ReverseMap();
-            CreateMap<GoogleUserDTO, User>().ReverseMap();
 
 
             CreateMap<MainCategoryDTO, MainCategory>().ReverseMap();

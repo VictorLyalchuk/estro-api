@@ -7,6 +7,7 @@ namespace Infrastructure.Data
 {
     public static class SeedData
     {
+
         public static List<MainCategory> SeedMainCategory() =>
         new List<MainCategory>() {
             new MainCategory(){ Id = 1, Name = "Woman", URLName = "woman" },                                        // Woman
@@ -331,8 +332,10 @@ namespace Infrastructure.Data
             };
 
         public static List<User> SeedUser() =>
+
     new List<User>() {
-            new User(){ Email = "admin@ukr.net", Role = "Admin", UserName = "admin@ukr.net", FirstName = "Admin", Password = "Qwerty-7", PasswordHash = "AQAAAAIAAYagAAAAEJCIhVwbRroBfbxDxSgaFTUin9PBQGhAEFwNqdOoJ0evkIlwjeYF9EaysDkepPluNw=="  },
+
+            new User(){ Email = "admin@ukr.net", Role = "Admin", UserName = "admin@ukr.net", FirstName = "Admin", Password = "Qwerty-7", PasswordHash = "AQAAAAIAAYagAAAAEJCIhVwbRroBfbxDxSgaFTUin9PBQGhAEFwNqdOoJ0evkIlwjeYF9EaysDkepPluNw==", AuthType = "standard", EmailConfirmed = true  },
 
     };
 
