@@ -3,6 +3,7 @@ using System;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240525170225_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2808,22 +2811,18 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-
-                            Id = "e1c39943-a613-4949-982f-8aacd8c394ea",
+                            Id = "88165b3b-d5fa-4e9b-8922-acaae39b7cbd",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d2939511-6f69-4123-af74-ab54c8fd9cec",
-
+                            ConcurrencyStamp = "48fc7c4e-ba41-430c-ba1f-ad295a486e58",
                             Email = "admin@ukr.net",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             PasswordHash = "AQAAAAIAAYagAAAAEJCIhVwbRroBfbxDxSgaFTUin9PBQGhAEFwNqdOoJ0evkIlwjeYF9EaysDkepPluNw==",
                             PhoneNumberConfirmed = false,
-
-                            SecurityStamp = "9629e6b0-e775-4924-989f-32635bee4562",
+                            SecurityStamp = "29c2e53b-c0b5-47cc-b700-62b651b4b411",
                             TwoFactorEnabled = false,
                             UserName = "admin@ukr.net",
-                            AuthType = "",
-
+                            AuthType = "standard",
                             Birthday = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ClientId = "",
                             FirstName = "Admin",

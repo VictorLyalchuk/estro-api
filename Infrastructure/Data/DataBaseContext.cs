@@ -3,6 +3,7 @@ using Core.Entities.DashBoard;
 using Core.Entities.Information;
 using Core.Entities.Product;
 using Infrastructure.EntitiesConfiguration;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +37,7 @@ namespace Infrastructure.Data
             builder.Entity<Info>().HasData(SeedData.SeedInfos());
             builder.Entity<Options>().HasData(SeedData.SeedOptions());
             builder.Entity<User>().HasData(SeedData.SeedUser());
+            
 
         }
         public DbSet<User> User { get; set; }
