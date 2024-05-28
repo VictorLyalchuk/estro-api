@@ -3,11 +3,13 @@ using Core.DTOs.Image;
 using Core.DTOs.Information;
 using Core.DTOs.Product;
 using Core.DTOs.Storage;
+using Core.DTOs.Store;
 using Core.DTOs.User;
 using Core.Entities.Category;
 using Core.Entities.DashBoard;
 using Core.Entities.Information;
 using Core.Entities.Product;
+using Core.Entities.Store;
 
 namespace Core.Mapper
 {
@@ -39,6 +41,9 @@ namespace Core.Mapper
                         .ForMember(dest => dest.MainCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.MainCategory.Name));
             
             CreateMap<StorageDTO, StorageEntity>().ReverseMap();
+            CreateMap<StoreDTO, StoreEntity>().ReverseMap();
+            CreateMap<CreateStoreDTO, StoreEntity>();
+            CreateMap<EditStoreDTO, StoreEntity>();
             
             CreateMap<ImageDTO, ImageEntity>().ReverseMap();
             CreateMap<ImageForHomeDTO, ImageForHome>();

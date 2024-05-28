@@ -7,7 +7,6 @@ namespace Core.Entities.Information
     {
         [Key]
         public int Id { get; set; }
-        public int CountProduct { get; set; }
         public DateTime OrderDate { get; set; }
         public List<BagItems>? BagItems { get; set; }
         public string UserEmail { get; set; }

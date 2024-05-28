@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Core.Entities.Information;
+using Core.Entities.Product;
 using Core.Interfaces;
 using Core.Specification;
 

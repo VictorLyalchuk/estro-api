@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -9,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class @new : Migration
+    public partial class start : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,7 +38,6 @@ namespace Infrastructure.Migrations
                     FirstName = table.Column<string>(type: "text", nullable: true),
                     LastName = table.Column<string>(type: "text", nullable: true),
                     Password = table.Column<string>(type: "text", nullable: true),
-                    Role = table.Column<string>(type: "text", nullable: true),
                     ImagePath = table.Column<string>(type: "text", nullable: true),
                     Birthday = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     BagId = table.Column<int>(type: "integer", nullable: true),
@@ -100,6 +100,23 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_MainCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Store",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Address = table.Column<string>(type: "text", nullable: false),
+                    WorkingHours = table.Column<string>(type: "text", nullable: false),
+                    MapLink = table.Column<string>(type: "text", nullable: false),
+                    City = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Store", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,7 +231,6 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CountProduct = table.Column<int>(type: "integer", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UserEmail = table.Column<string>(type: "text", nullable: false),
                     UserId = table.Column<string>(type: "text", nullable: false)
@@ -356,6 +372,8 @@ namespace Infrastructure.Migrations
                     Article = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
                     Description = table.Column<string>(type: "character varying(1024)", maxLength: 1024, nullable: false),
+                    Highlights = table.Column<List<string>>(type: "text[]", nullable: false),
+                    Details = table.Column<string>(type: "text", nullable: false),
                     Purpose = table.Column<string>(type: "text", nullable: false),
                     Color = table.Column<string>(type: "text", nullable: false),
                     Material = table.Column<string>(type: "text", nullable: false),
@@ -443,11 +461,6 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "BagId", "Birthday", "ConcurrencyStamp", "Discriminator", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "Password", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "93f0809e-5767-4923-a8e8-f2ef242a2bf3", 0, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5f67bb04-3e9b-46f8-bbcd-8fc204bc49ee", "User", "admin@ukr.net", false, "Admin", "", "", false, null, null, null, "Qwerty-7", null, null, false, "Admin", "e6cc00f6-5b86-4b7d-b792-7c353bdb87cd", false, "Admin" });
-
-            migrationBuilder.InsertData(
                 table: "ImageForHome",
                 columns: new[] { "Id", "ImagePath" },
                 values: new object[,]
@@ -487,6 +500,42 @@ namespace Infrastructure.Migrations
                 {
                     { 1, null, "Woman", "woman" },
                     { 2, null, "Man", "man" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Store",
+                columns: new[] { "Id", "Address", "City", "MapLink", "Name", "WorkingHours" },
+                values: new object[,]
+                {
+                    { 1, "Antonovycha, 176, Ground Floor, Left from Eldorado, Across from Butlers", "Kiyv", "Link to map", "TRC Ocean Plaza", "Daily 10:00 - 22:00" },
+                    { 2, "Dniprovska Naberezhna, 12, Second Floor", "Kiyv", "Link to map", "TRC River Mall", "Daily 10:00 - 22:00" },
+                    { 3, "Prospekt Obolonsky, 1-B, First Floor, Atrium Greece 5B", "Kiyv", "Link to map", "TRC DREAM Yellow", "Daily 10:00 - 22:00" },
+                    { 4, "Berkovetska, 6-D, First Floor, First Quarter from the Entrance near Epicentr", "Kiyv", "Link to map", "TRC Lavina Mall", "Daily 10:00 - 22:00" },
+                    { 5, "Kiltseva Doroga, 1, First Floor", "Kiyv", "Link to map", "TRC Respublika Park", "Daily 10:00 - 22:00" },
+                    { 6, "Prospekt Pravdy, 47, First Floor, Near Colin's", "Kiyv", "Link to map", "TRC Retroville", "Daily 10:00 - 22:00" },
+                    { 7, "Prospekt Stepana Bandery, 36, First Floor", "Kiyv", "Link to map", "TRC Blockbuster Mall", "Daily 10:00 - 22:00" },
+                    { 8, "Gnata Khotkevycha, 1-B, First Floor, Left from Ashan Entrance", "Kiyv", "Link to map", "TRK Prospekt", "Daily 10:00 - 22:00" },
+                    { 9, "600-Richchia, 17, New Building, First Floor, Central Alley", "Vinnytsia", "Link to map", "TRC Megamall", "Daily 10:00 - 21:00" },
+                    { 10, "Mykoly Ovodova, 51, First Floor, Entrance from Soborna Street, Near Toy House", "Vinnytsia", "Link to map", "TRC Sky Park", "Daily 10:00 - 21:00" },
+                    { 11, "Queen Elizabeth II (Hlinka), 2, Ground Floor", "Dnipro", "Link to map", "TRC MOST City", "Daily 10:00 - 21:00" },
+                    { 12, "Nyzhnedniprovskaya, 17, First Floor, Near the Fountain", "Dnipro", "Link to map", "TRC Karavan", "Daily 10:00 - 21:00" },
+                    { 13, "Kyivska, 77, First Floor, Across from LC Waikiki", "Zhytomyr", "Link to map", "TRC Global", "Daily 10:00 - 21:00" },
+                    { 14, "Ivana Mykolaychuka, 2, Across from Samsung", "Ivano-Frankivsk", "Link to map", "Shopping Mall ARSEN", "Daily 10:00 - 21:00" },
+                    { 15, "4 Varshavska Street", "Kovel", "Link to map", "Juvent Shopping Center (Boutique 110)", "Daily 10:00 - 18:00" },
+                    { 16, "1 Sukhomlynskoho Street, Second Floor, Near Escalator", "Lutsk", "Link to map", "PortCity Shopping Mall", "Daily 10:00 - 22:00" },
+                    { 17, "1 Voli Avenue, Fourth Floor, Near Escalator", "Lutsk", "Link to map", "TSUM Lutsk", "Daily 09:30 - 21:00" },
+                    { 18, "9 Voli Avenue, Building Facade, Across from Kavarnia Dim Kavy", "Lutsk", "Link to map", "ESTRO Store (Voli, 9)", "Daily 09:00 - 21:00" },
+                    { 19, "1 Karpenka-Karyho Street", "Lutsk", "Link to map", "Juvent Shopping Center (Boutique 125)", "Daily 09:00 - 21:00" },
+                    { 20, "7b Pid Dubom Street, Second Floor, Near Kredens Café", "Lviv", "Link to map", "Forum Lviv Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 21, "226-A Kulparkivska Street, First Floor, Near Kredens Café", "Lviv", "Link to map", "Victoria Gardens Shopping Mall", "Daily 10:00 - 20:00" },
+                    { 22, "30 Stryiska Street, First Floor, Near Elevator", "Lviv", "Link to map", "King Cross Leopolis Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 23, "14 Doroshenka Street, Building Facade, Near Tram Stops #1 and #2", "Lviv", "Link to map", "ESTRO Store (Doroshenka, 14)", "Daily 10:00 - 20:00" },
+                    { 24, "2 Prospekt Nezalezhnosti (Heavenly Hundred Avenue), First Floor, Near Sundays Coffee", "Odesa", "Link to map", "City Center Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 25, "23 Kulyka i Hudacheka (Makarova), Left Wing of the Shopping Center, Near Athletics", "Rivne", "Link to map", "Equator Shopping Mall", "Daily 10:00 - 22:00" },
+                    { 26, "1 Oleksandra Borysenka (Korolenka), First Floor, Near Allo Max", "Rivne", "Link to map", "Zlata Plaza Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 27, "9 Heroiv Pratsi, First Floor", "Kharkiv", "Link to map", "Dafi Shopping Mall", "Daily 10:00 - 20:00" },
+                    { 28, "2a Pushkinska, Third Floor, Near the Escalator", "Kharkiv", "Link to map", "Nikolsky Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 29, "265A Haharina, First Floor, Near Vovk", "Chernivtsi", "Link to map", "DEPO't Center Shopping Mall", "Daily 10:00 - 20:00" }
                 });
 
             migrationBuilder.InsertData(
@@ -588,24 +637,24 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Article", "CategoryId", "Color", "Description", "Material", "Name", "Price", "Purpose" },
+                columns: new[] { "Id", "Article", "CategoryId", "Color", "Description", "Details", "Highlights", "Material", "Name", "Price", "Purpose" },
                 values: new object[,]
                 {
-                    { 1, "ER00113828", 8, "Black", "These stylish black leather boots-stockings are a perfect blend of fashion and comfort. Crafted with high-quality leather, they provide a sleek and sophisticated look. Ideal for various occasions, these boots-stockings are a must-have in your wardrobe.", "Leather", "Boots-stockings are black leather", 7399m, "Autumn" },
-                    { 2, "ER00112019", 8, "Brown", "Step into the season with elegance in these Autumn brown leather stretch boots. Meticulously crafted from premium leather, these boots offer both style and comfort. The stretch feature ensures a snug fit, while the rich brown color adds a touch of warmth to your autumn wardrobe. Perfect for any occasion, these boots are a fashion statement that complements your unique style. Embrace the essence of autumn with each step.", "Leather", "Autumn brown leather stretch boots", 8899m, "Autumn" },
-                    { 3, "ER00112018", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Autumn leather stretch boots", 8899m, "Autumn" },
-                    { 4, "ER00112022", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Boots autumn leather black", 9899m, "Autumn" },
-                    { 5, "ER00112011", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Black autumn leather stretch boots", 9899m, "Autumn" },
-                    { 6, "ER00113851", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Black demi-season boots", 8799m, "Autumn" },
-                    { 7, "ER00112023", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Boots-stockings leather black", 9989m, "Autumn" },
-                    { 8, "ER00114318", 8, "Burgundy", "Estro ER00112018 Burgundy Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Boots-pipes with wide freebies are burgundy", 9989m, "Autumn" },
-                    { 9, "ER00112298", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Black leather Cossack boots", 8799m, "Autumn" },
-                    { 10, "ER00112123", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Boots-stockings on a stiletto are black", 8699m, "Autumn" },
-                    { 11, "ER00112122", 8, "Milk", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Milk stiletto stocking boots", 8699m, "Autumn" },
-                    { 12, "ER00114239", 8, "Brown", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Boots-stockings on a stiletto are brown", 8399m, "Autumn" },
-                    { 13, "ER00114240", 8, "Black", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Boots-stockings on a stiletto are black", 8399m, "Autumn" },
-                    { 14, "ER00113949", 7, "Black", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Ankle boots are black", 2890m, "Autumn" },
-                    { 15, "ER00111942", 12, "Black", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "Leather", "Winter boots", 2290m, "Winter" }
+                    { 1, "ER00113828", 8, "Black", "These stylish black leather boots-stockings are a perfect blend of fashion and comfort. Crafted with high-quality leather, they provide a sleek and sophisticated look. Ideal for various occasions, these boots-stockings are a must-have in your wardrobe.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-stockings are black leather", 7399m, "Autumn" },
+                    { 2, "ER00112019", 8, "Brown", "Step into the season with elegance in these Autumn brown leather stretch boots. Meticulously crafted from premium leather, these boots offer both style and comfort. The stretch feature ensures a snug fit, while the rich brown color adds a touch of warmth to your autumn wardrobe. Perfect for any occasion, these boots are a fashion statement that complements your unique style. Embrace the essence of autumn with each step.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Autumn brown leather stretch boots", 8899m, "Autumn" },
+                    { 3, "ER00112018", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Autumn leather stretch boots", 8899m, "Autumn" },
+                    { 4, "ER00112022", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots autumn leather black", 9899m, "Autumn" },
+                    { 5, "ER00112011", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Black autumn leather stretch boots", 9899m, "Autumn" },
+                    { 6, "ER00113851", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Black demi-season boots", 8799m, "Autumn" },
+                    { 7, "ER00112023", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-stockings leather black", 9989m, "Autumn" },
+                    { 8, "ER00114318", 8, "Burgundy", "Estro ER00112018 Burgundy Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-pipes with wide freebies are burgundy", 9989m, "Autumn" },
+                    { 9, "ER00112298", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Black leather Cossack boots", 8799m, "Autumn" },
+                    { 10, "ER00112123", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-stockings on a stiletto are black", 8699m, "Autumn" },
+                    { 11, "ER00112122", 8, "Milk", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Milk stiletto stocking boots", 8699m, "Autumn" },
+                    { 12, "ER00114239", 8, "Brown", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-stockings on a stiletto are brown", 8399m, "Autumn" },
+                    { 13, "ER00114240", 8, "Black", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-stockings on a stiletto are black", 8399m, "Autumn" },
+                    { 14, "ER00113949", 7, "Black", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Ankle boots are black", 2890m, "Autumn" },
+                    { 15, "ER00111942", 12, "Black", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Winter boots", 2290m, "Winter" }
                 });
 
             migrationBuilder.InsertData(
@@ -937,6 +986,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Storage");
+
+            migrationBuilder.DropTable(
+                name: "Store");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

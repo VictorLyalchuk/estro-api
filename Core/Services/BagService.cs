@@ -6,6 +6,7 @@ using Core.Helpers;
 using Core.Interfaces;
 using Core.Specification;
 using Microsoft.AspNetCore.Identity;
+using SixLabors.ImageSharp.PixelFormats;
 
 
 namespace Core.Services
@@ -36,7 +37,6 @@ namespace Core.Services
                     {
                         Bag newBag = new Bag()
                         {
-                            CountProduct = 1,
                             OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
                             UserEmail = bagDTO.UserEmail,
                             UserId = user.Id,
@@ -57,7 +57,6 @@ namespace Core.Services
                 }
                 else
                 {
-                    bag.CountProduct += 1;
                     await _bagRepository.Update(bag);
 
                     bagDTO.Id = bag.Id;
@@ -87,7 +86,6 @@ namespace Core.Services
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
         }
-
         public async Task DeleteBagByIdAsync(string email)
         {
             var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(email));
@@ -97,7 +95,6 @@ namespace Core.Services
                 await _bagRepository.SaveAsync();
             }
         }
-
         public async Task<BagUserDTO> GetBagByUserEmailAsync(string email)
         {
             var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(email));
@@ -108,78 +105,75 @@ namespace Core.Services
             var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(email));
             if (bag != null)
             {
-                return bag.CountProduct;
+                var count = bag.BagItems?.Sum(bi => bi.Quantity);
+                return (int)count!;
             }
             else
                 return 0;
         }
 
-
         // Bag Items
         public async Task DeleteItemByID(int id)
         {
-            var bagItem = await _bagItemsRepository.GetByIDAsync(id);
-            var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByItemsID(bagItem.BagId));
-            if (bagItem != null && bag != null)
+            try
             {
-                if (bag.CountProduct > bagItem.Quantity)
+                var bagItem = await _bagItemsRepository.GetByIDAsync(id);
+                if (bagItem != null)
                 {
-                    bag.CountProduct -= bagItem.Quantity;
-                    await _bagRepository.Update(bag);
-                    await _bagItemsRepository.DeleteAsync(bagItem);
-                    await _bagItemsRepository.SaveAsync();
-                }
+                    var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByItemsID(bagItem.BagId));
 
-                else
-                {
-                    bag.CountProduct -= bagItem.Quantity;
-                    await _bagRepository.DeleteAsync(bag);
+                    if (bag != null)
+                    {
+                        var count = bag.BagItems?.Sum(bi => bi.Quantity);
+                        if (count > bagItem.Quantity)
+                        {
+                            await _bagItemsRepository.DeleteAsync(bagItem);
+                            await _bagItemsRepository.SaveAsync();
+                        }
+
+                        else
+                        {
+                            await _bagRepository.DeleteAsync(bag);
+                        }
+                        var user = await _userManager.FindByEmailAsync(bag.UserEmail);
+                        if (user != null)
+                        {
+                            user.BagId = null;
+                            await _userManager.UpdateAsync(user);
+                        }
+                    }
+                    await _bagRepository.SaveAsync();
                 }
-                var user = await _userManager.FindByEmailAsync(bag.UserEmail);
-                if (user != null)
-                {
-                    user.BagId = null;
-                    var result = await _userManager.UpdateAsync(user);
-                }
+            }
+            catch (Exception)
+            {
 
             }
-
-            await _bagRepository.SaveAsync();
         }
         public async Task IncreaseAsync(int id)
         {
             var bagItem = await _bagItemsRepository.GetByIDAsync(id);
-            var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByItemsID(bagItem.BagId));
-            if (bagItem != null && bag != null)
+            if (bagItem != null)
             {
-                //if (bag.CountProduct > bagItem.Quantity)
-                //{
-                bag.CountProduct += 1;
-                await _bagRepository.Update(bag);
-
-                bagItem.Quantity += 1;
-                await _bagItemsRepository.Update(bagItem);
-                //}
-                await _bagRepository.SaveAsync();
-                await _bagItemsRepository.SaveAsync();
+                if (bagItem.Quantity < 10)
+                {
+                    bagItem.Quantity += 1;
+                    await _bagItemsRepository.Update(bagItem);
+                    await _bagItemsRepository.SaveAsync();
+                }
             }
         }
         public async Task DecreaseAsync(int id)
         {
             var bagItem = await _bagItemsRepository.GetByIDAsync(id);
-            var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByItemsID(bagItem.BagId));
-            if (bagItem != null && bag != null)
+            if (bagItem != null)
             {
                 if (bagItem.Quantity > 1)
                 {
-                    bag.CountProduct -= 1;
-                    await _bagRepository.Update(bag);
-
                     bagItem.Quantity -= 1;
                     await _bagItemsRepository.Update(bagItem);
+                    await _bagItemsRepository.SaveAsync();
                 }
-                await _bagRepository.SaveAsync();
-                await _bagItemsRepository.SaveAsync();
             }
         }
     }

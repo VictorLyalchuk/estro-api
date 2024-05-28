@@ -2,11 +2,10 @@
 using Core.Entities.DashBoard;
 using Core.Entities.Information;
 using Core.Entities.Product;
+using Core.Entities.Store;
 using Infrastructure.EntitiesConfiguration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
-
 
 namespace Infrastructure.Data
 {
@@ -33,10 +32,9 @@ namespace Infrastructure.Data
             builder.Entity<StorageEntity>().HasData(SeedData.SeedStorage());
             builder.Entity<ImageForHome>().HasData(SeedData.SeedImageForHome());
 
+            builder.Entity<StoreEntity>().HasData(SeedData.SeedStores());
             builder.Entity<Info>().HasData(SeedData.SeedInfos());
             builder.Entity<Options>().HasData(SeedData.SeedOptions());
-            builder.Entity<User>().HasData(SeedData.SeedUser());
-
         }
         public DbSet<User> User { get; set; }
 
@@ -50,6 +48,7 @@ namespace Infrastructure.Data
         public DbSet<ImageForHome> ImageForHome { get; set; }
 
 
+        public DbSet<StoreEntity> Store { get; set; }
         public DbSet<Info> Info { get; set; }
         public DbSet<Options> Options { get; set; }
     }

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Infrastructure;
 using Core;
 using WebApi;
+using Infrastructure.Initializers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,15 +10,15 @@ string connection = builder.Configuration.GetConnectionString("EstroDataConnecti
 
 builder.Services.AddDBContext(connection);
 
-//builder.Services.AddInfrastuctureService();
-
 builder.Services.AddControllersWithCustomSchema();
 
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGenWithCustomSchema();
 
-builder.Services.AddIdentity();
+//builder.Services.AddIdentity();
+
+builder.Services.AddInfrastuctureService();
 
 builder.Services.AddRepository();
 
@@ -59,5 +60,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+await UsersAndRolesInitializer.SeedUsersAndRoles(app);
 
 app.Run();

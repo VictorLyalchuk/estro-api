@@ -55,7 +55,7 @@ namespace Core.Services
         }
         public async Task<List<ProductDTO>> GetProductByPageAsync(int page)
         {
-            var products = await _productRepository.GetListBySpec(new ProductSpecification.ProductByIdByPage(page));
+            var products = await _productRepository.GetListBySpec(new ProductSpecification.ProductByPage(page));
             return _mapper.Map<List<ProductDTO>>(products);
         }
         public async Task CreateAsync(CreateProductDTO createProductDTO)

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.DTOs.Token;
 using Core.DTOs.User;
 using Core.Entities.DashBoard;
 using Core.Helpers;
@@ -56,15 +57,20 @@ namespace Core.Services
                 throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
             }
 
+            var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
             var claimsList = new List<Claim>()
             {
                 new Claim("Email", loginDTO.Email),
                 new Claim("FirstName", user.FirstName),
                 new Claim("LastName", user.LastName),
                 new Claim("ImagePath", user.ImagePath),
-                new Claim("Role", user.Role),
+                new Claim("Role", currentRole!),
                 new Claim("Id", user.Id),
             };
+            if (!string.IsNullOrEmpty(user.PhoneNumber))
+            {
+                claimsList.Add(new Claim("PhoneNumber", user.PhoneNumber));
+            }
             var jwtOptions = _configuration.GetSection("Jwt").Get<JwtOptions>();
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions!.Key));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
@@ -231,5 +237,11 @@ namespace Core.Services
                 throw new CustomHttpException($"Error confirm email: {ex.Message}", HttpStatusCode.InternalServerError);
             }
         }
+        public async Task RefreshTokenAsync(TokenRequestDto model)
+        {
+            //var result = await _jwtService.VerifyTokenAsync(model);
+            //return result;
+        }
+
     }
 }
