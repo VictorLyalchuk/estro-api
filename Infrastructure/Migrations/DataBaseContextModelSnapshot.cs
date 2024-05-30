@@ -3101,11 +3101,19 @@ namespace Infrastructure.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("AuthType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int?>("BagId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ClientId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
                         .IsRequired()

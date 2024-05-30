@@ -13,13 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-<<<<<<<< HEAD:Infrastructure/Migrations/20240528184828_start.Designer.cs
-    [Migration("20240528184828_start")]
+    [Migration("20240530180232_start")]
     partial class start
-========
-    [Migration("20240524000514_init")]
-    partial class init
->>>>>>>> master:Infrastructure/Migrations/20240524000514_init.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -3140,33 +3135,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.HasDiscriminator().HasValue("User");
-<<<<<<<< HEAD:Infrastructure/Migrations/20240528184828_start.Designer.cs
-========
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "e1c39943-a613-4949-982f-8aacd8c394ea",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "d2939511-6f69-4123-af74-ab54c8fd9cec",
-                            Email = "admin@ukr.net",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEJCIhVwbRroBfbxDxSgaFTUin9PBQGhAEFwNqdOoJ0evkIlwjeYF9EaysDkepPluNw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "9629e6b0-e775-4924-989f-32635bee4562",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@ukr.net",
-                            AuthType = "",
-                            Birthday = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ClientId = "",
-                            FirstName = "Admin",
-                            ImagePath = "",
-                            LastName = "",
-                            Password = "Qwerty-7",
-                            Role = "Admin"
-                        });
->>>>>>>> master:Infrastructure/Migrations/20240524000514_init.Designer.cs
                 });
 
             modelBuilder.Entity("Core.Entities.Category.CategoryEntity", b =>

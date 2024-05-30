@@ -26,7 +26,8 @@ namespace Infrastructure.Initializers
                         EmailConfirmed = true,
                         PhoneNumber = "0990000000",
                         PhoneNumberConfirmed = true,
-                    };
+                        AuthType = "standard",
+    };
 
                     context.Roles.AddRange(
                         new IdentityRole()
