@@ -7,6 +7,7 @@ namespace Infrastructure.Data
 {
     public static class SeedData
     {
+
         public static List<MainCategory> SeedMainCategory() =>
         new List<MainCategory>() {
             new MainCategory(){ Id = 1, Name = "Woman", URLName = "woman" },                                        // Woman

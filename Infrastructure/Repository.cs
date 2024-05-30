@@ -46,6 +46,7 @@ namespace Infrastructure
         {
             return await dbSet.FindAsync(id);
         }
+
         public async Task InsertAsync(TEntity entity)
         {
             await dbSet.AddAsync(entity);

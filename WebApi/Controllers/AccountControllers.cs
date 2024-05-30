@@ -1,4 +1,5 @@
-﻿using Core.DTOs.User;
+﻿using Core.DTOs.GoogleUser;
+using Core.DTOs.User;
 using Core.Helpers;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -35,18 +36,22 @@ namespace WebApi.Controllers
                 return NotFound();
             }
         }
+
+     
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(UserLoginDTO loginDTO)
+        public async Task<IActionResult> Login( UserLoginDTO loginDTO)
         {
             var token = await _accountService.Login(loginDTO);
             return Ok(new { token });
         }
+       
         [HttpPost("Registration")]
         public async Task<IActionResult> Registration(UserRegistrationDTO registrationDTO)
         {
             await _accountService.Registration(registrationDTO);
             return Ok();
         }
+      
         [HttpPost("Edit")]
         public async Task<IActionResult> Edit(UserEditDTO editDTO)
         {

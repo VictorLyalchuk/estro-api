@@ -4,6 +4,7 @@ using Core.Entities.Information;
 using Core.Entities.Product;
 using Core.Entities.Store;
 using Infrastructure.EntitiesConfiguration;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
