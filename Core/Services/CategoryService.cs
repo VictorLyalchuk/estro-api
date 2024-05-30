@@ -23,7 +23,6 @@ namespace Core.Services
         public async Task<List<MainCategoryDTO>> MainGetAllAsync()
         {
             var categories = await _MainCategoryRepository.GetListBySpec(new MainCategorySpecification.All());
-            //var categories = await _MainCategoryRepository.GetAsync(includeProperties: new[] { "Categories" });
             return _mapper.Map<List<MainCategoryDTO>>(categories);
         }
         public async Task<MainCategoryDTO?> MainGetByIdAsync(int id)
@@ -45,7 +44,6 @@ namespace Core.Services
         }
         public async Task<List<CategoryDTO>> GetAllAsync()
         {
-            //var categories = await _categoryRepository.GetAsync();
             var categories = await _categoryRepository.GetListBySpec(new CategorySpecification.GetAllAsync());
             return _mapper.Map<List<CategoryDTO>>(categories);
         }

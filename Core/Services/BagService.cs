@@ -6,7 +6,7 @@ using Core.Helpers;
 using Core.Interfaces;
 using Core.Specification;
 using Microsoft.AspNetCore.Identity;
-using SixLabors.ImageSharp.PixelFormats;
+using System.Net;
 
 
 namespace Core.Services
@@ -83,7 +83,7 @@ namespace Core.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                throw new CustomHttpException($"Error create bag: {ex.Message}", HttpStatusCode.InternalServerError);
             }
         }
         public async Task DeleteBagByIdAsync(string email)
@@ -102,14 +102,20 @@ namespace Core.Services
         }
         public async Task<int> GetCountBagByEmailAsync(string email)
         {
-            var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(email));
-            if (bag != null)
+            try
             {
-                var count = bag.BagItems?.Sum(bi => bi.Quantity);
-                return (int)count!;
+                var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(email));
+                if (bag != null)
+                {
+                    return (int)(bag.BagItems?.Sum(bi => bi.Quantity))!;
+                }
+                else
+                    return 0;
             }
-            else
-                return 0;
+            catch (Exception ex)
+            {
+                throw new CustomHttpException($"Error get count bag: {ex.Message}", HttpStatusCode.InternalServerError);
+            }
         }
 
         // Bag Items
@@ -124,11 +130,9 @@ namespace Core.Services
 
                     if (bag != null)
                     {
-                        var count = bag.BagItems?.Sum(bi => bi.Quantity);
-                        if (count > bagItem.Quantity)
+                        if (bag.BagItems?.Sum(bi => bi.Quantity) > bagItem.Quantity)
                         {
                             await _bagItemsRepository.DeleteAsync(bagItem);
-                            await _bagItemsRepository.SaveAsync();
                         }
 
                         else
@@ -142,12 +146,13 @@ namespace Core.Services
                             await _userManager.UpdateAsync(user);
                         }
                     }
+                    await _bagItemsRepository.SaveAsync();
                     await _bagRepository.SaveAsync();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                throw new CustomHttpException($"Error delete bag: {ex.Message}", HttpStatusCode.InternalServerError);
             }
         }
         public async Task IncreaseAsync(int id)

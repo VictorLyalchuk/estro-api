@@ -97,6 +97,8 @@ namespace Core.Services
 
             await SendConfirmationEmailAsync(registrationDTO.Email);
 
+            await _userManager.AddToRoleAsync(user, registrationDTO.Role);
+            
             if (!result.Succeeded)
             {
                 var messageError = string.Join(",", result.Errors.Select(er => er.Description));
