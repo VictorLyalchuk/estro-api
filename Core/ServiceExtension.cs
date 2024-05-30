@@ -18,7 +18,6 @@ namespace Core
             service.AddScoped<IBagItemsService, BagItemsService>();
             service.AddScoped<IBagService, BagService>();
             service.AddScoped<ICategoryService, CategoryService>();
-            //service.AddScoped<IEmailService, EmailService>();
             service.AddScoped<IFilesService, FilesService>();
             service.AddScoped<IImageForHomeService, ImageForHomeService>();
             service.AddScoped<IImageService, ImageService>();
@@ -26,6 +25,7 @@ namespace Core
             service.AddScoped<IOrderService, OrderService>();
             service.AddScoped<IProductService, ProductService>();
             service.AddScoped<IStorageService, StorageService>();
+            service.AddScoped<IStoreService, StoreService>();
             service.AddTransient<EmailService>();
 
         }

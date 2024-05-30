@@ -7,7 +7,6 @@ namespace Core.DTOs.Information
     {
         [Key]
         public int Id { get; set; }
-        public int CountProduct { get; set; }
         public int ProductId { get; set; }
         public int Size { get; set; }
         public DateTime OrderDate { get; set; }

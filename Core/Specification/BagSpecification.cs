@@ -17,8 +17,9 @@ namespace Core.Specification
             {
                 Query
                     .Include(f => f.BagItems)
-                    .ThenInclude(f => f.Product)
+                    //.ThenInclude(f => f.Product)
                     .Where(f => f.UserEmail == userEmail);
+                    
             }
         }
         public class GetBagByItemsID : Specification<Bag>
@@ -28,7 +29,6 @@ namespace Core.Specification
                 Query
                     .Include(b => b.BagItems)
                     .Where(b => b.Id == bagId);
-                //.Where(b => b.BagItems.Any(item => item.Id == bagItemsId));
             }
         }
     }

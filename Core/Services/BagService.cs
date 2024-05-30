@@ -6,6 +6,7 @@ using Core.Helpers;
 using Core.Interfaces;
 using Core.Specification;
 using Microsoft.AspNetCore.Identity;
+using System.Net;
 
 
 namespace Core.Services
@@ -36,7 +37,6 @@ namespace Core.Services
                     {
                         Bag newBag = new Bag()
                         {
-                            CountProduct = 1,
                             OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
                             UserEmail = bagDTO.UserEmail,
                             UserId = user.Id,
@@ -57,7 +57,6 @@ namespace Core.Services
                 }
                 else
                 {
-                    bag.CountProduct += 1;
                     await _bagRepository.Update(bag);
 
                     bagDTO.Id = bag.Id;
@@ -84,10 +83,9 @@ namespace Core.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                throw new CustomHttpException($"Error create bag: {ex.Message}", HttpStatusCode.InternalServerError);
             }
         }
-
         public async Task DeleteBagByIdAsync(string email)
         {
             var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(email));
@@ -97,7 +95,6 @@ namespace Core.Services
                 await _bagRepository.SaveAsync();
             }
         }
-
         public async Task<BagUserDTO> GetBagByUserEmailAsync(string email)
         {
             var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(email));
@@ -105,81 +102,83 @@ namespace Core.Services
         }
         public async Task<int> GetCountBagByEmailAsync(string email)
         {
-            var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(email));
-            if (bag != null)
+            try
             {
-                return bag.CountProduct;
+                var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(email));
+                if (bag != null)
+                {
+                    return (int)(bag.BagItems?.Sum(bi => bi.Quantity))!;
+                }
+                else
+                    return 0;
             }
-            else
-                return 0;
+            catch (Exception ex)
+            {
+                throw new CustomHttpException($"Error get count bag: {ex.Message}", HttpStatusCode.InternalServerError);
+            }
         }
-
 
         // Bag Items
         public async Task DeleteItemByID(int id)
         {
-            var bagItem = await _bagItemsRepository.GetByIDAsync(id);
-            var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByItemsID(bagItem.BagId));
-            if (bagItem != null && bag != null)
+            try
             {
-                if (bag.CountProduct > bagItem.Quantity)
+                var bagItem = await _bagItemsRepository.GetByIDAsync(id);
+                if (bagItem != null)
                 {
-                    bag.CountProduct -= bagItem.Quantity;
-                    await _bagRepository.Update(bag);
-                    await _bagItemsRepository.DeleteAsync(bagItem);
+                    var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByItemsID(bagItem.BagId));
+
+                    if (bag != null)
+                    {
+                        if (bag.BagItems?.Sum(bi => bi.Quantity) > bagItem.Quantity)
+                        {
+                            await _bagItemsRepository.DeleteAsync(bagItem);
+                        }
+
+                        else
+                        {
+                            await _bagRepository.DeleteAsync(bag);
+                        }
+                        var user = await _userManager.FindByEmailAsync(bag.UserEmail);
+                        if (user != null)
+                        {
+                            user.BagId = null;
+                            await _userManager.UpdateAsync(user);
+                        }
+                    }
                     await _bagItemsRepository.SaveAsync();
+                    await _bagRepository.SaveAsync();
                 }
-
-                else
-                {
-                    bag.CountProduct -= bagItem.Quantity;
-                    await _bagRepository.DeleteAsync(bag);
-                }
-                var user = await _userManager.FindByEmailAsync(bag.UserEmail);
-                if (user != null)
-                {
-                    user.BagId = null;
-                    var result = await _userManager.UpdateAsync(user);
-                }
-
             }
-
-            await _bagRepository.SaveAsync();
+            catch (Exception ex)
+            {
+                throw new CustomHttpException($"Error delete bag: {ex.Message}", HttpStatusCode.InternalServerError);
+            }
         }
         public async Task IncreaseAsync(int id)
         {
             var bagItem = await _bagItemsRepository.GetByIDAsync(id);
-            var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByItemsID(bagItem.BagId));
-            if (bagItem != null && bag != null)
+            if (bagItem != null)
             {
-                //if (bag.CountProduct > bagItem.Quantity)
-                //{
-                bag.CountProduct += 1;
-                await _bagRepository.Update(bag);
-
-                bagItem.Quantity += 1;
-                await _bagItemsRepository.Update(bagItem);
-                //}
-                await _bagRepository.SaveAsync();
-                await _bagItemsRepository.SaveAsync();
+                if (bagItem.Quantity < 10)
+                {
+                    bagItem.Quantity += 1;
+                    await _bagItemsRepository.Update(bagItem);
+                    await _bagItemsRepository.SaveAsync();
+                }
             }
         }
         public async Task DecreaseAsync(int id)
         {
             var bagItem = await _bagItemsRepository.GetByIDAsync(id);
-            var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByItemsID(bagItem.BagId));
-            if (bagItem != null && bag != null)
+            if (bagItem != null)
             {
                 if (bagItem.Quantity > 1)
                 {
-                    bag.CountProduct -= 1;
-                    await _bagRepository.Update(bag);
-
                     bagItem.Quantity -= 1;
                     await _bagItemsRepository.Update(bagItem);
+                    await _bagItemsRepository.SaveAsync();
                 }
-                await _bagRepository.SaveAsync();
-                await _bagItemsRepository.SaveAsync();
             }
         }
     }

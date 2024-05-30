@@ -1,7 +1,7 @@
 ﻿using Core.Entities.Category;
 using Core.Entities.DashBoard;
-using Core.Entities.Information;
 using Core.Entities.Product;
+using Core.Entities.Store;
 
 namespace Infrastructure.Data
 {
@@ -73,21 +73,21 @@ namespace Infrastructure.Data
         };
         public static List<ProductEntity> SeedProduct() =>
         new List<ProductEntity>() {
-            new ProductEntity(){ Id = 1, Name = "Boots-stockings are black leather", Article = "ER00113828", Color = "Black", Material = "Leather", Description = "These stylish black leather boots-stockings are a perfect blend of fashion and comfort. Crafted with high-quality leather, they provide a sleek and sophisticated look. Ideal for various occasions, these boots-stockings are a must-have in your wardrobe.", Purpose = "Autumn", Price = 7399, CategoryId = 8},
-            new ProductEntity(){ Id = 2, Name = "Autumn brown leather stretch boots", Article = "ER00112019", Color = "Brown", Material = "Leather", Description = "Step into the season with elegance in these Autumn brown leather stretch boots. Meticulously crafted from premium leather, these boots offer both style and comfort. The stretch feature ensures a snug fit, while the rich brown color adds a touch of warmth to your autumn wardrobe. Perfect for any occasion, these boots are a fashion statement that complements your unique style. Embrace the essence of autumn with each step.", Purpose = "Autumn", Price = 8899, CategoryId = 8},
-            new ProductEntity(){ Id = 3, Name = "Autumn leather stretch boots", Article = "ER00112018", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8899, CategoryId = 8},
-            new ProductEntity(){ Id = 4, Name = "Boots autumn leather black", Article = "ER00112022", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 9899, CategoryId = 8},
-            new ProductEntity(){ Id = 5, Name = "Black autumn leather stretch boots", Article = "ER00112011", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 9899, CategoryId = 8},
-            new ProductEntity(){ Id = 6, Name = "Black demi-season boots", Article = "ER00113851", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8799, CategoryId = 8},
-            new ProductEntity(){ Id = 7, Name = "Boots-stockings leather black", Article = "ER00112023", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 9989, CategoryId = 8},
-            new ProductEntity(){ Id = 8, Name = "Boots-pipes with wide freebies are burgundy", Article = "ER00114318", Color = "Burgundy", Material = "Leather", Description = "Estro ER00112018 Burgundy Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 9989, CategoryId = 8},
-            new ProductEntity(){ Id = 9, Name = "Black leather Cossack boots", Article = "ER00112298", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8799, CategoryId = 8},
-            new ProductEntity(){ Id = 10, Name = "Boots-stockings on a stiletto are black", Article = "ER00112123", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8699, CategoryId = 8},
-            new ProductEntity(){ Id = 11, Name = "Milk stiletto stocking boots", Article = "ER00112122", Color = "Milk", Material = "Leather", Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8699, CategoryId = 8},
-            new ProductEntity(){ Id = 12, Name = "Boots-stockings on a stiletto are brown", Article = "ER00114239", Color = "Brown", Material = "Leather", Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8399, CategoryId = 8},
-            new ProductEntity(){ Id = 13, Name = "Boots-stockings on a stiletto are black", Article = "ER00114240", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8399, CategoryId = 8},
-            new ProductEntity(){ Id = 14, Name = "Ankle boots are black", Article = "ER00113949", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 2890, CategoryId = 7},
-            new ProductEntity(){ Id = 15, Name = "Winter boots", Article = "ER00111942", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Winter", Price = 2290, CategoryId = 12},
+            new ProductEntity(){ Id = 1, Name = "Boots-stockings are black leather", Article = "ER00113828", Color = "Black", Material = "Leather", Description = "These stylish black leather boots-stockings are a perfect blend of fashion and comfort. Crafted with high-quality leather, they provide a sleek and sophisticated look. Ideal for various occasions, these boots-stockings are a must-have in your wardrobe.", Purpose = "Autumn", Price = 7399, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 2, Name = "Autumn brown leather stretch boots", Article = "ER00112019", Color = "Brown", Material = "Leather", Description = "Step into the season with elegance in these Autumn brown leather stretch boots. Meticulously crafted from premium leather, these boots offer both style and comfort. The stretch feature ensures a snug fit, while the rich brown color adds a touch of warmth to your autumn wardrobe. Perfect for any occasion, these boots are a fashion statement that complements your unique style. Embrace the essence of autumn with each step.", Purpose = "Autumn", Price = 8899, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 3, Name = "Autumn leather stretch boots", Article = "ER00112018", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8899, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 4, Name = "Boots autumn leather black", Article = "ER00112022", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 9899, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 5, Name = "Black autumn leather stretch boots", Article = "ER00112011", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 9899, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 6, Name = "Black demi-season boots", Article = "ER00113851", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8799, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 7, Name = "Boots-stockings leather black", Article = "ER00112023", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 9989, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 8, Name = "Boots-pipes with wide freebies are burgundy", Article = "ER00114318", Color = "Burgundy", Material = "Leather", Description = "Estro ER00112018 Burgundy Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 9989, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 9, Name = "Black leather Cossack boots", Article = "ER00112298", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8799, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 10, Name = "Boots-stockings on a stiletto are black", Article = "ER00112123", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8699, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 11, Name = "Milk stiletto stocking boots", Article = "ER00112122", Color = "Milk", Material = "Leather", Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8699, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 12, Name = "Boots-stockings on a stiletto are brown", Article = "ER00114239", Color = "Brown", Material = "Leather", Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8399, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 13, Name = "Boots-stockings on a stiletto are black", Article = "ER00114240", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 8399, CategoryId = 8, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 14, Name = "Ankle boots are black", Article = "ER00113949", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Autumn", Price = 2890, CategoryId = 7, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
+            new ProductEntity(){ Id = 15, Name = "Winter boots", Article = "ER00111942", Color = "Black", Material = "Leather", Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", Purpose = "Winter", Price = 2290, CategoryId = 12, Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", Highlights = ["Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton"] },
         };
         public static List<ImageEntity> SeedImage() =>
             new List<ImageEntity>() {
@@ -331,13 +331,7 @@ namespace Infrastructure.Data
             new ImageForHome(){ Id = 15, ImagePath = "800_home_page_15.webp"},
             };
 
-        public static List<User> SeedUser() =>
 
-    new List<User>() {
-
-            new User(){ Email = "admin@ukr.net", Role = "Admin", UserName = "admin@ukr.net", FirstName = "Admin", Password = "Qwerty-7", PasswordHash = "AQAAAAIAAYagAAAAEJCIhVwbRroBfbxDxSgaFTUin9PBQGhAEFwNqdOoJ0evkIlwjeYF9EaysDkepPluNw==", AuthType = "standard", EmailConfirmed = true  },
-
-    };
 
         public static List<Info> SeedInfos() =>
             new List<Info>() {
@@ -373,7 +367,7 @@ namespace Infrastructure.Data
                     new Options () { Id = 19, Value = "39", Label = "39", InfoId = 3 },
                     new Options () { Id = 20, Value = "40", Label = "40", InfoId = 3 },
                     new Options () { Id = 21, Value = "41", Label = "41", InfoId = 3 },
-                    
+
                     new Options () { Id = 25, Value = "42", Label = "42", InfoId = 3 },
                     new Options () { Id = 26, Value = "43", Label = "43", InfoId = 3 },
                     new Options () { Id = 27, Value = "44", Label = "44", InfoId = 3 },
@@ -386,6 +380,112 @@ namespace Infrastructure.Data
                     new Options () { Id = 33, Value = "autumn", Label = "Autumn", InfoId = 4 },
 
             };
+        public static List<StoreEntity> SeedStores() =>
+            new List<StoreEntity>() {
+                    new StoreEntity () { Id = 1, Name = "TRC Ocean Plaza",
+                        Address = "Antonovycha, 176, Ground Floor, Left from Eldorado, Across from Butlers",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                    new StoreEntity () { Id = 2, Name = "TRC River Mall",
+                        Address = "Dniprovska Naberezhna, 12, Second Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                    new StoreEntity () { Id = 3, Name = "TRC DREAM Yellow",
+                        Address = "Prospekt Obolonsky, 1-B, First Floor, Atrium Greece 5B",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                    new StoreEntity () { Id = 4, Name = "TRC Lavina Mall",
+                        Address = "Berkovetska, 6-D, First Floor, First Quarter from the Entrance near Epicentr",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                    new StoreEntity () { Id = 5, Name = "TRC Respublika Park",
+                        Address = "Kiltseva Doroga, 1, First Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                    new StoreEntity () { Id = 6, Name = "TRC Retroville",
+                        Address = "Prospekt Pravdy, 47, First Floor, Near Colin's",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                    new StoreEntity () { Id = 7, Name = "TRC Blockbuster Mall",
+                        Address = "Prospekt Stepana Bandery, 36, First Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                    new StoreEntity () { Id = 8, Name = "TRK Prospekt",
+                        Address = "Gnata Khotkevycha, 1-B, First Floor, Left from Ashan Entrance",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                    new StoreEntity () { Id = 9, Name = "TRC Megamall",
+                        Address = "600-Richchia, 17, New Building, First Floor, Central Alley",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Vinnytsia"},
+                    new StoreEntity () { Id = 10, Name = "TRC Sky Park",
+                        Address = "Mykoly Ovodova, 51, First Floor, Entrance from Soborna Street, Near Toy House",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Vinnytsia"},
+                    new StoreEntity () { Id = 11, Name = "TRC MOST City",
+                        Address = "Queen Elizabeth II (Hlinka), 2, Ground Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Dnipro"},
+                    new StoreEntity () { Id = 12, Name = "TRC Karavan",
+                        Address = "Nyzhnedniprovskaya, 17, First Floor, Near the Fountain",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Dnipro"},
+                    new StoreEntity () { Id = 13, Name = "TRC Global",
+                        Address = "Kyivska, 77, First Floor, Across from LC Waikiki",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Zhytomyr"},
+                    new StoreEntity () { Id = 14, Name = "Shopping Mall ARSEN",
+                        Address = "Ivana Mykolaychuka, 2, Across from Samsung",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Ivano-Frankivsk"},
+                    new StoreEntity () { Id = 15, Name = "Juvent Shopping Center (Boutique 110)",
+                        Address = "4 Varshavska Street",
+                        WorkingHours = "Daily 10:00 - 18:00", MapLink = "Link to map", City = "Kovel"},
+                    new StoreEntity () { Id = 16, Name = "PortCity Shopping Mall",
+                        Address = "1 Sukhomlynskoho Street, Second Floor, Near Escalator",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Lutsk"},
+                    new StoreEntity () { Id = 17, Name = "TSUM Lutsk",
+                        Address = "1 Voli Avenue, Fourth Floor, Near Escalator",
+                        WorkingHours = "Daily 09:30 - 21:00", MapLink = "Link to map", City = "Lutsk"},
+                    new StoreEntity () { Id = 18, Name = "ESTRO Store (Voli, 9)",
+                        Address = "9 Voli Avenue, Building Facade, Across from Kavarnia Dim Kavy",
+                        WorkingHours = "Daily 09:00 - 21:00", MapLink = "Link to map", City = "Lutsk"},
+                    new StoreEntity () { Id = 19, Name = "Juvent Shopping Center (Boutique 125)",
+                        Address = "1 Karpenka-Karyho Street",
+                        WorkingHours = "Daily 09:00 - 21:00", MapLink = "Link to map", City = "Lutsk"},
+                    new StoreEntity () { Id = 20, Name = "Forum Lviv Shopping Mall",
+                        Address = "7b Pid Dubom Street, Second Floor, Near Kredens Café",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Lviv"},
+                    new StoreEntity () { Id = 21, Name = "Victoria Gardens Shopping Mall",
+                        Address = "226-A Kulparkivska Street, First Floor, Near Kredens Café",
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Lviv"},
+                    new StoreEntity () { Id = 22, Name = "King Cross Leopolis Shopping Mall",
+                        Address = "30 Stryiska Street, First Floor, Near Elevator",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Lviv"},
+                    new StoreEntity () { Id = 23, Name = "ESTRO Store (Doroshenka, 14)",
+                        Address = "14 Doroshenka Street, Building Facade, Near Tram Stops #1 and #2",
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Lviv"},
+                    new StoreEntity () { Id = 24, Name = "City Center Shopping Mall",
+                        Address = "2 Prospekt Nezalezhnosti (Heavenly Hundred Avenue), First Floor, Near Sundays Coffee",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Odesa"},
+                    new StoreEntity () { Id = 25, Name = "Equator Shopping Mall",
+                        Address = "23 Kulyka i Hudacheka (Makarova), Left Wing of the Shopping Center, Near Athletics",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Rivne"},
+                    new StoreEntity () { Id = 26, Name = "Zlata Plaza Shopping Mall",
+                        Address = "1 Oleksandra Borysenka (Korolenka), First Floor, Near Allo Max",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Rivne"},
+                    new StoreEntity () { Id = 27, Name = "Dafi Shopping Mall",
+                        Address = "9 Heroiv Pratsi, First Floor",
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Kharkiv"},
+                    new StoreEntity () { Id = 28, Name = "Nikolsky Shopping Mall",
+                        Address = "2a Pushkinska, Third Floor, Near the Escalator",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Kharkiv"},
+                    new StoreEntity () { Id = 29, Name = "DEPO't Center Shopping Mall",
+                        Address = "265A Haharina, First Floor, Near Vovk",
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Chernivtsi"},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+};
     };
 
 

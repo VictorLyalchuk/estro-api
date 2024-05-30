@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-
-namespace Core.Entities.Information
+namespace Core.Entities.Product
 {
     public class Options
     {

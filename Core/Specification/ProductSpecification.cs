@@ -28,9 +28,9 @@ namespace Core.Specification
                     .Include(p => p.Storages);
             }
         }
-        public class ProductByIdByPage : Specification<ProductEntity>
+        public class ProductByPage : Specification<ProductEntity>
         {
-            public ProductByIdByPage(int page)
+            public ProductByPage(int page)
             {
                 if (page < 1)
                 {

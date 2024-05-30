@@ -1,5 +1,6 @@
 ﻿using Core.Entities.Category;
 using Core.Entities.Information;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace Core.Entities.Product
@@ -12,6 +13,8 @@ namespace Core.Entities.Product
         public string Article { get; set; } = string.Empty;
         public decimal Price { get; set; }
         public string Description { get; set; } = string.Empty;
+        public List<string> Highlights { get; set; }
+        public string Details { get; set; } = string.Empty;
         public string Purpose { get; set; } = string.Empty;
         public string Color { get; set; } = string.Empty;
         public string Material { get; set; } = string.Empty;

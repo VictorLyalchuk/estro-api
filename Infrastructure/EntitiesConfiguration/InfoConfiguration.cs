@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Core.Entities.Information;
+using Core.Entities.Product;
 
 namespace Infrastructure.EntitiesConfiguration
 {
