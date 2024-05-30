@@ -1,6 +1,6 @@
-﻿using Core.Entities.Information;
+﻿using Core.Entities.Product;
 
-namespace Core.DTOs.Information
+namespace Core.DTOs.Product
 {
     public class OptionsDTO
     {

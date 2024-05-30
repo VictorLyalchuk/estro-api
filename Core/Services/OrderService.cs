@@ -42,8 +42,8 @@ namespace Core.Services
                     LastName = orderCreateDTO.LastName,
                     OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
                     PhoneNumber = orderCreateDTO.PhoneNumber,
-                    Payment = "Not payment",
-                    Status = "Not delivered",
+                    Payment = orderCreateDTO.Payment,
+                    Status = "Order placed",
                     UserId = user.Id, 
                 };
                 await _orderRepository.InsertAsync(order);

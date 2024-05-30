@@ -14,6 +14,6 @@ namespace Core.Interfaces
         Task DeleteProductByIDAsync(int id);
         Task EditAsync(EditProductDTO editProductDTO);
         Task <int> ProductQuantity();
-        Task<int> ProductQuantityByFiltersAsync(string subName, string urlName, FilterDTO filterDTO);
+        Task <int> ProductQuantityByFiltersAsync(string subName, string urlName, FilterDTO filterDTO);
     }
 }
