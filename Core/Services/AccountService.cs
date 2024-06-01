@@ -11,20 +11,26 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
+using System.Runtime;
 using System.Security.Claims;
 using System.Text;
+using Twilio.Rest.Verify.V2.Service;
+using Twilio.Types;
 
 namespace Core.Services
 {
     public class AccountService : IAccountService
     {
         private readonly UserManager<User> _userManager;
+
         private readonly EmailService _emailService;
         private readonly IConfiguration _configuration;
         
         private readonly IMapper _mapper;
         private readonly IImageService _image;
         private readonly IWebHostEnvironment _env;
+        public string VerificationCode { get; set; }
+
 
         public AccountService(UserManager<User> userManager, IConfiguration configuration, IMapper mapper, IImageService image, EmailService emailService, IWebHostEnvironment env)
         {
@@ -35,7 +41,13 @@ namespace Core.Services
             _emailService = emailService;
             _env = env;
         }
-        public async Task<UserDTO> Get(string email)
+        private string GenerateRandomVerificationCode()
+        {
+            Random generator = new Random();
+            VerificationCode = generator.Next(100000, 999999).ToString("D6"); // Generate a 6-digit random number
+            return VerificationCode;
+        }
+        public async Task<UserDTO> GetByEmail(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             if (user != null)
@@ -44,12 +56,92 @@ namespace Core.Services
             }
             else
             {
-                throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.NotFound);
+                throw new CustomHttpException(ErrorMessages.UserNotFoundByEmail, HttpStatusCode.NotFound);
             }
         }
-    
+        public async Task<UserDTO> GetByPhone(string phone)
+        {
+            var user = _userManager.Users.Where(x => x.PhoneNumber == phone).FirstOrDefault();
+            if(user  != null)
+            {
+                return _mapper.Map<UserDTO>(user);
+            }
+
+            else
+            {
+                throw new CustomHttpException(ErrorMessages.UserNotFoundByPhone, HttpStatusCode.NotFound);
+            }
+        }
+        public async Task<string> SendSMS(string phone)
+        {
+            string verifyCode = GenerateRandomVerificationCode();
+
+            var verification = await VerificationResource.CreateAsync(
+            to: "+38" + phone,
+            channel: "sms", // Specify the channel as SMS
+            pathServiceSid: _configuration["Twilio:VerificationServiceSID"]);
+
+            return verification.Sid;
+        }
+        public async Task<LoginByPhoneResultDTO> LoginByPhone(string phone)
+        {
+            var user = _userManager.Users.Where(x => x.PhoneNumber == phone).FirstOrDefault();
+
+            if (user == null)
+            {
+                throw new CustomHttpException(ErrorMessages.UserNotFoundByPhone, HttpStatusCode.BadRequest);
+            }
+            string verifyCode = GenerateRandomVerificationCode();
+
+            var verification = await VerificationResource.CreateAsync(
+            to: "+38" + phone,
+            channel: "sms", // Specify the channel as SMS
+            pathServiceSid: _configuration["Twilio:VerificationServiceSID"]);
+            
+
+            var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+
+            var claimsList = new List<Claim>()
+            {
+                
+                new Claim("FirstName", user.FirstName),
+                new Claim("LastName", user.LastName),
+                new Claim("ImagePath", user.ImagePath),
+                new Claim("Role", currentRole!),
+                new Claim("AuthType", user.AuthType),
+                new Claim("Id", user.Id),
+            };
+            if (!string.IsNullOrEmpty(user.PhoneNumber))
+            {
+                claimsList.Add(new Claim("PhoneNumber", user.PhoneNumber));
+            }
+            var jwtOptions = _configuration.GetSection("Jwt").Get<JwtOptions>();
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions!.Key));
+            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: jwtOptions.Issuer,
+                claims: claimsList,
+                expires: DateTime.Now.AddMinutes(jwtOptions.LifeTime),
+                signingCredentials: signinCredentials
+            );
+
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+            var result = new LoginByPhoneResultDTO
+            {
+                sid = verification.Sid,
+                token = tokenString
+            };
+
+            return result;
+        }
         public async Task<string> Login(UserLoginDTO loginDTO)
         {
+            if (loginDTO == null)
+            {
+                throw new CustomHttpException("LoginDTO cannot be null", HttpStatusCode.BadRequest);
+            }
             var user = await _userManager.FindByEmailAsync(loginDTO.Email);
           
             if (user == null)
@@ -90,15 +182,17 @@ namespace Core.Services
         public async Task Registration(UserRegistrationDTO registrationDTO)
         {
             User user = _mapper.Map<User>(registrationDTO);
-            user.UserName = registrationDTO.Email;
 
             if(user.AuthType == "standard")
             {
+                user.UserName = registrationDTO.Email;
+
                 if (registrationDTO.ImageFile != null)
                 {
                     user.ImagePath = await _image.CreateUserImageAsync(registrationDTO.ImageFile);
                 }
                 var result = await _userManager.CreateAsync(user, registrationDTO.Password);
+                _userManager.AddToRoleAsync(user, "User").Wait();
 
                 await SendConfirmationEmailAsync(registrationDTO.Email);
                 
@@ -109,17 +203,47 @@ namespace Core.Services
                 }
                 return;
             }
-
-            user.EmailConfirmed = true;
-            user.ImagePath = registrationDTO.ImagePath;
-            user.ClientId = registrationDTO.ClientId;
-
-            var resultgoogle = await _userManager.CreateAsync(user);
-            if (!resultgoogle.Succeeded)
+            
+            else if(user.AuthType == "phone")
             {
-                var messageError = string.Join(",", resultgoogle.Errors.Select(er => er.Description));
-                throw new CustomHttpException(messageError, System.Net.HttpStatusCode.BadRequest);
+                user.UserName = registrationDTO.FirstName;
+
+                user.PhoneNumberConfirmed = true;
+                if (registrationDTO.ImageFile != null)
+                {
+                    user.ImagePath = await _image.CreateUserImageAsync(registrationDTO.ImageFile);
+                }
+
+                var resultPhone = await _userManager.CreateAsync(user);
+
+                _userManager.AddToRoleAsync(user, "User").Wait();
+                if (!resultPhone.Succeeded)
+                {
+                    var messageError = string.Join(",", resultPhone.Errors.Select(er => er.Description));
+                    throw new CustomHttpException(messageError, System.Net.HttpStatusCode.BadRequest);
+                }
             }
+
+            else
+            {
+                user.UserName = registrationDTO.Email;
+
+                user.EmailConfirmed = true;
+                user.ImagePath = registrationDTO.ImagePath;
+                user.ClientId = registrationDTO.ClientId;
+
+
+
+                var resultgoogle = await _userManager.CreateAsync(user);
+                _userManager.AddToRoleAsync(user, "User").Wait();
+                if (!resultgoogle.Succeeded)
+                {
+                    var messageError = string.Join(",", resultgoogle.Errors.Select(er => er.Description));
+                    throw new CustomHttpException(messageError, System.Net.HttpStatusCode.BadRequest);
+                }
+            }
+            
+            
         }
         
         public async Task Edit(UserEditDTO editDTO)
