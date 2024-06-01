@@ -1,5 +1,4 @@
-﻿using Core.DTOs.GoogleUser;
-using Core.DTOs.User;
+﻿using Core.DTOs.User;
 using Core.Helpers;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +23,7 @@ namespace WebApi.Controllers
         {
             try
             {
-                var user = await _accountService.Get(email);
+                var user = await _accountService.GetByEmail(email);
                 if (user == null)
                 {
                     return NotFound();
@@ -36,15 +35,48 @@ namespace WebApi.Controllers
                 return NotFound();
             }
         }
-
-     
+        [HttpGet("GetByPhone")]
+        public async Task<IActionResult> GetByPhone(string phone)
+        {
+            try
+            {
+                var user = await _accountService.GetByPhone(phone);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                return Ok(user);
+            }
+            catch (CustomHttpException ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPost("SendSMS")]
+        public async Task<IActionResult> SendSMS(string phone)
+        {
+            try
+            {
+                var result = await _accountService.SendSMS(phone);
+                return Ok(new { VerificationSid = result });
+            }
+            catch (CustomHttpException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
         [HttpPost("Login")]
-        public async Task<IActionResult> Login( UserLoginDTO loginDTO)
+        public async Task<IActionResult> Login(UserLoginDTO loginDTO)
         {
             var token = await _accountService.Login(loginDTO);
             return Ok(new { token });
         }
-       
+        [HttpPost("LoginByPhone")]
+        public async Task<IActionResult> LoginByPhone(string phone)
+        {
+            var token = await _accountService.LoginByPhone(phone);
+            return Ok(new { token });
+        }
         [HttpPost("Registration")]
         public async Task<IActionResult> Registration(UserRegistrationDTO registrationDTO)
         {

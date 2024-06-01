@@ -70,11 +70,29 @@ namespace Core.Helpers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Not Found By Email.
+        /// </summary>
+        internal static string UserNotFoundByEmail {
+            get {
+                return ResourceManager.GetString("UserNotFoundByEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Not Found By Id.
         /// </summary>
         internal static string UserNotFoundById {
             get {
                 return ResourceManager.GetString("UserNotFoundById", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Not Found By Phone.
+        /// </summary>
+        internal static string UserNotFoundByPhone {
+            get {
+                return ResourceManager.GetString("UserNotFoundByPhone", resourceCulture);
             }
         }
     }
