@@ -385,7 +385,7 @@ namespace Core.Services
             string templateFilePath = Path.Combine(_env.WebRootPath, "email", "ConfirmationEmailTemplate.html");
             string emailBody = File.ReadAllText(templateFilePath);
 
-            string url = $"{_configuration["HostSettings:URL"]}/account/profile/{email}/{validEmailToken}";
+            string url = $"{_configuration["HostSettings:URL"]}/{email}/{validEmailToken}";
 
             emailBody = emailBody.Replace("{url}", url);
 
