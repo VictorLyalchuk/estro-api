@@ -12,7 +12,6 @@ namespace Core.Specification
             {
                 Query
                     .Include(p => p.Images)
-                    //.Where(p => p.Id == id);
                     .Where(p => p.CategoryId == id);
             }
         }
@@ -23,7 +22,6 @@ namespace Core.Specification
                 Query
                     .Where(p => p.Id == id)
                     .Include(p => p.Images)
-                    //.ThenInclude(p => p.ImagePath)
                     .Include(p => p.Category)
                     .Include(p => p.Storages);
             }
@@ -102,9 +100,9 @@ namespace Core.Specification
                      .Take(pageSize);
             }
         }
-        public class FilterProductsQuantity : Specification<ProductEntity>
+        public class ProductQuantityByFiltersAsync : Specification<ProductEntity>
         {
-            public FilterProductsQuantity(string subName, string urlName, FilterDTO? filterDTO)
+            public ProductQuantityByFiltersAsync(string subName, string urlName, FilterDTO? filterDTO)
             {
                 List<string> Colors = new List<string>();
                 List<string> Materials = new List<string>();

@@ -16,8 +16,6 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGenWithCustomSchema();
 
-//builder.Services.AddIdentity();
-
 builder.Services.AddInfrastuctureService();
 
 builder.Services.AddRepository();

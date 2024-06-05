@@ -1,4 +1,4 @@
-﻿using Core.Entities.DashBoard;
+﻿using Core.Entities.UserEntity;
 using System.ComponentModel.DataAnnotations;
 
 namespace Core.Entities.Information

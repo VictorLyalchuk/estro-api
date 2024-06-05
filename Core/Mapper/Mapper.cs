@@ -1,4 +1,5 @@
-﻿using Core.DTOs.Category;
+﻿using Core.DTOs.Bag_and_Order;
+using Core.DTOs.Category;
 using Core.DTOs.Image;
 using Core.DTOs.Information;
 using Core.DTOs.Product;
@@ -6,10 +7,11 @@ using Core.DTOs.Storage;
 using Core.DTOs.Store;
 using Core.DTOs.User;
 using Core.Entities.Category;
-using Core.Entities.DashBoard;
+using Core.Entities.UserEntity;
 using Core.Entities.Information;
 using Core.Entities.Product;
 using Core.Entities.Store;
+using Core.Entities.Bag_and_Order;
 
 namespace Core.Mapper
 {
@@ -48,9 +50,13 @@ namespace Core.Mapper
             CreateMap<ImageDTO, ImageEntity>().ReverseMap();
             CreateMap<ImageForHomeDTO, ImageForHome>();
 
+            CreateMap<AddressDTO, Address>();
             CreateMap<OptionsDTO, Options>();
             CreateMap<InfoDTO, Info>();
+
             CreateMap<OrderDTO, Order>().ReverseMap();
+            CreateMap<OrderItemsDTO, OrderItems>();
+            CreateMap<OrderItems, OrderItemsDTO>();
 
             CreateMap<BagDTO, Bag>().ReverseMap();
             CreateMap<BagUserDTO, Bag>().ReverseMap();

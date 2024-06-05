@@ -1,8 +1,7 @@
-﻿using Core.Entities.Product;
-
-namespace Core.Entities.Information
+﻿
+namespace Core.DTOs.Bag_and_Order
 {
-    public class OrderItems
+    public class OrderItemsDTO
     {
         public int Id { get; set; }
         public string? Name { get; set; }
@@ -16,8 +15,6 @@ namespace Core.Entities.Information
         public int Quantity { get; set; }
         public int Size { get; set; }
         public int? OrderId { get; set; }
-        public Order? Order { get; set; }
         public int ProductId { get; set; }
-        public ProductEntity? Product { get; set; }
     }
 }

@@ -162,7 +162,7 @@ namespace Core.Services
         }
         public async Task<int> ProductQuantityByFiltersAsync(string subName, string urlName, FilterDTO filterDTO)
         {
-            var products = await _productRepository.GetListBySpec(new ProductSpecification.FilterProductsQuantity(subName, urlName, filterDTO));
+            var products = await _productRepository.GetListBySpec(new ProductSpecification.ProductQuantityByFiltersAsync(subName, urlName, filterDTO));
             return products.Count();
         }
     }

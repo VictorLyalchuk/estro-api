@@ -1,5 +1,5 @@
 ﻿using Core.Entities.Category;
-using Core.Entities.DashBoard;
+using Core.Entities.UserEntity;
 using Core.Entities.Information;
 using Core.Entities.Product;
 using Core.Entities.Store;

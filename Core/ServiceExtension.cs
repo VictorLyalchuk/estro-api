@@ -1,11 +1,8 @@
-﻿using Core.Entities.DashBoard;
-using Core.Interfaces;
+﻿using Core.Interfaces;
 using Core.Services;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 
 namespace Core
@@ -25,6 +22,7 @@ namespace Core
             service.AddScoped<IOrderService, OrderService>();
             service.AddScoped<IProductService, ProductService>();
             service.AddScoped<IStorageService, StorageService>();
+            service.AddScoped<IAddressService, AddressService>();
             service.AddScoped<IStoreService, StoreService>();
             service.AddTransient<EmailService>();
 

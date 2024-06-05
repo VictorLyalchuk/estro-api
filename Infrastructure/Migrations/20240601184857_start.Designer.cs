@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240530180232_start")]
+    [Migration("20240601184857_start")]
     partial class start
     {
         /// <inheritdoc />
@@ -25,6 +25,28 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Core.Entities.Bag_and_Order.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Region")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Address");
+                });
 
             modelBuilder.Entity("Core.Entities.Category.CategoryEntity", b =>
                 {
@@ -522,46 +544,48 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("numeric");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("EmailUser")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<decimal?>("OrderTotal")
+                        .HasColumnType("numeric");
+
                     b.Property<string>("Payment")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<decimal?>("Subtotal")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal?>("Tax")
+                        .HasColumnType("numeric");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("UserId");
 
@@ -577,15 +601,18 @@ namespace Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Article")
-                        .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("ImagePath")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int?>("OrderId")
@@ -603,9 +630,17 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Size")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Step")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderItems");
                 });
@@ -3100,7 +3135,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Core.Entities.DashBoard.User", b =>
+            modelBuilder.Entity("Core.Entities.UserEntity.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -3157,7 +3192,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Information.Bag", b =>
                 {
-                    b.HasOne("Core.Entities.DashBoard.User", "User")
+                    b.HasOne("Core.Entities.UserEntity.User", "User")
                         .WithOne("Bag")
                         .HasForeignKey("Core.Entities.Information.Bag", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -3187,11 +3222,15 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Information.Order", b =>
                 {
-                    b.HasOne("Core.Entities.DashBoard.User", "User")
+                    b.HasOne("Core.Entities.Bag_and_Order.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
+
+                    b.HasOne("Core.Entities.UserEntity.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Address");
 
                     b.Navigation("User");
                 });
@@ -3202,7 +3241,15 @@ namespace Infrastructure.Migrations
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
 
+                    b.HasOne("Core.Entities.Product.ProductEntity", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Core.Entities.Product.ImageEntity", b =>
@@ -3335,7 +3382,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Storages");
                 });
 
-            modelBuilder.Entity("Core.Entities.DashBoard.User", b =>
+            modelBuilder.Entity("Core.Entities.UserEntity.User", b =>
                 {
                     b.Navigation("Bag");
 
