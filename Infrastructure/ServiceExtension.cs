@@ -36,7 +36,6 @@ namespace Infrastructure
                 options.Password.RequireUppercase = true;
                 options.Password.RequireNonAlphanumeric = true;
                 options.Password.RequiredLength = 7;
-                options.User.RequireUniqueEmail = true;
             })
                 .AddEntityFrameworkStores<DataBaseContext>()
             .AddDefaultTokenProviders();
