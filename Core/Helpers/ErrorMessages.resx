@@ -120,7 +120,13 @@
   <data name="ErrorLoginorPassword" xml:space="preserve">
     <value>Invalid user or password</value>
   </data>
+  <data name="UserNotFoundByEmail" xml:space="preserve">
+    <value>User Not Found By Email</value>
+  </data>
   <data name="UserNotFoundById" xml:space="preserve">
     <value>User Not Found By Id</value>
+  </data>
+  <data name="UserNotFoundByPhone" xml:space="preserve">
+    <value>User Not Found By Phone</value>
   </data>
 </root>

@@ -3,10 +3,15 @@ using Infrastructure;
 using Core;
 using WebApi;
 using Infrastructure.Initializers;
+using Twilio;
 
 var builder = WebApplication.CreateBuilder(args);
 
 string connection = builder.Configuration.GetConnectionString("EstroDataConnectionPostgres") ?? throw new InvalidOperationException("Connection string 'EstroDataConnectionPostgres' not found.");
+
+var accountSid = builder.Configuration["Twilio:AccountSID"];
+var authToken = builder.Configuration["Twilio:AuthToken"];
+TwilioClient.Init(accountSid, authToken);
 
 builder.Services.AddDBContext(connection);
 
