@@ -15,60 +15,60 @@ namespace Infrastructure.Data
         };
         public static List<SubCategory> SeedSubCategory() =>
         new List<SubCategory>() {
-            new SubCategory(){ Id = 1, Name = "Woman Shoes", MainCategoryId = 1, URLName = "woman_shoes" },
-            new SubCategory(){ Id = 2, Name = "Man Shoes", MainCategoryId = 2, URLName = "man_shoes" },
-            new SubCategory(){ Id = 3, Name = "Woman Clothing", MainCategoryId = 1, URLName = "woman_clothing" },
-            new SubCategory(){ Id = 4, Name = "Man Clothing", MainCategoryId = 2, URLName = "man_clothing" },
-            new SubCategory(){ Id = 5, Name = "Woman Accessories", MainCategoryId = 1, URLName = "woman_accessories" },
-            new SubCategory(){ Id = 6, Name = "Man Accessories", MainCategoryId = 2, URLName = "man_accessories" },
+            new SubCategory(){ Id = 1, Name = "Woman Shoes", MainCategoryId = 1, URLName = "woman-shoes" },
+            new SubCategory(){ Id = 2, Name = "Man Shoes", MainCategoryId = 2, URLName = "man-shoes" },
+            new SubCategory(){ Id = 3, Name = "Woman Clothing", MainCategoryId = 1, URLName = "woman-clothing" },
+            new SubCategory(){ Id = 4, Name = "Man Clothing", MainCategoryId = 2, URLName = "man-clothing" },
+            new SubCategory(){ Id = 5, Name = "Woman Accessories", MainCategoryId = 1, URLName = "woman-accessories" },
+            new SubCategory(){ Id = 6, Name = "Man Accessories", MainCategoryId = 2, URLName = "man-accessories" },
         };
         public static List<CategoryEntity> SeedCategory() =>
         new List<CategoryEntity>() {
-            new CategoryEntity(){ Id = 1, Name = "Open shoes", SubCategoryId = 1, URLName = "open_shoes" },                  // Відкрите взуття
-            new CategoryEntity(){ Id = 2, Name = "Pumps and loafers", SubCategoryId = 1, URLName = "pumps_and_loafers" },           // Туфлі та лофери
-            new CategoryEntity(){ Id = 3, Name = "Heeled shoes", SubCategoryId = 1, URLName = "heeled_shoes" },                // Туфлі на підборах
-            new CategoryEntity(){ Id = 4, Name = "Women's athletic sneakers", SubCategoryId = 1, URLName = "women's_athletic_sneakers" },   // Кросівки жіночі
-            new CategoryEntity(){ Id = 5, Name = "Women's sneakers", SubCategoryId = 1, URLName = "women_sneakers" },            // Жіночі кеди
-            new CategoryEntity(){ Id = 6, Name = "High boots and Chelsea", SubCategoryId = 1, URLName = "high_boots_&_chelsea" },         // Високі черевики, челсі
-            new CategoryEntity(){ Id = 7, Name = "Boots on heels", SubCategoryId = 1, URLName = "boots_on_heels" },              // Черевики на підборах
-            new CategoryEntity(){ Id = 8, Name = "Boots and high boots", SubCategoryId = 1, URLName = "boots_and_high_boots" },        // Чоботи та ботфорти
-            new CategoryEntity(){ Id = 9, Name = "Cossacks boots", SubCategoryId = 1, URLName = "cossacks_boots" },              // Козаки
-            new CategoryEntity(){ Id = 10, Name = "Winter footwear", SubCategoryId = 1, URLName = "winter_footwear" },            // Зимове взуття
-            new CategoryEntity(){ Id = 11, Name = "Perforated shoes", SubCategoryId = 1, URLName = "perforated_shoes" },           // Перфороване взуття
+            new CategoryEntity(){ Id = 1, Name = "Open shoes", SubCategoryId = 1, URLName = "open-shoes" },                  // Відкрите взуття
+            new CategoryEntity(){ Id = 2, Name = "Pumps and loafers", SubCategoryId = 1, URLName = "pumps-and-loafers" },           // Туфлі та лофери
+            new CategoryEntity(){ Id = 3, Name = "Heeled shoes", SubCategoryId = 1, URLName = "heeled-shoes" },                // Туфлі на підборах
+            new CategoryEntity(){ Id = 4, Name = "Women's athletic sneakers", SubCategoryId = 1, URLName = "women's-athletic-sneakers" },   // Кросівки жіночі
+            new CategoryEntity(){ Id = 5, Name = "Women's sneakers", SubCategoryId = 1, URLName = "women-sneakers" },            // Жіночі кеди
+            new CategoryEntity(){ Id = 6, Name = "High boots and Chelsea", SubCategoryId = 1, URLName = "high-boots-&-chelsea" },         // Високі черевики, челсі
+            new CategoryEntity(){ Id = 7, Name = "Boots on heels", SubCategoryId = 1, URLName = "boots-on-heels" },              // Черевики на підборах
+            new CategoryEntity(){ Id = 8, Name = "Boots and high boots", SubCategoryId = 1, URLName = "boots-and-high-boots" },        // Чоботи та ботфорти
+            new CategoryEntity(){ Id = 9, Name = "Cossacks boots", SubCategoryId = 1, URLName = "cossacks-boots" },              // Козаки
+            new CategoryEntity(){ Id = 10, Name = "Winter footwear", SubCategoryId = 1, URLName = "winter-footwear" },            // Зимове взуття
+            new CategoryEntity(){ Id = 11, Name = "Perforated shoes", SubCategoryId = 1, URLName = "perforated-shoes" },           // Перфороване взуття
 
-            new CategoryEntity(){ Id = 12, Name = "Men's boots", SubCategoryId = 2, URLName = "men_boots" },                // Черевики чоловічі
-            new CategoryEntity(){ Id = 13, Name = "Men's athletic sneakers", SubCategoryId = 2, URLName = "man_athletic_sneakers" },    // Кросівки чоловічі
-            new CategoryEntity(){ Id = 14, Name = "Men's sneakers", SubCategoryId = 2, URLName = "man_sneakers" },             // Чоловічі кеди
-            new CategoryEntity(){ Id = 15, Name = "Men's pumps", SubCategoryId = 2, URLName = "man_pumps" },                // Туфлі чоловічі
-            new CategoryEntity(){ Id = 16, Name = "Men's moccasins", SubCategoryId = 2, URLName = "man_moccasins" },            // Мокасини чоловічі
-            new CategoryEntity(){ Id = 17, Name = "Men's summer shoes", SubCategoryId = 2, URLName = "man_summer_shoes" },
+            new CategoryEntity(){ Id = 12, Name = "Men's boots", SubCategoryId = 2, URLName = "men-boots" },                // Черевики чоловічі
+            new CategoryEntity(){ Id = 13, Name = "Men's athletic sneakers", SubCategoryId = 2, URLName = "man-athletic-sneakers" },    // Кросівки чоловічі
+            new CategoryEntity(){ Id = 14, Name = "Men's sneakers", SubCategoryId = 2, URLName = "man-sneakers" },             // Чоловічі кеди
+            new CategoryEntity(){ Id = 15, Name = "Men's pumps", SubCategoryId = 2, URLName = "man-pumps" },                // Туфлі чоловічі
+            new CategoryEntity(){ Id = 16, Name = "Men's moccasins", SubCategoryId = 2, URLName = "man-moccasins" },            // Мокасини чоловічі
+            new CategoryEntity(){ Id = 17, Name = "Men's summer shoes", SubCategoryId = 2, URLName = "man-summer-shoes" },
 
-            new CategoryEntity(){ Id = 18, Name = "Women's outerwear", SubCategoryId = 3, URLName = "woman_outerwear" },                // Верхній одяг
-            new CategoryEntity(){ Id = 19, Name = "Women's sweaters and suits", SubCategoryId = 3, URLName = "woman_sweaters_and_suits" },       // Светри та костюми
-            new CategoryEntity(){ Id = 20, Name = "Women's t-shirts and sweatshirts", SubCategoryId = 3, URLName = "woman_t_shirts_and_sweatshirts" }, // Футболки та світшоти
-            new CategoryEntity(){ Id = 21, Name = "Women's shawl", SubCategoryId = 3, URLName = "woman_shawl" },                    // Хустки
-            new CategoryEntity(){ Id = 22, Name = "Women's scarves and hats", SubCategoryId = 3, URLName = "woman_scarves_and_hats" },         // Шарфи та шапки
-            new CategoryEntity(){ Id = 23, Name = "Women's gloves", SubCategoryId = 3, URLName = "woman_gloves" },                   // Рукавички
-            new CategoryEntity(){ Id = 24, Name = "Women's socks and tights", SubCategoryId = 3, URLName = "woman_socks_and_tights" },         // Шкарпетки та колготи
+            new CategoryEntity(){ Id = 18, Name = "Women's outerwear", SubCategoryId = 3, URLName = "woman-outerwear" },                // Верхній одяг
+            new CategoryEntity(){ Id = 19, Name = "Women's sweaters and suits", SubCategoryId = 3, URLName = "woman-sweaters-and-suits" },       // Светри та костюми
+            new CategoryEntity(){ Id = 20, Name = "Women's t-shirts and sweatshirts", SubCategoryId = 3, URLName = "woman-t-shirts-and-sweatshirts" }, // Футболки та світшоти
+            new CategoryEntity(){ Id = 21, Name = "Women's shawl", SubCategoryId = 3, URLName = "woman-shawl" },                    // Хустки
+            new CategoryEntity(){ Id = 22, Name = "Women's scarves and hats", SubCategoryId = 3, URLName = "woman-scarves-and-hats" },         // Шарфи та шапки
+            new CategoryEntity(){ Id = 23, Name = "Women's gloves", SubCategoryId = 3, URLName = "woman-gloves" },                   // Рукавички
+            new CategoryEntity(){ Id = 24, Name = "Women's socks and tights", SubCategoryId = 3, URLName = "woman-socks-and-tights" },         // Шкарпетки та колготи
             
-            new CategoryEntity(){ Id = 25, Name = "Men's outerwear", SubCategoryId = 4, URLName = "man_outerwear" },                // Верхній одяг
-            new CategoryEntity(){ Id = 26, Name = "Men's sweaters and suits", SubCategoryId = 4, URLName = "man_sweaters_and_suits" },       // Светри та костюми
-            new CategoryEntity(){ Id = 27, Name = "Men's t-shirts and sweatshirts", SubCategoryId = 4, URLName = "man_t_shirts_and_sweatshirts" }, // Футболки та світшоти
-            new CategoryEntity(){ Id = 28, Name = "Men's scarves and hats", SubCategoryId = 4, URLName = "man_scarves_and_hats" },         // Шарфи та шапки
-            new CategoryEntity(){ Id = 29, Name = "Men's gloves", SubCategoryId = 4, URLName = "man_gloves" },                   // Рукавички
-            new CategoryEntity(){ Id = 30, Name = "Men's socks", SubCategoryId = 4, URLName = "man_socks" },         // Шкарпетки та колготи
+            new CategoryEntity(){ Id = 25, Name = "Men's outerwear", SubCategoryId = 4, URLName = "man-outerwear" },                // Верхній одяг
+            new CategoryEntity(){ Id = 26, Name = "Men's sweaters and suits", SubCategoryId = 4, URLName = "man-sweaters-and-suits" },       // Светри та костюми
+            new CategoryEntity(){ Id = 27, Name = "Men's t-shirts and sweatshirts", SubCategoryId = 4, URLName = "man-t-shirts-and-sweatshirts" }, // Футболки та світшоти
+            new CategoryEntity(){ Id = 28, Name = "Men's scarves and hats", SubCategoryId = 4, URLName = "man-scarves-and-hats" },         // Шарфи та шапки
+            new CategoryEntity(){ Id = 29, Name = "Men's gloves", SubCategoryId = 4, URLName = "man-gloves" },                   // Рукавички
+            new CategoryEntity(){ Id = 30, Name = "Men's socks", SubCategoryId = 4, URLName = "man-socks" },         // Шкарпетки та колготи
             
-            new CategoryEntity(){ Id = 31, Name = "Women's glasses", SubCategoryId = 5, URLName = "woman_glasses" },                   // Окуляри
-            new CategoryEntity(){ Id = 32, Name = "Women's home shoes", SubCategoryId = 5, URLName = "woman_home_shoes" },                // Домашнє взуття
-            new CategoryEntity(){ Id = 33, Name = "Women's bags", SubCategoryId = 5, URLName = "woman_bags" },                      // Сумки
-            new CategoryEntity(){ Id = 34, Name = "Women's backpacks", SubCategoryId = 5, URLName = "woman_backpacks" },                 // Окуляри
-            new CategoryEntity(){ Id = 35, Name = "Women's care products", SubCategoryId = 5, URLName = "woman_care_products" },             // Засоби по догляду
+            new CategoryEntity(){ Id = 31, Name = "Women's glasses", SubCategoryId = 5, URLName = "woman-glasses" },                   // Окуляри
+            new CategoryEntity(){ Id = 32, Name = "Women's home shoes", SubCategoryId = 5, URLName = "woman-home-shoes" },                // Домашнє взуття
+            new CategoryEntity(){ Id = 33, Name = "Women's bags", SubCategoryId = 5, URLName = "woman-bags" },                      // Сумки
+            new CategoryEntity(){ Id = 34, Name = "Women's backpacks", SubCategoryId = 5, URLName = "woman-backpacks" },                 // Окуляри
+            new CategoryEntity(){ Id = 35, Name = "Women's care products", SubCategoryId = 5, URLName = "woman-care-products" },             // Засоби по догляду
             
-            new CategoryEntity(){ Id = 36, Name = "Men's glasses", SubCategoryId = 6, URLName = "man_glasses" },                   // Окуляри
-            new CategoryEntity(){ Id = 37, Name = "Men's home shoes", SubCategoryId = 6, URLName = "man_home_shoes" },                // Домашнє взуття
-            new CategoryEntity(){ Id = 38, Name = "Men's bags", SubCategoryId = 6, URLName = "man_bags" },                      // Сумки
-            new CategoryEntity(){ Id = 39, Name = "Men's backpacks", SubCategoryId = 6, URLName = "man_backpacks" },                 // Окуляри
-            new CategoryEntity(){ Id = 40, Name = "Men's care products", SubCategoryId = 6, URLName = "man_care_products" },             // Засоби по догляду
+            new CategoryEntity(){ Id = 36, Name = "Men's glasses", SubCategoryId = 6, URLName = "man-glasses" },                   // Окуляри
+            new CategoryEntity(){ Id = 37, Name = "Men's home shoes", SubCategoryId = 6, URLName = "man-home-shoes" },                // Домашнє взуття
+            new CategoryEntity(){ Id = 38, Name = "Men's bags", SubCategoryId = 6, URLName = "man-bags" },                      // Сумки
+            new CategoryEntity(){ Id = 39, Name = "Men's backpacks", SubCategoryId = 6, URLName = "man-backpacks" },                 // Окуляри
+            new CategoryEntity(){ Id = 40, Name = "Men's care products", SubCategoryId = 6, URLName = "man-care-products" },             // Засоби по догляду
         
         };
         public static List<ProductEntity> SeedProduct() =>
@@ -329,6 +329,8 @@ namespace Infrastructure.Data
             new ImageForHome(){ Id = 13, ImagePath = "800_home_page_13.webp"},
             new ImageForHome(){ Id = 14, ImagePath = "800_home_page_14.webp"},
             new ImageForHome(){ Id = 15, ImagePath = "800_home_page_15.webp"},
+            new ImageForHome(){ Id = 16, ImagePath = "800_home_page_16.webp"},
+            new ImageForHome(){ Id = 17, ImagePath = "800_home_page_17.webp"},
             };
 
 

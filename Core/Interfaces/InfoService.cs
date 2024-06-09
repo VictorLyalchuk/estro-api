@@ -4,6 +4,6 @@ namespace Core.Interfaces
 {
     public interface IInfoService
     {
-        Task<List<Info>>? GetInfoAsync(string subName);
+        Task<List<Info>>? GetInfoAsync();
     }
 }

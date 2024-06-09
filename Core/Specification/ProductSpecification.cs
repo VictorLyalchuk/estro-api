@@ -45,108 +45,116 @@ namespace Core.Specification
         }
         public class FilterProducts : Specification<ProductEntity>
         {
-            public FilterProducts(string subName, string urlName, FilterDTO? filterDTO)
+            public FilterProducts(FilterDTO? filterDTO)
             {
-                List<string> Colors = new List<string>();
-                List<string> Materials = new List<string>();
-                List<int> Sizes = new List<int>();
-                List<string> Purpose = new List<string>();
-                int page = filterDTO.page;
-                if (filterDTO.Color != null)
-                {
-                    Colors = filterDTO.Color;
-                };
-                if (filterDTO.Material != null)
-                {
-                    Materials = filterDTO.Material;
-                };
-                if (filterDTO.Size != null)
-                {
-                    Sizes = filterDTO.Size;
-                };
-                if (filterDTO.Purpose != null)
-                {
-                    Purpose = filterDTO.Purpose;
-                };
-                if (page < 1)
-                {
-                    page = 1;
-                }
-                int pageSize = 6;
-                var query = Query.OrderBy(p => p.Id)
+                List<string> Colors = filterDTO.Color ?? new List<string>();
+                List<string> Materials = filterDTO.Material ?? new List<string>();
+                List<int> Sizes = filterDTO.Size ?? new List<int>();
+                List<string> Purpose = filterDTO.Purpose ?? new List<string>();
+                int page = filterDTO.Page < 1 ? 1 : filterDTO.Page;
+                string sort = filterDTO.Sort;
+                int pageSize = filterDTO.ItemsPerPage;
+
+                Query
                      .Include(p => p.Images)
                      .Include(p => p.Category)
-                     .Include(p => p.Storages)
-                     .Where(p => p.Category.URLName == urlName);
+                     .Include(p => p.Storages.OrderBy(p => p.Size));
+
+                if (!string.IsNullOrEmpty(filterDTO.MainCategory))
+                {
+                    Query.Where(p => p.Category.SubCategory.MainCategory.URLName == filterDTO.MainCategory);
+                }
+                if (filterDTO.urlName != null)
+                {
+                    Query.Where(p => filterDTO.urlName.Contains(p.Category.URLName));
+                }
+                if (filterDTO.subName != null)
+                {
+                    Query.Where(p => filterDTO.subName.Contains(p.Category.SubCategory.URLName));
+                }
                 if (Colors.Any())
                 {
-                    query = query.Where(p => Colors.Contains(p.Color.ToLower()));
+                    Query.Where(p => Colors.Contains(p.Color.ToLower()));
                 }
-
                 if (Materials.Any())
                 {
-                    query = query.Where(p => Materials.Contains(p.Material.ToLower()));
+                    Query.Where(p => Materials.Contains(p.Material.ToLower()));
                 }
                 if (Sizes.Any())
                 {
-                    query = query.Where(p => p.Storages != null && p.Storages.Any(s => Sizes.Contains(s.Size) && s.inStock));
+                    Query.Where(p => p.Storages != null && p.Storages.Any(s => Sizes.Contains(s.Size) && s.inStock));
                 }
                 if (Purpose.Any())
                 {
-                    string value = Purpose[0];
-                    query = query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
+                    Query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
                 }
-                var results = query.Skip((page - 1) * pageSize)
+                switch (sort)
+                {
+                    case "newest":
+                        Query.OrderByDescending(p => p.Id);
+                        break;
+                    case "most_popular":
+                        Query.OrderByDescending(p => p.OrderItems.GroupBy(oi => oi.ProductId).Select(g => g.Sum(oi => oi.Quantity)).Sum());
+                        break;
+                    case "price_low_to_high":
+                        Query.OrderBy(p => p.Price);
+                        break;
+                    case "price_high_to_low":
+                        Query.OrderByDescending(p => p.Price);
+                        break;
+                    default:
+                        Query.OrderBy(p => p.Id);
+                        break;
+                }
+
+                 Query.Skip((page - 1) * pageSize)
                      .Take(pageSize);
             }
         }
         public class ProductQuantityByFiltersAsync : Specification<ProductEntity>
         {
-            public ProductQuantityByFiltersAsync(string subName, string urlName, FilterDTO? filterDTO)
+            public ProductQuantityByFiltersAsync(FilterDTO? filterDTO)
             {
-                List<string> Colors = new List<string>();
-                List<string> Materials = new List<string>();
-                List<int> Sizes = new List<int>();
-                List<string> Purpose = new List<string>();
-                if (filterDTO.Color != null)
-                {
-                    Colors = filterDTO.Color;
-                };
-                if (filterDTO.Material != null)
-                {
-                    Materials = filterDTO.Material;
-                };
-                if (filterDTO.Size != null)
-                {
-                    Sizes = filterDTO.Size;
-                };
-                if (filterDTO.Purpose != null)
-                {
-                    Purpose = filterDTO.Purpose;
-                };
-                var query = Query.OrderBy(p => p.Id)
+                List<string> Colors = filterDTO.Color ?? new List<string>();
+                List<string> Materials = filterDTO.Material ?? new List<string>();
+                List<int> Sizes = filterDTO.Size ?? new List<int>();
+                List<string> Purpose = filterDTO.Purpose ?? new List<string>();
+
+                Query.OrderBy(p => p.Id)
                      .Include(p => p.Images)
                      .Include(p => p.Category)
-                     .Include(p => p.Storages)
-                     .Where(p => p.Category.URLName == urlName);
+                     .Include(p => p.Storages);
+
+                if (!string.IsNullOrEmpty(filterDTO.MainCategory))
+                {
+                    Query.Where(p => p.Category.SubCategory.MainCategory.URLName == filterDTO.MainCategory);
+                }
+                if (filterDTO.urlName != null)
+                {
+                    Query.Where(p => filterDTO.urlName.Contains(p.Category.URLName));
+                }
+                if (filterDTO.subName != null)
+                {
+                    Query.Where(p => filterDTO.subName.Contains(p.Category.SubCategory.URLName));
+                }
                 if (Colors.Any())
                 {
-                    query = query.Where(p => Colors.Contains(p.Color.ToLower()));
+                    Query.Where(p => Colors.Contains(p.Color.ToLower()));
                 }
 
                 if (Materials.Any())
                 {
-                    query = query.Where(p => Materials.Contains(p.Material.ToLower()));
+                    Query.Where(p => Materials.Contains(p.Material.ToLower()));
                 }
                 if (Sizes.Any())
                 {
-                    query = query.Where(p => p.Storages != null && p.Storages.Any(s => Sizes.Contains(s.Size) && s.inStock));
+                    Query.Where(p => p.Storages != null && p.Storages.Any(s => Sizes.Contains(s.Size) && s.inStock));
                 }
                 if (Purpose.Any())
                 {
-                    query = query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
+                    Query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
                 }
-                var results = query;
+                var results = Query;
             }
         }
         public class GetMainCategory : Specification<ProductEntity>

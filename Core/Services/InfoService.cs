@@ -14,9 +14,9 @@ namespace Core.Services
             _mapper = mapper;
             _infoRepository = infoRepository;
         }
-        public async Task<List<Info>>? GetInfoAsync(string subName)
+        public async Task<List<Info>>? GetInfoAsync()
         {
-            var infos = await _infoRepository.GetListBySpec(new InfoSpecification.GetAll(subName));
+            var infos = await _infoRepository.GetListBySpec(new InfoSpecification.GetAll());
             return _mapper.Map<List<Info>>(infos);
         }
     }

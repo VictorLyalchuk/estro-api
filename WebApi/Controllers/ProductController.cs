@@ -82,17 +82,17 @@ namespace WebApi.Controllers
             return Ok(quantity);
         }
 
-        [HttpGet("ProductQuantityByFilters/{subName}/{urlName}")]
-        public async Task<IActionResult> ProductQuantityByFiltersAsync([FromRoute] string subName, string urlName, [FromQuery] FilterDTO? filterDTO)
+        [HttpGet("ProductQuantityByFilters")]
+        public async Task<IActionResult> ProductQuantityByFiltersAsync([FromQuery] FilterDTO? filterDTO)
         {
-            var quantity = await _product.ProductQuantityByFiltersAsync(subName, urlName, filterDTO);
+            var quantity = await _product.ProductQuantityByFiltersAsync(filterDTO);
             return Ok(quantity);
         }
 
-        [HttpGet("FilterProducts/{subName}/{urlName}")]
-        public async Task<IActionResult> FilterProductsAsync([FromRoute] string subName, string urlName, [FromQuery] FilterDTO? filterDTO)
+        [HttpGet("FilterProducts")]
+        public async Task<IActionResult> FilterProductsAsync([FromQuery] FilterDTO? filterDTO)
         {
-            var products = await _product.FilterProductsAsync(subName, urlName, filterDTO);
+            var products = await _product.FilterProductsAsync(filterDTO);
             if (products == null)
             {
                 return NotFound();

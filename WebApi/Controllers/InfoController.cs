@@ -12,10 +12,10 @@ namespace WebApi.Controllers
         {
             _info = info;
         }
-        [HttpGet("GetInfo/{subName}")]
-        public async Task<IActionResult> GetInfoAsync(string subName)
+        [HttpGet("GetInfo")]
+        public async Task<IActionResult> GetInfoAsync()
         {
-            var filters = await _info.GetInfoAsync(subName);
+            var filters = await _info.GetInfoAsync();
             if (filters == null)
             {
                 return NotFound();
