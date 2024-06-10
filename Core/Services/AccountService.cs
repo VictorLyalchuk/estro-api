@@ -148,10 +148,21 @@ namespace Core.Services
                 throw new CustomHttpException("LoginDTO cannot be null", HttpStatusCode.BadRequest);
             }
             var user = await _userManager.FindByEmailAsync(loginDTO.Email);
-            var pass = await _userManager.CheckPasswordAsync(user, loginDTO.Password);
-            if (user == null || !pass)
+
+
+            if (loginDTO.AuthType == "standart")
             {
-                throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                if (user == null || !(await _userManager.CheckPasswordAsync(user, loginDTO.Password)))
+                {
+                    throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                }
+            }
+            else if (loginDTO.AuthType == "google")
+            {
+                if (user == null)
+                {
+                    throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                }
             }
 
             var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
