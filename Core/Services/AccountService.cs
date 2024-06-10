@@ -253,10 +253,12 @@ namespace Core.Services
                 user.UserName = registrationDTO.Email;
 
                 user.EmailConfirmed = true;
-                user.ImagePath = registrationDTO.ImagePath;
+
+                if(registrationDTO.ImagePath != null)
+                {
+                    user.ImagePath = await _image.SaveImageFromUrlAsync(registrationDTO.ImagePath);
+                }
                 user.ClientId = registrationDTO.ClientId;
-
-
 
                 var resultgoogle = await _userManager.CreateAsync(user);
                 _userManager.AddToRoleAsync(user, "User").Wait();
