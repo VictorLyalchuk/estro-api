@@ -29,10 +29,20 @@ namespace WebApi.Controllers
             }
             return Ok();
         }
-        [HttpGet("GetOrderByEmail")]
-        public async Task<IActionResult> GetOrderByEmailAsync(string email)
+        [HttpGet("GetOrderByEmail/{email}")]
+        public async Task<IActionResult> GetOrderByEmailAsync(string email, int page)
         {
-            var result = await _order.GetOrderByEmailAsync(email);
+            var result = await _order.GetOrderByEmailAsync(email, page);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return Ok();
+        }
+        [HttpGet("GetCountOrderByEmail/{email}")]
+        public async Task<IActionResult> GetCountOrderByEmailAsync(string email)
+        {
+            var result = await _order.GetCountOrderByEmailAsync(email);
             if (result != null)
             {
                 return Ok(result);

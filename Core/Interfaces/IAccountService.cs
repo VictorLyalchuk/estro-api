@@ -21,5 +21,7 @@ namespace Core.Interfaces
         Task ResetPasswordAsync(ResetPasswordDTO model);
         Task SendConfirmationEmailAsync(string email);
         Task ConfirmEmailAsync(ConfirmEmailDTO model);
+        Task ConfirmEmailAsync(string email);
+        Task<string> RefreshTokenAsync(string oldToken);
     }
 }

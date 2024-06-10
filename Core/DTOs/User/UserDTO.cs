@@ -18,6 +18,7 @@ namespace Core.DTOs.User
         public string ImagePath { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
+        public bool PhoneNumberConfirmed { get; set; }
         public DateTime Birthday { get; set; }
         public string AuthType { get; set; } = string.Empty;
     }

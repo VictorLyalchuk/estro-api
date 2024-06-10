@@ -1,4 +1,4 @@
-﻿using Core.Entities.DashBoard;
+﻿using Core.Entities.UserEntity;
 using Core.Entities.Information;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

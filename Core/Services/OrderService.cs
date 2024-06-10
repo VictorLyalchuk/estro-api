@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using Core.DTOs.Information;
-using Core.Entities.DashBoard;
+using Core.Entities.UserEntity;
 using Core.Entities.Information;
 using Core.Interfaces;
 using Core.Specification;
 using Microsoft.AspNetCore.Identity;
+using Core.Entities.Bag_and_Order;
+using System.Numerics;
+using static Core.Specification.OrderSpecification;
 
 namespace Core.Services
 {
@@ -15,8 +18,9 @@ namespace Core.Services
         private readonly IRepository<OrderItems> _orderItemsRepository;
         private readonly IRepository<Bag> _bagRepository;
         private readonly IRepository<BagItems> _bagItemsRepository;
+        private readonly IRepository<Address> _addressRepository;
         private readonly UserManager<User> _userManager;
-        public OrderService(IRepository<Order> repositoryRepository, IMapper mapper, IRepository<Bag> bagRepository, UserManager<User> userManager, IRepository<BagItems> bagItemsRepository, IRepository<OrderItems> orderItemsRepository)
+        public OrderService(IRepository<Order> repositoryRepository, IMapper mapper, IRepository<Bag> bagRepository, UserManager<User> userManager, IRepository<BagItems> bagItemsRepository, IRepository<OrderItems> orderItemsRepository, IRepository<Address> addressRepository)
         {
             _mapper = mapper;
             _orderRepository = repositoryRepository;
@@ -24,18 +28,31 @@ namespace Core.Services
             _userManager = userManager;
             _bagItemsRepository = bagItemsRepository;
             _orderItemsRepository = orderItemsRepository;
-
+            _addressRepository = addressRepository;
         }
         public async Task CreateAsync(OrderCreateDTO orderCreateDTO)
         {
+            var user = await _userManager.FindByEmailAsync(orderCreateDTO.EmailUser);
             var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(orderCreateDTO.EmailUser));
+            var bagItems = await _bagItemsRepository.GetListBySpec(new BagItemsSpecification.GetBagItemsByBagEmail(orderCreateDTO.EmailUser));
+            
             if (bag != null)
             {
-                var user = await _userManager.FindByEmailAsync(orderCreateDTO.EmailUser);
+                Address address = new Address()
+                {
+                    City = orderCreateDTO.City,
+                    Region = orderCreateDTO.Region,
+                    Street = orderCreateDTO.Street,
+                };
+                await _addressRepository.InsertAsync(address);
+                await _addressRepository.SaveAsync();
 
+                decimal total = bagItems.Sum(p => p.Quantity * p.Product.Price);
+                decimal tax = (bagItems.Sum(p => p.Quantity * p.Product.Price) / (100 + 20)) * 20;
+                decimal subtotal = total - tax;
                 Order order = new Order()
                 {
-                    Address = orderCreateDTO.Address,
+                    AddressId = address.Id,
                     Email = orderCreateDTO.Email,
                     EmailUser = orderCreateDTO.EmailUser,
                     FirstName = orderCreateDTO.FirstName,
@@ -43,8 +60,11 @@ namespace Core.Services
                     OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
                     PhoneNumber = orderCreateDTO.PhoneNumber,
                     Payment = orderCreateDTO.Payment,
-                    Status = "Order placed",
-                    UserId = user.Id, 
+                    UserId = user.Id,
+                    OrderTotal = total,
+                    Tax = tax,
+                    Subtotal = subtotal,
+                    Discount = 0,
                 };
                 await _orderRepository.InsertAsync(order);
                 await _orderRepository.SaveAsync();
@@ -55,7 +75,6 @@ namespace Core.Services
                     var result = await _userManager.UpdateAsync(user);
                 }
 
-                var bagItems = await _bagItemsRepository.GetListBySpec(new BagItemsSpecification.GetBagItemsByBagEmail(orderCreateDTO.EmailUser));
 
                 foreach (var item in bagItems)
                 {
@@ -66,14 +85,16 @@ namespace Core.Services
                         Price = item.Product.Price,
                         Size = item.Size,
                         Article = item.Product.Article,
-                        ImagePath = item.Product.Images.FirstOrDefault().ImagePath,
+                        ImagePath = item.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath,
                         OrderId = order.Id,
                         ProductId = item.ProductId,
+                        Description = item.Product.Description,
+                        Step = 0,
+                        Status = "Order placed",
                     };
                     await _orderItemsRepository.InsertAsync(orderItems);
                     await _orderItemsRepository.SaveAsync();
                 }
-                //await _bagRepository.DeleteAsync(bag);
                 await _bagRepository.DeleteAsync(bag.Id);
                 await _bagRepository.SaveAsync();
 
@@ -84,10 +105,15 @@ namespace Core.Services
             var result = await _orderRepository.GetListBySpec(new OrderSpecification.GetAllOrders());
             return _mapper.Map<List<OrderDTO>>(result);
         }
-        public async Task<OrderDTO> GetOrderByEmailAsync(string email)
+        public async Task <List<OrderDTO>> GetOrderByEmailAsync(string email, int page)
         {
-            var result = await _orderRepository.GetListBySpec(new OrderSpecification.GetOrderByEmail(email));
-            return _mapper.Map<OrderDTO>(result);
+            var result = await _orderRepository.GetListBySpec(new OrderSpecification.GetOrderByEmail(email, page));
+            return _mapper.Map < List<OrderDTO>>(result);
+        }
+        public async Task<int> GetCountOrderByEmailAsync(string email)
+        {
+            var orders = await _orderRepository.GetListBySpec(new OrderSpecification.GetOrderCountByEmailSpecification(email));
+            return orders.Count();
         }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using Core.Entities.Information;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace Core.Entities.DashBoard
+
+namespace Core.Entities.UserEntity
 {
     public class User : IdentityUser
     {

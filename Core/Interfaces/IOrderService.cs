@@ -1,9 +1,4 @@
 ﻿using Core.DTOs.Information;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Interfaces
 {
@@ -11,6 +6,7 @@ namespace Core.Interfaces
     {
         Task CreateAsync(OrderCreateDTO orderCreateDTO);
         Task <List<OrderDTO>> GetAllOrdersAsync();
-        Task <OrderDTO> GetOrderByEmailAsync(string email);
+        Task<List<OrderDTO>> GetOrderByEmailAsync(string email, int page);
+        Task<int> GetCountOrderByEmailAsync(string email);
     }
 }

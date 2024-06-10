@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Core.DTOs.Information;
-using Core.Entities.DashBoard;
+using Core.Entities.UserEntity;
 using Core.Entities.Information;
 using Core.Helpers;
 using Core.Interfaces;

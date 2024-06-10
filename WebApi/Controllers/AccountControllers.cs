@@ -2,9 +2,6 @@
 using Core.Helpers;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
@@ -141,6 +138,25 @@ namespace WebApi.Controllers
             {
                 return NotFound();
             }
+        }
+        [HttpPost("ConfirmMyEmail")]
+        public async Task<IActionResult> ConfirmEmail([FromBody] string email)
+        {
+            try
+            {
+                await _accountService.ConfirmEmailAsync(email);
+                return Ok();
+            }
+            catch (CustomHttpException ex)
+            {
+                return NotFound();
+            }
+        }
+        [HttpPut("refresh-token")]
+        public async Task<IActionResult> RefreshTokenAsync([FromBody] RefreshTokenDTO refreshToken)
+        {
+            var newToken = await _accountService.RefreshTokenAsync(refreshToken.Token);
+            return Ok(newToken);
         }
     }
 }
