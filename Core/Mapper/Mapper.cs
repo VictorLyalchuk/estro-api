@@ -51,8 +51,13 @@ namespace Core.Mapper
             CreateMap<ImageForHomeDTO, ImageForHome>();
 
             CreateMap<AddressDTO, Address>();
-            CreateMap<OptionsDTO, Options>();
-            CreateMap<InfoDTO, Info>();
+            CreateMap<InfoDTO, Info>()
+                    .ForMember(dest => dest.Options, opt => opt.MapFrom(src => src.Options))
+                    .ReverseMap();
+            CreateMap<OptionsDTO, Options>()
+                    .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
+                    .ReverseMap();
+
 
             CreateMap<OrderDTO, Order>().ReverseMap();
             CreateMap<OrderItemsDTO, OrderItems>();

@@ -337,10 +337,10 @@ namespace Infrastructure.Data
 
         public static List<Info> SeedInfos() =>
             new List<Info>() {
-            new Info () { Id = 1, Name = "Color" },
-            new Info () { Id = 2, Name = "Material" },
-            new Info () { Id = 3, Name = "Size" },
-            new Info () { Id = 4, Name = "Purpose" },
+            new Info () { Id = 1, Name = "Color", Value = "color"},
+            new Info () { Id = 2, Name = "Material", Value = "material"},
+            new Info () { Id = 3, Name = "Size", Value = "size"},
+            new Info () { Id = 4, Name = "Purpose", Value = "purpose"},
         };
 
 

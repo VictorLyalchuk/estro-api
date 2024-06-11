@@ -1,9 +1,9 @@
-﻿using Core.Entities.Product;
+﻿using Core.DTOs.Product;
 
 namespace Core.Interfaces
 {
     public interface IInfoService
     {
-        Task<List<Info>>? GetInfoAsync();
+        Task<List<InfoDTO>>? GetInfoAsync();
     }
 }

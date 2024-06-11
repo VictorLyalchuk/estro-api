@@ -10,11 +10,26 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class start : Migration
+    public partial class one : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Address",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Region = table.Column<string>(type: "text", nullable: true),
+                    City = table.Column<string>(type: "text", nullable: true),
+                    Street = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Address", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -82,7 +97,8 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Value = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -255,25 +271,32 @@ namespace Infrastructure.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
-                    EmailUser = table.Column<string>(type: "text", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    Payment = table.Column<string>(type: "text", nullable: false),
-                    UserId = table.Column<string>(type: "text", nullable: false),
-                    Status = table.Column<string>(type: "text", nullable: false)
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    EmailUser = table.Column<string>(type: "text", nullable: true),
+                    Payment = table.Column<string>(type: "text", nullable: true),
+                    AddressId = table.Column<int>(type: "integer", nullable: true),
+                    Subtotal = table.Column<decimal>(type: "numeric", nullable: true),
+                    Tax = table.Column<decimal>(type: "numeric", nullable: true),
+                    Discount = table.Column<decimal>(type: "numeric", nullable: true),
+                    OrderTotal = table.Column<decimal>(type: "numeric", nullable: true),
+                    UserId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Orders_Address_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Address",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_Orders_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -314,31 +337,6 @@ namespace Infrastructure.Migrations
                         name: "FK_SubCategories_MainCategories_MainCategoryId",
                         column: x => x.MainCategoryId,
                         principalTable: "MainCategories",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OrderItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ProductId = table.Column<int>(type: "integer", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Article = table.Column<string>(type: "text", nullable: false),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false),
-                    ImagePath = table.Column<string>(type: "text", nullable: false),
-                    Quantity = table.Column<int>(type: "integer", nullable: false),
-                    Size = table.Column<int>(type: "integer", nullable: false),
-                    OrderId = table.Column<int>(type: "integer", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrderItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OrderItems_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
                         principalColumn: "Id");
                 });
 
@@ -441,6 +439,41 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Price = table.Column<decimal>(type: "numeric", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Step = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<string>(type: "text", nullable: true),
+                    ImagePath = table.Column<string>(type: "text", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Article = table.Column<string>(type: "text", nullable: true),
+                    Quantity = table.Column<int>(type: "integer", nullable: false),
+                    Size = table.Column<int>(type: "integer", nullable: false),
+                    OrderId = table.Column<int>(type: "integer", nullable: true),
+                    ProductId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Storage",
                 columns: table => new
                 {
@@ -481,18 +514,20 @@ namespace Infrastructure.Migrations
                     { 12, "800_home_page_12.webp" },
                     { 13, "800_home_page_13.webp" },
                     { 14, "800_home_page_14.webp" },
-                    { 15, "800_home_page_15.webp" }
+                    { 15, "800_home_page_15.webp" },
+                    { 16, "800_home_page_16.webp" },
+                    { 17, "800_home_page_17.webp" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Info",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "Name", "Value" },
                 values: new object[,]
                 {
-                    { 1, "Color" },
-                    { 2, "Material" },
-                    { 3, "Size" },
-                    { 4, "Purpose" }
+                    { 1, "Color", "color" },
+                    { 2, "Material", "material" },
+                    { 3, "Size", "size" },
+                    { 4, "Purpose", "purpose" }
                 });
 
             migrationBuilder.InsertData(
@@ -582,12 +617,12 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "ImagePath", "MainCategoryId", "Name", "URLName" },
                 values: new object[,]
                 {
-                    { 1, null, 1, "Woman Shoes", "woman_shoes" },
-                    { 2, null, 2, "Man Shoes", "man_shoes" },
-                    { 3, null, 1, "Woman Clothing", "woman_clothing" },
-                    { 4, null, 2, "Man Clothing", "man_clothing" },
-                    { 5, null, 1, "Woman Accessories", "woman_accessories" },
-                    { 6, null, 2, "Man Accessories", "man_accessories" }
+                    { 1, null, 1, "Woman Shoes", "woman-shoes" },
+                    { 2, null, 2, "Man Shoes", "man-shoes" },
+                    { 3, null, 1, "Woman Clothing", "woman-clothing" },
+                    { 4, null, 2, "Man Clothing", "man-clothing" },
+                    { 5, null, 1, "Woman Accessories", "woman-accessories" },
+                    { 6, null, 2, "Man Accessories", "man-accessories" }
                 });
 
             migrationBuilder.InsertData(
@@ -595,46 +630,46 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "Description", "ImagePath", "Name", "SubCategoryId", "URLName" },
                 values: new object[,]
                 {
-                    { 1, null, null, "Open shoes", 1, "open_shoes" },
-                    { 2, null, null, "Pumps and loafers", 1, "pumps_and_loafers" },
-                    { 3, null, null, "Heeled shoes", 1, "heeled_shoes" },
-                    { 4, null, null, "Women's athletic sneakers", 1, "women's_athletic_sneakers" },
-                    { 5, null, null, "Women's sneakers", 1, "women_sneakers" },
-                    { 6, null, null, "High boots and Chelsea", 1, "high_boots_&_chelsea" },
-                    { 7, null, null, "Boots on heels", 1, "boots_on_heels" },
-                    { 8, null, null, "Boots and high boots", 1, "boots_and_high_boots" },
-                    { 9, null, null, "Cossacks boots", 1, "cossacks_boots" },
-                    { 10, null, null, "Winter footwear", 1, "winter_footwear" },
-                    { 11, null, null, "Perforated shoes", 1, "perforated_shoes" },
-                    { 12, null, null, "Men's boots", 2, "men_boots" },
-                    { 13, null, null, "Men's athletic sneakers", 2, "man_athletic_sneakers" },
-                    { 14, null, null, "Men's sneakers", 2, "man_sneakers" },
-                    { 15, null, null, "Men's pumps", 2, "man_pumps" },
-                    { 16, null, null, "Men's moccasins", 2, "man_moccasins" },
-                    { 17, null, null, "Men's summer shoes", 2, "man_summer_shoes" },
-                    { 18, null, null, "Women's outerwear", 3, "woman_outerwear" },
-                    { 19, null, null, "Women's sweaters and suits", 3, "woman_sweaters_and_suits" },
-                    { 20, null, null, "Women's t-shirts and sweatshirts", 3, "woman_t_shirts_and_sweatshirts" },
-                    { 21, null, null, "Women's shawl", 3, "woman_shawl" },
-                    { 22, null, null, "Women's scarves and hats", 3, "woman_scarves_and_hats" },
-                    { 23, null, null, "Women's gloves", 3, "woman_gloves" },
-                    { 24, null, null, "Women's socks and tights", 3, "woman_socks_and_tights" },
-                    { 25, null, null, "Men's outerwear", 4, "man_outerwear" },
-                    { 26, null, null, "Men's sweaters and suits", 4, "man_sweaters_and_suits" },
-                    { 27, null, null, "Men's t-shirts and sweatshirts", 4, "man_t_shirts_and_sweatshirts" },
-                    { 28, null, null, "Men's scarves and hats", 4, "man_scarves_and_hats" },
-                    { 29, null, null, "Men's gloves", 4, "man_gloves" },
-                    { 30, null, null, "Men's socks", 4, "man_socks" },
-                    { 31, null, null, "Women's glasses", 5, "woman_glasses" },
-                    { 32, null, null, "Women's home shoes", 5, "woman_home_shoes" },
-                    { 33, null, null, "Women's bags", 5, "woman_bags" },
-                    { 34, null, null, "Women's backpacks", 5, "woman_backpacks" },
-                    { 35, null, null, "Women's care products", 5, "woman_care_products" },
-                    { 36, null, null, "Men's glasses", 6, "man_glasses" },
-                    { 37, null, null, "Men's home shoes", 6, "man_home_shoes" },
-                    { 38, null, null, "Men's bags", 6, "man_bags" },
-                    { 39, null, null, "Men's backpacks", 6, "man_backpacks" },
-                    { 40, null, null, "Men's care products", 6, "man_care_products" }
+                    { 1, null, null, "Open shoes", 1, "open-shoes" },
+                    { 2, null, null, "Pumps and loafers", 1, "pumps-and-loafers" },
+                    { 3, null, null, "Heeled shoes", 1, "heeled-shoes" },
+                    { 4, null, null, "Women's athletic sneakers", 1, "women's-athletic-sneakers" },
+                    { 5, null, null, "Women's sneakers", 1, "women-sneakers" },
+                    { 6, null, null, "High boots and Chelsea", 1, "high-boots-&-chelsea" },
+                    { 7, null, null, "Boots on heels", 1, "boots-on-heels" },
+                    { 8, null, null, "Boots and high boots", 1, "boots-and-high-boots" },
+                    { 9, null, null, "Cossacks boots", 1, "cossacks-boots" },
+                    { 10, null, null, "Winter footwear", 1, "winter-footwear" },
+                    { 11, null, null, "Perforated shoes", 1, "perforated-shoes" },
+                    { 12, null, null, "Men's boots", 2, "men-boots" },
+                    { 13, null, null, "Men's athletic sneakers", 2, "man-athletic-sneakers" },
+                    { 14, null, null, "Men's sneakers", 2, "man-sneakers" },
+                    { 15, null, null, "Men's pumps", 2, "man-pumps" },
+                    { 16, null, null, "Men's moccasins", 2, "man-moccasins" },
+                    { 17, null, null, "Men's summer shoes", 2, "man-summer-shoes" },
+                    { 18, null, null, "Women's outerwear", 3, "woman-outerwear" },
+                    { 19, null, null, "Women's sweaters and suits", 3, "woman-sweaters-and-suits" },
+                    { 20, null, null, "Women's t-shirts and sweatshirts", 3, "woman-t-shirts-and-sweatshirts" },
+                    { 21, null, null, "Women's shawl", 3, "woman-shawl" },
+                    { 22, null, null, "Women's scarves and hats", 3, "woman-scarves-and-hats" },
+                    { 23, null, null, "Women's gloves", 3, "woman-gloves" },
+                    { 24, null, null, "Women's socks and tights", 3, "woman-socks-and-tights" },
+                    { 25, null, null, "Men's outerwear", 4, "man-outerwear" },
+                    { 26, null, null, "Men's sweaters and suits", 4, "man-sweaters-and-suits" },
+                    { 27, null, null, "Men's t-shirts and sweatshirts", 4, "man-t-shirts-and-sweatshirts" },
+                    { 28, null, null, "Men's scarves and hats", 4, "man-scarves-and-hats" },
+                    { 29, null, null, "Men's gloves", 4, "man-gloves" },
+                    { 30, null, null, "Men's socks", 4, "man-socks" },
+                    { 31, null, null, "Women's glasses", 5, "woman-glasses" },
+                    { 32, null, null, "Women's home shoes", 5, "woman-home-shoes" },
+                    { 33, null, null, "Women's bags", 5, "woman-bags" },
+                    { 34, null, null, "Women's backpacks", 5, "woman-backpacks" },
+                    { 35, null, null, "Women's care products", 5, "woman-care-products" },
+                    { 36, null, null, "Men's glasses", 6, "man-glasses" },
+                    { 37, null, null, "Men's home shoes", 6, "man-home-shoes" },
+                    { 38, null, null, "Men's bags", 6, "man-bags" },
+                    { 39, null, null, "Men's backpacks", 6, "man-backpacks" },
+                    { 40, null, null, "Men's care products", 6, "man-care-products" }
                 });
 
             migrationBuilder.InsertData(
@@ -933,6 +968,16 @@ namespace Infrastructure.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_ProductId",
+                table: "OrderItems",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_AddressId",
+                table: "Orders",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",
                 table: "Orders",
                 column: "UserId");
@@ -1006,6 +1051,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Address");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
