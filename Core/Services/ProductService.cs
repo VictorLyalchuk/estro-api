@@ -18,16 +18,14 @@ namespace Core.Services
         private readonly int Men = 2;
         private readonly IMapper _mapper;
         private readonly IRepository<ProductEntity> _productRepository;
-        private readonly IRepository<CategoryEntity> _categoryRepository;
         private readonly IRepository<StorageEntity> _storageRepository;
         private readonly IRepository<ImageEntity> _imageRepository;
         private readonly IFilesService _filesService;
         private readonly IImageService _imageService;
-        public ProductService(IMapper mapper, IRepository<ProductEntity> productRepository, IRepository<CategoryEntity> categoryRepository, IFilesService filesService, IImageService imageService, IRepository<StorageEntity> storageRepository, IRepository<ImageEntity> imageRepository)
+        public ProductService(IMapper mapper, IRepository<ProductEntity> productRepository, IFilesService filesService, IImageService imageService, IRepository<StorageEntity> storageRepository, IRepository<ImageEntity> imageRepository)
         {
             _mapper = mapper;
             _productRepository = productRepository;
-            _categoryRepository = categoryRepository;
             _storageRepository = storageRepository;
             _imageRepository = imageRepository;
             _filesService = filesService;

@@ -31,7 +31,7 @@ namespace Core.Mapper
             CreateMap<CategoryDTO, CategoryEntity>()
                 .ForMember(dest => dest.SubCategory, opt => opt.MapFrom(src => new SubCategory { Id = src.MainCategoryId.GetValueOrDefault() }));
             
-            CreateMap<ProductDTO, ProductEntity>();
+            CreateMap<ProductDTO, ProductEntity>().ReverseMap();
             CreateMap<CreateProductDTO, ProductEntity>();
             CreateMap<EditProductDTO, ProductEntity>();
             CreateMap<ProductEntity, ProductDTO>()
@@ -58,6 +58,11 @@ namespace Core.Mapper
                     .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
                     .ReverseMap();
 
+            CreateMap<FavoriteProduct, FavoriteProductDTO>()
+                     .ForMember(dest => dest.ProductPrice, opt => opt.MapFrom(src => src.Product.Price))
+                     .ForMember(dest => dest.ProductImage, opt => opt.MapFrom(src => src.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath))
+                     .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name));
+            CreateMap<FavoriteProductDTO, FavoriteProduct>();
 
             CreateMap<OrderDTO, Order>().ReverseMap();
             CreateMap<OrderItemsDTO, OrderItems>();

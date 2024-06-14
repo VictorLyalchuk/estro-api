@@ -27,7 +27,7 @@ namespace Infrastructure.Data
             new CategoryEntity(){ Id = 1, Name = "Open shoes", SubCategoryId = 1, URLName = "open-shoes" },                  // Відкрите взуття
             new CategoryEntity(){ Id = 2, Name = "Pumps and loafers", SubCategoryId = 1, URLName = "pumps-and-loafers" },           // Туфлі та лофери
             new CategoryEntity(){ Id = 3, Name = "Heeled shoes", SubCategoryId = 1, URLName = "heeled-shoes" },                // Туфлі на підборах
-            new CategoryEntity(){ Id = 4, Name = "Women's athletic sneakers", SubCategoryId = 1, URLName = "women's-athletic-sneakers" },   // Кросівки жіночі
+            new CategoryEntity(){ Id = 4, Name = "Women's athletic sneakers", SubCategoryId = 1, URLName = "women-s-athletic-sneakers" },   // Кросівки жіночі
             new CategoryEntity(){ Id = 5, Name = "Women's sneakers", SubCategoryId = 1, URLName = "women-sneakers" },            // Жіночі кеди
             new CategoryEntity(){ Id = 6, Name = "High boots and Chelsea", SubCategoryId = 1, URLName = "high-boots-&-chelsea" },         // Високі черевики, челсі
             new CategoryEntity(){ Id = 7, Name = "Boots on heels", SubCategoryId = 1, URLName = "boots-on-heels" },              // Черевики на підборах

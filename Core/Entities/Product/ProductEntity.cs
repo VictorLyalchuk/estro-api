@@ -1,4 +1,5 @@
-﻿using Core.Entities.Category;
+﻿using Core.Entities.Bag_and_Order;
+using Core.Entities.Category;
 using Core.Entities.Information;
 using System.ComponentModel.DataAnnotations;
 
@@ -23,5 +24,7 @@ namespace Core.Entities.Product
         public List<StorageEntity> Storages { get; set; }
         public List<BagItems> BagItems { get; set; }
         public List<OrderItems> OrderItems { get; set; }
+        public ICollection<FavoriteProduct> FavoriteProducts { get; set; }
+
     }
 }

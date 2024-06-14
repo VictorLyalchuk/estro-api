@@ -58,7 +58,8 @@ namespace Core.Specification
                 Query
                      .Include(p => p.Images)
                      .Include(p => p.Category)
-                     .Include(p => p.Storages.OrderBy(p => p.Size));
+                     .Include(p => p.Storages.OrderBy(p => p.Size))
+                     .Where(p => p.Storages != null && p.Storages.Any(s => s.inStock));
 
                 if (!string.IsNullOrEmpty(filterDTO.MainCategory))
                 {
@@ -123,7 +124,8 @@ namespace Core.Specification
                 Query.OrderBy(p => p.Id)
                      .Include(p => p.Images)
                      .Include(p => p.Category)
-                     .Include(p => p.Storages);
+                     .Include(p => p.Storages)
+                     .Where(p => p.Storages != null && p.Storages.Any(s => s.inStock));
 
                 if (!string.IsNullOrEmpty(filterDTO.MainCategory))
                 {

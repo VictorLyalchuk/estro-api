@@ -7,6 +7,7 @@ using Infrastructure.EntitiesConfiguration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Core.Entities.Bag_and_Order;
 
 namespace Infrastructure.Data
 {
@@ -24,6 +25,7 @@ namespace Infrastructure.Data
             builder.ApplyConfiguration(new OptionsConfiguration());
             builder.ApplyConfiguration(new BagConfiguration());
             builder.ApplyConfiguration(new OrderConfiguration());
+            builder.ApplyConfiguration(new FavoriteProductConfiguration());
 
             builder.Entity<MainCategory>().HasData(SeedData.SeedMainCategory());
             builder.Entity<SubCategory>().HasData(SeedData.SeedSubCategory());
@@ -52,5 +54,6 @@ namespace Infrastructure.Data
         public DbSet<StoreEntity> Store { get; set; }
         public DbSet<Info> Info { get; set; }
         public DbSet<Options> Options { get; set; }
+        public DbSet<FavoriteProduct> FavoriteProduct { get; set; }
     }
 }

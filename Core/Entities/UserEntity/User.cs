@@ -1,4 +1,5 @@
-﻿using Core.Entities.Information;
+﻿using Core.Entities.Bag_and_Order;
+using Core.Entities.Information;
 using Microsoft.AspNetCore.Identity;
 
 
@@ -12,6 +13,8 @@ namespace Core.Entities.UserEntity
         public string ImagePath { get; set; } = string.Empty;
         public DateTime Birthday { get; set; }
         public ICollection<Order>? Orders { get; set; }
+        public ICollection<FavoriteProduct> FavoriteProducts { get; set; }
+
         public Bag? Bag { get; set; }
         public int? BagId { get; set; }
 

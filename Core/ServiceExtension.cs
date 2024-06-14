@@ -24,6 +24,7 @@ namespace Core
             service.AddScoped<IStorageService, StorageService>();
             service.AddScoped<IAddressService, AddressService>();
             service.AddScoped<IStoreService, StoreService>();
+            service.AddScoped<IFavoriteProductsService, FavoriteProductsService>();
             service.AddTransient<EmailService>();
 
         }
