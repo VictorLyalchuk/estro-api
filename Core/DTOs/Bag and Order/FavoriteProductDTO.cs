@@ -1,4 +1,4 @@
-﻿using Core.DTOs.Product;
+﻿using Core.DTOs.Storage;
 
 namespace Core.DTOs.Bag_and_Order
 {
@@ -10,5 +10,6 @@ namespace Core.DTOs.Bag_and_Order
         public string ProductName { get; set; }
         public int ProductPrice { get; set; }
         public string? ProductImage { get; set; }
+        public List<StorageDTO>? Storages { get; set; }
     }
 }

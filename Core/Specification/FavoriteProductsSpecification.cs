@@ -13,7 +13,9 @@ namespace Core.Specification
                 Query
                     .Where(f => f.UserId == userId)
                     .Include(f => f.Product)
-                    .ThenInclude(p => p.Images).OrderBy(i => i.Id);
+                    .ThenInclude(p => p.Images.OrderBy(i => i.Id))
+                    .Include(p => p.Product)
+                    .ThenInclude(p => p.Storages.OrderBy(i => i.Id));
             }
         }
         public class GetbyId : Specification<FavoriteProduct>

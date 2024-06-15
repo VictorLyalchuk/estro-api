@@ -61,7 +61,9 @@ namespace Core.Mapper
             CreateMap<FavoriteProduct, FavoriteProductDTO>()
                      .ForMember(dest => dest.ProductPrice, opt => opt.MapFrom(src => src.Product.Price))
                      .ForMember(dest => dest.ProductImage, opt => opt.MapFrom(src => src.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath))
-                     .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name));
+                     .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
+                     .ForMember(dest => dest.Storages, opt => opt.MapFrom(src => src.Product.Storages));
+
             CreateMap<FavoriteProductDTO, FavoriteProduct>();
 
             CreateMap<OrderDTO, Order>().ReverseMap();
