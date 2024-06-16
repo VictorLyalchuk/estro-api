@@ -1,13 +1,11 @@
 ﻿using Core.Entities.Category;
 using Core.Entities.UserEntity;
-using Core.Entities.Information;
+using Core.Entities.UserInfo;
 using Core.Entities.Product;
 using Core.Entities.Store;
 using Infrastructure.EntitiesConfiguration;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Core.Entities.Bag_and_Order;
 
 namespace Infrastructure.Data
 {
@@ -54,6 +52,7 @@ namespace Infrastructure.Data
         public DbSet<StoreEntity> Store { get; set; }
         public DbSet<Info> Info { get; set; }
         public DbSet<Options> Options { get; set; }
-        public DbSet<FavoriteProduct> FavoriteProduct { get; set; }
+        public DbSet<UserFavoriteProduct> UserFavoriteProduct { get; set; }
+        public DbSet<UserBonuses> UserBonuses { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Core.DTOs.Information;
+﻿using Core.DTOs.UserInfo;
 
 namespace Core.Interfaces
 {

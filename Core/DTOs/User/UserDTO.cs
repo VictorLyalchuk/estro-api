@@ -13,6 +13,7 @@
         public string Role { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public bool PhoneNumberConfirmed { get; set; }
+        public decimal BonusBalance { get; set; }
         public DateTime Birthday { get; set; }
         public string AuthType { get; set; } = string.Empty;
     }

@@ -1,20 +1,19 @@
-﻿using Core.Entities.Bag_and_Order;
-using Core.Entities.Information;
+﻿using Core.Entities.UserInfo;
 using Microsoft.AspNetCore.Identity;
-
 
 namespace Core.Entities.UserEntity
 {
     public class User : IdentityUser
     {
-        public string FirstName { get; set; } = string.Empty;
-        public string LastName { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-        public string ImagePath { get; set; } = string.Empty;
+        public string? FirstName { get; set; } 
+        public string? LastName { get; set; }
+        public string? Password { get; set; }
+        public string? ImagePath { get; set; }
+        public decimal BonusBalance {get; set; }
         public DateTime Birthday { get; set; }
         public ICollection<Order>? Orders { get; set; }
-        public ICollection<FavoriteProduct> FavoriteProducts { get; set; }
-
+        public ICollection<UserFavoriteProduct>? FavoriteProducts { get; set; }
+        public ICollection<UserBonuses>? UserBonuses { get; set; }
         public Bag? Bag { get; set; }
         public int? BagId { get; set; }
 

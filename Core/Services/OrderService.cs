@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using Core.DTOs.Information;
+using Core.DTOs.UserInfo;
 using Core.Entities.UserEntity;
-using Core.Entities.Information;
+using Core.Entities.UserInfo;
 using Core.Interfaces;
 using Core.Specification;
 using Microsoft.AspNetCore.Identity;
-using Core.Entities.Bag_and_Order;
 using System.Numerics;
 using static Core.Specification.OrderSpecification;
 
@@ -19,8 +18,9 @@ namespace Core.Services
         private readonly IRepository<Bag> _bagRepository;
         private readonly IRepository<BagItems> _bagItemsRepository;
         private readonly IRepository<Address> _addressRepository;
+        private readonly IRepository<UserBonuses> _userBonuses;
         private readonly UserManager<User> _userManager;
-        public OrderService(IRepository<Order> repositoryRepository, IMapper mapper, IRepository<Bag> bagRepository, UserManager<User> userManager, IRepository<BagItems> bagItemsRepository, IRepository<OrderItems> orderItemsRepository, IRepository<Address> addressRepository)
+        public OrderService(IRepository<Order> repositoryRepository, IMapper mapper, IRepository<Bag> bagRepository, UserManager<User> userManager, IRepository<BagItems> bagItemsRepository, IRepository<OrderItems> orderItemsRepository, IRepository<Address> addressRepository, IRepository<UserBonuses> userBonuses)
         {
             _mapper = mapper;
             _orderRepository = repositoryRepository;
@@ -29,13 +29,14 @@ namespace Core.Services
             _bagItemsRepository = bagItemsRepository;
             _orderItemsRepository = orderItemsRepository;
             _addressRepository = addressRepository;
+            _userBonuses = userBonuses;
         }
         public async Task CreateAsync(OrderCreateDTO orderCreateDTO)
         {
             var user = await _userManager.FindByEmailAsync(orderCreateDTO.EmailUser);
             var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(orderCreateDTO.EmailUser));
             var bagItems = await _bagItemsRepository.GetListBySpec(new BagItemsSpecification.GetBagItemsByBagEmail(orderCreateDTO.EmailUser));
-            
+
             if (bag != null)
             {
                 Address address = new Address()
@@ -50,6 +51,8 @@ namespace Core.Services
                 decimal total = bagItems.Sum(p => p.Quantity * p.Product.Price);
                 decimal tax = (bagItems.Sum(p => p.Quantity * p.Product.Price) / (100 + 20)) * 20;
                 decimal subtotal = total - tax;
+                decimal accrued = (1.0m / 100) * total;
+
                 Order order = new Order()
                 {
                     AddressId = address.Id,
@@ -72,9 +75,9 @@ namespace Core.Services
                 if (user != null)
                 {
                     user.BagId = null;
+                    user.BonusBalance += accrued;
                     var result = await _userManager.UpdateAsync(user);
                 }
-
 
                 foreach (var item in bagItems)
                 {
@@ -98,17 +101,29 @@ namespace Core.Services
                 await _bagRepository.DeleteAsync(bag.Id);
                 await _bagRepository.SaveAsync();
 
+                UserBonuses bonuses = new UserBonuses()
+                {
+                    OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
+                    UserId = user.Id,
+                    Name = order.Id,
+                    BonusesAccrued = accrued,
+                    BonusesDescription = "Purchase bonus",
+                    BonusesOperation = "Accrual",
+                };
+                await _userBonuses.InsertAsync(bonuses);
+                await _userBonuses.SaveAsync();
+
             }
         }
-        public async Task <List<OrderDTO>> GetAllOrdersAsync()
+        public async Task<List<OrderDTO>> GetAllOrdersAsync()
         {
             var result = await _orderRepository.GetListBySpec(new OrderSpecification.GetAllOrders());
             return _mapper.Map<List<OrderDTO>>(result);
         }
-        public async Task <List<OrderDTO>> GetOrderByEmailAsync(string email, int page)
+        public async Task<List<OrderDTO>> GetOrderByEmailAsync(string email, int page)
         {
             var result = await _orderRepository.GetListBySpec(new OrderSpecification.GetOrderByEmail(email, page));
-            return _mapper.Map < List<OrderDTO>>(result);
+            return _mapper.Map<List<OrderDTO>>(result);
         }
         public async Task<int> GetCountOrderByEmailAsync(string email)
         {

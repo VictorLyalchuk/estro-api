@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using Core.DTOs.Bag_and_Order;
-using Core.DTOs.Storage;
-using Core.Entities.Bag_and_Order;
-using Core.Entities.Product;
+using Core.DTOs.UserInfo;
+using Core.Entities.UserInfo;
 using Core.Interfaces;
 
 namespace Core.Services

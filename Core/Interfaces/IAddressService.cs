@@ -1,4 +1,4 @@
-﻿using Core.DTOs.Bag_and_Order;
+﻿using Core.DTOs.UserInfo;
 
 namespace Core.Interfaces
 {

@@ -1,12 +1,12 @@
-﻿using Core.Entities.Bag_and_Order;
+﻿using Core.Entities.UserInfo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.EntitiesConfiguration
 {
-    public class FavoriteProductConfiguration : IEntityTypeConfiguration<FavoriteProduct>
+    public class FavoriteProductConfiguration : IEntityTypeConfiguration<UserFavoriteProduct>
     {
-        public void Configure(EntityTypeBuilder<FavoriteProduct> builder)
+        public void Configure(EntityTypeBuilder<UserFavoriteProduct> builder)
         {
             //Set Primary Key
             builder.HasKey(fp => new { fp.UserId, fp.ProductId });

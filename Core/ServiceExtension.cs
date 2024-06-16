@@ -4,7 +4,6 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
-
 namespace Core
 {
     public static class ServiceExtension
@@ -24,7 +23,8 @@ namespace Core
             service.AddScoped<IStorageService, StorageService>();
             service.AddScoped<IAddressService, AddressService>();
             service.AddScoped<IStoreService, StoreService>();
-            service.AddScoped<IFavoriteProductsService, FavoriteProductsService>();
+            service.AddScoped<IUserFavoriteProductsService, UserFavoriteProductsService>();
+            service.AddScoped<IUserBonusesService, UserBonusesService>();
             service.AddTransient<EmailService>();
 
         }

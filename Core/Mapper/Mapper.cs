@@ -1,17 +1,15 @@
-﻿using Core.DTOs.Bag_and_Order;
+﻿using Core.DTOs.UserInfo;
 using Core.DTOs.Category;
 using Core.DTOs.Image;
-using Core.DTOs.Information;
 using Core.DTOs.Product;
 using Core.DTOs.Storage;
 using Core.DTOs.Store;
 using Core.DTOs.User;
 using Core.Entities.Category;
 using Core.Entities.UserEntity;
-using Core.Entities.Information;
+using Core.Entities.UserInfo;
 using Core.Entities.Product;
 using Core.Entities.Store;
-using Core.Entities.Bag_and_Order;
 
 namespace Core.Mapper
 {
@@ -58,13 +56,14 @@ namespace Core.Mapper
                     .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
                     .ReverseMap();
 
-            CreateMap<FavoriteProduct, FavoriteProductDTO>()
+            CreateMap<UserFavoriteProduct, UserFavoriteProductDTO>()
                      .ForMember(dest => dest.ProductPrice, opt => opt.MapFrom(src => src.Product.Price))
                      .ForMember(dest => dest.ProductImage, opt => opt.MapFrom(src => src.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath))
                      .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
                      .ForMember(dest => dest.Storages, opt => opt.MapFrom(src => src.Product.Storages));
 
-            CreateMap<FavoriteProductDTO, FavoriteProduct>();
+            CreateMap<UserFavoriteProductDTO, UserFavoriteProduct>();
+            CreateMap<UserBonuses, UserBonusesDTO>();
 
             CreateMap<OrderDTO, Order>().ReverseMap();
             CreateMap<OrderItemsDTO, OrderItems>();
