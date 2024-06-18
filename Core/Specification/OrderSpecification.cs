@@ -14,9 +14,9 @@ namespace Core.Specification
                     .Include(p => p.Address);
             }
         }
-        public class GetOrderByEmail : Specification<Order>
+        public class GetOrderById : Specification<Order>
         {
-            public GetOrderByEmail(string email, int page)
+            public GetOrderById(string Id, int page)
             {
                 if (page < 1)
                 {
@@ -25,7 +25,7 @@ namespace Core.Specification
                 int pageSize = 1;
 
                 var query = Query.OrderBy(p => p.Id)
-                     .Where(p => p.Email == email)
+                     .Where(p => p.UserId == Id)
                      .Include(p => p.OrderItems)
                      .Include(p => p.Address);
 
@@ -34,11 +34,11 @@ namespace Core.Specification
                      .Take(pageSize);
             }
         }
-        public class GetOrderCountByEmailSpecification : Specification<Order>
+        public class GetOrderCountByIdSpecification : Specification<Order>
         {
-            public GetOrderCountByEmailSpecification(string email)
+            public GetOrderCountByIdSpecification(string Id)
             {
-                Query.Where(p => p.Email == email);
+                Query.Where(p => p.UserId == Id);
             }
         }
     }

@@ -120,14 +120,14 @@ namespace Core.Services
             var result = await _orderRepository.GetListBySpec(new OrderSpecification.GetAllOrders());
             return _mapper.Map<List<OrderDTO>>(result);
         }
-        public async Task<List<OrderDTO>> GetOrderByEmailAsync(string email, int page)
+        public async Task<List<OrderDTO>> GetOrderByIdAsync(string Id, int page)
         {
-            var result = await _orderRepository.GetListBySpec(new OrderSpecification.GetOrderByEmail(email, page));
+            var result = await _orderRepository.GetListBySpec(new GetOrderById(Id, page));
             return _mapper.Map<List<OrderDTO>>(result);
         }
-        public async Task<int> GetCountOrderByEmailAsync(string email)
+        public async Task<int> GetCountOrderByIdAsync(string Id)
         {
-            var orders = await _orderRepository.GetListBySpec(new OrderSpecification.GetOrderCountByEmailSpecification(email));
+            var orders = await _orderRepository.GetListBySpec(new GetOrderCountByIdSpecification(Id));
             return orders.Count();
         }
     }
