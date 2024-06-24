@@ -8,21 +8,10 @@ namespace Core.Specification
     {
         public class GetAll : Specification<Info>
         {
-            public GetAll(string subName)
+            public GetAll()
             {
-                var query = Query
+                Query
                     .Include(f => f.Options);
-
-                //if (subName == "woman_shoes")
-                //{
-                //    query = query.Include(f => f.Options.Where(o => o.Id != 4));
-                //}
-                //else if (subName == "men_boots")
-                //{
-                //    query = (IIncludableSpecificationBuilder<Info, List<Options>?>)query.Include(f => f.Options.Where(o => o.Id != 3));
-
-                //}
-                var results = query;
             }
         }
     }

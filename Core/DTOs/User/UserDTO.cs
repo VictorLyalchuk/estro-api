@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.DTOs.User
+﻿namespace Core.DTOs.User
 {
     public class UserDTO
     {
@@ -19,6 +13,7 @@ namespace Core.DTOs.User
         public string Role { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public bool PhoneNumberConfirmed { get; set; }
+        public decimal BonusBalance { get; set; }
         public DateTime Birthday { get; set; }
         public string AuthType { get; set; } = string.Empty;
     }

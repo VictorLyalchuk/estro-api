@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Core.DTOs.Information;
-using Core.Entities.Information;
+using Core.DTOs.UserInfo;
+using Core.Entities.UserInfo;
 using Core.Interfaces;
 using Core.Specification;
 

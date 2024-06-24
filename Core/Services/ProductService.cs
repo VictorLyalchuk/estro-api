@@ -18,16 +18,14 @@ namespace Core.Services
         private readonly int Men = 2;
         private readonly IMapper _mapper;
         private readonly IRepository<ProductEntity> _productRepository;
-        private readonly IRepository<CategoryEntity> _categoryRepository;
         private readonly IRepository<StorageEntity> _storageRepository;
         private readonly IRepository<ImageEntity> _imageRepository;
         private readonly IFilesService _filesService;
         private readonly IImageService _imageService;
-        public ProductService(IMapper mapper, IRepository<ProductEntity> productRepository, IRepository<CategoryEntity> categoryRepository, IFilesService filesService, IImageService imageService, IRepository<StorageEntity> storageRepository, IRepository<ImageEntity> imageRepository)
+        public ProductService(IMapper mapper, IRepository<ProductEntity> productRepository, IFilesService filesService, IImageService imageService, IRepository<StorageEntity> storageRepository, IRepository<ImageEntity> imageRepository)
         {
             _mapper = mapper;
             _productRepository = productRepository;
-            _categoryRepository = categoryRepository;
             _storageRepository = storageRepository;
             _imageRepository = imageRepository;
             _filesService = filesService;
@@ -43,9 +41,9 @@ namespace Core.Services
             var products = await _productRepository.GetListBySpec(new ProductSpecification.GetProductByUrlName(urlName));
             return _mapper.Map<List<ProductDTO>>(products);
         }
-        public async Task<List<ProductDTO>>? FilterProductsAsync(string subName, string urlName, FilterDTO? filterDTO)
+        public async Task<List<ProductDTO>>? FilterProductsAsync(FilterDTO? filterDTO)
         {
-            var products = await _productRepository.GetListBySpec(new ProductSpecification.FilterProducts(subName, urlName, filterDTO));
+            var products = await _productRepository.GetListBySpec(new ProductSpecification.FilterProducts(filterDTO));
             return _mapper.Map<List<ProductDTO>>(products);
         }
         public async Task<ProductDTO>? GetProductByIDAsync(int id)
@@ -160,9 +158,9 @@ namespace Core.Services
             var products = await _productRepository.GetAsync();
             return products.Count();
         }
-        public async Task<int> ProductQuantityByFiltersAsync(string subName, string urlName, FilterDTO filterDTO)
+        public async Task<int> ProductQuantityByFiltersAsync(FilterDTO filterDTO)
         {
-            var products = await _productRepository.GetListBySpec(new ProductSpecification.ProductQuantityByFiltersAsync(subName, urlName, filterDTO));
+            var products = await _productRepository.GetListBySpec(new ProductSpecification.ProductQuantityByFiltersAsync(filterDTO));
             return products.Count();
         }
     }

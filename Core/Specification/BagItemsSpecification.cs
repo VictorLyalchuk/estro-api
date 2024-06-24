@@ -1,6 +1,6 @@
 ﻿using Ardalis.Specification;
-using Core.DTOs.Information;
-using Core.Entities.Information;
+using Core.DTOs.UserInfo;
+using Core.Entities.UserInfo;
 
 namespace Core.Specification
 {

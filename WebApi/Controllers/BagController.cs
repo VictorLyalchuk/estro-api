@@ -1,4 +1,4 @@
-﻿using Core.DTOs.Information;
+﻿using Core.DTOs.UserInfo;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

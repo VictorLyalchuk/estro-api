@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Core.DTOs.Token;
 using Core.DTOs.User;
 using Core.Entities.UserEntity;
 using Core.Helpers;
@@ -12,11 +11,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
-using System.Runtime;
 using System.Security.Claims;
 using System.Text;
 using Twilio.Rest.Verify.V2.Service;
-using Twilio.Types;
 
 namespace Core.Services
 {
@@ -30,8 +27,6 @@ namespace Core.Services
         private readonly IImageService _image;
         private readonly IWebHostEnvironment _env;
         public string VerificationCode { get; set; }
-
-
         public AccountService(UserManager<User> userManager, IConfiguration configuration, IMapper mapper, IImageService image, EmailService emailService, IWebHostEnvironment env)
         {
             _userManager = userManager;
@@ -67,7 +62,7 @@ namespace Core.Services
         public async Task<UserDTO> GetByPhone(string phone)
         {
             var user = _userManager.Users.Where(x => x.PhoneNumber == phone).FirstOrDefault();
-            if(user  != null)
+            if (user != null)
             {
                 return _mapper.Map<UserDTO>(user);
             }
@@ -102,13 +97,13 @@ namespace Core.Services
             to: "+38" + phone,
             channel: "sms", // Specify the channel as SMS
             pathServiceSid: _configuration["Twilio:VerificationServiceSID"]);
-            
+
 
             var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
 
             var claimsList = new List<Claim>()
             {
-                
+
                 new Claim("FirstName", user.FirstName),
                 new Claim("LastName", user.LastName),
                 new Claim("ImagePath", user.ImagePath),
@@ -148,10 +143,20 @@ namespace Core.Services
                 throw new CustomHttpException("LoginDTO cannot be null", HttpStatusCode.BadRequest);
             }
             var user = await _userManager.FindByEmailAsync(loginDTO.Email);
-            var pass = await _userManager.CheckPasswordAsync(user, loginDTO.Password);
-            if (user == null || !pass)
+
+            if (loginDTO.AuthType == "standard")
             {
-                throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                if (user == null || !(await _userManager.CheckPasswordAsync(user, loginDTO.Password)))
+                {
+                    throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                }
+            }
+            else if (loginDTO.AuthType == "google")
+            {
+                if (user == null)
+                {
+                    throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                }
             }
 
             var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
@@ -192,6 +197,11 @@ namespace Core.Services
 
             if (user.AuthType == "standard")
             {
+                var userExist = await _userManager.FindByEmailAsync(registrationDTO.Email);
+                if (userExist != null)
+                {
+                    throw new CustomHttpException("Email already exists", HttpStatusCode.BadRequest);
+                }
                 user.UserName = registrationDTO.Email;
 
                 if (registrationDTO.ImageFile != null)
@@ -216,9 +226,14 @@ namespace Core.Services
                 }
                 return;
             }
-            
-            else if(user.AuthType == "phone")
+
+            else if (user.AuthType == "phone")
             {
+                var userExist = await _userManager.FindByEmailAsync(registrationDTO.Email);
+                if (userExist == null)
+                {
+                    throw new CustomHttpException("Email already exists", HttpStatusCode.BadRequest);
+                }
                 user.UserName = registrationDTO.FirstName;
 
                 user.PhoneNumberConfirmed = true;
@@ -242,10 +257,12 @@ namespace Core.Services
                 user.UserName = registrationDTO.Email;
 
                 user.EmailConfirmed = true;
-                user.ImagePath = registrationDTO.ImagePath;
+
+                if (registrationDTO.ImagePath != null)
+                {
+                    user.ImagePath = await _image.SaveImageFromUrlAsync(registrationDTO.ImagePath);
+                }
                 user.ClientId = registrationDTO.ClientId;
-
-
 
                 var resultgoogle = await _userManager.CreateAsync(user);
                 _userManager.AddToRoleAsync(user, "User").Wait();
@@ -255,8 +272,8 @@ namespace Core.Services
                     throw new CustomHttpException(messageError, System.Net.HttpStatusCode.BadRequest);
                 }
             }
-            
-            
+
+
         }
         public async Task Edit(UserEditDTO editDTO)
         {
@@ -359,10 +376,15 @@ namespace Core.Services
 
             try
             {
-                var result = await _userManager.ResetPasswordAsync(user, normalToken, model.NewPassword);
-                if (!result.Succeeded)
+                if (!string.IsNullOrEmpty(model.NewPassword))
                 {
-                    throw new CustomHttpException("Failed to reset password", HttpStatusCode.BadRequest);
+                    var result = await _userManager.ResetPasswordAsync(user, normalToken, model.NewPassword);
+                    user.Password = model.NewPassword;
+                    await _userManager.UpdateAsync(user);
+                    if (!result.Succeeded)
+                    {
+                        throw new CustomHttpException("Failed to reset password", HttpStatusCode.BadRequest);
+                    }
                 }
             }
             catch (Exception ex)
@@ -385,7 +407,7 @@ namespace Core.Services
             string templateFilePath = Path.Combine(_env.WebRootPath, "email", "ConfirmationEmailTemplate.html");
             string emailBody = File.ReadAllText(templateFilePath);
 
-            string url = $"{_configuration["HostSettings:URL"]}/account/profile/{email}/{validEmailToken}";
+            string url = $"{_configuration["HostSettings:URL"]}/{email}/{validEmailToken}";
 
             emailBody = emailBody.Replace("{url}", url);
 

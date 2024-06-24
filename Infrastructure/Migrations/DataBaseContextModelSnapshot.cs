@@ -23,28 +23,6 @@ namespace Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Core.Entities.Bag_and_Order.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("City")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Region")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Address");
-                });
-
             modelBuilder.Entity("Core.Entities.Category.CategoryEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -83,280 +61,280 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             Name = "Open shoes",
                             SubCategoryId = 1,
-                            URLName = "open_shoes"
+                            URLName = "open-shoes"
                         },
                         new
                         {
                             Id = 2,
                             Name = "Pumps and loafers",
                             SubCategoryId = 1,
-                            URLName = "pumps_and_loafers"
+                            URLName = "pumps-and-loafers"
                         },
                         new
                         {
                             Id = 3,
                             Name = "Heeled shoes",
                             SubCategoryId = 1,
-                            URLName = "heeled_shoes"
+                            URLName = "heeled-shoes"
                         },
                         new
                         {
                             Id = 4,
                             Name = "Women's athletic sneakers",
                             SubCategoryId = 1,
-                            URLName = "women's_athletic_sneakers"
+                            URLName = "women-s-athletic-sneakers"
                         },
                         new
                         {
                             Id = 5,
                             Name = "Women's sneakers",
                             SubCategoryId = 1,
-                            URLName = "women_sneakers"
+                            URLName = "women-sneakers"
                         },
                         new
                         {
                             Id = 6,
                             Name = "High boots and Chelsea",
                             SubCategoryId = 1,
-                            URLName = "high_boots_&_chelsea"
+                            URLName = "high-boots-&-chelsea"
                         },
                         new
                         {
                             Id = 7,
                             Name = "Boots on heels",
                             SubCategoryId = 1,
-                            URLName = "boots_on_heels"
+                            URLName = "boots-on-heels"
                         },
                         new
                         {
                             Id = 8,
                             Name = "Boots and high boots",
                             SubCategoryId = 1,
-                            URLName = "boots_and_high_boots"
+                            URLName = "boots-and-high-boots"
                         },
                         new
                         {
                             Id = 9,
                             Name = "Cossacks boots",
                             SubCategoryId = 1,
-                            URLName = "cossacks_boots"
+                            URLName = "cossacks-boots"
                         },
                         new
                         {
                             Id = 10,
                             Name = "Winter footwear",
                             SubCategoryId = 1,
-                            URLName = "winter_footwear"
+                            URLName = "winter-footwear"
                         },
                         new
                         {
                             Id = 11,
                             Name = "Perforated shoes",
                             SubCategoryId = 1,
-                            URLName = "perforated_shoes"
+                            URLName = "perforated-shoes"
                         },
                         new
                         {
                             Id = 12,
                             Name = "Men's boots",
                             SubCategoryId = 2,
-                            URLName = "men_boots"
+                            URLName = "men-boots"
                         },
                         new
                         {
                             Id = 13,
                             Name = "Men's athletic sneakers",
                             SubCategoryId = 2,
-                            URLName = "man_athletic_sneakers"
+                            URLName = "man-athletic-sneakers"
                         },
                         new
                         {
                             Id = 14,
                             Name = "Men's sneakers",
                             SubCategoryId = 2,
-                            URLName = "man_sneakers"
+                            URLName = "man-sneakers"
                         },
                         new
                         {
                             Id = 15,
                             Name = "Men's pumps",
                             SubCategoryId = 2,
-                            URLName = "man_pumps"
+                            URLName = "man-pumps"
                         },
                         new
                         {
                             Id = 16,
                             Name = "Men's moccasins",
                             SubCategoryId = 2,
-                            URLName = "man_moccasins"
+                            URLName = "man-moccasins"
                         },
                         new
                         {
                             Id = 17,
                             Name = "Men's summer shoes",
                             SubCategoryId = 2,
-                            URLName = "man_summer_shoes"
+                            URLName = "man-summer-shoes"
                         },
                         new
                         {
                             Id = 18,
                             Name = "Women's outerwear",
                             SubCategoryId = 3,
-                            URLName = "woman_outerwear"
+                            URLName = "woman-outerwear"
                         },
                         new
                         {
                             Id = 19,
                             Name = "Women's sweaters and suits",
                             SubCategoryId = 3,
-                            URLName = "woman_sweaters_and_suits"
+                            URLName = "woman-sweaters-and-suits"
                         },
                         new
                         {
                             Id = 20,
                             Name = "Women's t-shirts and sweatshirts",
                             SubCategoryId = 3,
-                            URLName = "woman_t_shirts_and_sweatshirts"
+                            URLName = "woman-t-shirts-and-sweatshirts"
                         },
                         new
                         {
                             Id = 21,
                             Name = "Women's shawl",
                             SubCategoryId = 3,
-                            URLName = "woman_shawl"
+                            URLName = "woman-shawl"
                         },
                         new
                         {
                             Id = 22,
                             Name = "Women's scarves and hats",
                             SubCategoryId = 3,
-                            URLName = "woman_scarves_and_hats"
+                            URLName = "woman-scarves-and-hats"
                         },
                         new
                         {
                             Id = 23,
                             Name = "Women's gloves",
                             SubCategoryId = 3,
-                            URLName = "woman_gloves"
+                            URLName = "woman-gloves"
                         },
                         new
                         {
                             Id = 24,
                             Name = "Women's socks and tights",
                             SubCategoryId = 3,
-                            URLName = "woman_socks_and_tights"
+                            URLName = "woman-socks-and-tights"
                         },
                         new
                         {
                             Id = 25,
                             Name = "Men's outerwear",
                             SubCategoryId = 4,
-                            URLName = "man_outerwear"
+                            URLName = "man-outerwear"
                         },
                         new
                         {
                             Id = 26,
                             Name = "Men's sweaters and suits",
                             SubCategoryId = 4,
-                            URLName = "man_sweaters_and_suits"
+                            URLName = "man-sweaters-and-suits"
                         },
                         new
                         {
                             Id = 27,
                             Name = "Men's t-shirts and sweatshirts",
                             SubCategoryId = 4,
-                            URLName = "man_t_shirts_and_sweatshirts"
+                            URLName = "man-t-shirts-and-sweatshirts"
                         },
                         new
                         {
                             Id = 28,
                             Name = "Men's scarves and hats",
                             SubCategoryId = 4,
-                            URLName = "man_scarves_and_hats"
+                            URLName = "man-scarves-and-hats"
                         },
                         new
                         {
                             Id = 29,
                             Name = "Men's gloves",
                             SubCategoryId = 4,
-                            URLName = "man_gloves"
+                            URLName = "man-gloves"
                         },
                         new
                         {
                             Id = 30,
                             Name = "Men's socks",
                             SubCategoryId = 4,
-                            URLName = "man_socks"
+                            URLName = "man-socks"
                         },
                         new
                         {
                             Id = 31,
                             Name = "Women's glasses",
                             SubCategoryId = 5,
-                            URLName = "woman_glasses"
+                            URLName = "woman-glasses"
                         },
                         new
                         {
                             Id = 32,
                             Name = "Women's home shoes",
                             SubCategoryId = 5,
-                            URLName = "woman_home_shoes"
+                            URLName = "woman-home-shoes"
                         },
                         new
                         {
                             Id = 33,
                             Name = "Women's bags",
                             SubCategoryId = 5,
-                            URLName = "woman_bags"
+                            URLName = "woman-bags"
                         },
                         new
                         {
                             Id = 34,
                             Name = "Women's backpacks",
                             SubCategoryId = 5,
-                            URLName = "woman_backpacks"
+                            URLName = "woman-backpacks"
                         },
                         new
                         {
                             Id = 35,
                             Name = "Women's care products",
                             SubCategoryId = 5,
-                            URLName = "woman_care_products"
+                            URLName = "woman-care-products"
                         },
                         new
                         {
                             Id = 36,
                             Name = "Men's glasses",
                             SubCategoryId = 6,
-                            URLName = "man_glasses"
+                            URLName = "man-glasses"
                         },
                         new
                         {
                             Id = 37,
                             Name = "Men's home shoes",
                             SubCategoryId = 6,
-                            URLName = "man_home_shoes"
+                            URLName = "man-home-shoes"
                         },
                         new
                         {
                             Id = 38,
                             Name = "Men's bags",
                             SubCategoryId = 6,
-                            URLName = "man_bags"
+                            URLName = "man-bags"
                         },
                         new
                         {
                             Id = 39,
                             Name = "Men's backpacks",
                             SubCategoryId = 6,
-                            URLName = "man_backpacks"
+                            URLName = "man-backpacks"
                         },
                         new
                         {
                             Id = 40,
                             Name = "Men's care products",
                             SubCategoryId = 6,
-                            URLName = "man_care_products"
+                            URLName = "man-care-products"
                         });
                 });
 
@@ -434,212 +412,43 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             MainCategoryId = 1,
                             Name = "Woman Shoes",
-                            URLName = "woman_shoes"
+                            URLName = "woman-shoes"
                         },
                         new
                         {
                             Id = 2,
                             MainCategoryId = 2,
                             Name = "Man Shoes",
-                            URLName = "man_shoes"
+                            URLName = "man-shoes"
                         },
                         new
                         {
                             Id = 3,
                             MainCategoryId = 1,
                             Name = "Woman Clothing",
-                            URLName = "woman_clothing"
+                            URLName = "woman-clothing"
                         },
                         new
                         {
                             Id = 4,
                             MainCategoryId = 2,
                             Name = "Man Clothing",
-                            URLName = "man_clothing"
+                            URLName = "man-clothing"
                         },
                         new
                         {
                             Id = 5,
                             MainCategoryId = 1,
                             Name = "Woman Accessories",
-                            URLName = "woman_accessories"
+                            URLName = "woman-accessories"
                         },
                         new
                         {
                             Id = 6,
                             MainCategoryId = 2,
                             Name = "Man Accessories",
-                            URLName = "man_accessories"
+                            URLName = "man-accessories"
                         });
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.Bag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UserEmail")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("Bag");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.BagItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BagId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BagId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("BagItems");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal?>("Discount")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
-                    b.Property<string>("EmailUser")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("OrderDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal?>("OrderTotal")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("Payment")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
-
-                    b.Property<decimal?>("Subtotal")
-                        .HasColumnType("numeric");
-
-                    b.Property<decimal?>("Tax")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.OrderItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Article")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("DueDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<int?>("OrderId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("numeric");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Step")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Core.Entities.Product.ImageEntity", b =>
@@ -1319,6 +1128,16 @@ namespace Infrastructure.Migrations
                         {
                             Id = 15,
                             ImagePath = "800_home_page_15.webp"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ImagePath = "800_home_page_16.webp"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ImagePath = "800_home_page_17.webp"
                         });
                 });
 
@@ -1334,6 +1153,10 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.ToTable("Info");
@@ -1342,22 +1165,26 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Color"
+                            Name = "Color",
+                            Value = "color"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Material"
+                            Name = "Material",
+                            Value = "material"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Size"
+                            Name = "Size",
+                            Value = "size"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Purpose"
+                            Name = "Purpose",
+                            Value = "purpose"
                         });
                 });
 
@@ -2927,6 +2754,248 @@ namespace Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Core.Entities.UserInfo.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Region")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.Bag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("Bag");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.BagItems", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BagId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BagId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("BagItems");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal?>("Discount")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("EmailUser")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal?>("OrderTotal")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Payment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<decimal?>("Subtotal")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal?>("Tax")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.OrderItems", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Article")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Step")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.UserBonuses", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal?>("BonusesAccrued")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("BonusesDescription")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BonusesOperation")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Name")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserBonuses");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.UserFavoriteProduct", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UserId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("UserFavoriteProduct");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -3146,24 +3215,23 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<decimal>("BonusBalance")
+                        .HasColumnType("numeric");
+
                     b.Property<string>("ClientId")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ImagePath")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasDiscriminator().HasValue("User");
@@ -3185,68 +3253,6 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("MainCategoryId");
 
                     b.Navigation("MainCategory");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.Bag", b =>
-                {
-                    b.HasOne("Core.Entities.UserEntity.User", "User")
-                        .WithOne("Bag")
-                        .HasForeignKey("Core.Entities.Information.Bag", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.BagItems", b =>
-                {
-                    b.HasOne("Core.Entities.Information.Bag", "Bag")
-                        .WithMany("BagItems")
-                        .HasForeignKey("BagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Core.Entities.Product.ProductEntity", "Product")
-                        .WithMany("BagItems")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Bag");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.Order", b =>
-                {
-                    b.HasOne("Core.Entities.Bag_and_Order.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.HasOne("Core.Entities.UserEntity.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Address");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.OrderItems", b =>
-                {
-                    b.HasOne("Core.Entities.Information.Order", "Order")
-                        .WithMany("OrderItems")
-                        .HasForeignKey("OrderId");
-
-                    b.HasOne("Core.Entities.Product.ProductEntity", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Core.Entities.Product.ImageEntity", b =>
@@ -3287,6 +3293,96 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.Bag", b =>
+                {
+                    b.HasOne("Core.Entities.UserEntity.User", "User")
+                        .WithOne("Bag")
+                        .HasForeignKey("Core.Entities.UserInfo.Bag", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.BagItems", b =>
+                {
+                    b.HasOne("Core.Entities.UserInfo.Bag", "Bag")
+                        .WithMany("BagItems")
+                        .HasForeignKey("BagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Product.ProductEntity", "Product")
+                        .WithMany("BagItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Bag");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.Order", b =>
+                {
+                    b.HasOne("Core.Entities.UserInfo.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
+
+                    b.HasOne("Core.Entities.UserEntity.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Address");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.OrderItems", b =>
+                {
+                    b.HasOne("Core.Entities.UserInfo.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId");
+
+                    b.HasOne("Core.Entities.Product.ProductEntity", "Product")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.UserBonuses", b =>
+                {
+                    b.HasOne("Core.Entities.UserEntity.User", "User")
+                        .WithMany("UserBonuses")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.UserFavoriteProduct", b =>
+                {
+                    b.HasOne("Core.Entities.Product.ProductEntity", "Product")
+                        .WithMany("FavoriteProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.UserEntity.User", "User")
+                        .WithMany("FavoriteProducts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -3355,16 +3451,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Categories");
                 });
 
-            modelBuilder.Entity("Core.Entities.Information.Bag", b =>
-                {
-                    b.Navigation("BagItems");
-                });
-
-            modelBuilder.Entity("Core.Entities.Information.Order", b =>
-                {
-                    b.Navigation("OrderItems");
-                });
-
             modelBuilder.Entity("Core.Entities.Product.Info", b =>
                 {
                     b.Navigation("Options");
@@ -3374,16 +3460,34 @@ namespace Infrastructure.Migrations
                 {
                     b.Navigation("BagItems");
 
+                    b.Navigation("FavoriteProducts");
+
                     b.Navigation("Images");
 
+                    b.Navigation("OrderItems");
+
                     b.Navigation("Storages");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.Bag", b =>
+                {
+                    b.Navigation("BagItems");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Core.Entities.UserEntity.User", b =>
                 {
                     b.Navigation("Bag");
 
+                    b.Navigation("FavoriteProducts");
+
                     b.Navigation("Orders");
+
+                    b.Navigation("UserBonuses");
                 });
 #pragma warning restore 612, 618
         }

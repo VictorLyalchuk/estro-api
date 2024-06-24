@@ -1,5 +1,5 @@
 using Core.DTOs.User;
-using Core.Entities.DashBoard;
+using Core.Entities.UserEntity;
 using Core.Services;
 using Microsoft.AspNetCore.Identity;
 

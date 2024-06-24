@@ -12,8 +12,6 @@ namespace Core.Specification
                 Query
                     .Include(c => c.SubCategory)
                     .ThenInclude(c => c.MainCategory);
-                    //.OrderBy(c => c.Name)
-                    //.Include(c => c.Products);
             }
         }
         public class GetAllAsyncByID : Specification<CategoryEntity>
@@ -22,7 +20,6 @@ namespace Core.Specification
             {
                 Query
                     .Include(c => c.Products)
-                    //.ThenInclude(c => c.Images)
                     .OrderBy(c => c.Id);
             }
         }
@@ -32,7 +29,6 @@ namespace Core.Specification
             {
                 Query
                     .Include(c => c.Products)
-                    //.ThenInclude(c => c.Images)
                     .Where(c => c.Id == ID);
             }
         }
@@ -41,8 +37,8 @@ namespace Core.Specification
             public GetBySubNameAsync(string subName)
             {
                 Query
-                    //.ThenInclude(c => c.Images)
-                    .Where(c => c.SubCategory.URLName == subName);
+                    .Where(c => c.SubCategory.URLName == subName)
+                    .OrderBy(p => p.Id);
             }
         }
 
