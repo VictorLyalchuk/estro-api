@@ -1,5 +1,4 @@
-﻿using Core.DTOs.UserInfo;
-using Core.Entities.UserInfo;
+﻿using Core.Entities.Address;
 
 namespace Core.DTOs.UserInfo
 {
@@ -18,7 +17,7 @@ namespace Core.DTOs.UserInfo
         public decimal? Tax { get; set; }
         public decimal? Discount { get; set; }
         public decimal? OrderTotal { get; set; }
-        public Address? Address { get; set; }
+        public AddressEntity? Address { get; set; }
         public string? UserId { get; set; }
         public List<OrderItemsDTO>? OrderItems { get; set; }
     }

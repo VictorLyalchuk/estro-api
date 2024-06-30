@@ -1,7 +1,7 @@
 ﻿using Core.Entities.Category;
-using Core.Entities.UserEntity;
 using Core.Entities.Product;
 using Core.Entities.Store;
+using Core.Entities.Address;
 
 namespace Infrastructure.Data
 {
@@ -382,113 +382,122 @@ namespace Infrastructure.Data
                     new Options () { Id = 33, Value = "autumn", Label = "Autumn", InfoId = 4 },
 
             };
+        public static List<CountryEntity> SeedCountry() =>
+            new List<CountryEntity>()
+            {
+                new CountryEntity() { Id = 1, CountryName = "Ukraine"},
+                new CountryEntity() { Id = 2, CountryName = "England"},
+                new CountryEntity() { Id = 3, CountryName = "Spain"},
+                new CountryEntity() { Id = 4, CountryName = "France"},
+                new CountryEntity() { Id = 5, CountryName = "Poland"},
+                new CountryEntity() { Id = 6, CountryName = "USA"},
+                new CountryEntity() { Id = 7, CountryName = "Japan"},
+            };
+        public static List<CityEntity> SeedCity() =>
+                new List<CityEntity>()
+                {
+                            new CityEntity() { Id = 1, CityName = "Kiyv", CountryID = 1,},
+                            new CityEntity() { Id = 2, CityName = "Vinnytsia", CountryID = 1,},
+                            new CityEntity() { Id = 3, CityName = "Dnipro", CountryID = 1,},
+                            new CityEntity() { Id = 4, CityName = "Zhytomyr", CountryID = 1,},
+                            new CityEntity() { Id = 5, CityName = "Ivano-Frankivsk", CountryID = 1,},
+                            new CityEntity() { Id = 6, CityName = "Kovel", CountryID = 1,},
+                            new CityEntity() { Id = 7, CityName = "Lutsk", CountryID = 1,},
+                            new CityEntity() { Id = 8, CityName = "Lviv", CountryID = 1,},
+                            new CityEntity() { Id = 9, CityName = "Odesa", CountryID = 1,},
+                            new CityEntity() { Id = 10, CityName = "Rivne", CountryID = 1,},
+                            new CityEntity() { Id = 11, CityName = "Kharkiv", CountryID = 1,},
+                            new CityEntity() { Id = 12, CityName = "Chernivtsi", CountryID = 1,},
+                };
         public static List<StoreEntity> SeedStores() =>
             new List<StoreEntity>() {
                     new StoreEntity () { Id = 1, Name = "TRC Ocean Plaza",
-                        Address = "Antonovycha, 176, Ground Floor, Left from Eldorado, Across from Butlers",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        Address = "Antonovycha, 176, Ground Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 2, Name = "TRC River Mall",
                         Address = "Dniprovska Naberezhna, 12, Second Floor",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 3, Name = "TRC DREAM Yellow",
-                        Address = "Prospekt Obolonsky, 1-B, First Floor, Atrium Greece 5B",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        Address = "Prospekt Obolonsky, 1-B, First Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 4, Name = "TRC Lavina Mall",
-                        Address = "Berkovetska, 6-D, First Floor, First Quarter from the Entrance near Epicentr",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        Address = "Berkovetska, 6-D, First Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 5, Name = "TRC Respublika Park",
                         Address = "Kiltseva Doroga, 1, First Floor",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 6, Name = "TRC Retroville",
-                        Address = "Prospekt Pravdy, 47, First Floor, Near Colin's",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        Address = "Prospekt Pravdy, 47, First Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 7, Name = "TRC Blockbuster Mall",
                         Address = "Prospekt Stepana Bandery, 36, First Floor",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 8, Name = "TRK Prospekt",
-                        Address = "Gnata Khotkevycha, 1-B, First Floor, Left from Ashan Entrance",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        Address = "Gnata Khotkevycha, 1-B, First Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 9, Name = "TRC Megamall",
-                        Address = "600-Richchia, 17, New Building, First Floor, Central Alley",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Vinnytsia"},
+                        Address = "600-Richchia, 17, New Building, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 2},
                     new StoreEntity () { Id = 10, Name = "TRC Sky Park",
-                        Address = "Mykoly Ovodova, 51, First Floor, Entrance from Soborna Street, Near Toy House",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Vinnytsia"},
+                        Address = "Mykoly Ovodova, 51, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 2},
                     new StoreEntity () { Id = 11, Name = "TRC MOST City",
                         Address = "Queen Elizabeth II (Hlinka), 2, Ground Floor",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Dnipro"},
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 3},
                     new StoreEntity () { Id = 12, Name = "TRC Karavan",
-                        Address = "Nyzhnedniprovskaya, 17, First Floor, Near the Fountain",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Dnipro"},
+                        Address = "Nyzhnedniprovskaya, 17, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 3},
                     new StoreEntity () { Id = 13, Name = "TRC Global",
-                        Address = "Kyivska, 77, First Floor, Across from LC Waikiki",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Zhytomyr"},
+                        Address = "Kyivska, 77, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 4},
                     new StoreEntity () { Id = 14, Name = "Shopping Mall ARSEN",
-                        Address = "Ivana Mykolaychuka, 2, Across from Samsung",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Ivano-Frankivsk"},
+                        Address = "Ivana Mykolaychuka, 2",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 5},
                     new StoreEntity () { Id = 15, Name = "Juvent Shopping Center (Boutique 110)",
                         Address = "4 Varshavska Street",
-                        WorkingHours = "Daily 10:00 - 18:00", MapLink = "Link to map", City = "Kovel"},
+                        WorkingHours = "Daily 10:00 - 18:00", MapLink = "Link to map", CityId = 6},
                     new StoreEntity () { Id = 16, Name = "PortCity Shopping Mall",
-                        Address = "1 Sukhomlynskoho Street, Second Floor, Near Escalator",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Lutsk"},
+                        Address = "1 Sukhomlynskoho Street, Second Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 7},
                     new StoreEntity () { Id = 17, Name = "TSUM Lutsk",
-                        Address = "1 Voli Avenue, Fourth Floor, Near Escalator",
-                        WorkingHours = "Daily 09:30 - 21:00", MapLink = "Link to map", City = "Lutsk"},
+                        Address = "1 Voli Avenue, Fourth Floor",
+                        WorkingHours = "Daily 09:30 - 21:00", MapLink = "Link to map", CityId = 7},
                     new StoreEntity () { Id = 18, Name = "ESTRO Store (Voli, 9)",
-                        Address = "9 Voli Avenue, Building Facade, Across from Kavarnia Dim Kavy",
-                        WorkingHours = "Daily 09:00 - 21:00", MapLink = "Link to map", City = "Lutsk"},
+                        Address = "9 Voli Avenue, Building Facade",
+                        WorkingHours = "Daily 09:00 - 21:00", MapLink = "Link to map", CityId = 7},
                     new StoreEntity () { Id = 19, Name = "Juvent Shopping Center (Boutique 125)",
                         Address = "1 Karpenka-Karyho Street",
-                        WorkingHours = "Daily 09:00 - 21:00", MapLink = "Link to map", City = "Lutsk"},
+                        WorkingHours = "Daily 09:00 - 21:00", MapLink = "Link to map", CityId = 7},
                     new StoreEntity () { Id = 20, Name = "Forum Lviv Shopping Mall",
-                        Address = "7b Pid Dubom Street, Second Floor, Near Kredens Café",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Lviv"},
+                        Address = "7b Pid Dubom Street, Second Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 8},
                     new StoreEntity () { Id = 21, Name = "Victoria Gardens Shopping Mall",
-                        Address = "226-A Kulparkivska Street, First Floor, Near Kredens Café",
-                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Lviv"},
+                        Address = "226-A Kulparkivska Street, First Floor",
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", CityId = 8},
                     new StoreEntity () { Id = 22, Name = "King Cross Leopolis Shopping Mall",
-                        Address = "30 Stryiska Street, First Floor, Near Elevator",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Lviv"},
+                        Address = "30 Stryiska Street, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 8},
                     new StoreEntity () { Id = 23, Name = "ESTRO Store (Doroshenka, 14)",
-                        Address = "14 Doroshenka Street, Building Facade, Near Tram Stops #1 and #2",
-                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Lviv"},
+                        Address = "14 Doroshenka Street",
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", CityId = 8},
                     new StoreEntity () { Id = 24, Name = "City Center Shopping Mall",
-                        Address = "2 Prospekt Nezalezhnosti (Heavenly Hundred Avenue), First Floor, Near Sundays Coffee",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Odesa"},
+                        Address = "2 Prospekt Nezalezhnosti, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 9},
                     new StoreEntity () { Id = 25, Name = "Equator Shopping Mall",
-                        Address = "23 Kulyka i Hudacheka (Makarova), Left Wing of the Shopping Center, Near Athletics",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Rivne"},
+                        Address = "23 Kulyka i Hudacheka",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 10},
                     new StoreEntity () { Id = 26, Name = "Zlata Plaza Shopping Mall",
-                        Address = "1 Oleksandra Borysenka (Korolenka), First Floor, Near Allo Max",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Rivne"},
+                        Address = "1 Oleksandra Borysenka, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 10},
                     new StoreEntity () { Id = 27, Name = "Dafi Shopping Mall",
                         Address = "9 Heroiv Pratsi, First Floor",
-                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Kharkiv"},
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", CityId = 11},
                     new StoreEntity () { Id = 28, Name = "Nikolsky Shopping Mall",
-                        Address = "2a Pushkinska, Third Floor, Near the Escalator",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Kharkiv"},
+                        Address = "2a Pushkinska, Third Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 11},
                     new StoreEntity () { Id = 29, Name = "DEPO't Center Shopping Mall",
-                        Address = "265A Haharina, First Floor, Near Vovk",
-                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Chernivtsi"},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-};
-    };
-
-
+                        Address = "265A Haharina, First Floor",
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", CityId = 12},
+                    };
+             };
 };

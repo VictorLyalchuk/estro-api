@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Core.DTOs.UserInfo;
+using Core.Entities.Address;
 using Core.Entities.UserEntity;
 using Core.Entities.UserInfo;
 using Core.Interfaces;
 using Core.Specification;
 using Microsoft.AspNetCore.Identity;
-using System.Numerics;
 using static Core.Specification.OrderSpecification;
 
 namespace Core.Services
@@ -14,13 +14,14 @@ namespace Core.Services
     {
         private readonly IMapper _mapper;
         private readonly IRepository<Order> _orderRepository;
+        private readonly IRepository<OrderPayment> _orderPaymentRepository;
         private readonly IRepository<OrderItems> _orderItemsRepository;
         private readonly IRepository<Bag> _bagRepository;
         private readonly IRepository<BagItems> _bagItemsRepository;
-        private readonly IRepository<Address> _addressRepository;
+        private readonly IRepository<AddressEntity> _addressRepository;
         private readonly IRepository<UserBonuses> _userBonuses;
         private readonly UserManager<User> _userManager;
-        public OrderService(IRepository<Order> repositoryRepository, IMapper mapper, IRepository<Bag> bagRepository, UserManager<User> userManager, IRepository<BagItems> bagItemsRepository, IRepository<OrderItems> orderItemsRepository, IRepository<Address> addressRepository, IRepository<UserBonuses> userBonuses)
+        public OrderService(IRepository<Order> repositoryRepository, IMapper mapper, IRepository<Bag> bagRepository, UserManager<User> userManager, IRepository<BagItems> bagItemsRepository, IRepository<OrderItems> orderItemsRepository, IRepository<AddressEntity> addressRepository, IRepository<UserBonuses> userBonuses, IRepository<OrderPayment> orderPaymentRepository)
         {
             _mapper = mapper;
             _orderRepository = repositoryRepository;
@@ -30,6 +31,7 @@ namespace Core.Services
             _orderItemsRepository = orderItemsRepository;
             _addressRepository = addressRepository;
             _userBonuses = userBonuses;
+            _orderPaymentRepository = orderPaymentRepository;
         }
         public async Task CreateAsync(OrderCreateDTO orderCreateDTO)
         {
@@ -39,14 +41,28 @@ namespace Core.Services
 
             if (bag != null)
             {
-                Address address = new Address()
+                AddressEntity address = new AddressEntity()
                 {
+                    Country = orderCreateDTO.Country,
                     City = orderCreateDTO.City,
-                    Region = orderCreateDTO.Region,
+                    State = orderCreateDTO.State,
                     Street = orderCreateDTO.Street,
                 };
                 await _addressRepository.InsertAsync(address);
                 await _addressRepository.SaveAsync();
+
+                OrderPayment orderPayment = new OrderPayment()
+                {
+                    Payment = orderCreateDTO.Payment,
+                    PaymentMethod = orderCreateDTO.PaymentMethod,
+                    CardHolderName = orderCreateDTO.CardHolderName,
+                    CardNumber = orderCreateDTO.CardNumber,
+                    CardMonthExpires = orderCreateDTO.CardMonthExpires,
+                    CardYearExpires = orderCreateDTO.CardYearExpires,
+                };
+
+                await _orderPaymentRepository.InsertAsync(orderPayment); 
+                await _orderPaymentRepository.SaveAsync();
 
                 decimal total = bagItems.Sum(p => p.Quantity * p.Product.Price);
                 decimal tax = (bagItems.Sum(p => p.Quantity * p.Product.Price) / (100 + 20)) * 20;
@@ -62,8 +78,8 @@ namespace Core.Services
                     LastName = orderCreateDTO.LastName,
                     OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
                     PhoneNumber = orderCreateDTO.PhoneNumber,
-                    Payment = orderCreateDTO.Payment,
                     UserId = user.Id,
+                    OrderPaymentId = orderPayment.Id,
                     OrderTotal = total,
                     Tax = tax,
                     Subtotal = subtotal,

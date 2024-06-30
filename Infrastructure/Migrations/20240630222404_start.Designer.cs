@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240616195916_start")]
+    [Migration("20240630222404_start")]
     partial class start
     {
         /// <inheritdoc />
@@ -25,6 +25,179 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Core.Entities.Address.AddressEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("City")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("text");
+
+                    b.Property<string>("State")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AddressEntity");
+                });
+
+            modelBuilder.Entity("Core.Entities.Address.CityEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CityName")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("CountryID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryID");
+
+                    b.ToTable("City");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityName = "Kiyv",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityName = "Vinnytsia",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityName = "Dnipro",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CityName = "Zhytomyr",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CityName = "Ivano-Frankivsk",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CityName = "Kovel",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CityName = "Lutsk",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CityName = "Lviv",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CityName = "Odesa",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CityName = "Rivne",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CityName = "Kharkiv",
+                            CountryID = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CityName = "Chernivtsi",
+                            CountryID = 1
+                        });
+                });
+
+            modelBuilder.Entity("Core.Entities.Address.CountryEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CountryName")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Country");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryName = "Ukraine"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryName = "England"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryName = "Spain"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CountryName = "France"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CountryName = "Poland"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CountryName = "USA"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CountryName = "Japan"
+                        });
+                });
 
             modelBuilder.Entity("Core.Entities.Category.CategoryEntity", b =>
                 {
@@ -2470,26 +2643,23 @@ namespace Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int?>("CityId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("MapLink")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("WorkingHours")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.ToTable("Store");
 
@@ -2497,8 +2667,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "Antonovycha, 176, Ground Floor, Left from Eldorado, Across from Butlers",
-                            City = "Kiyv",
+                            Address = "Antonovycha, 176, Ground Floor",
+                            CityId = 1,
                             MapLink = "Link to map",
                             Name = "TRC Ocean Plaza",
                             WorkingHours = "Daily 10:00 - 22:00"
@@ -2507,7 +2677,7 @@ namespace Infrastructure.Migrations
                         {
                             Id = 2,
                             Address = "Dniprovska Naberezhna, 12, Second Floor",
-                            City = "Kiyv",
+                            CityId = 1,
                             MapLink = "Link to map",
                             Name = "TRC River Mall",
                             WorkingHours = "Daily 10:00 - 22:00"
@@ -2515,8 +2685,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            Address = "Prospekt Obolonsky, 1-B, First Floor, Atrium Greece 5B",
-                            City = "Kiyv",
+                            Address = "Prospekt Obolonsky, 1-B, First Floor",
+                            CityId = 1,
                             MapLink = "Link to map",
                             Name = "TRC DREAM Yellow",
                             WorkingHours = "Daily 10:00 - 22:00"
@@ -2524,8 +2694,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            Address = "Berkovetska, 6-D, First Floor, First Quarter from the Entrance near Epicentr",
-                            City = "Kiyv",
+                            Address = "Berkovetska, 6-D, First Floor",
+                            CityId = 1,
                             MapLink = "Link to map",
                             Name = "TRC Lavina Mall",
                             WorkingHours = "Daily 10:00 - 22:00"
@@ -2534,7 +2704,7 @@ namespace Infrastructure.Migrations
                         {
                             Id = 5,
                             Address = "Kiltseva Doroga, 1, First Floor",
-                            City = "Kiyv",
+                            CityId = 1,
                             MapLink = "Link to map",
                             Name = "TRC Respublika Park",
                             WorkingHours = "Daily 10:00 - 22:00"
@@ -2542,8 +2712,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 6,
-                            Address = "Prospekt Pravdy, 47, First Floor, Near Colin's",
-                            City = "Kiyv",
+                            Address = "Prospekt Pravdy, 47, First Floor",
+                            CityId = 1,
                             MapLink = "Link to map",
                             Name = "TRC Retroville",
                             WorkingHours = "Daily 10:00 - 22:00"
@@ -2552,7 +2722,7 @@ namespace Infrastructure.Migrations
                         {
                             Id = 7,
                             Address = "Prospekt Stepana Bandery, 36, First Floor",
-                            City = "Kiyv",
+                            CityId = 1,
                             MapLink = "Link to map",
                             Name = "TRC Blockbuster Mall",
                             WorkingHours = "Daily 10:00 - 22:00"
@@ -2560,8 +2730,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 8,
-                            Address = "Gnata Khotkevycha, 1-B, First Floor, Left from Ashan Entrance",
-                            City = "Kiyv",
+                            Address = "Gnata Khotkevycha, 1-B, First Floor",
+                            CityId = 1,
                             MapLink = "Link to map",
                             Name = "TRK Prospekt",
                             WorkingHours = "Daily 10:00 - 22:00"
@@ -2569,8 +2739,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 9,
-                            Address = "600-Richchia, 17, New Building, First Floor, Central Alley",
-                            City = "Vinnytsia",
+                            Address = "600-Richchia, 17, New Building, First Floor",
+                            CityId = 2,
                             MapLink = "Link to map",
                             Name = "TRC Megamall",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2578,8 +2748,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 10,
-                            Address = "Mykoly Ovodova, 51, First Floor, Entrance from Soborna Street, Near Toy House",
-                            City = "Vinnytsia",
+                            Address = "Mykoly Ovodova, 51, First Floor",
+                            CityId = 2,
                             MapLink = "Link to map",
                             Name = "TRC Sky Park",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2588,7 +2758,7 @@ namespace Infrastructure.Migrations
                         {
                             Id = 11,
                             Address = "Queen Elizabeth II (Hlinka), 2, Ground Floor",
-                            City = "Dnipro",
+                            CityId = 3,
                             MapLink = "Link to map",
                             Name = "TRC MOST City",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2596,8 +2766,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 12,
-                            Address = "Nyzhnedniprovskaya, 17, First Floor, Near the Fountain",
-                            City = "Dnipro",
+                            Address = "Nyzhnedniprovskaya, 17, First Floor",
+                            CityId = 3,
                             MapLink = "Link to map",
                             Name = "TRC Karavan",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2605,8 +2775,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 13,
-                            Address = "Kyivska, 77, First Floor, Across from LC Waikiki",
-                            City = "Zhytomyr",
+                            Address = "Kyivska, 77, First Floor",
+                            CityId = 4,
                             MapLink = "Link to map",
                             Name = "TRC Global",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2614,8 +2784,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 14,
-                            Address = "Ivana Mykolaychuka, 2, Across from Samsung",
-                            City = "Ivano-Frankivsk",
+                            Address = "Ivana Mykolaychuka, 2",
+                            CityId = 5,
                             MapLink = "Link to map",
                             Name = "Shopping Mall ARSEN",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2624,7 +2794,7 @@ namespace Infrastructure.Migrations
                         {
                             Id = 15,
                             Address = "4 Varshavska Street",
-                            City = "Kovel",
+                            CityId = 6,
                             MapLink = "Link to map",
                             Name = "Juvent Shopping Center (Boutique 110)",
                             WorkingHours = "Daily 10:00 - 18:00"
@@ -2632,8 +2802,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 16,
-                            Address = "1 Sukhomlynskoho Street, Second Floor, Near Escalator",
-                            City = "Lutsk",
+                            Address = "1 Sukhomlynskoho Street, Second Floor",
+                            CityId = 7,
                             MapLink = "Link to map",
                             Name = "PortCity Shopping Mall",
                             WorkingHours = "Daily 10:00 - 22:00"
@@ -2641,8 +2811,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 17,
-                            Address = "1 Voli Avenue, Fourth Floor, Near Escalator",
-                            City = "Lutsk",
+                            Address = "1 Voli Avenue, Fourth Floor",
+                            CityId = 7,
                             MapLink = "Link to map",
                             Name = "TSUM Lutsk",
                             WorkingHours = "Daily 09:30 - 21:00"
@@ -2650,8 +2820,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 18,
-                            Address = "9 Voli Avenue, Building Facade, Across from Kavarnia Dim Kavy",
-                            City = "Lutsk",
+                            Address = "9 Voli Avenue, Building Facade",
+                            CityId = 7,
                             MapLink = "Link to map",
                             Name = "ESTRO Store (Voli, 9)",
                             WorkingHours = "Daily 09:00 - 21:00"
@@ -2660,7 +2830,7 @@ namespace Infrastructure.Migrations
                         {
                             Id = 19,
                             Address = "1 Karpenka-Karyho Street",
-                            City = "Lutsk",
+                            CityId = 7,
                             MapLink = "Link to map",
                             Name = "Juvent Shopping Center (Boutique 125)",
                             WorkingHours = "Daily 09:00 - 21:00"
@@ -2668,8 +2838,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 20,
-                            Address = "7b Pid Dubom Street, Second Floor, Near Kredens Café",
-                            City = "Lviv",
+                            Address = "7b Pid Dubom Street, Second Floor",
+                            CityId = 8,
                             MapLink = "Link to map",
                             Name = "Forum Lviv Shopping Mall",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2677,8 +2847,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 21,
-                            Address = "226-A Kulparkivska Street, First Floor, Near Kredens Café",
-                            City = "Lviv",
+                            Address = "226-A Kulparkivska Street, First Floor",
+                            CityId = 8,
                             MapLink = "Link to map",
                             Name = "Victoria Gardens Shopping Mall",
                             WorkingHours = "Daily 10:00 - 20:00"
@@ -2686,8 +2856,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 22,
-                            Address = "30 Stryiska Street, First Floor, Near Elevator",
-                            City = "Lviv",
+                            Address = "30 Stryiska Street, First Floor",
+                            CityId = 8,
                             MapLink = "Link to map",
                             Name = "King Cross Leopolis Shopping Mall",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2695,8 +2865,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 23,
-                            Address = "14 Doroshenka Street, Building Facade, Near Tram Stops #1 and #2",
-                            City = "Lviv",
+                            Address = "14 Doroshenka Street",
+                            CityId = 8,
                             MapLink = "Link to map",
                             Name = "ESTRO Store (Doroshenka, 14)",
                             WorkingHours = "Daily 10:00 - 20:00"
@@ -2704,8 +2874,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 24,
-                            Address = "2 Prospekt Nezalezhnosti (Heavenly Hundred Avenue), First Floor, Near Sundays Coffee",
-                            City = "Odesa",
+                            Address = "2 Prospekt Nezalezhnosti, First Floor",
+                            CityId = 9,
                             MapLink = "Link to map",
                             Name = "City Center Shopping Mall",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2713,8 +2883,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 25,
-                            Address = "23 Kulyka i Hudacheka (Makarova), Left Wing of the Shopping Center, Near Athletics",
-                            City = "Rivne",
+                            Address = "23 Kulyka i Hudacheka",
+                            CityId = 10,
                             MapLink = "Link to map",
                             Name = "Equator Shopping Mall",
                             WorkingHours = "Daily 10:00 - 22:00"
@@ -2722,8 +2892,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 26,
-                            Address = "1 Oleksandra Borysenka (Korolenka), First Floor, Near Allo Max",
-                            City = "Rivne",
+                            Address = "1 Oleksandra Borysenka, First Floor",
+                            CityId = 10,
                             MapLink = "Link to map",
                             Name = "Zlata Plaza Shopping Mall",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2732,7 +2902,7 @@ namespace Infrastructure.Migrations
                         {
                             Id = 27,
                             Address = "9 Heroiv Pratsi, First Floor",
-                            City = "Kharkiv",
+                            CityId = 11,
                             MapLink = "Link to map",
                             Name = "Dafi Shopping Mall",
                             WorkingHours = "Daily 10:00 - 20:00"
@@ -2740,8 +2910,8 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 28,
-                            Address = "2a Pushkinska, Third Floor, Near the Escalator",
-                            City = "Kharkiv",
+                            Address = "2a Pushkinska, Third Floor",
+                            CityId = 11,
                             MapLink = "Link to map",
                             Name = "Nikolsky Shopping Mall",
                             WorkingHours = "Daily 10:00 - 21:00"
@@ -2749,34 +2919,12 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 29,
-                            Address = "265A Haharina, First Floor, Near Vovk",
-                            City = "Chernivtsi",
+                            Address = "265A Haharina, First Floor",
+                            CityId = 12,
                             MapLink = "Link to map",
                             Name = "DEPO't Center Shopping Mall",
                             WorkingHours = "Daily 10:00 - 20:00"
                         });
-                });
-
-            modelBuilder.Entity("Core.Entities.UserInfo.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("City")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Region")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Street")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("Core.Entities.UserInfo.Bag", b =>
@@ -2868,11 +3016,11 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int?>("OrderPaymentId")
+                        .HasColumnType("integer");
+
                     b.Property<decimal?>("OrderTotal")
                         .HasColumnType("numeric");
-
-                    b.Property<string>("Payment")
-                        .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("text");
@@ -2889,6 +3037,8 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
+
+                    b.HasIndex("OrderPaymentId");
 
                     b.HasIndex("UserId");
 
@@ -2946,6 +3096,38 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("Core.Entities.UserInfo.OrderPayment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CardHolderName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CardMonthExpires")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CardNumber")
+                        .HasMaxLength(16)
+                        .HasColumnType("character varying(16)");
+
+                    b.Property<string>("CardYearExpires")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Payment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderPayment");
                 });
 
             modelBuilder.Entity("Core.Entities.UserInfo.UserBonuses", b =>
@@ -3240,6 +3422,15 @@ namespace Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("User");
                 });
 
+            modelBuilder.Entity("Core.Entities.Address.CityEntity", b =>
+                {
+                    b.HasOne("Core.Entities.Address.CountryEntity", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryID");
+
+                    b.Navigation("Country");
+                });
+
             modelBuilder.Entity("Core.Entities.Category.CategoryEntity", b =>
                 {
                     b.HasOne("Core.Entities.Category.SubCategory", "SubCategory")
@@ -3298,6 +3489,15 @@ namespace Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Core.Entities.Store.StoreEntity", b =>
+                {
+                    b.HasOne("Core.Entities.Address.CityEntity", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId");
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("Core.Entities.UserInfo.Bag", b =>
                 {
                     b.HasOne("Core.Entities.UserEntity.User", "User")
@@ -3330,15 +3530,21 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.UserInfo.Order", b =>
                 {
-                    b.HasOne("Core.Entities.UserInfo.Address", "Address")
+                    b.HasOne("Core.Entities.Address.AddressEntity", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
+
+                    b.HasOne("Core.Entities.UserInfo.OrderPayment", "OrderPayment")
+                        .WithMany()
+                        .HasForeignKey("OrderPaymentId");
 
                     b.HasOne("Core.Entities.UserEntity.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Address");
+
+                    b.Navigation("OrderPayment");
 
                     b.Navigation("User");
                 });

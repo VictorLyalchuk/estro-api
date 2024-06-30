@@ -21,6 +21,4 @@ namespace Core.Entities.UserEntity
         public string ClientId { get; set; } = string.Empty;
         public string AuthType {  get; set; } = string.Empty;
     }
-
-    
 }

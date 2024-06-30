@@ -78,6 +78,5 @@ namespace Core.Services
             return await _filesService.SaveImageFromUrlAsync(url);
 
         }
-
     }
 }

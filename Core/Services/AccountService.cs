@@ -202,20 +202,21 @@ namespace Core.Services
                 {
                     throw new CustomHttpException("Email already exists", HttpStatusCode.BadRequest);
                 }
+
                 user.UserName = registrationDTO.Email;
 
                 if (registrationDTO.ImageFile != null)
                 {
                     user.ImagePath = await _image.CreateUserImageAsync(registrationDTO.ImageFile);
                 }
+
                 var result = await _userManager.CreateAsync(user, registrationDTO.Password);
-                _userManager.AddToRoleAsync(user, "User").Wait();
+                //_userManager.AddToRoleAsync(user, "User").Wait();
 
                 if (result.Succeeded)
                 {
                     _userManager.AddToRoleAsync(user, "User").Wait();
                 }
-
 
                 await SendConfirmationEmailAsync(registrationDTO.Email);
 
@@ -272,7 +273,6 @@ namespace Core.Services
                     throw new CustomHttpException(messageError, System.Net.HttpStatusCode.BadRequest);
                 }
             }
-
 
         }
         public async Task Edit(UserEditDTO editDTO)
