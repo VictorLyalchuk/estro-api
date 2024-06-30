@@ -11,7 +11,8 @@ namespace Core.Specification
             {
                 Query
                     .Include(p => p.OrderItems)
-                    .Include(p => p.Address);
+                    .Include(p => p.Address)
+                    .Include(p => p.OrderPayment);
             }
         }
         public class GetOrderById : Specification<Order>
@@ -27,7 +28,8 @@ namespace Core.Specification
                 var query = Query.OrderBy(p => p.Id)
                      .Where(p => p.UserId == Id)
                      .Include(p => p.OrderItems)
-                     .Include(p => p.Address);
+                     .Include(p => p.Address)
+                     .Include(p => p.OrderPayment);
 
                 var result = query
                      .Skip((page - 1) * pageSize)

@@ -1,4 +1,5 @@
-﻿using Core.DTOs.UserInfo;
+﻿using Core.DTOs.Address;
+using Core.Entities.Address;
 
 namespace Core.Interfaces
 {
@@ -6,5 +7,7 @@ namespace Core.Interfaces
     {
         Task CreateAsync(AddressDTO addressDTO);
         Task<List<AddressDTO>> GetAllAddressAsync();
+        Task<List<CountryDTO>> GetCountry();
+        Task<List<CityDTO>> GetCity();
     }
 }

@@ -16,18 +16,19 @@ namespace Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "AddressEntity",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Region = table.Column<string>(type: "text", nullable: true),
+                    Country = table.Column<string>(type: "text", nullable: true),
                     City = table.Column<string>(type: "text", nullable: true),
+                    State = table.Column<string>(type: "text", nullable: true),
                     Street = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.PrimaryKey("PK_AddressEntity", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -80,6 +81,19 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Country",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CountryName = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Country", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ImageForHome",
                 columns: table => new
                 {
@@ -122,20 +136,21 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Store",
+                name: "OrderPayment",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    WorkingHours = table.Column<string>(type: "text", nullable: false),
-                    MapLink = table.Column<string>(type: "text", nullable: false),
-                    City = table.Column<string>(type: "text", nullable: false)
+                    Payment = table.Column<string>(type: "text", nullable: true),
+                    PaymentMethod = table.Column<string>(type: "text", nullable: true),
+                    CardNumber = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: true),
+                    CardMonthExpires = table.Column<string>(type: "text", nullable: true),
+                    CardYearExpires = table.Column<string>(type: "text", nullable: true),
+                    CardHolderName = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Store", x => x.Id);
+                    table.PrimaryKey("PK_OrderPayment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -266,41 +281,6 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    FirstName = table.Column<string>(type: "text", nullable: true),
-                    LastName = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
-                    Email = table.Column<string>(type: "text", nullable: true),
-                    EmailUser = table.Column<string>(type: "text", nullable: true),
-                    Payment = table.Column<string>(type: "text", nullable: true),
-                    AddressId = table.Column<int>(type: "integer", nullable: true),
-                    Subtotal = table.Column<decimal>(type: "numeric", nullable: true),
-                    Tax = table.Column<decimal>(type: "numeric", nullable: true),
-                    Discount = table.Column<decimal>(type: "numeric", nullable: true),
-                    OrderTotal = table.Column<decimal>(type: "numeric", nullable: true),
-                    UserId = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Orders_Address_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Address",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Orders_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserBonuses",
                 columns: table => new
                 {
@@ -320,6 +300,25 @@ namespace Infrastructure.Migrations
                         name: "FK_UserBonuses_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "City",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CityName = table.Column<string>(type: "text", nullable: true),
+                    CountryID = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_City", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_City_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
                         principalColumn: "Id");
                 });
 
@@ -361,6 +360,68 @@ namespace Infrastructure.Migrations
                         name: "FK_SubCategories_MainCategories_MainCategoryId",
                         column: x => x.MainCategoryId,
                         principalTable: "MainCategories",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    EmailUser = table.Column<string>(type: "text", nullable: true),
+                    Subtotal = table.Column<decimal>(type: "numeric", nullable: true),
+                    Tax = table.Column<decimal>(type: "numeric", nullable: true),
+                    Discount = table.Column<decimal>(type: "numeric", nullable: true),
+                    OrderTotal = table.Column<decimal>(type: "numeric", nullable: true),
+                    OrderPaymentId = table.Column<int>(type: "integer", nullable: true),
+                    AddressId = table.Column<int>(type: "integer", nullable: true),
+                    UserId = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AddressEntity_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "AddressEntity",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_OrderPayment_OrderPaymentId",
+                        column: x => x.OrderPaymentId,
+                        principalTable: "OrderPayment",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Store",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    WorkingHours = table.Column<string>(type: "text", nullable: true),
+                    MapLink = table.Column<string>(type: "text", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true),
+                    CityId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Store", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Store_City_CityId",
+                        column: x => x.CityId,
+                        principalTable: "City",
                         principalColumn: "Id");
                 });
 
@@ -545,6 +606,20 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Country",
+                columns: new[] { "Id", "CountryName" },
+                values: new object[,]
+                {
+                    { 1, "Ukraine" },
+                    { 2, "England" },
+                    { 3, "Spain" },
+                    { 4, "France" },
+                    { 5, "Poland" },
+                    { 6, "USA" },
+                    { 7, "Japan" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "ImageForHome",
                 columns: new[] { "Id", "ImagePath" },
                 values: new object[,]
@@ -589,39 +664,22 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Store",
-                columns: new[] { "Id", "Address", "City", "MapLink", "Name", "WorkingHours" },
+                table: "City",
+                columns: new[] { "Id", "CityName", "CountryID" },
                 values: new object[,]
                 {
-                    { 1, "Antonovycha, 176, Ground Floor, Left from Eldorado, Across from Butlers", "Kiyv", "Link to map", "TRC Ocean Plaza", "Daily 10:00 - 22:00" },
-                    { 2, "Dniprovska Naberezhna, 12, Second Floor", "Kiyv", "Link to map", "TRC River Mall", "Daily 10:00 - 22:00" },
-                    { 3, "Prospekt Obolonsky, 1-B, First Floor, Atrium Greece 5B", "Kiyv", "Link to map", "TRC DREAM Yellow", "Daily 10:00 - 22:00" },
-                    { 4, "Berkovetska, 6-D, First Floor, First Quarter from the Entrance near Epicentr", "Kiyv", "Link to map", "TRC Lavina Mall", "Daily 10:00 - 22:00" },
-                    { 5, "Kiltseva Doroga, 1, First Floor", "Kiyv", "Link to map", "TRC Respublika Park", "Daily 10:00 - 22:00" },
-                    { 6, "Prospekt Pravdy, 47, First Floor, Near Colin's", "Kiyv", "Link to map", "TRC Retroville", "Daily 10:00 - 22:00" },
-                    { 7, "Prospekt Stepana Bandery, 36, First Floor", "Kiyv", "Link to map", "TRC Blockbuster Mall", "Daily 10:00 - 22:00" },
-                    { 8, "Gnata Khotkevycha, 1-B, First Floor, Left from Ashan Entrance", "Kiyv", "Link to map", "TRK Prospekt", "Daily 10:00 - 22:00" },
-                    { 9, "600-Richchia, 17, New Building, First Floor, Central Alley", "Vinnytsia", "Link to map", "TRC Megamall", "Daily 10:00 - 21:00" },
-                    { 10, "Mykoly Ovodova, 51, First Floor, Entrance from Soborna Street, Near Toy House", "Vinnytsia", "Link to map", "TRC Sky Park", "Daily 10:00 - 21:00" },
-                    { 11, "Queen Elizabeth II (Hlinka), 2, Ground Floor", "Dnipro", "Link to map", "TRC MOST City", "Daily 10:00 - 21:00" },
-                    { 12, "Nyzhnedniprovskaya, 17, First Floor, Near the Fountain", "Dnipro", "Link to map", "TRC Karavan", "Daily 10:00 - 21:00" },
-                    { 13, "Kyivska, 77, First Floor, Across from LC Waikiki", "Zhytomyr", "Link to map", "TRC Global", "Daily 10:00 - 21:00" },
-                    { 14, "Ivana Mykolaychuka, 2, Across from Samsung", "Ivano-Frankivsk", "Link to map", "Shopping Mall ARSEN", "Daily 10:00 - 21:00" },
-                    { 15, "4 Varshavska Street", "Kovel", "Link to map", "Juvent Shopping Center (Boutique 110)", "Daily 10:00 - 18:00" },
-                    { 16, "1 Sukhomlynskoho Street, Second Floor, Near Escalator", "Lutsk", "Link to map", "PortCity Shopping Mall", "Daily 10:00 - 22:00" },
-                    { 17, "1 Voli Avenue, Fourth Floor, Near Escalator", "Lutsk", "Link to map", "TSUM Lutsk", "Daily 09:30 - 21:00" },
-                    { 18, "9 Voli Avenue, Building Facade, Across from Kavarnia Dim Kavy", "Lutsk", "Link to map", "ESTRO Store (Voli, 9)", "Daily 09:00 - 21:00" },
-                    { 19, "1 Karpenka-Karyho Street", "Lutsk", "Link to map", "Juvent Shopping Center (Boutique 125)", "Daily 09:00 - 21:00" },
-                    { 20, "7b Pid Dubom Street, Second Floor, Near Kredens Café", "Lviv", "Link to map", "Forum Lviv Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 21, "226-A Kulparkivska Street, First Floor, Near Kredens Café", "Lviv", "Link to map", "Victoria Gardens Shopping Mall", "Daily 10:00 - 20:00" },
-                    { 22, "30 Stryiska Street, First Floor, Near Elevator", "Lviv", "Link to map", "King Cross Leopolis Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 23, "14 Doroshenka Street, Building Facade, Near Tram Stops #1 and #2", "Lviv", "Link to map", "ESTRO Store (Doroshenka, 14)", "Daily 10:00 - 20:00" },
-                    { 24, "2 Prospekt Nezalezhnosti (Heavenly Hundred Avenue), First Floor, Near Sundays Coffee", "Odesa", "Link to map", "City Center Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 25, "23 Kulyka i Hudacheka (Makarova), Left Wing of the Shopping Center, Near Athletics", "Rivne", "Link to map", "Equator Shopping Mall", "Daily 10:00 - 22:00" },
-                    { 26, "1 Oleksandra Borysenka (Korolenka), First Floor, Near Allo Max", "Rivne", "Link to map", "Zlata Plaza Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 27, "9 Heroiv Pratsi, First Floor", "Kharkiv", "Link to map", "Dafi Shopping Mall", "Daily 10:00 - 20:00" },
-                    { 28, "2a Pushkinska, Third Floor, Near the Escalator", "Kharkiv", "Link to map", "Nikolsky Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 29, "265A Haharina, First Floor, Near Vovk", "Chernivtsi", "Link to map", "DEPO't Center Shopping Mall", "Daily 10:00 - 20:00" }
+                    { 1, "Kiyv", 1 },
+                    { 2, "Vinnytsia", 1 },
+                    { 3, "Dnipro", 1 },
+                    { 4, "Zhytomyr", 1 },
+                    { 5, "Ivano-Frankivsk", 1 },
+                    { 6, "Kovel", 1 },
+                    { 7, "Lutsk", 1 },
+                    { 8, "Lviv", 1 },
+                    { 9, "Odesa", 1 },
+                    { 10, "Rivne", 1 },
+                    { 11, "Kharkiv", 1 },
+                    { 12, "Chernivtsi", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -719,6 +777,42 @@ namespace Infrastructure.Migrations
                     { 38, null, null, "Men's bags", 6, "man-bags" },
                     { 39, null, null, "Men's backpacks", 6, "man-backpacks" },
                     { 40, null, null, "Men's care products", 6, "man-care-products" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Store",
+                columns: new[] { "Id", "Address", "CityId", "MapLink", "Name", "WorkingHours" },
+                values: new object[,]
+                {
+                    { 1, "Antonovycha, 176, Ground Floor", 1, "Link to map", "TRC Ocean Plaza", "Daily 10:00 - 22:00" },
+                    { 2, "Dniprovska Naberezhna, 12, Second Floor", 1, "Link to map", "TRC River Mall", "Daily 10:00 - 22:00" },
+                    { 3, "Prospekt Obolonsky, 1-B, First Floor", 1, "Link to map", "TRC DREAM Yellow", "Daily 10:00 - 22:00" },
+                    { 4, "Berkovetska, 6-D, First Floor", 1, "Link to map", "TRC Lavina Mall", "Daily 10:00 - 22:00" },
+                    { 5, "Kiltseva Doroga, 1, First Floor", 1, "Link to map", "TRC Respublika Park", "Daily 10:00 - 22:00" },
+                    { 6, "Prospekt Pravdy, 47, First Floor", 1, "Link to map", "TRC Retroville", "Daily 10:00 - 22:00" },
+                    { 7, "Prospekt Stepana Bandery, 36, First Floor", 1, "Link to map", "TRC Blockbuster Mall", "Daily 10:00 - 22:00" },
+                    { 8, "Gnata Khotkevycha, 1-B, First Floor", 1, "Link to map", "TRK Prospekt", "Daily 10:00 - 22:00" },
+                    { 9, "600-Richchia, 17, New Building, First Floor", 2, "Link to map", "TRC Megamall", "Daily 10:00 - 21:00" },
+                    { 10, "Mykoly Ovodova, 51, First Floor", 2, "Link to map", "TRC Sky Park", "Daily 10:00 - 21:00" },
+                    { 11, "Queen Elizabeth II (Hlinka), 2, Ground Floor", 3, "Link to map", "TRC MOST City", "Daily 10:00 - 21:00" },
+                    { 12, "Nyzhnedniprovskaya, 17, First Floor", 3, "Link to map", "TRC Karavan", "Daily 10:00 - 21:00" },
+                    { 13, "Kyivska, 77, First Floor", 4, "Link to map", "TRC Global", "Daily 10:00 - 21:00" },
+                    { 14, "Ivana Mykolaychuka, 2", 5, "Link to map", "Shopping Mall ARSEN", "Daily 10:00 - 21:00" },
+                    { 15, "4 Varshavska Street", 6, "Link to map", "Juvent Shopping Center (Boutique 110)", "Daily 10:00 - 18:00" },
+                    { 16, "1 Sukhomlynskoho Street, Second Floor", 7, "Link to map", "PortCity Shopping Mall", "Daily 10:00 - 22:00" },
+                    { 17, "1 Voli Avenue, Fourth Floor", 7, "Link to map", "TSUM Lutsk", "Daily 09:30 - 21:00" },
+                    { 18, "9 Voli Avenue, Building Facade", 7, "Link to map", "ESTRO Store (Voli, 9)", "Daily 09:00 - 21:00" },
+                    { 19, "1 Karpenka-Karyho Street", 7, "Link to map", "Juvent Shopping Center (Boutique 125)", "Daily 09:00 - 21:00" },
+                    { 20, "7b Pid Dubom Street, Second Floor", 8, "Link to map", "Forum Lviv Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 21, "226-A Kulparkivska Street, First Floor", 8, "Link to map", "Victoria Gardens Shopping Mall", "Daily 10:00 - 20:00" },
+                    { 22, "30 Stryiska Street, First Floor", 8, "Link to map", "King Cross Leopolis Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 23, "14 Doroshenka Street", 8, "Link to map", "ESTRO Store (Doroshenka, 14)", "Daily 10:00 - 20:00" },
+                    { 24, "2 Prospekt Nezalezhnosti, First Floor", 9, "Link to map", "City Center Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 25, "23 Kulyka i Hudacheka", 10, "Link to map", "Equator Shopping Mall", "Daily 10:00 - 22:00" },
+                    { 26, "1 Oleksandra Borysenka, First Floor", 10, "Link to map", "Zlata Plaza Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 27, "9 Heroiv Pratsi, First Floor", 11, "Link to map", "Dafi Shopping Mall", "Daily 10:00 - 20:00" },
+                    { 28, "2a Pushkinska, Third Floor", 11, "Link to map", "Nikolsky Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 29, "265A Haharina, First Floor", 12, "Link to map", "DEPO't Center Shopping Mall", "Daily 10:00 - 20:00" }
                 });
 
             migrationBuilder.InsertData(
@@ -1002,6 +1096,11 @@ namespace Infrastructure.Migrations
                 column: "SubCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_City_CountryID",
+                table: "City",
+                column: "CountryID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Images_ProductId",
                 table: "Images",
                 column: "ProductId");
@@ -1027,6 +1126,11 @@ namespace Infrastructure.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_OrderPaymentId",
+                table: "Orders",
+                column: "OrderPaymentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",
                 table: "Orders",
                 column: "UserId");
@@ -1040,6 +1144,11 @@ namespace Infrastructure.Migrations
                 name: "IX_Storage_ProductId",
                 table: "Storage",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Store_CityId",
+                table: "Store",
+                column: "CityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubCategories_MainCategoryId",
@@ -1115,13 +1224,22 @@ namespace Infrastructure.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
+                name: "City");
+
+            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "AddressEntity");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "OrderPayment");
+
+            migrationBuilder.DropTable(
+                name: "Country");
 
             migrationBuilder.DropTable(
                 name: "Categories");

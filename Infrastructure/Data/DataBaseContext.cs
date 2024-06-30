@@ -6,6 +6,7 @@ using Core.Entities.Store;
 using Infrastructure.EntitiesConfiguration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Core.Entities.Address;
 
 namespace Infrastructure.Data
 {
@@ -33,6 +34,8 @@ namespace Infrastructure.Data
             builder.Entity<StorageEntity>().HasData(SeedData.SeedStorage());
             builder.Entity<ImageForHome>().HasData(SeedData.SeedImageForHome());
 
+            builder.Entity<CountryEntity>().HasData(SeedData.SeedCountry());
+            builder.Entity<CityEntity>().HasData(SeedData.SeedCity());
             builder.Entity<StoreEntity>().HasData(SeedData.SeedStores());
             builder.Entity<Info>().HasData(SeedData.SeedInfos());
             builder.Entity<Options>().HasData(SeedData.SeedOptions());
@@ -49,6 +52,8 @@ namespace Infrastructure.Data
         public DbSet<ImageForHome> ImageForHome { get; set; }
 
 
+        public DbSet<CountryEntity> Country { get; set; }
+        public DbSet<CityEntity> City { get; set; }
         public DbSet<StoreEntity> Store { get; set; }
         public DbSet<Info> Info { get; set; }
         public DbSet<Options> Options { get; set; }

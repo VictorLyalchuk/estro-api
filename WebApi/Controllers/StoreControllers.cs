@@ -9,9 +9,11 @@ namespace WebApi.Controllers
     public class StoreControllers : Controller
     {
         private readonly IStoreService _store;
-        public StoreControllers(IStoreService store)
+        private readonly IAddressService _address;
+        public StoreControllers(IStoreService store, IAddressService address)
         {
             _store = store;
+            _address = address;
         }
 
         [HttpPost("CreateStore")]
@@ -62,6 +64,26 @@ namespace WebApi.Controllers
                 return NotFound();
             }
             return Ok(store);
+        }
+        [HttpGet("getCountry")]
+        public async Task<IActionResult> GetCountry()
+        {
+            var country = await _address.GetCountry();
+            if (country == null)
+            {
+                return NotFound();
+            }
+            return Ok(country);
+        }
+        [HttpGet("getCity")]
+        public async Task<IActionResult> getCity()
+        {
+            var city = await _address.GetCity();
+            if (city == null)
+            {
+                return NotFound();
+            }
+            return Ok(city);
         }
     }
 }
