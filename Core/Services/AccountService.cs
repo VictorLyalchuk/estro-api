@@ -321,6 +321,31 @@ namespace Core.Services
                         }
                     }
                 }
+
+                if (user.AuthType == "google")
+                {
+                    if (user == null)
+                    {
+                        throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
+                    }
+
+                    if (user != null)
+                    {
+                        User updatedUser = _mapper.Map<User>(user);
+                        updatedUser.UserName = editDTO.Email;
+                        updatedUser.Email = editDTO.Email;
+                        updatedUser.FirstName = editDTO.FirstName;
+                        updatedUser.LastName = editDTO.LastName;
+                        updatedUser.PhoneNumber = editDTO.PhoneNumber;
+                        updatedUser.ImagePath = editDTO.ImagePath;
+                        updatedUser.Birthday = editDTO.Birthday;
+                        var result = await _userManager.UpdateAsync(updatedUser);
+                        if (!result.Succeeded)
+                        {
+                            throw new CustomHttpException("Failed to update user", HttpStatusCode.BadRequest);
+                        }
+                    }
+                }
             }
         }
         public async Task DeleteUserImage(string email)
