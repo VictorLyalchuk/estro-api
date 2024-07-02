@@ -1,6 +1,7 @@
 ﻿using Ardalis.Specification;
 using Core.DTOs.Filter;
 using Core.Entities.Product;
+using System.Buffers;
 
 namespace Core.Specification
 {
@@ -53,6 +54,7 @@ namespace Core.Specification
                 List<string> Purpose = filterDTO.Purpose ?? new List<string>();
                 int page = filterDTO.Page < 1 ? 1 : filterDTO.Page;
                 string sort = filterDTO.Sort;
+                string search = filterDTO.Search;
                 int pageSize = filterDTO.ItemsPerPage;
 
                 Query
@@ -89,6 +91,11 @@ namespace Core.Specification
                 {
                     Query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
                 }
+                if (!string.IsNullOrEmpty(search))
+                {
+                    search = search.Replace("_", " ");
+                    Query.Where(p => p.Name.ToLower().Contains(search.ToLower()));
+                }
                 switch (sort)
                 {
                     case "newest":
@@ -120,6 +127,7 @@ namespace Core.Specification
                 List<string> Materials = filterDTO.Material ?? new List<string>();
                 List<int> Sizes = filterDTO.Size ?? new List<int>();
                 List<string> Purpose = filterDTO.Purpose ?? new List<string>();
+                string search = filterDTO.Search;
 
                 Query.OrderBy(p => p.Id)
                      .Include(p => p.Images)
@@ -155,6 +163,11 @@ namespace Core.Specification
                 if (Purpose.Any())
                 {
                     Query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
+                }
+                if (!string.IsNullOrEmpty(search))
+                {
+                    search = search.Replace("_", " ");
+                    Query.Where(p => p.Name.ToLower().Contains(search.ToLower()));
                 }
                 var results = Query;
             }
