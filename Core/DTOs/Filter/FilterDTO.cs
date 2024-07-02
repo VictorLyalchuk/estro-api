@@ -9,6 +9,7 @@
         public int Page { get; set; }
         public int ItemsPerPage { get; set; }
         public string? Sort { get; set; }
+        public string? Search { get; set; }
         public string? MainCategory { get;set; }
         public List<string>? subName { get; set; }
         public List<string>? urlName { get;set ; }
