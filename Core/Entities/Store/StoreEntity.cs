@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core.Entities.Address;
+using System.ComponentModel.DataAnnotations;
 
 namespace Core.Entities.Store
 {
@@ -6,10 +7,11 @@ namespace Core.Entities.Store
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Address { get; set; } = string.Empty;
-        public string WorkingHours { get; set; } = string.Empty;
-        public string MapLink { get; set; } = string.Empty;
-        public string City { get; set; } = string.Empty;
+        public string? Name { get; set; }
+        public string? WorkingHours { get; set; }
+        public string? MapLink { get; set; }
+        public string? Address { get; set; }
+        public int? CityId { get; set; }
+        public CityEntity? City { get; set; }
     }
 }

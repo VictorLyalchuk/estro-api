@@ -1,5 +1,5 @@
 ﻿using Ardalis.Specification;
-using Core.Entities.Information;
+using Core.Entities.UserInfo;
 using System;
 using System.Collections;
 using System.Collections.Generic;

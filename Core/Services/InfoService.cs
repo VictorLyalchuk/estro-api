@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.DTOs.Product;
 using Core.Entities.Product;
 using Core.Interfaces;
 using Core.Specification;
@@ -14,10 +15,10 @@ namespace Core.Services
             _mapper = mapper;
             _infoRepository = infoRepository;
         }
-        public async Task<List<Info>>? GetInfoAsync(string subName)
+        public async Task<List<InfoDTO>>? GetInfoAsync()
         {
-            var infos = await _infoRepository.GetListBySpec(new InfoSpecification.GetAll(subName));
-            return _mapper.Map<List<Info>>(infos);
+            var infos = await _infoRepository.GetListBySpec(new InfoSpecification.GetAll());
+            return _mapper.Map<List<InfoDTO>>(infos);
         }
     }
 }

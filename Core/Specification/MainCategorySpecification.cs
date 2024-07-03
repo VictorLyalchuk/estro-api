@@ -10,8 +10,9 @@ namespace Core.Specification
             public All()
             {
                 Query
-                    .Include(c => c.SubCategories)
-                    .ThenInclude(c => c.Categories);
+                    .Include(c => c.SubCategories.OrderBy(p => p.Id))
+                    .ThenInclude(c => c.Categories.OrderBy(p => p.Id))
+                    .OrderBy(c => c.Id);
             }
         }
     }

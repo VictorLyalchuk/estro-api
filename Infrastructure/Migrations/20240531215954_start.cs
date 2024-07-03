@@ -16,6 +16,22 @@ namespace Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AddressEntity",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Country = table.Column<string>(type: "text", nullable: true),
+                    City = table.Column<string>(type: "text", nullable: true),
+                    State = table.Column<string>(type: "text", nullable: true),
+                    Street = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AddressEntity", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -39,6 +55,7 @@ namespace Infrastructure.Migrations
                     LastName = table.Column<string>(type: "text", nullable: true),
                     Password = table.Column<string>(type: "text", nullable: true),
                     ImagePath = table.Column<string>(type: "text", nullable: true),
+                    BonusBalance = table.Column<decimal>(type: "numeric", nullable: true),
                     Birthday = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     BagId = table.Column<int>(type: "integer", nullable: true),
                     ClientId = table.Column<string>(type: "text", nullable: true),
@@ -64,6 +81,19 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Country",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CountryName = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Country", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ImageForHome",
                 columns: table => new
                 {
@@ -82,7 +112,8 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false)
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Value = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -105,20 +136,21 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Store",
+                name: "OrderPayment",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    WorkingHours = table.Column<string>(type: "text", nullable: false),
-                    MapLink = table.Column<string>(type: "text", nullable: false),
-                    City = table.Column<string>(type: "text", nullable: false)
+                    Payment = table.Column<string>(type: "text", nullable: true),
+                    PaymentMethod = table.Column<string>(type: "text", nullable: true),
+                    CardNumber = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: true),
+                    CardMonthExpires = table.Column<string>(type: "text", nullable: true),
+                    CardYearExpires = table.Column<string>(type: "text", nullable: true),
+                    CardHolderName = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Store", x => x.Id);
+                    table.PrimaryKey("PK_OrderPayment", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,31 +281,45 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
+                name: "UserBonuses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<int>(type: "integer", nullable: true),
                     OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: false),
-                    EmailUser = table.Column<string>(type: "text", nullable: false),
-                    Address = table.Column<string>(type: "text", nullable: false),
-                    Payment = table.Column<string>(type: "text", nullable: false),
-                    UserId = table.Column<string>(type: "text", nullable: false),
-                    Status = table.Column<string>(type: "text", nullable: false)
+                    BonusesOperation = table.Column<string>(type: "text", nullable: true),
+                    BonusesDescription = table.Column<string>(type: "text", nullable: true),
+                    BonusesAccrued = table.Column<decimal>(type: "numeric", nullable: true),
+                    UserId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.PrimaryKey("PK_UserBonuses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Orders_AspNetUsers_UserId",
+                        name: "FK_UserBonuses_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "City",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CityName = table.Column<string>(type: "text", nullable: true),
+                    CountryID = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_City", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_City_Country_CountryID",
+                        column: x => x.CountryID,
+                        principalTable: "Country",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -318,27 +364,64 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderItems",
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ProductId = table.Column<int>(type: "integer", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Article = table.Column<string>(type: "text", nullable: false),
-                    Price = table.Column<decimal>(type: "numeric", nullable: false),
-                    ImagePath = table.Column<string>(type: "text", nullable: false),
-                    Quantity = table.Column<int>(type: "integer", nullable: false),
-                    Size = table.Column<int>(type: "integer", nullable: false),
-                    OrderId = table.Column<int>(type: "integer", nullable: true)
+                    OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    EmailUser = table.Column<string>(type: "text", nullable: true),
+                    Subtotal = table.Column<decimal>(type: "numeric", nullable: true),
+                    Tax = table.Column<decimal>(type: "numeric", nullable: true),
+                    Discount = table.Column<decimal>(type: "numeric", nullable: true),
+                    OrderTotal = table.Column<decimal>(type: "numeric", nullable: true),
+                    OrderPaymentId = table.Column<int>(type: "integer", nullable: true),
+                    AddressId = table.Column<int>(type: "integer", nullable: true),
+                    UserId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderItems_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
+                        name: "FK_Orders_AddressEntity_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "AddressEntity",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_OrderPayment_OrderPaymentId",
+                        column: x => x.OrderPaymentId,
+                        principalTable: "OrderPayment",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Store",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    WorkingHours = table.Column<string>(type: "text", nullable: true),
+                    MapLink = table.Column<string>(type: "text", nullable: true),
+                    Address = table.Column<string>(type: "text", nullable: true),
+                    CityId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Store", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Store_City_CityId",
+                        column: x => x.CityId,
+                        principalTable: "City",
                         principalColumn: "Id");
                 });
 
@@ -441,6 +524,41 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Price = table.Column<decimal>(type: "numeric", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    Step = table.Column<int>(type: "integer", nullable: false),
+                    Status = table.Column<string>(type: "text", nullable: true),
+                    ImagePath = table.Column<string>(type: "text", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Article = table.Column<string>(type: "text", nullable: true),
+                    Quantity = table.Column<int>(type: "integer", nullable: false),
+                    Size = table.Column<int>(type: "integer", nullable: false),
+                    OrderId = table.Column<int>(type: "integer", nullable: true),
+                    ProductId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Storage",
                 columns: table => new
                 {
@@ -462,6 +580,45 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "UserFavoriteProduct",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    ProductId = table.Column<int>(type: "integer", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserFavoriteProduct", x => new { x.UserId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_UserFavoriteProduct_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserFavoriteProduct_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Country",
+                columns: new[] { "Id", "CountryName" },
+                values: new object[,]
+                {
+                    { 1, "Ukraine" },
+                    { 2, "England" },
+                    { 3, "Spain" },
+                    { 4, "France" },
+                    { 5, "Poland" },
+                    { 6, "USA" },
+                    { 7, "Japan" }
+                });
+
             migrationBuilder.InsertData(
                 table: "ImageForHome",
                 columns: new[] { "Id", "ImagePath" },
@@ -481,18 +638,20 @@ namespace Infrastructure.Migrations
                     { 12, "800_home_page_12.webp" },
                     { 13, "800_home_page_13.webp" },
                     { 14, "800_home_page_14.webp" },
-                    { 15, "800_home_page_15.webp" }
+                    { 15, "800_home_page_15.webp" },
+                    { 16, "800_home_page_16.webp" },
+                    { 17, "800_home_page_17.webp" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Info",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "Name", "Value" },
                 values: new object[,]
                 {
-                    { 1, "Color" },
-                    { 2, "Material" },
-                    { 3, "Size" },
-                    { 4, "Purpose" }
+                    { 1, "Color", "color" },
+                    { 2, "Material", "material" },
+                    { 3, "Size", "size" },
+                    { 4, "Purpose", "purpose" }
                 });
 
             migrationBuilder.InsertData(
@@ -505,39 +664,22 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Store",
-                columns: new[] { "Id", "Address", "City", "MapLink", "Name", "WorkingHours" },
+                table: "City",
+                columns: new[] { "Id", "CityName", "CountryID" },
                 values: new object[,]
                 {
-                    { 1, "Antonovycha, 176, Ground Floor, Left from Eldorado, Across from Butlers", "Kiyv", "Link to map", "TRC Ocean Plaza", "Daily 10:00 - 22:00" },
-                    { 2, "Dniprovska Naberezhna, 12, Second Floor", "Kiyv", "Link to map", "TRC River Mall", "Daily 10:00 - 22:00" },
-                    { 3, "Prospekt Obolonsky, 1-B, First Floor, Atrium Greece 5B", "Kiyv", "Link to map", "TRC DREAM Yellow", "Daily 10:00 - 22:00" },
-                    { 4, "Berkovetska, 6-D, First Floor, First Quarter from the Entrance near Epicentr", "Kiyv", "Link to map", "TRC Lavina Mall", "Daily 10:00 - 22:00" },
-                    { 5, "Kiltseva Doroga, 1, First Floor", "Kiyv", "Link to map", "TRC Respublika Park", "Daily 10:00 - 22:00" },
-                    { 6, "Prospekt Pravdy, 47, First Floor, Near Colin's", "Kiyv", "Link to map", "TRC Retroville", "Daily 10:00 - 22:00" },
-                    { 7, "Prospekt Stepana Bandery, 36, First Floor", "Kiyv", "Link to map", "TRC Blockbuster Mall", "Daily 10:00 - 22:00" },
-                    { 8, "Gnata Khotkevycha, 1-B, First Floor, Left from Ashan Entrance", "Kiyv", "Link to map", "TRK Prospekt", "Daily 10:00 - 22:00" },
-                    { 9, "600-Richchia, 17, New Building, First Floor, Central Alley", "Vinnytsia", "Link to map", "TRC Megamall", "Daily 10:00 - 21:00" },
-                    { 10, "Mykoly Ovodova, 51, First Floor, Entrance from Soborna Street, Near Toy House", "Vinnytsia", "Link to map", "TRC Sky Park", "Daily 10:00 - 21:00" },
-                    { 11, "Queen Elizabeth II (Hlinka), 2, Ground Floor", "Dnipro", "Link to map", "TRC MOST City", "Daily 10:00 - 21:00" },
-                    { 12, "Nyzhnedniprovskaya, 17, First Floor, Near the Fountain", "Dnipro", "Link to map", "TRC Karavan", "Daily 10:00 - 21:00" },
-                    { 13, "Kyivska, 77, First Floor, Across from LC Waikiki", "Zhytomyr", "Link to map", "TRC Global", "Daily 10:00 - 21:00" },
-                    { 14, "Ivana Mykolaychuka, 2, Across from Samsung", "Ivano-Frankivsk", "Link to map", "Shopping Mall ARSEN", "Daily 10:00 - 21:00" },
-                    { 15, "4 Varshavska Street", "Kovel", "Link to map", "Juvent Shopping Center (Boutique 110)", "Daily 10:00 - 18:00" },
-                    { 16, "1 Sukhomlynskoho Street, Second Floor, Near Escalator", "Lutsk", "Link to map", "PortCity Shopping Mall", "Daily 10:00 - 22:00" },
-                    { 17, "1 Voli Avenue, Fourth Floor, Near Escalator", "Lutsk", "Link to map", "TSUM Lutsk", "Daily 09:30 - 21:00" },
-                    { 18, "9 Voli Avenue, Building Facade, Across from Kavarnia Dim Kavy", "Lutsk", "Link to map", "ESTRO Store (Voli, 9)", "Daily 09:00 - 21:00" },
-                    { 19, "1 Karpenka-Karyho Street", "Lutsk", "Link to map", "Juvent Shopping Center (Boutique 125)", "Daily 09:00 - 21:00" },
-                    { 20, "7b Pid Dubom Street, Second Floor, Near Kredens Café", "Lviv", "Link to map", "Forum Lviv Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 21, "226-A Kulparkivska Street, First Floor, Near Kredens Café", "Lviv", "Link to map", "Victoria Gardens Shopping Mall", "Daily 10:00 - 20:00" },
-                    { 22, "30 Stryiska Street, First Floor, Near Elevator", "Lviv", "Link to map", "King Cross Leopolis Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 23, "14 Doroshenka Street, Building Facade, Near Tram Stops #1 and #2", "Lviv", "Link to map", "ESTRO Store (Doroshenka, 14)", "Daily 10:00 - 20:00" },
-                    { 24, "2 Prospekt Nezalezhnosti (Heavenly Hundred Avenue), First Floor, Near Sundays Coffee", "Odesa", "Link to map", "City Center Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 25, "23 Kulyka i Hudacheka (Makarova), Left Wing of the Shopping Center, Near Athletics", "Rivne", "Link to map", "Equator Shopping Mall", "Daily 10:00 - 22:00" },
-                    { 26, "1 Oleksandra Borysenka (Korolenka), First Floor, Near Allo Max", "Rivne", "Link to map", "Zlata Plaza Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 27, "9 Heroiv Pratsi, First Floor", "Kharkiv", "Link to map", "Dafi Shopping Mall", "Daily 10:00 - 20:00" },
-                    { 28, "2a Pushkinska, Third Floor, Near the Escalator", "Kharkiv", "Link to map", "Nikolsky Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 29, "265A Haharina, First Floor, Near Vovk", "Chernivtsi", "Link to map", "DEPO't Center Shopping Mall", "Daily 10:00 - 20:00" }
+                    { 1, "Kiyv", 1 },
+                    { 2, "Vinnytsia", 1 },
+                    { 3, "Dnipro", 1 },
+                    { 4, "Zhytomyr", 1 },
+                    { 5, "Ivano-Frankivsk", 1 },
+                    { 6, "Kovel", 1 },
+                    { 7, "Lutsk", 1 },
+                    { 8, "Lviv", 1 },
+                    { 9, "Odesa", 1 },
+                    { 10, "Rivne", 1 },
+                    { 11, "Kharkiv", 1 },
+                    { 12, "Chernivtsi", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -582,12 +724,12 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "ImagePath", "MainCategoryId", "Name", "URLName" },
                 values: new object[,]
                 {
-                    { 1, null, 1, "Woman Shoes", "woman_shoes" },
-                    { 2, null, 2, "Man Shoes", "man_shoes" },
-                    { 3, null, 1, "Woman Clothing", "woman_clothing" },
-                    { 4, null, 2, "Man Clothing", "man_clothing" },
-                    { 5, null, 1, "Woman Accessories", "woman_accessories" },
-                    { 6, null, 2, "Man Accessories", "man_accessories" }
+                    { 1, null, 1, "Woman Shoes", "woman-shoes" },
+                    { 2, null, 2, "Man Shoes", "man-shoes" },
+                    { 3, null, 1, "Woman Clothing", "woman-clothing" },
+                    { 4, null, 2, "Man Clothing", "man-clothing" },
+                    { 5, null, 1, "Woman Accessories", "woman-accessories" },
+                    { 6, null, 2, "Man Accessories", "man-accessories" }
                 });
 
             migrationBuilder.InsertData(
@@ -595,46 +737,82 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "Description", "ImagePath", "Name", "SubCategoryId", "URLName" },
                 values: new object[,]
                 {
-                    { 1, null, null, "Open shoes", 1, "open_shoes" },
-                    { 2, null, null, "Pumps and loafers", 1, "pumps_and_loafers" },
-                    { 3, null, null, "Heeled shoes", 1, "heeled_shoes" },
-                    { 4, null, null, "Women's athletic sneakers", 1, "women's_athletic_sneakers" },
-                    { 5, null, null, "Women's sneakers", 1, "women_sneakers" },
-                    { 6, null, null, "High boots and Chelsea", 1, "high_boots_&_chelsea" },
-                    { 7, null, null, "Boots on heels", 1, "boots_on_heels" },
-                    { 8, null, null, "Boots and high boots", 1, "boots_and_high_boots" },
-                    { 9, null, null, "Cossacks boots", 1, "cossacks_boots" },
-                    { 10, null, null, "Winter footwear", 1, "winter_footwear" },
-                    { 11, null, null, "Perforated shoes", 1, "perforated_shoes" },
-                    { 12, null, null, "Men's boots", 2, "men_boots" },
-                    { 13, null, null, "Men's athletic sneakers", 2, "man_athletic_sneakers" },
-                    { 14, null, null, "Men's sneakers", 2, "man_sneakers" },
-                    { 15, null, null, "Men's pumps", 2, "man_pumps" },
-                    { 16, null, null, "Men's moccasins", 2, "man_moccasins" },
-                    { 17, null, null, "Men's summer shoes", 2, "man_summer_shoes" },
-                    { 18, null, null, "Women's outerwear", 3, "woman_outerwear" },
-                    { 19, null, null, "Women's sweaters and suits", 3, "woman_sweaters_and_suits" },
-                    { 20, null, null, "Women's t-shirts and sweatshirts", 3, "woman_t_shirts_and_sweatshirts" },
-                    { 21, null, null, "Women's shawl", 3, "woman_shawl" },
-                    { 22, null, null, "Women's scarves and hats", 3, "woman_scarves_and_hats" },
-                    { 23, null, null, "Women's gloves", 3, "woman_gloves" },
-                    { 24, null, null, "Women's socks and tights", 3, "woman_socks_and_tights" },
-                    { 25, null, null, "Men's outerwear", 4, "man_outerwear" },
-                    { 26, null, null, "Men's sweaters and suits", 4, "man_sweaters_and_suits" },
-                    { 27, null, null, "Men's t-shirts and sweatshirts", 4, "man_t_shirts_and_sweatshirts" },
-                    { 28, null, null, "Men's scarves and hats", 4, "man_scarves_and_hats" },
-                    { 29, null, null, "Men's gloves", 4, "man_gloves" },
-                    { 30, null, null, "Men's socks", 4, "man_socks" },
-                    { 31, null, null, "Women's glasses", 5, "woman_glasses" },
-                    { 32, null, null, "Women's home shoes", 5, "woman_home_shoes" },
-                    { 33, null, null, "Women's bags", 5, "woman_bags" },
-                    { 34, null, null, "Women's backpacks", 5, "woman_backpacks" },
-                    { 35, null, null, "Women's care products", 5, "woman_care_products" },
-                    { 36, null, null, "Men's glasses", 6, "man_glasses" },
-                    { 37, null, null, "Men's home shoes", 6, "man_home_shoes" },
-                    { 38, null, null, "Men's bags", 6, "man_bags" },
-                    { 39, null, null, "Men's backpacks", 6, "man_backpacks" },
-                    { 40, null, null, "Men's care products", 6, "man_care_products" }
+                    { 1, null, null, "Open shoes", 1, "open-shoes" },
+                    { 2, null, null, "Pumps and loafers", 1, "pumps-and-loafers" },
+                    { 3, null, null, "Heeled shoes", 1, "heeled-shoes" },
+                    { 4, null, null, "Women's athletic sneakers", 1, "women-s-athletic-sneakers" },
+                    { 5, null, null, "Women's sneakers", 1, "women-sneakers" },
+                    { 6, null, null, "High boots and Chelsea", 1, "high-boots-&-chelsea" },
+                    { 7, null, null, "Boots on heels", 1, "boots-on-heels" },
+                    { 8, null, null, "Boots and high boots", 1, "boots-and-high-boots" },
+                    { 9, null, null, "Cossacks boots", 1, "cossacks-boots" },
+                    { 10, null, null, "Winter footwear", 1, "winter-footwear" },
+                    { 11, null, null, "Perforated shoes", 1, "perforated-shoes" },
+                    { 12, null, null, "Men's boots", 2, "men-boots" },
+                    { 13, null, null, "Men's athletic sneakers", 2, "man-athletic-sneakers" },
+                    { 14, null, null, "Men's sneakers", 2, "man-sneakers" },
+                    { 15, null, null, "Men's pumps", 2, "man-pumps" },
+                    { 16, null, null, "Men's moccasins", 2, "man-moccasins" },
+                    { 17, null, null, "Men's summer shoes", 2, "man-summer-shoes" },
+                    { 18, null, null, "Women's outerwear", 3, "woman-outerwear" },
+                    { 19, null, null, "Women's sweaters and suits", 3, "woman-sweaters-and-suits" },
+                    { 20, null, null, "Women's t-shirts and sweatshirts", 3, "woman-t-shirts-and-sweatshirts" },
+                    { 21, null, null, "Women's shawl", 3, "woman-shawl" },
+                    { 22, null, null, "Women's scarves and hats", 3, "woman-scarves-and-hats" },
+                    { 23, null, null, "Women's gloves", 3, "woman-gloves" },
+                    { 24, null, null, "Women's socks and tights", 3, "woman-socks-and-tights" },
+                    { 25, null, null, "Men's outerwear", 4, "man-outerwear" },
+                    { 26, null, null, "Men's sweaters and suits", 4, "man-sweaters-and-suits" },
+                    { 27, null, null, "Men's t-shirts and sweatshirts", 4, "man-t-shirts-and-sweatshirts" },
+                    { 28, null, null, "Men's scarves and hats", 4, "man-scarves-and-hats" },
+                    { 29, null, null, "Men's gloves", 4, "man-gloves" },
+                    { 30, null, null, "Men's socks", 4, "man-socks" },
+                    { 31, null, null, "Women's glasses", 5, "woman-glasses" },
+                    { 32, null, null, "Women's home shoes", 5, "woman-home-shoes" },
+                    { 33, null, null, "Women's bags", 5, "woman-bags" },
+                    { 34, null, null, "Women's backpacks", 5, "woman-backpacks" },
+                    { 35, null, null, "Women's care products", 5, "woman-care-products" },
+                    { 36, null, null, "Men's glasses", 6, "man-glasses" },
+                    { 37, null, null, "Men's home shoes", 6, "man-home-shoes" },
+                    { 38, null, null, "Men's bags", 6, "man-bags" },
+                    { 39, null, null, "Men's backpacks", 6, "man-backpacks" },
+                    { 40, null, null, "Men's care products", 6, "man-care-products" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Store",
+                columns: new[] { "Id", "Address", "CityId", "MapLink", "Name", "WorkingHours" },
+                values: new object[,]
+                {
+                    { 1, "Antonovycha, 176, Ground Floor", 1, "Link to map", "TRC Ocean Plaza", "Daily 10:00 - 22:00" },
+                    { 2, "Dniprovska Naberezhna, 12, Second Floor", 1, "Link to map", "TRC River Mall", "Daily 10:00 - 22:00" },
+                    { 3, "Prospekt Obolonsky, 1-B, First Floor", 1, "Link to map", "TRC DREAM Yellow", "Daily 10:00 - 22:00" },
+                    { 4, "Berkovetska, 6-D, First Floor", 1, "Link to map", "TRC Lavina Mall", "Daily 10:00 - 22:00" },
+                    { 5, "Kiltseva Doroga, 1, First Floor", 1, "Link to map", "TRC Respublika Park", "Daily 10:00 - 22:00" },
+                    { 6, "Prospekt Pravdy, 47, First Floor", 1, "Link to map", "TRC Retroville", "Daily 10:00 - 22:00" },
+                    { 7, "Prospekt Stepana Bandery, 36, First Floor", 1, "Link to map", "TRC Blockbuster Mall", "Daily 10:00 - 22:00" },
+                    { 8, "Gnata Khotkevycha, 1-B, First Floor", 1, "Link to map", "TRK Prospekt", "Daily 10:00 - 22:00" },
+                    { 9, "600-Richchia, 17, New Building, First Floor", 2, "Link to map", "TRC Megamall", "Daily 10:00 - 21:00" },
+                    { 10, "Mykoly Ovodova, 51, First Floor", 2, "Link to map", "TRC Sky Park", "Daily 10:00 - 21:00" },
+                    { 11, "Queen Elizabeth II (Hlinka), 2, Ground Floor", 3, "Link to map", "TRC MOST City", "Daily 10:00 - 21:00" },
+                    { 12, "Nyzhnedniprovskaya, 17, First Floor", 3, "Link to map", "TRC Karavan", "Daily 10:00 - 21:00" },
+                    { 13, "Kyivska, 77, First Floor", 4, "Link to map", "TRC Global", "Daily 10:00 - 21:00" },
+                    { 14, "Ivana Mykolaychuka, 2", 5, "Link to map", "Shopping Mall ARSEN", "Daily 10:00 - 21:00" },
+                    { 15, "4 Varshavska Street", 6, "Link to map", "Juvent Shopping Center (Boutique 110)", "Daily 10:00 - 18:00" },
+                    { 16, "1 Sukhomlynskoho Street, Second Floor", 7, "Link to map", "PortCity Shopping Mall", "Daily 10:00 - 22:00" },
+                    { 17, "1 Voli Avenue, Fourth Floor", 7, "Link to map", "TSUM Lutsk", "Daily 09:30 - 21:00" },
+                    { 18, "9 Voli Avenue, Building Facade", 7, "Link to map", "ESTRO Store (Voli, 9)", "Daily 09:00 - 21:00" },
+                    { 19, "1 Karpenka-Karyho Street", 7, "Link to map", "Juvent Shopping Center (Boutique 125)", "Daily 09:00 - 21:00" },
+                    { 20, "7b Pid Dubom Street, Second Floor", 8, "Link to map", "Forum Lviv Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 21, "226-A Kulparkivska Street, First Floor", 8, "Link to map", "Victoria Gardens Shopping Mall", "Daily 10:00 - 20:00" },
+                    { 22, "30 Stryiska Street, First Floor", 8, "Link to map", "King Cross Leopolis Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 23, "14 Doroshenka Street", 8, "Link to map", "ESTRO Store (Doroshenka, 14)", "Daily 10:00 - 20:00" },
+                    { 24, "2 Prospekt Nezalezhnosti, First Floor", 9, "Link to map", "City Center Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 25, "23 Kulyka i Hudacheka", 10, "Link to map", "Equator Shopping Mall", "Daily 10:00 - 22:00" },
+                    { 26, "1 Oleksandra Borysenka, First Floor", 10, "Link to map", "Zlata Plaza Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 27, "9 Heroiv Pratsi, First Floor", 11, "Link to map", "Dafi Shopping Mall", "Daily 10:00 - 20:00" },
+                    { 28, "2a Pushkinska, Third Floor", 11, "Link to map", "Nikolsky Shopping Mall", "Daily 10:00 - 21:00" },
+                    { 29, "265A Haharina, First Floor", 12, "Link to map", "DEPO't Center Shopping Mall", "Daily 10:00 - 20:00" }
                 });
 
             migrationBuilder.InsertData(
@@ -918,6 +1096,11 @@ namespace Infrastructure.Migrations
                 column: "SubCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_City_CountryID",
+                table: "City",
+                column: "CountryID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Images_ProductId",
                 table: "Images",
                 column: "ProductId");
@@ -931,6 +1114,21 @@ namespace Infrastructure.Migrations
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
                 column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_ProductId",
+                table: "OrderItems",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_AddressId",
+                table: "Orders",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_OrderPaymentId",
+                table: "Orders",
+                column: "OrderPaymentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",
@@ -948,9 +1146,24 @@ namespace Infrastructure.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Store_CityId",
+                table: "Store",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SubCategories_MainCategoryId",
                 table: "SubCategories",
                 column: "MainCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserBonuses_UserId",
+                table: "UserBonuses",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserFavoriteProduct_ProductId",
+                table: "UserFavoriteProduct",
+                column: "ProductId");
         }
 
         /// <inheritdoc />
@@ -993,6 +1206,12 @@ namespace Infrastructure.Migrations
                 name: "Store");
 
             migrationBuilder.DropTable(
+                name: "UserBonuses");
+
+            migrationBuilder.DropTable(
+                name: "UserFavoriteProduct");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -1005,10 +1224,22 @@ namespace Infrastructure.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
+                name: "City");
+
+            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
+                name: "AddressEntity");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "OrderPayment");
+
+            migrationBuilder.DropTable(
+                name: "Country");
 
             migrationBuilder.DropTable(
                 name: "Categories");

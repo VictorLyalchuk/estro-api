@@ -73,5 +73,10 @@ namespace Core.Services
         {
             return await _filesService.SaveUserImageAsync(ImageFile);
         }
+        public async Task<string> SaveImageFromUrlAsync(string url)
+        {
+            return await _filesService.SaveImageFromUrlAsync(url);
+
+        }
     }
 }

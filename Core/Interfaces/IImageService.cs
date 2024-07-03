@@ -16,5 +16,6 @@ namespace Core.Interfaces
 
         Task DeleteUserImageAsync(string image);
         Task<string> CreateUserImageAsync(IFormFile ImageFile);
+        Task<string> SaveImageFromUrlAsync(string url);
     }
 }

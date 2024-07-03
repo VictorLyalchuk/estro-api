@@ -1,4 +1,4 @@
-﻿using Core.DTOs.Information;
+﻿using Core.DTOs.UserInfo;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,10 +29,20 @@ namespace WebApi.Controllers
             }
             return Ok();
         }
-        [HttpGet("GetOrderByEmail")]
-        public async Task<IActionResult> GetOrderByEmailAsync(string email)
+        [HttpGet("GetOrderById/{Id}")]
+        public async Task<IActionResult> GetOrderByIdAsync(string Id, int page)
         {
-            var result = await _order.GetOrderByEmailAsync(email);
+            var result = await _order.GetOrderByIdAsync(Id, page);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+            return Ok();
+        }
+        [HttpGet("GetCountOrderById/{Id}")]
+        public async Task<IActionResult> GetCountOrderByIdAsync(string Id)
+        {
+            var result = await _order.GetCountOrderByIdAsync(Id);
             if (result != null)
             {
                 return Ok(result);

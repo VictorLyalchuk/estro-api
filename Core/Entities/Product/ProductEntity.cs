@@ -1,6 +1,5 @@
-﻿using Core.Entities.Category;
-using Core.Entities.Information;
-using Microsoft.AspNetCore.Http;
+﻿using Core.Entities.UserInfo;
+using Core.Entities.Category;
 using System.ComponentModel.DataAnnotations;
 
 namespace Core.Entities.Product
@@ -23,5 +22,8 @@ namespace Core.Entities.Product
         public CategoryEntity Category { get; set; }
         public List<StorageEntity> Storages { get; set; }
         public List<BagItems> BagItems { get; set; }
+        public List<OrderItems> OrderItems { get; set; }
+        public ICollection<UserFavoriteProduct> FavoriteProducts { get; set; }
+
     }
 }

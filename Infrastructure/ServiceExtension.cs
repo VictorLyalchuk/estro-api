@@ -1,4 +1,4 @@
-﻿using Core.Entities.DashBoard;
+﻿using Core.Entities.UserEntity;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;

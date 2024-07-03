@@ -1,7 +1,7 @@
 ﻿using Core.Entities.Category;
-using Core.Entities.DashBoard;
 using Core.Entities.Product;
 using Core.Entities.Store;
+using Core.Entities.Address;
 
 namespace Infrastructure.Data
 {
@@ -15,60 +15,60 @@ namespace Infrastructure.Data
         };
         public static List<SubCategory> SeedSubCategory() =>
         new List<SubCategory>() {
-            new SubCategory(){ Id = 1, Name = "Woman Shoes", MainCategoryId = 1, URLName = "woman_shoes" },
-            new SubCategory(){ Id = 2, Name = "Man Shoes", MainCategoryId = 2, URLName = "man_shoes" },
-            new SubCategory(){ Id = 3, Name = "Woman Clothing", MainCategoryId = 1, URLName = "woman_clothing" },
-            new SubCategory(){ Id = 4, Name = "Man Clothing", MainCategoryId = 2, URLName = "man_clothing" },
-            new SubCategory(){ Id = 5, Name = "Woman Accessories", MainCategoryId = 1, URLName = "woman_accessories" },
-            new SubCategory(){ Id = 6, Name = "Man Accessories", MainCategoryId = 2, URLName = "man_accessories" },
+            new SubCategory(){ Id = 1, Name = "Woman Shoes", MainCategoryId = 1, URLName = "woman-shoes" },
+            new SubCategory(){ Id = 2, Name = "Man Shoes", MainCategoryId = 2, URLName = "man-shoes" },
+            new SubCategory(){ Id = 3, Name = "Woman Clothing", MainCategoryId = 1, URLName = "woman-clothing" },
+            new SubCategory(){ Id = 4, Name = "Man Clothing", MainCategoryId = 2, URLName = "man-clothing" },
+            new SubCategory(){ Id = 5, Name = "Woman Accessories", MainCategoryId = 1, URLName = "woman-accessories" },
+            new SubCategory(){ Id = 6, Name = "Man Accessories", MainCategoryId = 2, URLName = "man-accessories" },
         };
         public static List<CategoryEntity> SeedCategory() =>
         new List<CategoryEntity>() {
-            new CategoryEntity(){ Id = 1, Name = "Open shoes", SubCategoryId = 1, URLName = "open_shoes" },                  // Відкрите взуття
-            new CategoryEntity(){ Id = 2, Name = "Pumps and loafers", SubCategoryId = 1, URLName = "pumps_and_loafers" },           // Туфлі та лофери
-            new CategoryEntity(){ Id = 3, Name = "Heeled shoes", SubCategoryId = 1, URLName = "heeled_shoes" },                // Туфлі на підборах
-            new CategoryEntity(){ Id = 4, Name = "Women's athletic sneakers", SubCategoryId = 1, URLName = "women's_athletic_sneakers" },   // Кросівки жіночі
-            new CategoryEntity(){ Id = 5, Name = "Women's sneakers", SubCategoryId = 1, URLName = "women_sneakers" },            // Жіночі кеди
-            new CategoryEntity(){ Id = 6, Name = "High boots and Chelsea", SubCategoryId = 1, URLName = "high_boots_&_chelsea" },         // Високі черевики, челсі
-            new CategoryEntity(){ Id = 7, Name = "Boots on heels", SubCategoryId = 1, URLName = "boots_on_heels" },              // Черевики на підборах
-            new CategoryEntity(){ Id = 8, Name = "Boots and high boots", SubCategoryId = 1, URLName = "boots_and_high_boots" },        // Чоботи та ботфорти
-            new CategoryEntity(){ Id = 9, Name = "Cossacks boots", SubCategoryId = 1, URLName = "cossacks_boots" },              // Козаки
-            new CategoryEntity(){ Id = 10, Name = "Winter footwear", SubCategoryId = 1, URLName = "winter_footwear" },            // Зимове взуття
-            new CategoryEntity(){ Id = 11, Name = "Perforated shoes", SubCategoryId = 1, URLName = "perforated_shoes" },           // Перфороване взуття
+            new CategoryEntity(){ Id = 1, Name = "Open shoes", SubCategoryId = 1, URLName = "open-shoes" },                  // Відкрите взуття
+            new CategoryEntity(){ Id = 2, Name = "Pumps and loafers", SubCategoryId = 1, URLName = "pumps-and-loafers" },           // Туфлі та лофери
+            new CategoryEntity(){ Id = 3, Name = "Heeled shoes", SubCategoryId = 1, URLName = "heeled-shoes" },                // Туфлі на підборах
+            new CategoryEntity(){ Id = 4, Name = "Women's athletic sneakers", SubCategoryId = 1, URLName = "women-s-athletic-sneakers" },   // Кросівки жіночі
+            new CategoryEntity(){ Id = 5, Name = "Women's sneakers", SubCategoryId = 1, URLName = "women-sneakers" },            // Жіночі кеди
+            new CategoryEntity(){ Id = 6, Name = "High boots and Chelsea", SubCategoryId = 1, URLName = "high-boots-&-chelsea" },         // Високі черевики, челсі
+            new CategoryEntity(){ Id = 7, Name = "Boots on heels", SubCategoryId = 1, URLName = "boots-on-heels" },              // Черевики на підборах
+            new CategoryEntity(){ Id = 8, Name = "Boots and high boots", SubCategoryId = 1, URLName = "boots-and-high-boots" },        // Чоботи та ботфорти
+            new CategoryEntity(){ Id = 9, Name = "Cossacks boots", SubCategoryId = 1, URLName = "cossacks-boots" },              // Козаки
+            new CategoryEntity(){ Id = 10, Name = "Winter footwear", SubCategoryId = 1, URLName = "winter-footwear" },            // Зимове взуття
+            new CategoryEntity(){ Id = 11, Name = "Perforated shoes", SubCategoryId = 1, URLName = "perforated-shoes" },           // Перфороване взуття
 
-            new CategoryEntity(){ Id = 12, Name = "Men's boots", SubCategoryId = 2, URLName = "men_boots" },                // Черевики чоловічі
-            new CategoryEntity(){ Id = 13, Name = "Men's athletic sneakers", SubCategoryId = 2, URLName = "man_athletic_sneakers" },    // Кросівки чоловічі
-            new CategoryEntity(){ Id = 14, Name = "Men's sneakers", SubCategoryId = 2, URLName = "man_sneakers" },             // Чоловічі кеди
-            new CategoryEntity(){ Id = 15, Name = "Men's pumps", SubCategoryId = 2, URLName = "man_pumps" },                // Туфлі чоловічі
-            new CategoryEntity(){ Id = 16, Name = "Men's moccasins", SubCategoryId = 2, URLName = "man_moccasins" },            // Мокасини чоловічі
-            new CategoryEntity(){ Id = 17, Name = "Men's summer shoes", SubCategoryId = 2, URLName = "man_summer_shoes" },
+            new CategoryEntity(){ Id = 12, Name = "Men's boots", SubCategoryId = 2, URLName = "men-boots" },                // Черевики чоловічі
+            new CategoryEntity(){ Id = 13, Name = "Men's athletic sneakers", SubCategoryId = 2, URLName = "man-athletic-sneakers" },    // Кросівки чоловічі
+            new CategoryEntity(){ Id = 14, Name = "Men's sneakers", SubCategoryId = 2, URLName = "man-sneakers" },             // Чоловічі кеди
+            new CategoryEntity(){ Id = 15, Name = "Men's pumps", SubCategoryId = 2, URLName = "man-pumps" },                // Туфлі чоловічі
+            new CategoryEntity(){ Id = 16, Name = "Men's moccasins", SubCategoryId = 2, URLName = "man-moccasins" },            // Мокасини чоловічі
+            new CategoryEntity(){ Id = 17, Name = "Men's summer shoes", SubCategoryId = 2, URLName = "man-summer-shoes" },
 
-            new CategoryEntity(){ Id = 18, Name = "Women's outerwear", SubCategoryId = 3, URLName = "woman_outerwear" },                // Верхній одяг
-            new CategoryEntity(){ Id = 19, Name = "Women's sweaters and suits", SubCategoryId = 3, URLName = "woman_sweaters_and_suits" },       // Светри та костюми
-            new CategoryEntity(){ Id = 20, Name = "Women's t-shirts and sweatshirts", SubCategoryId = 3, URLName = "woman_t_shirts_and_sweatshirts" }, // Футболки та світшоти
-            new CategoryEntity(){ Id = 21, Name = "Women's shawl", SubCategoryId = 3, URLName = "woman_shawl" },                    // Хустки
-            new CategoryEntity(){ Id = 22, Name = "Women's scarves and hats", SubCategoryId = 3, URLName = "woman_scarves_and_hats" },         // Шарфи та шапки
-            new CategoryEntity(){ Id = 23, Name = "Women's gloves", SubCategoryId = 3, URLName = "woman_gloves" },                   // Рукавички
-            new CategoryEntity(){ Id = 24, Name = "Women's socks and tights", SubCategoryId = 3, URLName = "woman_socks_and_tights" },         // Шкарпетки та колготи
+            new CategoryEntity(){ Id = 18, Name = "Women's outerwear", SubCategoryId = 3, URLName = "woman-outerwear" },                // Верхній одяг
+            new CategoryEntity(){ Id = 19, Name = "Women's sweaters and suits", SubCategoryId = 3, URLName = "woman-sweaters-and-suits" },       // Светри та костюми
+            new CategoryEntity(){ Id = 20, Name = "Women's t-shirts and sweatshirts", SubCategoryId = 3, URLName = "woman-t-shirts-and-sweatshirts" }, // Футболки та світшоти
+            new CategoryEntity(){ Id = 21, Name = "Women's shawl", SubCategoryId = 3, URLName = "woman-shawl" },                    // Хустки
+            new CategoryEntity(){ Id = 22, Name = "Women's scarves and hats", SubCategoryId = 3, URLName = "woman-scarves-and-hats" },         // Шарфи та шапки
+            new CategoryEntity(){ Id = 23, Name = "Women's gloves", SubCategoryId = 3, URLName = "woman-gloves" },                   // Рукавички
+            new CategoryEntity(){ Id = 24, Name = "Women's socks and tights", SubCategoryId = 3, URLName = "woman-socks-and-tights" },         // Шкарпетки та колготи
             
-            new CategoryEntity(){ Id = 25, Name = "Men's outerwear", SubCategoryId = 4, URLName = "man_outerwear" },                // Верхній одяг
-            new CategoryEntity(){ Id = 26, Name = "Men's sweaters and suits", SubCategoryId = 4, URLName = "man_sweaters_and_suits" },       // Светри та костюми
-            new CategoryEntity(){ Id = 27, Name = "Men's t-shirts and sweatshirts", SubCategoryId = 4, URLName = "man_t_shirts_and_sweatshirts" }, // Футболки та світшоти
-            new CategoryEntity(){ Id = 28, Name = "Men's scarves and hats", SubCategoryId = 4, URLName = "man_scarves_and_hats" },         // Шарфи та шапки
-            new CategoryEntity(){ Id = 29, Name = "Men's gloves", SubCategoryId = 4, URLName = "man_gloves" },                   // Рукавички
-            new CategoryEntity(){ Id = 30, Name = "Men's socks", SubCategoryId = 4, URLName = "man_socks" },         // Шкарпетки та колготи
+            new CategoryEntity(){ Id = 25, Name = "Men's outerwear", SubCategoryId = 4, URLName = "man-outerwear" },                // Верхній одяг
+            new CategoryEntity(){ Id = 26, Name = "Men's sweaters and suits", SubCategoryId = 4, URLName = "man-sweaters-and-suits" },       // Светри та костюми
+            new CategoryEntity(){ Id = 27, Name = "Men's t-shirts and sweatshirts", SubCategoryId = 4, URLName = "man-t-shirts-and-sweatshirts" }, // Футболки та світшоти
+            new CategoryEntity(){ Id = 28, Name = "Men's scarves and hats", SubCategoryId = 4, URLName = "man-scarves-and-hats" },         // Шарфи та шапки
+            new CategoryEntity(){ Id = 29, Name = "Men's gloves", SubCategoryId = 4, URLName = "man-gloves" },                   // Рукавички
+            new CategoryEntity(){ Id = 30, Name = "Men's socks", SubCategoryId = 4, URLName = "man-socks" },         // Шкарпетки та колготи
             
-            new CategoryEntity(){ Id = 31, Name = "Women's glasses", SubCategoryId = 5, URLName = "woman_glasses" },                   // Окуляри
-            new CategoryEntity(){ Id = 32, Name = "Women's home shoes", SubCategoryId = 5, URLName = "woman_home_shoes" },                // Домашнє взуття
-            new CategoryEntity(){ Id = 33, Name = "Women's bags", SubCategoryId = 5, URLName = "woman_bags" },                      // Сумки
-            new CategoryEntity(){ Id = 34, Name = "Women's backpacks", SubCategoryId = 5, URLName = "woman_backpacks" },                 // Окуляри
-            new CategoryEntity(){ Id = 35, Name = "Women's care products", SubCategoryId = 5, URLName = "woman_care_products" },             // Засоби по догляду
+            new CategoryEntity(){ Id = 31, Name = "Women's glasses", SubCategoryId = 5, URLName = "woman-glasses" },                   // Окуляри
+            new CategoryEntity(){ Id = 32, Name = "Women's home shoes", SubCategoryId = 5, URLName = "woman-home-shoes" },                // Домашнє взуття
+            new CategoryEntity(){ Id = 33, Name = "Women's bags", SubCategoryId = 5, URLName = "woman-bags" },                      // Сумки
+            new CategoryEntity(){ Id = 34, Name = "Women's backpacks", SubCategoryId = 5, URLName = "woman-backpacks" },                 // Окуляри
+            new CategoryEntity(){ Id = 35, Name = "Women's care products", SubCategoryId = 5, URLName = "woman-care-products" },             // Засоби по догляду
             
-            new CategoryEntity(){ Id = 36, Name = "Men's glasses", SubCategoryId = 6, URLName = "man_glasses" },                   // Окуляри
-            new CategoryEntity(){ Id = 37, Name = "Men's home shoes", SubCategoryId = 6, URLName = "man_home_shoes" },                // Домашнє взуття
-            new CategoryEntity(){ Id = 38, Name = "Men's bags", SubCategoryId = 6, URLName = "man_bags" },                      // Сумки
-            new CategoryEntity(){ Id = 39, Name = "Men's backpacks", SubCategoryId = 6, URLName = "man_backpacks" },                 // Окуляри
-            new CategoryEntity(){ Id = 40, Name = "Men's care products", SubCategoryId = 6, URLName = "man_care_products" },             // Засоби по догляду
+            new CategoryEntity(){ Id = 36, Name = "Men's glasses", SubCategoryId = 6, URLName = "man-glasses" },                   // Окуляри
+            new CategoryEntity(){ Id = 37, Name = "Men's home shoes", SubCategoryId = 6, URLName = "man-home-shoes" },                // Домашнє взуття
+            new CategoryEntity(){ Id = 38, Name = "Men's bags", SubCategoryId = 6, URLName = "man-bags" },                      // Сумки
+            new CategoryEntity(){ Id = 39, Name = "Men's backpacks", SubCategoryId = 6, URLName = "man-backpacks" },                 // Окуляри
+            new CategoryEntity(){ Id = 40, Name = "Men's care products", SubCategoryId = 6, URLName = "man-care-products" },             // Засоби по догляду
         
         };
         public static List<ProductEntity> SeedProduct() =>
@@ -329,16 +329,18 @@ namespace Infrastructure.Data
             new ImageForHome(){ Id = 13, ImagePath = "800_home_page_13.webp"},
             new ImageForHome(){ Id = 14, ImagePath = "800_home_page_14.webp"},
             new ImageForHome(){ Id = 15, ImagePath = "800_home_page_15.webp"},
+            new ImageForHome(){ Id = 16, ImagePath = "800_home_page_16.webp"},
+            new ImageForHome(){ Id = 17, ImagePath = "800_home_page_17.webp"},
             };
 
 
 
         public static List<Info> SeedInfos() =>
             new List<Info>() {
-            new Info () { Id = 1, Name = "Color" },
-            new Info () { Id = 2, Name = "Material" },
-            new Info () { Id = 3, Name = "Size" },
-            new Info () { Id = 4, Name = "Purpose" },
+            new Info () { Id = 1, Name = "Color", Value = "color"},
+            new Info () { Id = 2, Name = "Material", Value = "material"},
+            new Info () { Id = 3, Name = "Size", Value = "size"},
+            new Info () { Id = 4, Name = "Purpose", Value = "purpose"},
         };
 
 
@@ -380,113 +382,122 @@ namespace Infrastructure.Data
                     new Options () { Id = 33, Value = "autumn", Label = "Autumn", InfoId = 4 },
 
             };
+        public static List<CountryEntity> SeedCountry() =>
+            new List<CountryEntity>()
+            {
+                new CountryEntity() { Id = 1, CountryName = "Ukraine"},
+                new CountryEntity() { Id = 2, CountryName = "England"},
+                new CountryEntity() { Id = 3, CountryName = "Spain"},
+                new CountryEntity() { Id = 4, CountryName = "France"},
+                new CountryEntity() { Id = 5, CountryName = "Poland"},
+                new CountryEntity() { Id = 6, CountryName = "USA"},
+                new CountryEntity() { Id = 7, CountryName = "Japan"},
+            };
+        public static List<CityEntity> SeedCity() =>
+                new List<CityEntity>()
+                {
+                            new CityEntity() { Id = 1, CityName = "Kiyv", CountryID = 1,},
+                            new CityEntity() { Id = 2, CityName = "Vinnytsia", CountryID = 1,},
+                            new CityEntity() { Id = 3, CityName = "Dnipro", CountryID = 1,},
+                            new CityEntity() { Id = 4, CityName = "Zhytomyr", CountryID = 1,},
+                            new CityEntity() { Id = 5, CityName = "Ivano-Frankivsk", CountryID = 1,},
+                            new CityEntity() { Id = 6, CityName = "Kovel", CountryID = 1,},
+                            new CityEntity() { Id = 7, CityName = "Lutsk", CountryID = 1,},
+                            new CityEntity() { Id = 8, CityName = "Lviv", CountryID = 1,},
+                            new CityEntity() { Id = 9, CityName = "Odesa", CountryID = 1,},
+                            new CityEntity() { Id = 10, CityName = "Rivne", CountryID = 1,},
+                            new CityEntity() { Id = 11, CityName = "Kharkiv", CountryID = 1,},
+                            new CityEntity() { Id = 12, CityName = "Chernivtsi", CountryID = 1,},
+                };
         public static List<StoreEntity> SeedStores() =>
             new List<StoreEntity>() {
                     new StoreEntity () { Id = 1, Name = "TRC Ocean Plaza",
-                        Address = "Antonovycha, 176, Ground Floor, Left from Eldorado, Across from Butlers",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        Address = "Antonovycha, 176, Ground Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 2, Name = "TRC River Mall",
                         Address = "Dniprovska Naberezhna, 12, Second Floor",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 3, Name = "TRC DREAM Yellow",
-                        Address = "Prospekt Obolonsky, 1-B, First Floor, Atrium Greece 5B",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        Address = "Prospekt Obolonsky, 1-B, First Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 4, Name = "TRC Lavina Mall",
-                        Address = "Berkovetska, 6-D, First Floor, First Quarter from the Entrance near Epicentr",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        Address = "Berkovetska, 6-D, First Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 5, Name = "TRC Respublika Park",
                         Address = "Kiltseva Doroga, 1, First Floor",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 6, Name = "TRC Retroville",
-                        Address = "Prospekt Pravdy, 47, First Floor, Near Colin's",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        Address = "Prospekt Pravdy, 47, First Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 7, Name = "TRC Blockbuster Mall",
                         Address = "Prospekt Stepana Bandery, 36, First Floor",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 8, Name = "TRK Prospekt",
-                        Address = "Gnata Khotkevycha, 1-B, First Floor, Left from Ashan Entrance",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Kiyv"},
+                        Address = "Gnata Khotkevycha, 1-B, First Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 1},
                     new StoreEntity () { Id = 9, Name = "TRC Megamall",
-                        Address = "600-Richchia, 17, New Building, First Floor, Central Alley",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Vinnytsia"},
+                        Address = "600-Richchia, 17, New Building, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 2},
                     new StoreEntity () { Id = 10, Name = "TRC Sky Park",
-                        Address = "Mykoly Ovodova, 51, First Floor, Entrance from Soborna Street, Near Toy House",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Vinnytsia"},
+                        Address = "Mykoly Ovodova, 51, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 2},
                     new StoreEntity () { Id = 11, Name = "TRC MOST City",
                         Address = "Queen Elizabeth II (Hlinka), 2, Ground Floor",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Dnipro"},
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 3},
                     new StoreEntity () { Id = 12, Name = "TRC Karavan",
-                        Address = "Nyzhnedniprovskaya, 17, First Floor, Near the Fountain",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Dnipro"},
+                        Address = "Nyzhnedniprovskaya, 17, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 3},
                     new StoreEntity () { Id = 13, Name = "TRC Global",
-                        Address = "Kyivska, 77, First Floor, Across from LC Waikiki",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Zhytomyr"},
+                        Address = "Kyivska, 77, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 4},
                     new StoreEntity () { Id = 14, Name = "Shopping Mall ARSEN",
-                        Address = "Ivana Mykolaychuka, 2, Across from Samsung",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Ivano-Frankivsk"},
+                        Address = "Ivana Mykolaychuka, 2",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 5},
                     new StoreEntity () { Id = 15, Name = "Juvent Shopping Center (Boutique 110)",
                         Address = "4 Varshavska Street",
-                        WorkingHours = "Daily 10:00 - 18:00", MapLink = "Link to map", City = "Kovel"},
+                        WorkingHours = "Daily 10:00 - 18:00", MapLink = "Link to map", CityId = 6},
                     new StoreEntity () { Id = 16, Name = "PortCity Shopping Mall",
-                        Address = "1 Sukhomlynskoho Street, Second Floor, Near Escalator",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Lutsk"},
+                        Address = "1 Sukhomlynskoho Street, Second Floor",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 7},
                     new StoreEntity () { Id = 17, Name = "TSUM Lutsk",
-                        Address = "1 Voli Avenue, Fourth Floor, Near Escalator",
-                        WorkingHours = "Daily 09:30 - 21:00", MapLink = "Link to map", City = "Lutsk"},
+                        Address = "1 Voli Avenue, Fourth Floor",
+                        WorkingHours = "Daily 09:30 - 21:00", MapLink = "Link to map", CityId = 7},
                     new StoreEntity () { Id = 18, Name = "ESTRO Store (Voli, 9)",
-                        Address = "9 Voli Avenue, Building Facade, Across from Kavarnia Dim Kavy",
-                        WorkingHours = "Daily 09:00 - 21:00", MapLink = "Link to map", City = "Lutsk"},
+                        Address = "9 Voli Avenue, Building Facade",
+                        WorkingHours = "Daily 09:00 - 21:00", MapLink = "Link to map", CityId = 7},
                     new StoreEntity () { Id = 19, Name = "Juvent Shopping Center (Boutique 125)",
                         Address = "1 Karpenka-Karyho Street",
-                        WorkingHours = "Daily 09:00 - 21:00", MapLink = "Link to map", City = "Lutsk"},
+                        WorkingHours = "Daily 09:00 - 21:00", MapLink = "Link to map", CityId = 7},
                     new StoreEntity () { Id = 20, Name = "Forum Lviv Shopping Mall",
-                        Address = "7b Pid Dubom Street, Second Floor, Near Kredens Café",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Lviv"},
+                        Address = "7b Pid Dubom Street, Second Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 8},
                     new StoreEntity () { Id = 21, Name = "Victoria Gardens Shopping Mall",
-                        Address = "226-A Kulparkivska Street, First Floor, Near Kredens Café",
-                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Lviv"},
+                        Address = "226-A Kulparkivska Street, First Floor",
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", CityId = 8},
                     new StoreEntity () { Id = 22, Name = "King Cross Leopolis Shopping Mall",
-                        Address = "30 Stryiska Street, First Floor, Near Elevator",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Lviv"},
+                        Address = "30 Stryiska Street, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 8},
                     new StoreEntity () { Id = 23, Name = "ESTRO Store (Doroshenka, 14)",
-                        Address = "14 Doroshenka Street, Building Facade, Near Tram Stops #1 and #2",
-                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Lviv"},
+                        Address = "14 Doroshenka Street",
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", CityId = 8},
                     new StoreEntity () { Id = 24, Name = "City Center Shopping Mall",
-                        Address = "2 Prospekt Nezalezhnosti (Heavenly Hundred Avenue), First Floor, Near Sundays Coffee",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Odesa"},
+                        Address = "2 Prospekt Nezalezhnosti, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 9},
                     new StoreEntity () { Id = 25, Name = "Equator Shopping Mall",
-                        Address = "23 Kulyka i Hudacheka (Makarova), Left Wing of the Shopping Center, Near Athletics",
-                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", City = "Rivne"},
+                        Address = "23 Kulyka i Hudacheka",
+                        WorkingHours = "Daily 10:00 - 22:00", MapLink = "Link to map", CityId = 10},
                     new StoreEntity () { Id = 26, Name = "Zlata Plaza Shopping Mall",
-                        Address = "1 Oleksandra Borysenka (Korolenka), First Floor, Near Allo Max",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Rivne"},
+                        Address = "1 Oleksandra Borysenka, First Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 10},
                     new StoreEntity () { Id = 27, Name = "Dafi Shopping Mall",
                         Address = "9 Heroiv Pratsi, First Floor",
-                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Kharkiv"},
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", CityId = 11},
                     new StoreEntity () { Id = 28, Name = "Nikolsky Shopping Mall",
-                        Address = "2a Pushkinska, Third Floor, Near the Escalator",
-                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", City = "Kharkiv"},
+                        Address = "2a Pushkinska, Third Floor",
+                        WorkingHours = "Daily 10:00 - 21:00", MapLink = "Link to map", CityId = 11},
                     new StoreEntity () { Id = 29, Name = "DEPO't Center Shopping Mall",
-                        Address = "265A Haharina, First Floor, Near Vovk",
-                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", City = "Chernivtsi"},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-};
-    };
-
-
+                        Address = "265A Haharina, First Floor",
+                        WorkingHours = "Daily 10:00 - 20:00", MapLink = "Link to map", CityId = 12},
+                    };
+             };
 };

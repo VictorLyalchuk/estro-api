@@ -8,6 +8,5 @@ namespace Core.DTOs.Product
         public string Label { get; set; }
         public string Value { get; set; }
         public int? Info { get; set; }
-        public Info? InfoId { get; set; }
     }
 }

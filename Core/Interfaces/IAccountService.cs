@@ -1,5 +1,5 @@
-﻿using Core.DTOs.User;
-using Core.Entities.DashBoard;
+using Core.DTOs.User;
+using Core.Entities.UserEntity;
 using Core.Services;
 using Microsoft.AspNetCore.Identity;
 
@@ -21,5 +21,7 @@ namespace Core.Interfaces
         Task ResetPasswordAsync(ResetPasswordDTO model);
         Task SendConfirmationEmailAsync(string email);
         Task ConfirmEmailAsync(ConfirmEmailDTO model);
+        Task ConfirmEmailAsync(string email);
+        Task<string> RefreshTokenAsync(string oldToken);
     }
 }

@@ -130,6 +130,45 @@ namespace Core.Services
             }
         }
 
+        public async Task<string> SaveImageFromUrlAsync(string url)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    using (var response = await client.GetAsync(url))
+                    {
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var fileStream = await response.Content.ReadAsStreamAsync();
+                            string root = _environment.WebRootPath;
+                            string newNameFile = Guid.NewGuid().ToString();
+                            string fileName = $"{newNameFile}.webp";
+                            string imageFolder = "uploads"; // Папка для збереження зображень
 
+                            string fullFileName = $"{newNameFile}.webp";
+                            string imagePath = Path.Combine(imageFolder, fullFileName);
+                            string imageFullPath = Path.Combine(root, imagePath);
+
+                            using (var image = Image.Load(fileStream))
+                            {
+                                await image.SaveAsync(imageFullPath, new WebpEncoder());
+                            }
+
+                            return fileName;
+                        }
+                        else
+                        {
+                            throw new Exception("Не вдалося завантажити файл з вказаної URL.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Помилка при збереженні файлу з URL: {ex.Message}");
+                return ex.Message;
+            }
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Core.DTOs.Token;
 using Core.DTOs.User;
-using Core.Entities.DashBoard;
+using Core.Entities.UserEntity;
 using Core.Helpers;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Hosting;
@@ -9,13 +8,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Runtime;
 using System.Security.Claims;
 using System.Text;
 using Twilio.Rest.Verify.V2.Service;
-using Twilio.Types;
 
 namespace Core.Services
 {
@@ -25,13 +24,10 @@ namespace Core.Services
 
         private readonly EmailService _emailService;
         private readonly IConfiguration _configuration;
-        
         private readonly IMapper _mapper;
         private readonly IImageService _image;
         private readonly IWebHostEnvironment _env;
         public string VerificationCode { get; set; }
-
-
         public AccountService(UserManager<User> userManager, IConfiguration configuration, IMapper mapper, IImageService image, EmailService emailService, IWebHostEnvironment env)
         {
             _userManager = userManager;
@@ -52,7 +48,12 @@ namespace Core.Services
             var user = await _userManager.FindByEmailAsync(email);
             if (user != null)
             {
-                return _mapper.Map<UserDTO>(user);
+                var currentUser = _mapper.Map<UserDTO>(user);
+                var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+                if (currentRole != null)
+                    currentUser.Role = currentRole;
+
+                return currentUser;
             }
             else
             {
@@ -62,7 +63,7 @@ namespace Core.Services
         public async Task<UserDTO> GetByPhone(string phone)
         {
             var user = _userManager.Users.Where(x => x.PhoneNumber == phone).FirstOrDefault();
-            if(user  != null)
+            if (user != null)
             {
                 return _mapper.Map<UserDTO>(user);
             }
@@ -97,13 +98,13 @@ namespace Core.Services
             to: "+38" + phone,
             channel: "sms", // Specify the channel as SMS
             pathServiceSid: _configuration["Twilio:VerificationServiceSID"]);
-            
+
 
             var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
 
             var claimsList = new List<Claim>()
             {
-                
+
                 new Claim("FirstName", user.FirstName),
                 new Claim("LastName", user.LastName),
                 new Claim("ImagePath", user.ImagePath),
@@ -143,10 +144,20 @@ namespace Core.Services
                 throw new CustomHttpException("LoginDTO cannot be null", HttpStatusCode.BadRequest);
             }
             var user = await _userManager.FindByEmailAsync(loginDTO.Email);
-          
-            if (user == null)
+
+            if (loginDTO.AuthType == "standard")
             {
-                throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                if (user == null || !(await _userManager.CheckPasswordAsync(user, loginDTO.Password)))
+                {
+                    throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                }
+            }
+            else if (loginDTO.AuthType == "google")
+            {
+                if (user == null)
+                {
+                    throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                }
             }
 
             var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
@@ -155,11 +166,15 @@ namespace Core.Services
                 new Claim("Email", loginDTO.Email),
                 new Claim("FirstName", user.FirstName),
                 new Claim("LastName", user.LastName),
-                new Claim("ImagePath", user.ImagePath),
                 new Claim("Role", currentRole!),
                 new Claim("AuthType", user.AuthType),
                 new Claim("Id", user.Id),
             };
+            if (!string.IsNullOrEmpty(user.ImagePath))
+            {
+                claimsList.Add(new Claim("ImagePath", user.ImagePath));
+            }
+
             if (!string.IsNullOrEmpty(user.PhoneNumber))
             {
                 claimsList.Add(new Claim("PhoneNumber", user.PhoneNumber));
@@ -177,25 +192,35 @@ namespace Core.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-        
-
         public async Task Registration(UserRegistrationDTO registrationDTO)
         {
             User user = _mapper.Map<User>(registrationDTO);
 
-            if(user.AuthType == "standard")
+            if (user.AuthType == "standard")
             {
+                var userExist = await _userManager.FindByEmailAsync(registrationDTO.Email);
+                if (userExist != null)
+                {
+                    throw new CustomHttpException("Email already exists", HttpStatusCode.BadRequest);
+                }
+
                 user.UserName = registrationDTO.Email;
 
                 if (registrationDTO.ImageFile != null)
                 {
                     user.ImagePath = await _image.CreateUserImageAsync(registrationDTO.ImageFile);
                 }
+
                 var result = await _userManager.CreateAsync(user, registrationDTO.Password);
-                _userManager.AddToRoleAsync(user, "User").Wait();
+                //_userManager.AddToRoleAsync(user, "User").Wait();
+
+                if (result.Succeeded)
+                {
+                    _userManager.AddToRoleAsync(user, "User").Wait();
+                }
 
                 await SendConfirmationEmailAsync(registrationDTO.Email);
-                
+
                 if (!result.Succeeded)
                 {
                     var messageError = string.Join(",", result.Errors.Select(er => er.Description));
@@ -203,9 +228,14 @@ namespace Core.Services
                 }
                 return;
             }
-            
-            else if(user.AuthType == "phone")
+
+            else if (user.AuthType == "phone")
             {
+                var userExist = await _userManager.FindByEmailAsync(registrationDTO.Email);
+                if (userExist == null)
+                {
+                    throw new CustomHttpException("Email already exists", HttpStatusCode.BadRequest);
+                }
                 user.UserName = registrationDTO.FirstName;
 
                 user.PhoneNumberConfirmed = true;
@@ -229,10 +259,12 @@ namespace Core.Services
                 user.UserName = registrationDTO.Email;
 
                 user.EmailConfirmed = true;
-                user.ImagePath = registrationDTO.ImagePath;
+
+                if (registrationDTO.ImagePath != null)
+                {
+                    user.ImagePath = await _image.SaveImageFromUrlAsync(registrationDTO.ImagePath);
+                }
                 user.ClientId = registrationDTO.ClientId;
-
-
 
                 var resultgoogle = await _userManager.CreateAsync(user);
                 _userManager.AddToRoleAsync(user, "User").Wait();
@@ -242,39 +274,79 @@ namespace Core.Services
                     throw new CustomHttpException(messageError, System.Net.HttpStatusCode.BadRequest);
                 }
             }
-            
-            
+
         }
-        
         public async Task Edit(UserEditDTO editDTO)
         {
-            var user = await _userManager.FindByEmailAsync(editDTO.Email);
+            if (editDTO.ID != null)
+            {
+                var user = await _userManager.FindByIdAsync(editDTO.ID);
+                if (user.AuthType == "standard")
+                {
+                    var pass = await _userManager.CheckPasswordAsync(user, editDTO.Password);
+                    if (user == null || !pass)
+                    {
+                        throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
+                    }
+                    if (user.Email != editDTO.Email)
+                    {
+                        user.EmailConfirmed = false;
+                        var confirmationResut = await _userManager.UpdateAsync(user);
+                    }
 
-            if (user.AuthType == "standard")
-            {
-                var pass = await _userManager.CheckPasswordAsync(user, editDTO.Password);
-                if (user == null || !pass)
-                {
-                    throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
+                    if (!string.IsNullOrEmpty(editDTO.NewPassword))
+                    {
+                        user.Password = editDTO.NewPassword;
+                        var result = await _userManager.ChangePasswordAsync(user, editDTO.Password, editDTO.NewPassword);
+                        await _userManager.UpdateAsync(user);
+                        if (!result.Succeeded)
+                        {
+                            throw new CustomHttpException("Failed to change password", HttpStatusCode.BadRequest);
+                        }
+                    }
+
+                    if (user != null)
+                    {
+                        User updatedUser = _mapper.Map<User>(user);
+                        updatedUser.UserName = editDTO.Email;
+                        updatedUser.Email = editDTO.Email;
+                        updatedUser.FirstName = editDTO.FirstName;
+                        updatedUser.LastName = editDTO.LastName;
+                        updatedUser.PhoneNumber = editDTO.PhoneNumber;
+                        updatedUser.ImagePath = editDTO.ImagePath;
+                        updatedUser.Birthday = editDTO.Birthday;
+                        var result = await _userManager.UpdateAsync(updatedUser);
+                        if (!result.Succeeded)
+                        {
+                            throw new CustomHttpException("Failed to update user", HttpStatusCode.BadRequest);
+                        }
+                    }
                 }
-                if (user.Email != editDTO.Email)
+
+                if (user.AuthType == "google")
                 {
-                    user.EmailConfirmed = false;
-                    var confirmationResut = await _userManager.UpdateAsync(user);
+                    if (user == null)
+                    {
+                        throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
+                    }
+
+                    if (user != null)
+                    {
+                        User updatedUser = _mapper.Map<User>(user);
+                        updatedUser.UserName = editDTO.Email;
+                        updatedUser.Email = editDTO.Email;
+                        updatedUser.FirstName = editDTO.FirstName;
+                        updatedUser.LastName = editDTO.LastName;
+                        updatedUser.PhoneNumber = editDTO.PhoneNumber;
+                        updatedUser.ImagePath = editDTO.ImagePath;
+                        updatedUser.Birthday = editDTO.Birthday;
+                        var result = await _userManager.UpdateAsync(updatedUser);
+                        if (!result.Succeeded)
+                        {
+                            throw new CustomHttpException("Failed to update user", HttpStatusCode.BadRequest);
+                        }
+                    }
                 }
-            }
-          
-            if (user != null)
-            {
-                User updatedUser = _mapper.Map<User>(user);
-                updatedUser.UserName = editDTO.Email;
-                updatedUser.Email = editDTO.Email;
-                updatedUser.FirstName = editDTO.FirstName;
-                updatedUser.LastName = editDTO.LastName;
-                updatedUser.PhoneNumber = editDTO.PhoneNumber;
-                updatedUser.ImagePath = editDTO.ImagePath;
-                updatedUser.Birthday = editDTO.Birthday;
-                var result = await _userManager.UpdateAsync(updatedUser);
             }
         }
         public async Task DeleteUserImage(string email)
@@ -330,10 +402,15 @@ namespace Core.Services
 
             try
             {
-                var result = await _userManager.ResetPasswordAsync(user, normalToken, model.NewPassword);
-                if (!result.Succeeded)
+                if (!string.IsNullOrEmpty(model.NewPassword))
                 {
-                    throw new CustomHttpException("Failed to reset password", HttpStatusCode.BadRequest);
+                    var result = await _userManager.ResetPasswordAsync(user, normalToken, model.NewPassword);
+                    user.Password = model.NewPassword;
+                    await _userManager.UpdateAsync(user);
+                    if (!result.Succeeded)
+                    {
+                        throw new CustomHttpException("Failed to reset password", HttpStatusCode.BadRequest);
+                    }
                 }
             }
             catch (Exception ex)
@@ -356,8 +433,8 @@ namespace Core.Services
             string templateFilePath = Path.Combine(_env.WebRootPath, "email", "ConfirmationEmailTemplate.html");
             string emailBody = File.ReadAllText(templateFilePath);
 
-            string url = $"{_configuration["HostSettings:URL"]}/account/settings/{email}/{validEmailToken}";
-            
+            string url = $"{_configuration["HostSettings:URL"]}/{email}/{validEmailToken}";
+
             emailBody = emailBody.Replace("{url}", url);
 
             await _emailService.SendEmailAsync(email!, "Email confirmation", emailBody);
@@ -384,11 +461,101 @@ namespace Core.Services
                 throw new CustomHttpException($"Error confirm email: {ex.Message}", HttpStatusCode.InternalServerError);
             }
         }
-        public async Task RefreshTokenAsync(TokenRequestDto model)
+        public async Task ConfirmEmailAsync(string email)
         {
-            //var result = await _jwtService.VerifyTokenAsync(model);
-            //return result;
-        }
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
+            }
+            try
+            {
+                await SendConfirmationEmailAsync(user.Email);
 
+            }
+            catch (Exception ex)
+            {
+                throw new CustomHttpException($"Error confirm email: {ex.Message}", HttpStatusCode.InternalServerError);
+            }
+        }
+        public async Task<string> RefreshTokenAsync(string oldToken)
+        {
+            var principal = GetPrincipalFromToken(oldToken);
+            if (principal == null)
+                throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.NotFound);
+
+            // Отримання ідентифікатора користувача з старого токену
+            var userId = principal.Claims.FirstOrDefault(c => c.Type == "Id")?.Value;
+            if (userId == null)
+                throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+
+            // Знаходження користувача за ідентифікатором
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.NotFound);
+
+            var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+            if (role == null)
+                throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.NotFound);
+
+            // Генерація нового токену
+            var newToken = GenerateToken(user, role);
+
+            return newToken;
+        }
+        private ClaimsPrincipal GetPrincipalFromToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            try
+            {
+                var validationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Jwt:Key"])),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = false
+                };
+                var principal = tokenHandler.ValidateToken(token, validationParameters, out var validatedToken);
+                return principal;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        private string GenerateToken(User user, string role)
+        {
+            var claimsList = new List<Claim>()
+            {
+                new Claim("Email", user.Email),
+                new Claim("FirstName", user.FirstName),
+                new Claim("LastName", user.LastName),
+                new Claim("Role", role!),
+                new Claim("AuthType", user.AuthType),
+                new Claim("Id", user.Id),
+            };
+            if (!string.IsNullOrEmpty(user.ImagePath))
+            {
+                claimsList.Add(new Claim("ImagePath", user.ImagePath));
+            }
+
+            if (!string.IsNullOrEmpty(user.PhoneNumber))
+            {
+                claimsList.Add(new Claim("PhoneNumber", user.PhoneNumber));
+            }
+            var jwtOptions = _configuration.GetSection("Jwt").Get<JwtOptions>();
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions!.Key));
+            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: jwtOptions.Issuer,
+                claims: claimsList,
+                expires: DateTime.Now.AddMinutes(jwtOptions.LifeTime),
+                signingCredentials: signinCredentials
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Core.DTOs.Information;
+﻿using Core.DTOs.UserInfo;
 using System;
 using System.Collections.Generic;
 using System.Linq;

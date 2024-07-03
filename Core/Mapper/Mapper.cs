@@ -1,15 +1,17 @@
-﻿using Core.DTOs.Category;
+﻿using Core.DTOs.UserInfo;
+using Core.DTOs.Category;
 using Core.DTOs.Image;
-using Core.DTOs.Information;
 using Core.DTOs.Product;
 using Core.DTOs.Storage;
 using Core.DTOs.Store;
 using Core.DTOs.User;
 using Core.Entities.Category;
-using Core.Entities.DashBoard;
-using Core.Entities.Information;
+using Core.Entities.UserEntity;
+using Core.Entities.UserInfo;
 using Core.Entities.Product;
 using Core.Entities.Store;
+using Core.Entities.Address;
+using Core.DTOs.Address;
 
 namespace Core.Mapper
 {
@@ -29,7 +31,7 @@ namespace Core.Mapper
             CreateMap<CategoryDTO, CategoryEntity>()
                 .ForMember(dest => dest.SubCategory, opt => opt.MapFrom(src => new SubCategory { Id = src.MainCategoryId.GetValueOrDefault() }));
             
-            CreateMap<ProductDTO, ProductEntity>();
+            CreateMap<ProductDTO, ProductEntity>().ReverseMap();
             CreateMap<CreateProductDTO, ProductEntity>();
             CreateMap<EditProductDTO, ProductEntity>();
             CreateMap<ProductEntity, ProductDTO>()
@@ -41,16 +43,40 @@ namespace Core.Mapper
                         .ForMember(dest => dest.MainCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.MainCategory.Name));
             
             CreateMap<StorageDTO, StorageEntity>().ReverseMap();
-            CreateMap<StoreDTO, StoreEntity>().ReverseMap();
+
             CreateMap<CreateStoreDTO, StoreEntity>();
             CreateMap<EditStoreDTO, StoreEntity>();
-            
+            CreateMap<StoreDTO, StoreEntity>();
+            CreateMap<StoreEntity, StoreDTO>()
+                        .ForMember(dto => dto.City, opt => opt.MapFrom(o => o.City.CityName));
+
+            CreateMap<CountryEntity, CountryDTO>().ReverseMap();
+            CreateMap<CityEntity, CityDTO>()
+                        .ForMember(dto => dto.CountryName, opt => opt.MapFrom(o => o.Country.CountryName));
+
             CreateMap<ImageDTO, ImageEntity>().ReverseMap();
             CreateMap<ImageForHomeDTO, ImageForHome>();
 
-            CreateMap<OptionsDTO, Options>();
-            CreateMap<InfoDTO, Info>();
+            CreateMap<AddressDTO, AddressEntity>();
+            CreateMap<InfoDTO, Info>()
+                    .ForMember(dest => dest.Options, opt => opt.MapFrom(src => src.Options))
+                    .ReverseMap();
+            CreateMap<OptionsDTO, Options>()
+                    .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
+                    .ReverseMap();
+
+            CreateMap<UserFavoriteProduct, UserFavoriteProductDTO>()
+                     .ForMember(dest => dest.ProductPrice, opt => opt.MapFrom(src => src.Product.Price))
+                     .ForMember(dest => dest.ProductImage, opt => opt.MapFrom(src => src.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath))
+                     .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
+                     .ForMember(dest => dest.Storages, opt => opt.MapFrom(src => src.Product.Storages));
+
+            CreateMap<UserFavoriteProductDTO, UserFavoriteProduct>();
+            CreateMap<UserBonuses, UserBonusesDTO>();
+
             CreateMap<OrderDTO, Order>().ReverseMap();
+            CreateMap<OrderItemsDTO, OrderItems>();
+            CreateMap<OrderItems, OrderItemsDTO>();
 
             CreateMap<BagDTO, Bag>().ReverseMap();
             CreateMap<BagUserDTO, Bag>().ReverseMap();
@@ -60,8 +86,6 @@ namespace Core.Mapper
                         .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Product.Price))
                         .ForMember(dest => dest.Article, opt => opt.MapFrom(src => src.Product.Article))
                         .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath));
-
-       
         }
     }
 }

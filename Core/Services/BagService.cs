@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Core.DTOs.Information;
-using Core.Entities.DashBoard;
-using Core.Entities.Information;
+using Core.DTOs.UserInfo;
+using Core.Entities.UserEntity;
+using Core.Entities.UserInfo;
 using Core.Helpers;
 using Core.Interfaces;
 using Core.Specification;

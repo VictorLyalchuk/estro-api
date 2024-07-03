@@ -42,7 +42,7 @@ namespace Core.Services
 
         public async Task<List<StoreDTO>?> GetAllAsync()
         {
-            var stores = await _storeRepository.GetAsync();
+            var stores = await _storeRepository.GetListBySpec(new StoreSpecification.StoreAll());
             return _mapper.Map<List<StoreDTO>>(stores);
         }
 

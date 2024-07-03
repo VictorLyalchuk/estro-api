@@ -70,6 +70,15 @@ namespace Core.Helpers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Not Found.
+        /// </summary>
+        internal static string ProductNotFound {
+            get {
+                return ResourceManager.GetString("ProductNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Not Found By Email.
         /// </summary>
         internal static string UserNotFoundByEmail {
