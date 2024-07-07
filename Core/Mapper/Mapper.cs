@@ -38,9 +38,9 @@ namespace Core.Mapper
                         .ForMember(dto => dto.ImagesPath, opt => opt.MapFrom(o => o.Images.Select(a => a.ImagePath)))
                         .ForMember(dest => dest.URLCategoryName, opt => opt.MapFrom(src => src.Category.URLName))
                         .ForMember(dest => dest.URLSubCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.URLName))
-                        .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.Name))
+                        .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.Name_en))
                         .ForMember(dest => dest.URLMainCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.MainCategory.URLName))
-                        .ForMember(dest => dest.MainCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.MainCategory.Name));
+                        .ForMember(dest => dest.MainCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.MainCategory.Name_en));
             
             CreateMap<StorageDTO, StorageEntity>().ReverseMap();
 
@@ -48,11 +48,14 @@ namespace Core.Mapper
             CreateMap<EditStoreDTO, StoreEntity>();
             CreateMap<StoreDTO, StoreEntity>();
             CreateMap<StoreEntity, StoreDTO>()
-                        .ForMember(dto => dto.City, opt => opt.MapFrom(o => o.City.CityName));
+                        .ForMember(dto => dto.City, opt => opt.MapFrom(o => o.City.CityName_en));
 
             CreateMap<CountryEntity, CountryDTO>().ReverseMap();
             CreateMap<CityEntity, CityDTO>()
-                        .ForMember(dto => dto.CountryName, opt => opt.MapFrom(o => o.Country.CountryName));
+                        .ForMember(dto => dto.CountryName_en, opt => opt.MapFrom(o => o.Country.CountryName_en))
+                        .ForMember(dto => dto.CountryName_es, opt => opt.MapFrom(o => o.Country.CountryName_es))
+                        .ForMember(dto => dto.CountryName_fr, opt => opt.MapFrom(o => o.Country.CountryName_fr))
+                        .ForMember(dto => dto.CountryName_uk, opt => opt.MapFrom(o => o.Country.CountryName_uk));
 
             CreateMap<ImageDTO, ImageEntity>().ReverseMap();
             CreateMap<ImageForHomeDTO, ImageForHome>();

@@ -9,7 +9,7 @@ namespace Core.Specification
         {
             public GettAllCity()
             {
-                Query.OrderBy(p => p.CityName)
+                Query.OrderBy(p => p.CityName_en)
                      .Include(p => p.Country);
             }
         }
@@ -17,7 +17,7 @@ namespace Core.Specification
         {
             public GettAllCountry()
             {
-                Query.OrderBy(p => p.CountryName);
+                Query.OrderBy(p => p.CountryName_en);
             }
         }
     }
