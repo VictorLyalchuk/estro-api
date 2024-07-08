@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240630222404_start")]
-    partial class start
+    [Migration("20240707202207_lang")]
+    partial class lang
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,16 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CityName")
+                    b.Property<string>("CityName_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CityName_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CityName_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CityName_uk")
                         .HasColumnType("text");
 
                     b.Property<int?>("CountryID")
@@ -75,73 +84,109 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CityName = "Kiyv",
+                            CityName_en = "Kyiv",
+                            CityName_es = "Kiev",
+                            CityName_fr = "Kiev",
+                            CityName_uk = "Київ",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 2,
-                            CityName = "Vinnytsia",
+                            CityName_en = "Vinnytsia",
+                            CityName_es = "Vinnitsa",
+                            CityName_fr = "Vinnitsa",
+                            CityName_uk = "Вінниця",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 3,
-                            CityName = "Dnipro",
+                            CityName_en = "Dnipro",
+                            CityName_es = "Dniepr",
+                            CityName_fr = "Dniepr",
+                            CityName_uk = "Дніпро",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 4,
-                            CityName = "Zhytomyr",
+                            CityName_en = "Zhytomyr",
+                            CityName_es = "Jytomyr",
+                            CityName_fr = "Jytomyr",
+                            CityName_uk = "Житомир",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 5,
-                            CityName = "Ivano-Frankivsk",
+                            CityName_en = "Ivano-Frankivsk",
+                            CityName_es = "Ivano-Frankivsk",
+                            CityName_fr = "Ivano-Frankivsk",
+                            CityName_uk = "Івано-Франківськ",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 6,
-                            CityName = "Kovel",
+                            CityName_en = "Kovel",
+                            CityName_es = "Kovel",
+                            CityName_fr = "Kovel",
+                            CityName_uk = "Ковель",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 7,
-                            CityName = "Lutsk",
+                            CityName_en = "Lutsk",
+                            CityName_es = "Loutsk",
+                            CityName_fr = "Loutsk",
+                            CityName_uk = "Луцьк",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 8,
-                            CityName = "Lviv",
+                            CityName_en = "Lviv",
+                            CityName_es = "Lviv",
+                            CityName_fr = "Lviv",
+                            CityName_uk = "Львів",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 9,
-                            CityName = "Odesa",
+                            CityName_en = "Odesa",
+                            CityName_es = "Odessa",
+                            CityName_fr = "Odessa",
+                            CityName_uk = "Одеса",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 10,
-                            CityName = "Rivne",
+                            CityName_en = "Rivne",
+                            CityName_es = "Rovno",
+                            CityName_fr = "Rovno",
+                            CityName_uk = "Рівне",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 11,
-                            CityName = "Kharkiv",
+                            CityName_en = "Kharkiv",
+                            CityName_es = "Kharkov",
+                            CityName_fr = "Kharkov",
+                            CityName_uk = "Харків",
                             CountryID = 1
                         },
                         new
                         {
                             Id = 12,
-                            CityName = "Chernivtsi",
+                            CityName_en = "Chernivtsi",
+                            CityName_es = "Tchernivtsi",
+                            CityName_fr = "Tchernivtsi",
+                            CityName_uk = "Чернівці",
                             CountryID = 1
                         });
                 });
@@ -154,7 +199,16 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CountryName")
+                    b.Property<string>("CountryName_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CountryName_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CountryName_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CountryName_uk")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -165,37 +219,58 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CountryName = "Ukraine"
+                            CountryName_en = "Ukraine",
+                            CountryName_es = "Ucrania",
+                            CountryName_fr = "Ukraine",
+                            CountryName_uk = "Україна"
                         },
                         new
                         {
                             Id = 2,
-                            CountryName = "England"
+                            CountryName_en = "England",
+                            CountryName_es = "Inglaterra",
+                            CountryName_fr = "Angleterre",
+                            CountryName_uk = "Англія"
                         },
                         new
                         {
                             Id = 3,
-                            CountryName = "Spain"
+                            CountryName_en = "Spain",
+                            CountryName_es = "España",
+                            CountryName_fr = "Espagne",
+                            CountryName_uk = "Іспанія"
                         },
                         new
                         {
                             Id = 4,
-                            CountryName = "France"
+                            CountryName_en = "France",
+                            CountryName_es = "Francia",
+                            CountryName_fr = "France",
+                            CountryName_uk = "Франція"
                         },
                         new
                         {
                             Id = 5,
-                            CountryName = "Poland"
+                            CountryName_en = "Poland",
+                            CountryName_es = "Polonia",
+                            CountryName_fr = "Pologne",
+                            CountryName_uk = "Польща"
                         },
                         new
                         {
                             Id = 6,
-                            CountryName = "USA"
+                            CountryName_en = "USA",
+                            CountryName_es = "Estados Unidos",
+                            CountryName_fr = "États-Unis",
+                            CountryName_uk = "США"
                         },
                         new
                         {
                             Id = 7,
-                            CountryName = "Japan"
+                            CountryName_en = "Japan",
+                            CountryName_es = "Japón",
+                            CountryName_fr = "Japon",
+                            CountryName_uk = "Японія"
                         });
                 });
 
@@ -213,7 +288,22 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Name_en")
+                        .IsRequired()
+                        .HasMaxLength(180)
+                        .HasColumnType("character varying(180)");
+
+                    b.Property<string>("Name_es")
+                        .IsRequired()
+                        .HasMaxLength(180)
+                        .HasColumnType("character varying(180)");
+
+                    b.Property<string>("Name_fr")
+                        .IsRequired()
+                        .HasMaxLength(180)
+                        .HasColumnType("character varying(180)");
+
+                    b.Property<string>("Name_uk")
                         .IsRequired()
                         .HasMaxLength(180)
                         .HasColumnType("character varying(180)");
@@ -235,280 +325,400 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Open shoes",
+                            Name_en = "Open shoes",
+                            Name_es = "Zapatos abiertos",
+                            Name_fr = "Chaussures ouvertes",
+                            Name_uk = "Відкрите взуття",
                             SubCategoryId = 1,
                             URLName = "open-shoes"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Pumps and loafers",
+                            Name_en = "Pumps and loafers",
+                            Name_es = "Zapatos de tacón y mocasines",
+                            Name_fr = "Escarpins et mocassins",
+                            Name_uk = "Туфлі та лофери",
                             SubCategoryId = 1,
                             URLName = "pumps-and-loafers"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Heeled shoes",
+                            Name_en = "Heeled shoes",
+                            Name_es = "Zapatos de tacón",
+                            Name_fr = "Chaussures à talons",
+                            Name_uk = "Туфлі на підборах",
                             SubCategoryId = 1,
                             URLName = "heeled-shoes"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Women's athletic sneakers",
+                            Name_en = "Women's athletic sneakers",
+                            Name_es = "Zapatillas deportivas para mujeres",
+                            Name_fr = "Baskets de sport pour femmes",
+                            Name_uk = "Кросівки жіночі",
                             SubCategoryId = 1,
                             URLName = "women-s-athletic-sneakers"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Women's sneakers",
+                            Name_en = "Women's sneakers",
+                            Name_es = "Zapatillas para mujeres",
+                            Name_fr = "Baskets pour femmes",
+                            Name_uk = "Жіночі кеди",
                             SubCategoryId = 1,
                             URLName = "women-sneakers"
                         },
                         new
                         {
                             Id = 6,
-                            Name = "High boots and Chelsea",
+                            Name_en = "High boots and Chelsea",
+                            Name_es = "Botas altas y Chelsea",
+                            Name_fr = "Bottes hautes et Chelsea",
+                            Name_uk = "Високі черевики, челсі",
                             SubCategoryId = 1,
                             URLName = "high-boots-&-chelsea"
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Boots on heels",
+                            Name_en = "Boots on heels",
+                            Name_es = "Botas de tacón",
+                            Name_fr = "Bottes à talons",
+                            Name_uk = "Черевики на підборах",
                             SubCategoryId = 1,
                             URLName = "boots-on-heels"
                         },
                         new
                         {
                             Id = 8,
-                            Name = "Boots and high boots",
+                            Name_en = "Boots and high boots",
+                            Name_es = "Botas y botas altas",
+                            Name_fr = "Bottes et bottes hautes",
+                            Name_uk = "Чоботи та ботфорти",
                             SubCategoryId = 1,
                             URLName = "boots-and-high-boots"
                         },
                         new
                         {
                             Id = 9,
-                            Name = "Cossacks boots",
+                            Name_en = "Cossacks boots",
+                            Name_es = "Botas de cosaco",
+                            Name_fr = "Bottes Cossacks",
+                            Name_uk = "Козаки",
                             SubCategoryId = 1,
                             URLName = "cossacks-boots"
                         },
                         new
                         {
                             Id = 10,
-                            Name = "Winter footwear",
+                            Name_en = "Winter footwear",
+                            Name_es = "Calzado de invierno",
+                            Name_fr = "Chaussures d'hiver",
+                            Name_uk = "Зимове взуття",
                             SubCategoryId = 1,
                             URLName = "winter-footwear"
                         },
                         new
                         {
                             Id = 11,
-                            Name = "Perforated shoes",
+                            Name_en = "Perforated shoes",
+                            Name_es = "Zapatos perforados",
+                            Name_fr = "Chaussures perforées",
+                            Name_uk = "Перфороване взуття",
                             SubCategoryId = 1,
                             URLName = "perforated-shoes"
                         },
                         new
                         {
                             Id = 12,
-                            Name = "Men's boots",
+                            Name_en = "Men's boots",
+                            Name_es = "Botas para hombres",
+                            Name_fr = "Bottes pour hommes",
+                            Name_uk = "Чоловічі черевики",
                             SubCategoryId = 2,
                             URLName = "men-boots"
                         },
                         new
                         {
                             Id = 13,
-                            Name = "Men's athletic sneakers",
+                            Name_en = "Men's athletic sneakers",
+                            Name_es = "Zapatillas deportivas para hombres",
+                            Name_fr = "Baskets de sport pour hommes",
+                            Name_uk = "Чоловічі кросівки",
                             SubCategoryId = 2,
                             URLName = "man-athletic-sneakers"
                         },
                         new
                         {
                             Id = 14,
-                            Name = "Men's sneakers",
+                            Name_en = "Men's sneakers",
+                            Name_es = "Zapatillas para hombres",
+                            Name_fr = "Baskets pour hommes",
+                            Name_uk = "Чоловічі кеди",
                             SubCategoryId = 2,
                             URLName = "man-sneakers"
                         },
                         new
                         {
                             Id = 15,
-                            Name = "Men's pumps",
+                            Name_en = "Men's pumps",
+                            Name_es = "Zapatos de tacón para hombres",
+                            Name_fr = "Escarpins pour hommes",
+                            Name_uk = "Чоловічі туфлі",
                             SubCategoryId = 2,
                             URLName = "man-pumps"
                         },
                         new
                         {
                             Id = 16,
-                            Name = "Men's moccasins",
+                            Name_en = "Men's moccasins",
+                            Name_es = "Mocasines para hombres",
+                            Name_fr = "Mocassins pour hommes",
+                            Name_uk = "Чоловічі мокасини",
                             SubCategoryId = 2,
                             URLName = "man-moccasins"
                         },
                         new
                         {
                             Id = 17,
-                            Name = "Men's summer shoes",
+                            Name_en = "Men's summer shoes",
+                            Name_es = "Zapatos de verano para hombres",
+                            Name_fr = "Chaussures d'été pour hommes",
+                            Name_uk = "Чоловічі літнє взуття",
                             SubCategoryId = 2,
                             URLName = "man-summer-shoes"
                         },
                         new
                         {
                             Id = 18,
-                            Name = "Women's outerwear",
+                            Name_en = "Women's outerwear",
+                            Name_es = "Ropa exterior para mujeres",
+                            Name_fr = "Vêtements d'extérieur pour femmes",
+                            Name_uk = "Жіночий верхній одяг",
                             SubCategoryId = 3,
                             URLName = "woman-outerwear"
                         },
                         new
                         {
                             Id = 19,
-                            Name = "Women's sweaters and suits",
+                            Name_en = "Women's sweaters and suits",
+                            Name_es = "Suéteres y trajes para mujeres",
+                            Name_fr = "Pulls et costumes pour femmes",
+                            Name_uk = "Жіночі светри та костюми",
                             SubCategoryId = 3,
                             URLName = "woman-sweaters-and-suits"
                         },
                         new
                         {
                             Id = 20,
-                            Name = "Women's t-shirts and sweatshirts",
+                            Name_en = "Women's t-shirts and sweatshirts",
+                            Name_es = "Camisetas y sudaderas para mujeres",
+                            Name_fr = "T-shirts et sweatshirts pour femmes",
+                            Name_uk = "Жіночі футболки та світшоти",
                             SubCategoryId = 3,
                             URLName = "woman-t-shirts-and-sweatshirts"
                         },
                         new
                         {
                             Id = 21,
-                            Name = "Women's shawl",
+                            Name_en = "Women's shawl",
+                            Name_es = "Chal para mujeres",
+                            Name_fr = "Châle pour femmes",
+                            Name_uk = "Жіночі хустки",
                             SubCategoryId = 3,
                             URLName = "woman-shawl"
                         },
                         new
                         {
                             Id = 22,
-                            Name = "Women's scarves and hats",
+                            Name_en = "Women's scarves and hats",
+                            Name_es = "Bufandas y sombreros para mujeres",
+                            Name_fr = "Écharpes et chapeaux pour femmes",
+                            Name_uk = "Жіночі шарфи та шапки",
                             SubCategoryId = 3,
                             URLName = "woman-scarves-and-hats"
                         },
                         new
                         {
                             Id = 23,
-                            Name = "Women's gloves",
+                            Name_en = "Women's gloves",
+                            Name_es = "Guantes para mujeres",
+                            Name_fr = "Gants pour femmes",
+                            Name_uk = "Жіночі рукавички",
                             SubCategoryId = 3,
                             URLName = "woman-gloves"
                         },
                         new
                         {
                             Id = 24,
-                            Name = "Women's socks and tights",
+                            Name_en = "Women's socks and tights",
+                            Name_es = "Calcetines y pantimedias para mujeres",
+                            Name_fr = "Chaussettes et collants pour femmes",
+                            Name_uk = "Жіночі шкарпетки та колготи",
                             SubCategoryId = 3,
                             URLName = "woman-socks-and-tights"
                         },
                         new
                         {
                             Id = 25,
-                            Name = "Men's outerwear",
+                            Name_en = "Men's outerwear",
+                            Name_es = "Ropa exterior para hombres",
+                            Name_fr = "Vêtements d'extérieur pour hommes",
+                            Name_uk = "Чоловічий верхній одяг",
                             SubCategoryId = 4,
                             URLName = "man-outerwear"
                         },
                         new
                         {
                             Id = 26,
-                            Name = "Men's sweaters and suits",
+                            Name_en = "Men's sweaters and suits",
+                            Name_es = "Suéteres y trajes para hombres",
+                            Name_fr = "Pulls et costumes pour hommes",
+                            Name_uk = "Чоловічі светри та костюми",
                             SubCategoryId = 4,
                             URLName = "man-sweaters-and-suits"
                         },
                         new
                         {
                             Id = 27,
-                            Name = "Men's t-shirts and sweatshirts",
+                            Name_en = "Men's t-shirts and sweatshirts",
+                            Name_es = "Camisetas y sudaderas para hombres",
+                            Name_fr = "T-shirts et sweatshirts pour hommes",
+                            Name_uk = "Чоловікі футболки та світшоти",
                             SubCategoryId = 4,
                             URLName = "man-t-shirts-and-sweatshirts"
                         },
                         new
                         {
                             Id = 28,
-                            Name = "Men's scarves and hats",
+                            Name_en = "Men's scarves and hats",
+                            Name_es = "Bufandas y sombreros para hombres",
+                            Name_fr = "Écharpes et chapeaux pour hommes",
+                            Name_uk = "Чоловічі шарфи та шапки",
                             SubCategoryId = 4,
                             URLName = "man-scarves-and-hats"
                         },
                         new
                         {
                             Id = 29,
-                            Name = "Men's gloves",
+                            Name_en = "Men's gloves",
+                            Name_es = "Guantes para hombres",
+                            Name_fr = "Gants pour hommes",
+                            Name_uk = "Чоловічі рукавички",
                             SubCategoryId = 4,
                             URLName = "man-gloves"
                         },
                         new
                         {
                             Id = 30,
-                            Name = "Men's socks",
+                            Name_en = "Men's socks",
+                            Name_es = "Calcetines para hombres",
+                            Name_fr = "Chaussettes pour hommes",
+                            Name_uk = "Чоловічі шкарпетки",
                             SubCategoryId = 4,
                             URLName = "man-socks"
                         },
                         new
                         {
                             Id = 31,
-                            Name = "Women's glasses",
+                            Name_en = "Women's glasses",
+                            Name_es = "Gafas para mujeres",
+                            Name_fr = "Lunettes pour femmes",
+                            Name_uk = "Жіночі окуляри",
                             SubCategoryId = 5,
                             URLName = "woman-glasses"
                         },
                         new
                         {
                             Id = 32,
-                            Name = "Women's home shoes",
+                            Name_en = "Women's home shoes",
+                            Name_es = "Zapatos de casa para mujeres",
+                            Name_fr = "Chaussures de maison pour femmes",
+                            Name_uk = "Жіноче домашнє взуття",
                             SubCategoryId = 5,
                             URLName = "woman-home-shoes"
                         },
                         new
                         {
                             Id = 33,
-                            Name = "Women's bags",
+                            Name_en = "Women's bags",
+                            Name_es = "Bolsos para mujeres",
+                            Name_fr = "Sacs pour femmes",
+                            Name_uk = "Жіночі сумки",
                             SubCategoryId = 5,
                             URLName = "woman-bags"
                         },
                         new
                         {
                             Id = 34,
-                            Name = "Women's backpacks",
+                            Name_en = "Women's backpacks",
+                            Name_es = "Mochilas para mujeres",
+                            Name_fr = "Sacs à dos pour femmes",
+                            Name_uk = "Жіночі рюкзаки для жінок",
                             SubCategoryId = 5,
                             URLName = "woman-backpacks"
                         },
                         new
                         {
                             Id = 35,
-                            Name = "Women's care products",
+                            Name_en = "Women's care products",
+                            Name_es = "Productos de cuidado para mujeres",
+                            Name_fr = "Produits de soin pour femmes",
+                            Name_uk = "Жіночі засоби для догляду",
                             SubCategoryId = 5,
                             URLName = "woman-care-products"
                         },
                         new
                         {
                             Id = 36,
-                            Name = "Men's glasses",
+                            Name_en = "Men's glasses",
+                            Name_es = "Gafas para hombres",
+                            Name_fr = "Lunettes pour hommes",
+                            Name_uk = "Чоловічі окуляри",
                             SubCategoryId = 6,
                             URLName = "man-glasses"
                         },
                         new
                         {
                             Id = 37,
-                            Name = "Men's home shoes",
+                            Name_en = "Men's home shoes",
+                            Name_es = "Zapatos de casa para hombres",
+                            Name_fr = "Chaussures de maison pour hommes",
+                            Name_uk = "Чоловіче домашнє взуття",
                             SubCategoryId = 6,
                             URLName = "man-home-shoes"
                         },
                         new
                         {
                             Id = 38,
-                            Name = "Men's bags",
+                            Name_en = "Men's bags",
+                            Name_es = "Bolsos para hombres",
+                            Name_fr = "Sacs pour hommes",
+                            Name_uk = "Чоловічі сумки",
                             SubCategoryId = 6,
                             URLName = "man-bags"
                         },
                         new
                         {
                             Id = 39,
-                            Name = "Men's backpacks",
+                            Name_en = "Men's backpacks",
+                            Name_es = "Mochilas para hombres",
+                            Name_fr = "Sacs à dos pour hommes",
+                            Name_uk = "Чоловічі рюкзаки",
                             SubCategoryId = 6,
                             URLName = "man-backpacks"
                         },
                         new
                         {
                             Id = 40,
-                            Name = "Men's care products",
+                            Name_en = "Men's care products",
+                            Name_es = "Productos de cuidado para hombres",
+                            Name_fr = "Produits de soin pour hommes",
+                            Name_uk = "Чоловічі засоби для догляду",
                             SubCategoryId = 6,
                             URLName = "man-care-products"
                         });
@@ -525,7 +735,22 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Name_en")
+                        .IsRequired()
+                        .HasMaxLength(180)
+                        .HasColumnType("character varying(180)");
+
+                    b.Property<string>("Name_es")
+                        .IsRequired()
+                        .HasMaxLength(180)
+                        .HasColumnType("character varying(180)");
+
+                    b.Property<string>("Name_fr")
+                        .IsRequired()
+                        .HasMaxLength(180)
+                        .HasColumnType("character varying(180)");
+
+                    b.Property<string>("Name_uk")
                         .IsRequired()
                         .HasMaxLength(180)
                         .HasColumnType("character varying(180)");
@@ -542,13 +767,19 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Woman",
+                            Name_en = "Women",
+                            Name_es = "Mujer",
+                            Name_fr = "Femme",
+                            Name_uk = "Жіноче",
                             URLName = "woman"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Man",
+                            Name_en = "Men",
+                            Name_es = "Hombre",
+                            Name_fr = "Homme",
+                            Name_uk = "Чоловіче",
                             URLName = "man"
                         });
                 });
@@ -567,7 +798,22 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("MainCategoryId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Name_en")
+                        .IsRequired()
+                        .HasMaxLength(180)
+                        .HasColumnType("character varying(180)");
+
+                    b.Property<string>("Name_es")
+                        .IsRequired()
+                        .HasMaxLength(180)
+                        .HasColumnType("character varying(180)");
+
+                    b.Property<string>("Name_fr")
+                        .IsRequired()
+                        .HasMaxLength(180)
+                        .HasColumnType("character varying(180)");
+
+                    b.Property<string>("Name_uk")
                         .IsRequired()
                         .HasMaxLength(180)
                         .HasColumnType("character varying(180)");
@@ -587,42 +833,60 @@ namespace Infrastructure.Migrations
                         {
                             Id = 1,
                             MainCategoryId = 1,
-                            Name = "Woman Shoes",
+                            Name_en = "Women's Shoes",
+                            Name_es = "Zapatos de mujer",
+                            Name_fr = "Chaussures pour femmes",
+                            Name_uk = "Жіноче взуття",
                             URLName = "woman-shoes"
                         },
                         new
                         {
                             Id = 2,
                             MainCategoryId = 2,
-                            Name = "Man Shoes",
+                            Name_en = "Men's Shoes",
+                            Name_es = "Zapatos de hombre",
+                            Name_fr = "Chaussures pour hommes",
+                            Name_uk = "Чоловіче взуття",
                             URLName = "man-shoes"
                         },
                         new
                         {
                             Id = 3,
                             MainCategoryId = 1,
-                            Name = "Woman Clothing",
+                            Name_en = "Women's Clothing",
+                            Name_es = "Ropa de mujer",
+                            Name_fr = "Vêtements pour femmes",
+                            Name_uk = "Жіночий одяг",
                             URLName = "woman-clothing"
                         },
                         new
                         {
                             Id = 4,
                             MainCategoryId = 2,
-                            Name = "Man Clothing",
+                            Name_en = "Men's Clothing",
+                            Name_es = "Ropa de hombre",
+                            Name_fr = "Vêtements pour hommes",
+                            Name_uk = "Чоловічий одяг",
                             URLName = "man-clothing"
                         },
                         new
                         {
                             Id = 5,
                             MainCategoryId = 1,
-                            Name = "Woman Accessories",
+                            Name_en = "Women's Accessories",
+                            Name_es = "Accesorios de mujer",
+                            Name_fr = "Accessoires pour femmes",
+                            Name_uk = "Жіночі аксесуари",
                             URLName = "woman-accessories"
                         },
                         new
                         {
                             Id = 6,
                             MainCategoryId = 2,
-                            Name = "Man Accessories",
+                            Name_en = "Men's Accessories",
+                            Name_es = "Accesorios de hombre",
+                            Name_fr = "Accessoires pour hommes",
+                            Name_uk = "Чоловічі аксесуари",
                             URLName = "man-accessories"
                         });
                 });
@@ -1325,7 +1589,19 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Name_en")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_es")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_fr")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_uk")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -1341,25 +1617,37 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Color",
+                            Name_en = "Color",
+                            Name_es = "Color",
+                            Name_fr = "Couleur",
+                            Name_uk = "Колір",
                             Value = "color"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Material",
+                            Name_en = "Material",
+                            Name_es = "Material",
+                            Name_fr = "Matériau",
+                            Name_uk = "Матеріал",
                             Value = "material"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Size",
+                            Name_en = "Size",
+                            Name_es = "Tamaño",
+                            Name_fr = "Taille",
+                            Name_uk = "Розмір",
                             Value = "size"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Purpose",
+                            Name_en = "Purpose",
+                            Name_es = "Propósito",
+                            Name_fr = "But",
+                            Name_uk = "Сезон",
                             Value = "purpose"
                         });
                 });
@@ -2642,7 +2930,16 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
+                    b.Property<string>("Address_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Address_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Address_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Address_uk")
                         .HasColumnType("text");
 
                     b.Property<int?>("CityId")
@@ -2651,7 +2948,16 @@ namespace Infrastructure.Migrations
                     b.Property<string>("MapLink")
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Name_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_uk")
                         .HasColumnType("text");
 
                     b.Property<string>("WorkingHours")
@@ -2667,263 +2973,437 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "Antonovycha, 176, Ground Floor",
+                            Address_en = "Antonovycha, 176, Ground Floor",
+                            Address_es = "Antonovycha, 176, Planta Baja",
+                            Address_fr = "Antonovycha, 176, Rez-de-chaussée",
+                            Address_uk = "вул. Антоновича, 176, перший поверх",
                             CityId = 1,
                             MapLink = "Link to map",
-                            Name = "TRC Ocean Plaza",
-                            WorkingHours = "Daily 10:00 - 22:00"
+                            Name_en = "TRC Ocean Plaza",
+                            Name_es = "TRC Ocean Plaza",
+                            Name_fr = "TRC Ocean Plaza",
+                            Name_uk = "ТРЦ Ocean Plaza",
+                            WorkingHours = "10:00 - 22:00"
                         },
                         new
                         {
                             Id = 2,
-                            Address = "Dniprovska Naberezhna, 12, Second Floor",
+                            Address_en = "Dniprovska Naberezhna, 12, Second Floor",
+                            Address_es = "Dniprovska Naberezhna, 12, Segunda Planta",
+                            Address_fr = "Dniprovska Naberezhna, 12, Deuxième étage",
+                            Address_uk = "вул. Дніпровська набережна, 12, другий поверх",
                             CityId = 1,
                             MapLink = "Link to map",
-                            Name = "TRC River Mall",
-                            WorkingHours = "Daily 10:00 - 22:00"
+                            Name_en = "TRC River Mall",
+                            Name_es = "TRC River Mall",
+                            Name_fr = "TRC River Mall",
+                            Name_uk = "ТРЦ River Mall",
+                            WorkingHours = "10:00 - 22:00"
                         },
                         new
                         {
                             Id = 3,
-                            Address = "Prospekt Obolonsky, 1-B, First Floor",
+                            Address_en = "Prospekt Obolonsky, 1-B, First Floor",
+                            Address_es = "Prospekt Obolonsky, 1-B, Primer Piso",
+                            Address_fr = "Prospekt Obolonsky, 1-B, Premier étage",
+                            Address_uk = "просп. Оболонський, 1-Б, перший поверх",
                             CityId = 1,
                             MapLink = "Link to map",
-                            Name = "TRC DREAM Yellow",
-                            WorkingHours = "Daily 10:00 - 22:00"
+                            Name_en = "TRC DREAM Yellow",
+                            Name_es = "TRC DREAM Yellow",
+                            Name_fr = "TRC DREAM Yellow",
+                            Name_uk = "ТРЦ DREAM Yellow",
+                            WorkingHours = "10:00 - 22:00"
                         },
                         new
                         {
                             Id = 4,
-                            Address = "Berkovetska, 6-D, First Floor",
+                            Address_en = "Berkovetska, 6-D, First Floor",
+                            Address_es = "Berkovetska, 6-D, Primer Piso",
+                            Address_fr = "Berkovetska, 6-D, Premier étage",
+                            Address_uk = "вул. Берковецька, 6-Д, перший поверх",
                             CityId = 1,
                             MapLink = "Link to map",
-                            Name = "TRC Lavina Mall",
-                            WorkingHours = "Daily 10:00 - 22:00"
+                            Name_en = "TRC Lavina Mall",
+                            Name_es = "TRC Lavina Mall",
+                            Name_fr = "TRC Lavina Mall",
+                            Name_uk = "ТРЦ Lavina Mall",
+                            WorkingHours = "10:00 - 22:00"
                         },
                         new
                         {
                             Id = 5,
-                            Address = "Kiltseva Doroga, 1, First Floor",
+                            Address_en = "Kiltseva Doroga, 1, First Floor",
+                            Address_es = "Kiltseva Doroga, 1, Primer Piso",
+                            Address_fr = "Kiltseva Doroga, 1, Premier étage",
+                            Address_uk = "вул. Кільцева дорога, 1, перший поверх",
                             CityId = 1,
                             MapLink = "Link to map",
-                            Name = "TRC Respublika Park",
-                            WorkingHours = "Daily 10:00 - 22:00"
+                            Name_en = "TRC Respublika Park",
+                            Name_es = "TRC Respublika Park",
+                            Name_fr = "TRC Respublika Park",
+                            Name_uk = "ТРЦ Respublika Park",
+                            WorkingHours = "10:00 - 22:00"
                         },
                         new
                         {
                             Id = 6,
-                            Address = "Prospekt Pravdy, 47, First Floor",
+                            Address_en = "Prospekt Pravdy, 47, First Floor",
+                            Address_es = "Prospekt Pravdy, 47, Primer Piso",
+                            Address_fr = "Prospekt Pravdy, 47, Premier étage",
+                            Address_uk = "просп. Правди, 47, перший поверх",
                             CityId = 1,
                             MapLink = "Link to map",
-                            Name = "TRC Retroville",
-                            WorkingHours = "Daily 10:00 - 22:00"
+                            Name_en = "TRC Retroville",
+                            Name_es = "TRC Retroville",
+                            Name_fr = "TRC Retroville",
+                            Name_uk = "ТРЦ Retroville",
+                            WorkingHours = "10:00 - 22:00"
                         },
                         new
                         {
                             Id = 7,
-                            Address = "Prospekt Stepana Bandery, 36, First Floor",
+                            Address_en = "Prospekt Stepana Bandery, 36, First Floor",
+                            Address_es = "Prospekt Stepana Bandery, 36, Primer Piso",
+                            Address_fr = "Prospekt Stepana Bandery, 36, Premier étage",
+                            Address_uk = "просп. Степана Бандери, 36, перший поверх",
                             CityId = 1,
                             MapLink = "Link to map",
-                            Name = "TRC Blockbuster Mall",
-                            WorkingHours = "Daily 10:00 - 22:00"
+                            Name_en = "TRC Blockbuster Mall",
+                            Name_es = "TRC Blockbuster Mall",
+                            Name_fr = "TRC Blockbuster Mall",
+                            Name_uk = "ТРЦ Blockbuster Mall",
+                            WorkingHours = "10:00 - 22:00"
                         },
                         new
                         {
                             Id = 8,
-                            Address = "Gnata Khotkevycha, 1-B, First Floor",
+                            Address_en = "Gnata Khotkevycha, 1-B, First Floor",
+                            Address_es = "Gnata Khotkevycha, 1-B, Primer Piso",
+                            Address_fr = "Gnata Khotkevycha, 1-B, Premier étage",
+                            Address_uk = "вул. Гната Хоткевича, 1-Б, перший поверх",
                             CityId = 1,
                             MapLink = "Link to map",
-                            Name = "TRK Prospekt",
-                            WorkingHours = "Daily 10:00 - 22:00"
+                            Name_en = "TRK Prospekt",
+                            Name_es = "TRK Prospekt",
+                            Name_fr = "TRK Prospekt",
+                            Name_uk = "ТРК Проспект",
+                            WorkingHours = "10:00 - 22:00"
                         },
                         new
                         {
                             Id = 9,
-                            Address = "600-Richchia, 17, New Building, First Floor",
+                            Address_en = "600-Richchia, 17, New Building, First Floor",
+                            Address_es = "600-Richchia, 17, Nuevo Edificio, Primer Piso",
+                            Address_fr = "600-Richchia, 17, Nouveau Bâtiment, Premier étage",
+                            Address_uk = "вул. 600-річчя, 17, нова будівля, перший поверх",
                             CityId = 2,
                             MapLink = "Link to map",
-                            Name = "TRC Megamall",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "TRC Megamall",
+                            Name_es = "TRC Megamall",
+                            Name_fr = "TRC Megamall",
+                            Name_uk = "ТРЦ Megamall",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 10,
-                            Address = "Mykoly Ovodova, 51, First Floor",
+                            Address_en = "Mykoly Ovodova, 51, First Floor",
+                            Address_es = "Mykoly Ovodova, 51, Primer Piso",
+                            Address_fr = "Mykoly Ovodova, 51, Premier étage",
+                            Address_uk = "вул. Миколи Оводова, 51, перший поверх",
                             CityId = 2,
                             MapLink = "Link to map",
-                            Name = "TRC Sky Park",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "TRC Sky Park",
+                            Name_es = "TRC Sky Park",
+                            Name_fr = "TRC Sky Park",
+                            Name_uk = "ТРЦ Sky Park",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 11,
-                            Address = "Queen Elizabeth II (Hlinka), 2, Ground Floor",
+                            Address_en = "Queen Elizabeth II (Hlinka), 2, Ground Floor",
+                            Address_es = "Queen Elizabeth II (Hlinka), 2, Planta Baja",
+                            Address_fr = "Queen Elizabeth II (Hlinka), 2, Rez-de-chaussée",
+                            Address_uk = "вул. Глінки (колиш. Єлизавети II), 2, перший поверх",
                             CityId = 3,
                             MapLink = "Link to map",
-                            Name = "TRC MOST City",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "TRC MOST City",
+                            Name_es = "TRC MOST City",
+                            Name_fr = "TRC MOST City",
+                            Name_uk = "ТРЦ MOST City",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 12,
-                            Address = "Nyzhnedniprovskaya, 17, First Floor",
+                            Address_en = "Nyzhnedniprovskaya, 17, First Floor",
+                            Address_es = "Nyzhnedniprovskaya, 17, Primer Piso",
+                            Address_fr = "Nyzhnedniprovskaya, 17, Premier étage",
+                            Address_uk = "вул. Нижньодніпровська, 17, перший поверх",
                             CityId = 3,
                             MapLink = "Link to map",
-                            Name = "TRC Karavan",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "TRC Karavan",
+                            Name_es = "TRC Karavan",
+                            Name_fr = "TRC Karavan",
+                            Name_uk = "ТРЦ Karavan",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 13,
-                            Address = "Kyivska, 77, First Floor",
+                            Address_en = "Kyivska, 77, First Floor",
+                            Address_es = "Kyivska, 77, Primer Piso",
+                            Address_fr = "Kyivska, 77, Premier étage",
+                            Address_uk = "вул. Київська, 77, перший поверх",
                             CityId = 4,
                             MapLink = "Link to map",
-                            Name = "TRC Global",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "TRC Global",
+                            Name_es = "TRC Global",
+                            Name_fr = "TRC Global",
+                            Name_uk = "ТРЦ Global",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 14,
-                            Address = "Ivana Mykolaychuka, 2",
+                            Address_en = "Ivana Mykolaychuka, 2",
+                            Address_es = "Ivana Mykolaychuka, 2",
+                            Address_fr = "Ivana Mykolaychuka, 2",
+                            Address_uk = "вул. Івана Миколайчука, 2",
                             CityId = 5,
                             MapLink = "Link to map",
-                            Name = "Shopping Mall ARSEN",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "Shopping Mall ARSEN",
+                            Name_es = "Centro Comercial ARSEN",
+                            Name_fr = "Centre Commercial ARSEN",
+                            Name_uk = "ТЦ Арсен",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 15,
-                            Address = "4 Varshavska Street",
+                            Address_en = "4 Varshavska Street",
+                            Address_es = "Calle Varsovia, 4",
+                            Address_fr = "Rue Varsovie, 4",
+                            Address_uk = "вул. Варшавська, 4",
                             CityId = 6,
                             MapLink = "Link to map",
-                            Name = "Juvent Shopping Center (Boutique 110)",
-                            WorkingHours = "Daily 10:00 - 18:00"
+                            Name_en = "Juvent Shopping Center (Boutique 110)",
+                            Name_es = "Juvent Centre Commercial (Boutique 110)",
+                            Name_fr = "Juvent Centre Commercial (Boutique 110)",
+                            Name_uk = "ТЦ Ювент (бутик 110)",
+                            WorkingHours = "10:00 - 18:00"
                         },
                         new
                         {
                             Id = 16,
-                            Address = "1 Sukhomlynskoho Street, Second Floor",
+                            Address_en = "1 Sukhomlynskoho Street, Second Floor",
+                            Address_es = "Calle Sukhomlynskoho, 1, Segunda Planta",
+                            Address_fr = "Rue Sukhomlynskoho, 1, Deuxième étage",
+                            Address_uk = "вул. Сухомлинського, 1, другий поверх",
                             CityId = 7,
                             MapLink = "Link to map",
-                            Name = "PortCity Shopping Mall",
-                            WorkingHours = "Daily 10:00 - 22:00"
+                            Name_en = "PortCity Shopping Mall",
+                            Name_es = "PortCity Centro Comercial",
+                            Name_fr = "PortCity Centre Commercial",
+                            Name_uk = "ТЦ PortCity",
+                            WorkingHours = "10:00 - 22:00"
                         },
                         new
                         {
                             Id = 17,
-                            Address = "1 Voli Avenue, Fourth Floor",
+                            Address_en = "1 Voli Avenue, Fourth Floor",
+                            Address_es = "Avenida Voli, 1, Cuarto Piso",
+                            Address_fr = "Avenue Voli, 1, Quatrième étage",
+                            Address_uk = "просп. Волі, 1, четвертий поверх",
                             CityId = 7,
                             MapLink = "Link to map",
-                            Name = "TSUM Lutsk",
-                            WorkingHours = "Daily 09:30 - 21:00"
+                            Name_en = "TSUM Lutsk",
+                            Name_es = "TSUM Lutsk",
+                            Name_fr = "TSUM Lutsk",
+                            Name_uk = "ЦУМ Луцьк",
+                            WorkingHours = "09:30 - 21:00"
                         },
                         new
                         {
                             Id = 18,
-                            Address = "9 Voli Avenue, Building Facade",
+                            Address_en = "9 Voli Avenue, Building Facade",
+                            Address_es = "Avenida Voli, 9, Fachada del Edificio",
+                            Address_fr = "Avenue Voli, 9, Façade du Bâtiment",
+                            Address_uk = "просп. Волі, 9, фасад будівлі",
                             CityId = 7,
                             MapLink = "Link to map",
-                            Name = "ESTRO Store (Voli, 9)",
-                            WorkingHours = "Daily 09:00 - 21:00"
+                            Name_en = "ESTRO Store (Voli, 9)",
+                            Name_es = "ESTRO Store (Voli, 9)",
+                            Name_fr = "ESTRO Store (Voli, 9)",
+                            Name_uk = "Магазин ЕСТРО (Волі, 9)",
+                            WorkingHours = "09:00 - 21:00"
                         },
                         new
                         {
                             Id = 19,
-                            Address = "1 Karpenka-Karyho Street",
+                            Address_en = "1 Karpenka-Karyho Street",
+                            Address_es = "Calle Karpenka-Karyho, 1",
+                            Address_fr = "Rue Karpenka-Karyho, 1",
+                            Address_uk = "вул. Карпенка-Карого, 1",
                             CityId = 7,
                             MapLink = "Link to map",
-                            Name = "Juvent Shopping Center (Boutique 125)",
-                            WorkingHours = "Daily 09:00 - 21:00"
+                            Name_en = "Juvent Shopping Center (Boutique 125)",
+                            Name_es = "Juvent Shopping Center (Boutique 125)",
+                            Name_fr = "Juvent Shopping Center (Boutique 125)",
+                            Name_uk = "ТЦ Ювент (бутик 125)",
+                            WorkingHours = "09:00 - 21:00"
                         },
                         new
                         {
                             Id = 20,
-                            Address = "7b Pid Dubom Street, Second Floor",
+                            Address_en = "7b Pid Dubom Street, Second Floor",
+                            Address_es = "Calle Pid Dubom, 7b, Segunda Planta",
+                            Address_fr = "Rue Pid Dubom, 7b, Deuxième étage",
+                            Address_uk = "вул. Під Дубом, 7б, другий поверх",
                             CityId = 8,
                             MapLink = "Link to map",
-                            Name = "Forum Lviv Shopping Mall",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "Forum Lviv Shopping Mall",
+                            Name_es = "Forum Lviv Centro Comercial",
+                            Name_fr = "Forum Lviv Centre Commercial",
+                            Name_uk = "ТЦ Форум Львів",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 21,
-                            Address = "226-A Kulparkivska Street, First Floor",
+                            Address_en = "226-A Kulparkivska Street, First Floor",
+                            Address_es = "Calle Kulparkivska, 226-A, Primer Piso",
+                            Address_fr = "Rue Kulparkivska, 226-A, Premier étage",
+                            Address_uk = "вул. Кульпарківська, 226-А, перший поверх",
                             CityId = 8,
                             MapLink = "Link to map",
-                            Name = "Victoria Gardens Shopping Mall",
-                            WorkingHours = "Daily 10:00 - 20:00"
+                            Name_en = "Victoria Gardens Shopping Mall",
+                            Name_es = "Victoria Gardens Centro Comercial",
+                            Name_fr = "Victoria Gardens Centre Commercial",
+                            Name_uk = "ТЦ Вікторія Гарденс",
+                            WorkingHours = "10:00 - 20:00"
                         },
                         new
                         {
                             Id = 22,
-                            Address = "30 Stryiska Street, First Floor",
+                            Address_en = "30 Stryiska Street, First Floor",
+                            Address_es = "Calle Stryiska, 30, Primer Piso",
+                            Address_fr = "Rue Stryiska, 30, Premier étage",
+                            Address_uk = "вул. Стрийська, 30, перший поверх",
                             CityId = 8,
                             MapLink = "Link to map",
-                            Name = "King Cross Leopolis Shopping Mall",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "King Cross Leopolis Shopping Mall",
+                            Name_es = "King Cross Leopolis Centro Comercial",
+                            Name_fr = "King Cross Leopolis Centre Commercial",
+                            Name_uk = "ТЦ King Cross Leopolis",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 23,
-                            Address = "14 Doroshenka Street",
+                            Address_en = "14 Doroshenka Street",
+                            Address_es = "Calle Doroshenka, 14",
+                            Address_fr = "Rue Doroshenka, 14",
+                            Address_uk = "вул. Дорошенка, 14",
                             CityId = 8,
                             MapLink = "Link to map",
-                            Name = "ESTRO Store (Doroshenka, 14)",
-                            WorkingHours = "Daily 10:00 - 20:00"
+                            Name_en = "ESTRO Store (Doroshenka, 14)",
+                            Name_es = "ESTRO Store (Doroshenka, 14)",
+                            Name_fr = "ESTRO Store (Doroshenka, 14)",
+                            Name_uk = "Магазин ЕСТРО (Дорошенка, 14)",
+                            WorkingHours = "10:00 - 20:00"
                         },
                         new
                         {
                             Id = 24,
-                            Address = "2 Prospekt Nezalezhnosti, First Floor",
+                            Address_en = "2 Prospekt Nezalezhnosti, First Floor",
+                            Address_es = "Avenida Prospekt Nezalezhnosti, 2, Primer Piso",
+                            Address_fr = "Avenue Prospekt Nezalezhnosti, 2, Premier étage",
+                            Address_uk = "просп. Незалежності, 2, перший поверх",
                             CityId = 9,
                             MapLink = "Link to map",
-                            Name = "City Center Shopping Mall",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "City Center Shopping Mall",
+                            Name_es = "City Center Centro Comercial",
+                            Name_fr = "City Center Centre Commercial",
+                            Name_uk = "ТЦ City Center",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 25,
-                            Address = "23 Kulyka i Hudacheka",
+                            Address_en = "23 Kulyka i Hudacheka",
+                            Address_es = "Calle Kulyka i Hudacheka, 23",
+                            Address_fr = "Rue Kulyka i Hudacheka, 23",
+                            Address_uk = "вул. Кулика і Гудачека, 23",
                             CityId = 10,
                             MapLink = "Link to map",
-                            Name = "Equator Shopping Mall",
-                            WorkingHours = "Daily 10:00 - 22:00"
+                            Name_en = "Equator Shopping Mall",
+                            Name_es = "Equator Centro Comercial",
+                            Name_fr = "Equator Centre Commercial",
+                            Name_uk = "ТЦ Екватор",
+                            WorkingHours = "10:00 - 22:00"
                         },
                         new
                         {
                             Id = 26,
-                            Address = "1 Oleksandra Borysenka, First Floor",
+                            Address_en = "1 Oleksandra Borysenka, First Floor",
+                            Address_es = "Calle Oleksandra Borysenka, 1, Primer Piso",
+                            Address_fr = "Rue Oleksandra Borysenka, 1, Premier étage",
+                            Address_uk = "вул. Олександра Борисенка, 1, перший поверх",
                             CityId = 10,
                             MapLink = "Link to map",
-                            Name = "Zlata Plaza Shopping Mall",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "Zlata Plaza Shopping Mall",
+                            Name_es = "Zlata Plaza Centro Comercial",
+                            Name_fr = "Zlata Plaza Centre Commercial",
+                            Name_uk = "ТЦ Злата Плаза",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 27,
-                            Address = "9 Heroiv Pratsi, First Floor",
+                            Address_en = "9 Heroiv Pratsi, First Floor",
+                            Address_es = "Calle Heroiv Pratsi, 9, Primer Piso",
+                            Address_fr = "Rue Heroiv Pratsi, 9, Premier étage",
+                            Address_uk = "вул. Героїв Праці, 9, перший поверх",
                             CityId = 11,
                             MapLink = "Link to map",
-                            Name = "Dafi Shopping Mall",
-                            WorkingHours = "Daily 10:00 - 20:00"
+                            Name_en = "Dafi Shopping Mall",
+                            Name_es = "Dafi Centro Comercial",
+                            Name_fr = "Dafi Centre Commercial",
+                            Name_uk = "ТЦ Дафі",
+                            WorkingHours = "10:00 - 20:00"
                         },
                         new
                         {
                             Id = 28,
-                            Address = "2a Pushkinska, Third Floor",
+                            Address_en = "2a Pushkinska, Third Floor",
+                            Address_es = "Calle Pushkinska, 2a, Tercer Piso",
+                            Address_fr = "Rue Pushkinska, 2a, Troisième étage",
+                            Address_uk = "вул. Пушкінська, 2а, третій поверх",
                             CityId = 11,
                             MapLink = "Link to map",
-                            Name = "Nikolsky Shopping Mall",
-                            WorkingHours = "Daily 10:00 - 21:00"
+                            Name_en = "Nikolsky Shopping Mall",
+                            Name_es = "Nikolsky Centro Comercial",
+                            Name_fr = "Nikolsky Centre Commercial",
+                            Name_uk = "ТЦ Нікольський",
+                            WorkingHours = "10:00 - 21:00"
                         },
                         new
                         {
                             Id = 29,
-                            Address = "265A Haharina, First Floor",
+                            Address_en = "265A Haharina, First Floor",
+                            Address_es = "Calle Haharina, 265A, Primer Piso",
+                            Address_fr = "Rue Haharina, 265A, Premier étage",
+                            Address_uk = "вул. Гагаріна, 265А, перший поверх",
                             CityId = 12,
                             MapLink = "Link to map",
-                            Name = "DEPO't Center Shopping Mall",
-                            WorkingHours = "Daily 10:00 - 20:00"
+                            Name_en = "DEPO't Center Shopping Mall",
+                            Name_es = "DEPO't Center Centro Comercial",
+                            Name_fr = "DEPO't Center Centre Commercial",
+                            Name_uk = "ТЦ Депо",
+                            WorkingHours = "10:00 - 20:00"
                         });
                 });
 

@@ -27,7 +27,7 @@ namespace Infrastructure.Initializers
                         PhoneNumber = "0990000000",
                         PhoneNumberConfirmed = true,
                         AuthType = "standard",
-    };
+                    };
 
                     context.Roles.AddRange(
                         new IdentityRole()

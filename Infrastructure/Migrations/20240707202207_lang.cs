@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class start : Migration
+    public partial class lang : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -86,7 +86,10 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CountryName = table.Column<string>(type: "text", nullable: true)
+                    CountryName_en = table.Column<string>(type: "text", nullable: true),
+                    CountryName_es = table.Column<string>(type: "text", nullable: true),
+                    CountryName_fr = table.Column<string>(type: "text", nullable: true),
+                    CountryName_uk = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -112,7 +115,10 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
+                    Name_en = table.Column<string>(type: "text", nullable: false),
+                    Name_es = table.Column<string>(type: "text", nullable: false),
+                    Name_fr = table.Column<string>(type: "text", nullable: false),
+                    Name_uk = table.Column<string>(type: "text", nullable: false),
                     Value = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -126,7 +132,10 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_en = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_es = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_uk = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_fr = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
                     URLName = table.Column<string>(type: "text", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: true)
                 },
@@ -309,7 +318,10 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CityName = table.Column<string>(type: "text", nullable: true),
+                    CityName_en = table.Column<string>(type: "text", nullable: true),
+                    CityName_es = table.Column<string>(type: "text", nullable: true),
+                    CityName_fr = table.Column<string>(type: "text", nullable: true),
+                    CityName_uk = table.Column<string>(type: "text", nullable: true),
                     CountryID = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
@@ -348,7 +360,10 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_en = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_es = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_uk = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_fr = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
                     URLName = table.Column<string>(type: "text", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: true),
                     MainCategoryId = table.Column<int>(type: "integer", nullable: true)
@@ -409,10 +424,16 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
+                    Name_en = table.Column<string>(type: "text", nullable: true),
+                    Name_es = table.Column<string>(type: "text", nullable: true),
+                    Name_fr = table.Column<string>(type: "text", nullable: true),
+                    Name_uk = table.Column<string>(type: "text", nullable: true),
                     WorkingHours = table.Column<string>(type: "text", nullable: true),
                     MapLink = table.Column<string>(type: "text", nullable: true),
-                    Address = table.Column<string>(type: "text", nullable: true),
+                    Address_en = table.Column<string>(type: "text", nullable: true),
+                    Address_es = table.Column<string>(type: "text", nullable: true),
+                    Address_fr = table.Column<string>(type: "text", nullable: true),
+                    Address_uk = table.Column<string>(type: "text", nullable: true),
                     CityId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
@@ -431,7 +452,10 @@ namespace Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_en = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_es = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_uk = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Name_fr = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
                     URLName = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
                     ImagePath = table.Column<string>(type: "text", nullable: true),
@@ -607,16 +631,16 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Country",
-                columns: new[] { "Id", "CountryName" },
+                columns: new[] { "Id", "CountryName_en", "CountryName_es", "CountryName_fr", "CountryName_uk" },
                 values: new object[,]
                 {
-                    { 1, "Ukraine" },
-                    { 2, "England" },
-                    { 3, "Spain" },
-                    { 4, "France" },
-                    { 5, "Poland" },
-                    { 6, "USA" },
-                    { 7, "Japan" }
+                    { 1, "Ukraine", "Ucrania", "Ukraine", "Україна" },
+                    { 2, "England", "Inglaterra", "Angleterre", "Англія" },
+                    { 3, "Spain", "España", "Espagne", "Іспанія" },
+                    { 4, "France", "Francia", "France", "Франція" },
+                    { 5, "Poland", "Polonia", "Pologne", "Польща" },
+                    { 6, "USA", "Estados Unidos", "États-Unis", "США" },
+                    { 7, "Japan", "Japón", "Japon", "Японія" }
                 });
 
             migrationBuilder.InsertData(
@@ -645,41 +669,41 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Info",
-                columns: new[] { "Id", "Name", "Value" },
+                columns: new[] { "Id", "Name_en", "Name_es", "Name_fr", "Name_uk", "Value" },
                 values: new object[,]
                 {
-                    { 1, "Color", "color" },
-                    { 2, "Material", "material" },
-                    { 3, "Size", "size" },
-                    { 4, "Purpose", "purpose" }
+                    { 1, "Color", "Color", "Couleur", "Колір", "color" },
+                    { 2, "Material", "Material", "Matériau", "Матеріал", "material" },
+                    { 3, "Size", "Tamaño", "Taille", "Розмір", "size" },
+                    { 4, "Purpose", "Propósito", "But", "Сезон", "purpose" }
                 });
 
             migrationBuilder.InsertData(
                 table: "MainCategories",
-                columns: new[] { "Id", "ImagePath", "Name", "URLName" },
+                columns: new[] { "Id", "ImagePath", "Name_en", "Name_es", "Name_fr", "Name_uk", "URLName" },
                 values: new object[,]
                 {
-                    { 1, null, "Woman", "woman" },
-                    { 2, null, "Man", "man" }
+                    { 1, null, "Women", "Mujer", "Femme", "Жіноче", "woman" },
+                    { 2, null, "Men", "Hombre", "Homme", "Чоловіче", "man" }
                 });
 
             migrationBuilder.InsertData(
                 table: "City",
-                columns: new[] { "Id", "CityName", "CountryID" },
+                columns: new[] { "Id", "CityName_en", "CityName_es", "CityName_fr", "CityName_uk", "CountryID" },
                 values: new object[,]
                 {
-                    { 1, "Kiyv", 1 },
-                    { 2, "Vinnytsia", 1 },
-                    { 3, "Dnipro", 1 },
-                    { 4, "Zhytomyr", 1 },
-                    { 5, "Ivano-Frankivsk", 1 },
-                    { 6, "Kovel", 1 },
-                    { 7, "Lutsk", 1 },
-                    { 8, "Lviv", 1 },
-                    { 9, "Odesa", 1 },
-                    { 10, "Rivne", 1 },
-                    { 11, "Kharkiv", 1 },
-                    { 12, "Chernivtsi", 1 }
+                    { 1, "Kyiv", "Kiev", "Kiev", "Київ", 1 },
+                    { 2, "Vinnytsia", "Vinnitsa", "Vinnitsa", "Вінниця", 1 },
+                    { 3, "Dnipro", "Dniepr", "Dniepr", "Дніпро", 1 },
+                    { 4, "Zhytomyr", "Jytomyr", "Jytomyr", "Житомир", 1 },
+                    { 5, "Ivano-Frankivsk", "Ivano-Frankivsk", "Ivano-Frankivsk", "Івано-Франківськ", 1 },
+                    { 6, "Kovel", "Kovel", "Kovel", "Ковель", 1 },
+                    { 7, "Lutsk", "Loutsk", "Loutsk", "Луцьк", 1 },
+                    { 8, "Lviv", "Lviv", "Lviv", "Львів", 1 },
+                    { 9, "Odesa", "Odessa", "Odessa", "Одеса", 1 },
+                    { 10, "Rivne", "Rovno", "Rovno", "Рівне", 1 },
+                    { 11, "Kharkiv", "Kharkov", "Kharkov", "Харків", 1 },
+                    { 12, "Chernivtsi", "Tchernivtsi", "Tchernivtsi", "Чернівці", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -721,98 +745,98 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "SubCategories",
-                columns: new[] { "Id", "ImagePath", "MainCategoryId", "Name", "URLName" },
+                columns: new[] { "Id", "ImagePath", "MainCategoryId", "Name_en", "Name_es", "Name_fr", "Name_uk", "URLName" },
                 values: new object[,]
                 {
-                    { 1, null, 1, "Woman Shoes", "woman-shoes" },
-                    { 2, null, 2, "Man Shoes", "man-shoes" },
-                    { 3, null, 1, "Woman Clothing", "woman-clothing" },
-                    { 4, null, 2, "Man Clothing", "man-clothing" },
-                    { 5, null, 1, "Woman Accessories", "woman-accessories" },
-                    { 6, null, 2, "Man Accessories", "man-accessories" }
+                    { 1, null, 1, "Women's Shoes", "Zapatos de mujer", "Chaussures pour femmes", "Жіноче взуття", "woman-shoes" },
+                    { 2, null, 2, "Men's Shoes", "Zapatos de hombre", "Chaussures pour hommes", "Чоловіче взуття", "man-shoes" },
+                    { 3, null, 1, "Women's Clothing", "Ropa de mujer", "Vêtements pour femmes", "Жіночий одяг", "woman-clothing" },
+                    { 4, null, 2, "Men's Clothing", "Ropa de hombre", "Vêtements pour hommes", "Чоловічий одяг", "man-clothing" },
+                    { 5, null, 1, "Women's Accessories", "Accesorios de mujer", "Accessoires pour femmes", "Жіночі аксесуари", "woman-accessories" },
+                    { 6, null, 2, "Men's Accessories", "Accesorios de hombre", "Accessoires pour hommes", "Чоловічі аксесуари", "man-accessories" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "Id", "Description", "ImagePath", "Name", "SubCategoryId", "URLName" },
+                columns: new[] { "Id", "Description", "ImagePath", "Name_en", "Name_es", "Name_fr", "Name_uk", "SubCategoryId", "URLName" },
                 values: new object[,]
                 {
-                    { 1, null, null, "Open shoes", 1, "open-shoes" },
-                    { 2, null, null, "Pumps and loafers", 1, "pumps-and-loafers" },
-                    { 3, null, null, "Heeled shoes", 1, "heeled-shoes" },
-                    { 4, null, null, "Women's athletic sneakers", 1, "women-s-athletic-sneakers" },
-                    { 5, null, null, "Women's sneakers", 1, "women-sneakers" },
-                    { 6, null, null, "High boots and Chelsea", 1, "high-boots-&-chelsea" },
-                    { 7, null, null, "Boots on heels", 1, "boots-on-heels" },
-                    { 8, null, null, "Boots and high boots", 1, "boots-and-high-boots" },
-                    { 9, null, null, "Cossacks boots", 1, "cossacks-boots" },
-                    { 10, null, null, "Winter footwear", 1, "winter-footwear" },
-                    { 11, null, null, "Perforated shoes", 1, "perforated-shoes" },
-                    { 12, null, null, "Men's boots", 2, "men-boots" },
-                    { 13, null, null, "Men's athletic sneakers", 2, "man-athletic-sneakers" },
-                    { 14, null, null, "Men's sneakers", 2, "man-sneakers" },
-                    { 15, null, null, "Men's pumps", 2, "man-pumps" },
-                    { 16, null, null, "Men's moccasins", 2, "man-moccasins" },
-                    { 17, null, null, "Men's summer shoes", 2, "man-summer-shoes" },
-                    { 18, null, null, "Women's outerwear", 3, "woman-outerwear" },
-                    { 19, null, null, "Women's sweaters and suits", 3, "woman-sweaters-and-suits" },
-                    { 20, null, null, "Women's t-shirts and sweatshirts", 3, "woman-t-shirts-and-sweatshirts" },
-                    { 21, null, null, "Women's shawl", 3, "woman-shawl" },
-                    { 22, null, null, "Women's scarves and hats", 3, "woman-scarves-and-hats" },
-                    { 23, null, null, "Women's gloves", 3, "woman-gloves" },
-                    { 24, null, null, "Women's socks and tights", 3, "woman-socks-and-tights" },
-                    { 25, null, null, "Men's outerwear", 4, "man-outerwear" },
-                    { 26, null, null, "Men's sweaters and suits", 4, "man-sweaters-and-suits" },
-                    { 27, null, null, "Men's t-shirts and sweatshirts", 4, "man-t-shirts-and-sweatshirts" },
-                    { 28, null, null, "Men's scarves and hats", 4, "man-scarves-and-hats" },
-                    { 29, null, null, "Men's gloves", 4, "man-gloves" },
-                    { 30, null, null, "Men's socks", 4, "man-socks" },
-                    { 31, null, null, "Women's glasses", 5, "woman-glasses" },
-                    { 32, null, null, "Women's home shoes", 5, "woman-home-shoes" },
-                    { 33, null, null, "Women's bags", 5, "woman-bags" },
-                    { 34, null, null, "Women's backpacks", 5, "woman-backpacks" },
-                    { 35, null, null, "Women's care products", 5, "woman-care-products" },
-                    { 36, null, null, "Men's glasses", 6, "man-glasses" },
-                    { 37, null, null, "Men's home shoes", 6, "man-home-shoes" },
-                    { 38, null, null, "Men's bags", 6, "man-bags" },
-                    { 39, null, null, "Men's backpacks", 6, "man-backpacks" },
-                    { 40, null, null, "Men's care products", 6, "man-care-products" }
+                    { 1, null, null, "Open shoes", "Zapatos abiertos", "Chaussures ouvertes", "Відкрите взуття", 1, "open-shoes" },
+                    { 2, null, null, "Pumps and loafers", "Zapatos de tacón y mocasines", "Escarpins et mocassins", "Туфлі та лофери", 1, "pumps-and-loafers" },
+                    { 3, null, null, "Heeled shoes", "Zapatos de tacón", "Chaussures à talons", "Туфлі на підборах", 1, "heeled-shoes" },
+                    { 4, null, null, "Women's athletic sneakers", "Zapatillas deportivas para mujeres", "Baskets de sport pour femmes", "Кросівки жіночі", 1, "women-s-athletic-sneakers" },
+                    { 5, null, null, "Women's sneakers", "Zapatillas para mujeres", "Baskets pour femmes", "Жіночі кеди", 1, "women-sneakers" },
+                    { 6, null, null, "High boots and Chelsea", "Botas altas y Chelsea", "Bottes hautes et Chelsea", "Високі черевики, челсі", 1, "high-boots-&-chelsea" },
+                    { 7, null, null, "Boots on heels", "Botas de tacón", "Bottes à talons", "Черевики на підборах", 1, "boots-on-heels" },
+                    { 8, null, null, "Boots and high boots", "Botas y botas altas", "Bottes et bottes hautes", "Чоботи та ботфорти", 1, "boots-and-high-boots" },
+                    { 9, null, null, "Cossacks boots", "Botas de cosaco", "Bottes Cossacks", "Козаки", 1, "cossacks-boots" },
+                    { 10, null, null, "Winter footwear", "Calzado de invierno", "Chaussures d'hiver", "Зимове взуття", 1, "winter-footwear" },
+                    { 11, null, null, "Perforated shoes", "Zapatos perforados", "Chaussures perforées", "Перфороване взуття", 1, "perforated-shoes" },
+                    { 12, null, null, "Men's boots", "Botas para hombres", "Bottes pour hommes", "Чоловічі черевики", 2, "men-boots" },
+                    { 13, null, null, "Men's athletic sneakers", "Zapatillas deportivas para hombres", "Baskets de sport pour hommes", "Чоловічі кросівки", 2, "man-athletic-sneakers" },
+                    { 14, null, null, "Men's sneakers", "Zapatillas para hombres", "Baskets pour hommes", "Чоловічі кеди", 2, "man-sneakers" },
+                    { 15, null, null, "Men's pumps", "Zapatos de tacón para hombres", "Escarpins pour hommes", "Чоловічі туфлі", 2, "man-pumps" },
+                    { 16, null, null, "Men's moccasins", "Mocasines para hombres", "Mocassins pour hommes", "Чоловічі мокасини", 2, "man-moccasins" },
+                    { 17, null, null, "Men's summer shoes", "Zapatos de verano para hombres", "Chaussures d'été pour hommes", "Чоловічі літнє взуття", 2, "man-summer-shoes" },
+                    { 18, null, null, "Women's outerwear", "Ropa exterior para mujeres", "Vêtements d'extérieur pour femmes", "Жіночий верхній одяг", 3, "woman-outerwear" },
+                    { 19, null, null, "Women's sweaters and suits", "Suéteres y trajes para mujeres", "Pulls et costumes pour femmes", "Жіночі светри та костюми", 3, "woman-sweaters-and-suits" },
+                    { 20, null, null, "Women's t-shirts and sweatshirts", "Camisetas y sudaderas para mujeres", "T-shirts et sweatshirts pour femmes", "Жіночі футболки та світшоти", 3, "woman-t-shirts-and-sweatshirts" },
+                    { 21, null, null, "Women's shawl", "Chal para mujeres", "Châle pour femmes", "Жіночі хустки", 3, "woman-shawl" },
+                    { 22, null, null, "Women's scarves and hats", "Bufandas y sombreros para mujeres", "Écharpes et chapeaux pour femmes", "Жіночі шарфи та шапки", 3, "woman-scarves-and-hats" },
+                    { 23, null, null, "Women's gloves", "Guantes para mujeres", "Gants pour femmes", "Жіночі рукавички", 3, "woman-gloves" },
+                    { 24, null, null, "Women's socks and tights", "Calcetines y pantimedias para mujeres", "Chaussettes et collants pour femmes", "Жіночі шкарпетки та колготи", 3, "woman-socks-and-tights" },
+                    { 25, null, null, "Men's outerwear", "Ropa exterior para hombres", "Vêtements d'extérieur pour hommes", "Чоловічий верхній одяг", 4, "man-outerwear" },
+                    { 26, null, null, "Men's sweaters and suits", "Suéteres y trajes para hombres", "Pulls et costumes pour hommes", "Чоловічі светри та костюми", 4, "man-sweaters-and-suits" },
+                    { 27, null, null, "Men's t-shirts and sweatshirts", "Camisetas y sudaderas para hombres", "T-shirts et sweatshirts pour hommes", "Чоловікі футболки та світшоти", 4, "man-t-shirts-and-sweatshirts" },
+                    { 28, null, null, "Men's scarves and hats", "Bufandas y sombreros para hombres", "Écharpes et chapeaux pour hommes", "Чоловічі шарфи та шапки", 4, "man-scarves-and-hats" },
+                    { 29, null, null, "Men's gloves", "Guantes para hombres", "Gants pour hommes", "Чоловічі рукавички", 4, "man-gloves" },
+                    { 30, null, null, "Men's socks", "Calcetines para hombres", "Chaussettes pour hommes", "Чоловічі шкарпетки", 4, "man-socks" },
+                    { 31, null, null, "Women's glasses", "Gafas para mujeres", "Lunettes pour femmes", "Жіночі окуляри", 5, "woman-glasses" },
+                    { 32, null, null, "Women's home shoes", "Zapatos de casa para mujeres", "Chaussures de maison pour femmes", "Жіноче домашнє взуття", 5, "woman-home-shoes" },
+                    { 33, null, null, "Women's bags", "Bolsos para mujeres", "Sacs pour femmes", "Жіночі сумки", 5, "woman-bags" },
+                    { 34, null, null, "Women's backpacks", "Mochilas para mujeres", "Sacs à dos pour femmes", "Жіночі рюкзаки для жінок", 5, "woman-backpacks" },
+                    { 35, null, null, "Women's care products", "Productos de cuidado para mujeres", "Produits de soin pour femmes", "Жіночі засоби для догляду", 5, "woman-care-products" },
+                    { 36, null, null, "Men's glasses", "Gafas para hombres", "Lunettes pour hommes", "Чоловічі окуляри", 6, "man-glasses" },
+                    { 37, null, null, "Men's home shoes", "Zapatos de casa para hombres", "Chaussures de maison pour hommes", "Чоловіче домашнє взуття", 6, "man-home-shoes" },
+                    { 38, null, null, "Men's bags", "Bolsos para hombres", "Sacs pour hommes", "Чоловічі сумки", 6, "man-bags" },
+                    { 39, null, null, "Men's backpacks", "Mochilas para hombres", "Sacs à dos pour hommes", "Чоловічі рюкзаки", 6, "man-backpacks" },
+                    { 40, null, null, "Men's care products", "Productos de cuidado para hombres", "Produits de soin pour hommes", "Чоловічі засоби для догляду", 6, "man-care-products" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Store",
-                columns: new[] { "Id", "Address", "CityId", "MapLink", "Name", "WorkingHours" },
+                columns: new[] { "Id", "Address_en", "Address_es", "Address_fr", "Address_uk", "CityId", "MapLink", "Name_en", "Name_es", "Name_fr", "Name_uk", "WorkingHours" },
                 values: new object[,]
                 {
-                    { 1, "Antonovycha, 176, Ground Floor", 1, "Link to map", "TRC Ocean Plaza", "Daily 10:00 - 22:00" },
-                    { 2, "Dniprovska Naberezhna, 12, Second Floor", 1, "Link to map", "TRC River Mall", "Daily 10:00 - 22:00" },
-                    { 3, "Prospekt Obolonsky, 1-B, First Floor", 1, "Link to map", "TRC DREAM Yellow", "Daily 10:00 - 22:00" },
-                    { 4, "Berkovetska, 6-D, First Floor", 1, "Link to map", "TRC Lavina Mall", "Daily 10:00 - 22:00" },
-                    { 5, "Kiltseva Doroga, 1, First Floor", 1, "Link to map", "TRC Respublika Park", "Daily 10:00 - 22:00" },
-                    { 6, "Prospekt Pravdy, 47, First Floor", 1, "Link to map", "TRC Retroville", "Daily 10:00 - 22:00" },
-                    { 7, "Prospekt Stepana Bandery, 36, First Floor", 1, "Link to map", "TRC Blockbuster Mall", "Daily 10:00 - 22:00" },
-                    { 8, "Gnata Khotkevycha, 1-B, First Floor", 1, "Link to map", "TRK Prospekt", "Daily 10:00 - 22:00" },
-                    { 9, "600-Richchia, 17, New Building, First Floor", 2, "Link to map", "TRC Megamall", "Daily 10:00 - 21:00" },
-                    { 10, "Mykoly Ovodova, 51, First Floor", 2, "Link to map", "TRC Sky Park", "Daily 10:00 - 21:00" },
-                    { 11, "Queen Elizabeth II (Hlinka), 2, Ground Floor", 3, "Link to map", "TRC MOST City", "Daily 10:00 - 21:00" },
-                    { 12, "Nyzhnedniprovskaya, 17, First Floor", 3, "Link to map", "TRC Karavan", "Daily 10:00 - 21:00" },
-                    { 13, "Kyivska, 77, First Floor", 4, "Link to map", "TRC Global", "Daily 10:00 - 21:00" },
-                    { 14, "Ivana Mykolaychuka, 2", 5, "Link to map", "Shopping Mall ARSEN", "Daily 10:00 - 21:00" },
-                    { 15, "4 Varshavska Street", 6, "Link to map", "Juvent Shopping Center (Boutique 110)", "Daily 10:00 - 18:00" },
-                    { 16, "1 Sukhomlynskoho Street, Second Floor", 7, "Link to map", "PortCity Shopping Mall", "Daily 10:00 - 22:00" },
-                    { 17, "1 Voli Avenue, Fourth Floor", 7, "Link to map", "TSUM Lutsk", "Daily 09:30 - 21:00" },
-                    { 18, "9 Voli Avenue, Building Facade", 7, "Link to map", "ESTRO Store (Voli, 9)", "Daily 09:00 - 21:00" },
-                    { 19, "1 Karpenka-Karyho Street", 7, "Link to map", "Juvent Shopping Center (Boutique 125)", "Daily 09:00 - 21:00" },
-                    { 20, "7b Pid Dubom Street, Second Floor", 8, "Link to map", "Forum Lviv Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 21, "226-A Kulparkivska Street, First Floor", 8, "Link to map", "Victoria Gardens Shopping Mall", "Daily 10:00 - 20:00" },
-                    { 22, "30 Stryiska Street, First Floor", 8, "Link to map", "King Cross Leopolis Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 23, "14 Doroshenka Street", 8, "Link to map", "ESTRO Store (Doroshenka, 14)", "Daily 10:00 - 20:00" },
-                    { 24, "2 Prospekt Nezalezhnosti, First Floor", 9, "Link to map", "City Center Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 25, "23 Kulyka i Hudacheka", 10, "Link to map", "Equator Shopping Mall", "Daily 10:00 - 22:00" },
-                    { 26, "1 Oleksandra Borysenka, First Floor", 10, "Link to map", "Zlata Plaza Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 27, "9 Heroiv Pratsi, First Floor", 11, "Link to map", "Dafi Shopping Mall", "Daily 10:00 - 20:00" },
-                    { 28, "2a Pushkinska, Third Floor", 11, "Link to map", "Nikolsky Shopping Mall", "Daily 10:00 - 21:00" },
-                    { 29, "265A Haharina, First Floor", 12, "Link to map", "DEPO't Center Shopping Mall", "Daily 10:00 - 20:00" }
+                    { 1, "Antonovycha, 176, Ground Floor", "Antonovycha, 176, Planta Baja", "Antonovycha, 176, Rez-de-chaussée", "вул. Антоновича, 176, перший поверх", 1, "Link to map", "TRC Ocean Plaza", "TRC Ocean Plaza", "TRC Ocean Plaza", "ТРЦ Ocean Plaza", "10:00 - 22:00" },
+                    { 2, "Dniprovska Naberezhna, 12, Second Floor", "Dniprovska Naberezhna, 12, Segunda Planta", "Dniprovska Naberezhna, 12, Deuxième étage", "вул. Дніпровська набережна, 12, другий поверх", 1, "Link to map", "TRC River Mall", "TRC River Mall", "TRC River Mall", "ТРЦ River Mall", "10:00 - 22:00" },
+                    { 3, "Prospekt Obolonsky, 1-B, First Floor", "Prospekt Obolonsky, 1-B, Primer Piso", "Prospekt Obolonsky, 1-B, Premier étage", "просп. Оболонський, 1-Б, перший поверх", 1, "Link to map", "TRC DREAM Yellow", "TRC DREAM Yellow", "TRC DREAM Yellow", "ТРЦ DREAM Yellow", "10:00 - 22:00" },
+                    { 4, "Berkovetska, 6-D, First Floor", "Berkovetska, 6-D, Primer Piso", "Berkovetska, 6-D, Premier étage", "вул. Берковецька, 6-Д, перший поверх", 1, "Link to map", "TRC Lavina Mall", "TRC Lavina Mall", "TRC Lavina Mall", "ТРЦ Lavina Mall", "10:00 - 22:00" },
+                    { 5, "Kiltseva Doroga, 1, First Floor", "Kiltseva Doroga, 1, Primer Piso", "Kiltseva Doroga, 1, Premier étage", "вул. Кільцева дорога, 1, перший поверх", 1, "Link to map", "TRC Respublika Park", "TRC Respublika Park", "TRC Respublika Park", "ТРЦ Respublika Park", "10:00 - 22:00" },
+                    { 6, "Prospekt Pravdy, 47, First Floor", "Prospekt Pravdy, 47, Primer Piso", "Prospekt Pravdy, 47, Premier étage", "просп. Правди, 47, перший поверх", 1, "Link to map", "TRC Retroville", "TRC Retroville", "TRC Retroville", "ТРЦ Retroville", "10:00 - 22:00" },
+                    { 7, "Prospekt Stepana Bandery, 36, First Floor", "Prospekt Stepana Bandery, 36, Primer Piso", "Prospekt Stepana Bandery, 36, Premier étage", "просп. Степана Бандери, 36, перший поверх", 1, "Link to map", "TRC Blockbuster Mall", "TRC Blockbuster Mall", "TRC Blockbuster Mall", "ТРЦ Blockbuster Mall", "10:00 - 22:00" },
+                    { 8, "Gnata Khotkevycha, 1-B, First Floor", "Gnata Khotkevycha, 1-B, Primer Piso", "Gnata Khotkevycha, 1-B, Premier étage", "вул. Гната Хоткевича, 1-Б, перший поверх", 1, "Link to map", "TRK Prospekt", "TRK Prospekt", "TRK Prospekt", "ТРК Проспект", "10:00 - 22:00" },
+                    { 9, "600-Richchia, 17, New Building, First Floor", "600-Richchia, 17, Nuevo Edificio, Primer Piso", "600-Richchia, 17, Nouveau Bâtiment, Premier étage", "вул. 600-річчя, 17, нова будівля, перший поверх", 2, "Link to map", "TRC Megamall", "TRC Megamall", "TRC Megamall", "ТРЦ Megamall", "10:00 - 21:00" },
+                    { 10, "Mykoly Ovodova, 51, First Floor", "Mykoly Ovodova, 51, Primer Piso", "Mykoly Ovodova, 51, Premier étage", "вул. Миколи Оводова, 51, перший поверх", 2, "Link to map", "TRC Sky Park", "TRC Sky Park", "TRC Sky Park", "ТРЦ Sky Park", "10:00 - 21:00" },
+                    { 11, "Queen Elizabeth II (Hlinka), 2, Ground Floor", "Queen Elizabeth II (Hlinka), 2, Planta Baja", "Queen Elizabeth II (Hlinka), 2, Rez-de-chaussée", "вул. Глінки (колиш. Єлизавети II), 2, перший поверх", 3, "Link to map", "TRC MOST City", "TRC MOST City", "TRC MOST City", "ТРЦ MOST City", "10:00 - 21:00" },
+                    { 12, "Nyzhnedniprovskaya, 17, First Floor", "Nyzhnedniprovskaya, 17, Primer Piso", "Nyzhnedniprovskaya, 17, Premier étage", "вул. Нижньодніпровська, 17, перший поверх", 3, "Link to map", "TRC Karavan", "TRC Karavan", "TRC Karavan", "ТРЦ Karavan", "10:00 - 21:00" },
+                    { 13, "Kyivska, 77, First Floor", "Kyivska, 77, Primer Piso", "Kyivska, 77, Premier étage", "вул. Київська, 77, перший поверх", 4, "Link to map", "TRC Global", "TRC Global", "TRC Global", "ТРЦ Global", "10:00 - 21:00" },
+                    { 14, "Ivana Mykolaychuka, 2", "Ivana Mykolaychuka, 2", "Ivana Mykolaychuka, 2", "вул. Івана Миколайчука, 2", 5, "Link to map", "Shopping Mall ARSEN", "Centro Comercial ARSEN", "Centre Commercial ARSEN", "ТЦ Арсен", "10:00 - 21:00" },
+                    { 15, "4 Varshavska Street", "Calle Varsovia, 4", "Rue Varsovie, 4", "вул. Варшавська, 4", 6, "Link to map", "Juvent Shopping Center (Boutique 110)", "Juvent Centre Commercial (Boutique 110)", "Juvent Centre Commercial (Boutique 110)", "ТЦ Ювент (бутик 110)", "10:00 - 18:00" },
+                    { 16, "1 Sukhomlynskoho Street, Second Floor", "Calle Sukhomlynskoho, 1, Segunda Planta", "Rue Sukhomlynskoho, 1, Deuxième étage", "вул. Сухомлинського, 1, другий поверх", 7, "Link to map", "PortCity Shopping Mall", "PortCity Centro Comercial", "PortCity Centre Commercial", "ТЦ PortCity", "10:00 - 22:00" },
+                    { 17, "1 Voli Avenue, Fourth Floor", "Avenida Voli, 1, Cuarto Piso", "Avenue Voli, 1, Quatrième étage", "просп. Волі, 1, четвертий поверх", 7, "Link to map", "TSUM Lutsk", "TSUM Lutsk", "TSUM Lutsk", "ЦУМ Луцьк", "09:30 - 21:00" },
+                    { 18, "9 Voli Avenue, Building Facade", "Avenida Voli, 9, Fachada del Edificio", "Avenue Voli, 9, Façade du Bâtiment", "просп. Волі, 9, фасад будівлі", 7, "Link to map", "ESTRO Store (Voli, 9)", "ESTRO Store (Voli, 9)", "ESTRO Store (Voli, 9)", "Магазин ЕСТРО (Волі, 9)", "09:00 - 21:00" },
+                    { 19, "1 Karpenka-Karyho Street", "Calle Karpenka-Karyho, 1", "Rue Karpenka-Karyho, 1", "вул. Карпенка-Карого, 1", 7, "Link to map", "Juvent Shopping Center (Boutique 125)", "Juvent Shopping Center (Boutique 125)", "Juvent Shopping Center (Boutique 125)", "ТЦ Ювент (бутик 125)", "09:00 - 21:00" },
+                    { 20, "7b Pid Dubom Street, Second Floor", "Calle Pid Dubom, 7b, Segunda Planta", "Rue Pid Dubom, 7b, Deuxième étage", "вул. Під Дубом, 7б, другий поверх", 8, "Link to map", "Forum Lviv Shopping Mall", "Forum Lviv Centro Comercial", "Forum Lviv Centre Commercial", "ТЦ Форум Львів", "10:00 - 21:00" },
+                    { 21, "226-A Kulparkivska Street, First Floor", "Calle Kulparkivska, 226-A, Primer Piso", "Rue Kulparkivska, 226-A, Premier étage", "вул. Кульпарківська, 226-А, перший поверх", 8, "Link to map", "Victoria Gardens Shopping Mall", "Victoria Gardens Centro Comercial", "Victoria Gardens Centre Commercial", "ТЦ Вікторія Гарденс", "10:00 - 20:00" },
+                    { 22, "30 Stryiska Street, First Floor", "Calle Stryiska, 30, Primer Piso", "Rue Stryiska, 30, Premier étage", "вул. Стрийська, 30, перший поверх", 8, "Link to map", "King Cross Leopolis Shopping Mall", "King Cross Leopolis Centro Comercial", "King Cross Leopolis Centre Commercial", "ТЦ King Cross Leopolis", "10:00 - 21:00" },
+                    { 23, "14 Doroshenka Street", "Calle Doroshenka, 14", "Rue Doroshenka, 14", "вул. Дорошенка, 14", 8, "Link to map", "ESTRO Store (Doroshenka, 14)", "ESTRO Store (Doroshenka, 14)", "ESTRO Store (Doroshenka, 14)", "Магазин ЕСТРО (Дорошенка, 14)", "10:00 - 20:00" },
+                    { 24, "2 Prospekt Nezalezhnosti, First Floor", "Avenida Prospekt Nezalezhnosti, 2, Primer Piso", "Avenue Prospekt Nezalezhnosti, 2, Premier étage", "просп. Незалежності, 2, перший поверх", 9, "Link to map", "City Center Shopping Mall", "City Center Centro Comercial", "City Center Centre Commercial", "ТЦ City Center", "10:00 - 21:00" },
+                    { 25, "23 Kulyka i Hudacheka", "Calle Kulyka i Hudacheka, 23", "Rue Kulyka i Hudacheka, 23", "вул. Кулика і Гудачека, 23", 10, "Link to map", "Equator Shopping Mall", "Equator Centro Comercial", "Equator Centre Commercial", "ТЦ Екватор", "10:00 - 22:00" },
+                    { 26, "1 Oleksandra Borysenka, First Floor", "Calle Oleksandra Borysenka, 1, Primer Piso", "Rue Oleksandra Borysenka, 1, Premier étage", "вул. Олександра Борисенка, 1, перший поверх", 10, "Link to map", "Zlata Plaza Shopping Mall", "Zlata Plaza Centro Comercial", "Zlata Plaza Centre Commercial", "ТЦ Злата Плаза", "10:00 - 21:00" },
+                    { 27, "9 Heroiv Pratsi, First Floor", "Calle Heroiv Pratsi, 9, Primer Piso", "Rue Heroiv Pratsi, 9, Premier étage", "вул. Героїв Праці, 9, перший поверх", 11, "Link to map", "Dafi Shopping Mall", "Dafi Centro Comercial", "Dafi Centre Commercial", "ТЦ Дафі", "10:00 - 20:00" },
+                    { 28, "2a Pushkinska, Third Floor", "Calle Pushkinska, 2a, Tercer Piso", "Rue Pushkinska, 2a, Troisième étage", "вул. Пушкінська, 2а, третій поверх", 11, "Link to map", "Nikolsky Shopping Mall", "Nikolsky Centro Comercial", "Nikolsky Centre Commercial", "ТЦ Нікольський", "10:00 - 21:00" },
+                    { 29, "265A Haharina, First Floor", "Calle Haharina, 265A, Primer Piso", "Rue Haharina, 265A, Premier étage", "вул. Гагаріна, 265А, перший поверх", 12, "Link to map", "DEPO't Center Shopping Mall", "DEPO't Center Centro Comercial", "DEPO't Center Centre Commercial", "ТЦ Депо", "10:00 - 20:00" }
                 });
 
             migrationBuilder.InsertData(

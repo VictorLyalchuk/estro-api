@@ -1,5 +1,4 @@
 using Core.DTOs.User;
-using Core.Entities.UserEntity;
 using Core.Services;
 using Microsoft.AspNetCore.Identity;
 
