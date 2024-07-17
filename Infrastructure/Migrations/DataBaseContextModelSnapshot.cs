@@ -768,7 +768,7 @@ namespace Infrastructure.Migrations
                             Name_es = "Mujer",
                             Name_fr = "Femme",
                             Name_uk = "Жіноче",
-                            URLName = "woman"
+                            URLName = "women"
                         },
                         new
                         {
@@ -777,7 +777,7 @@ namespace Infrastructure.Migrations
                             Name_es = "Hombre",
                             Name_fr = "Homme",
                             Name_uk = "Чоловіче",
-                            URLName = "man"
+                            URLName = "men"
                         });
                 });
 

@@ -10,8 +10,8 @@ namespace Infrastructure.Data
 
         public static List<MainCategory> SeedMainCategory() =>
         new List<MainCategory>() {
-            new MainCategory(){ Id = 1, Name_en = "Women", Name_uk = "Жіноче", Name_fr = "Femme", Name_es = "Mujer", URLName = "woman" }, 
-            new MainCategory(){ Id = 2, Name_en = "Men", Name_uk = "Чоловіче", Name_fr = "Homme", Name_es = "Hombre", URLName = "man"}, 
+            new MainCategory(){ Id = 1, Name_en = "Women", Name_uk = "Жіноче", Name_fr = "Femme", Name_es = "Mujer", URLName = "women" }, 
+            new MainCategory(){ Id = 2, Name_en = "Men", Name_uk = "Чоловіче", Name_fr = "Homme", Name_es = "Hombre", URLName = "men"}, 
         };
 
         public static List<SubCategory> SeedSubCategory() =>

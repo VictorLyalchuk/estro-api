@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240707202207_lang")]
-    partial class lang
+    [Migration("20240717111707_start")]
+    partial class start
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -771,7 +771,7 @@ namespace Infrastructure.Migrations
                             Name_es = "Mujer",
                             Name_fr = "Femme",
                             Name_uk = "Жіноче",
-                            URLName = "woman"
+                            URLName = "women"
                         },
                         new
                         {
@@ -780,7 +780,7 @@ namespace Infrastructure.Migrations
                             Name_es = "Hombre",
                             Name_fr = "Homme",
                             Name_uk = "Чоловіче",
-                            URLName = "man"
+                            URLName = "men"
                         });
                 });
 

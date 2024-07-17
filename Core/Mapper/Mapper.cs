@@ -37,6 +37,7 @@ namespace Core.Mapper
             CreateMap<ProductEntity, ProductDTO>()
                         .ForMember(dto => dto.ImagesPath, opt => opt.MapFrom(o => o.Images.Select(a => a.ImagePath)))
                         .ForMember(dest => dest.URLCategoryName, opt => opt.MapFrom(src => src.Category.URLName))
+                        .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name_en))
                         .ForMember(dest => dest.URLSubCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.URLName))
                         .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.Name_en))
                         .ForMember(dest => dest.URLMainCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.MainCategory.URLName))
