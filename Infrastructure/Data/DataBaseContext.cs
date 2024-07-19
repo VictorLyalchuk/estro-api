@@ -29,6 +29,12 @@ namespace Infrastructure.Data
             builder.Entity<MainCategory>().HasData(SeedData.SeedMainCategory());
             builder.Entity<SubCategory>().HasData(SeedData.SeedSubCategory());
             builder.Entity<CategoryEntity>().HasData(SeedData.SeedCategory());
+
+            builder.Entity<Info>().HasData(SeedData.SeedInfos());
+            builder.Entity<ProductSize>().HasData(SeedData.SeedSizes());
+            builder.Entity<ProductColors>().HasData(SeedData.SeedColors());
+            builder.Entity<ProductMaterial>().HasData(SeedData.SeedMaterials());
+            builder.Entity<ProductSeason>().HasData(SeedData.SeedSeason());
             builder.Entity<ProductEntity>().HasData(SeedData.SeedProduct());
             builder.Entity<ImageEntity>().HasData(SeedData.SeedImage());
             builder.Entity<StorageEntity>().HasData(SeedData.SeedStorage());
@@ -37,14 +43,13 @@ namespace Infrastructure.Data
             builder.Entity<CountryEntity>().HasData(SeedData.SeedCountry());
             builder.Entity<CityEntity>().HasData(SeedData.SeedCity());
             builder.Entity<StoreEntity>().HasData(SeedData.SeedStores());
-            builder.Entity<Info>().HasData(SeedData.SeedInfos());
-            builder.Entity<Options>().HasData(SeedData.SeedOptions());
         }
         public DbSet<User> User { get; set; }
 
         public DbSet<MainCategory> MainCategories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<CategoryEntity> Categories { get; set; }
+        public DbSet<ProductColors> ProductColor { get; set; }
         public DbSet<ProductEntity> Products { get; set; }
         public DbSet<ImageEntity> Images { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -56,7 +61,6 @@ namespace Infrastructure.Data
         public DbSet<CityEntity> City { get; set; }
         public DbSet<StoreEntity> Store { get; set; }
         public DbSet<Info> Info { get; set; }
-        public DbSet<Options> Options { get; set; }
         public DbSet<UserFavoriteProduct> UserFavoriteProduct { get; set; }
         public DbSet<UserBonuses> UserBonuses { get; set; }
     }

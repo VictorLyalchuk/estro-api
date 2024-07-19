@@ -30,7 +30,23 @@ namespace Core.Mapper
             CreateMap<CategoryDTO, CategoryEntity>().ReverseMap();
             CreateMap<CategoryDTO, CategoryEntity>()
                 .ForMember(dest => dest.SubCategory, opt => opt.MapFrom(src => new SubCategory { Id = src.MainCategoryId.GetValueOrDefault() }));
-            
+
+            CreateMap<ProductColorsDTO, ProductColors>()
+                .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
+                .ReverseMap();
+
+            CreateMap<ProductSeasonDTO, ProductSeason>()
+                .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
+                 .ReverseMap();
+
+            CreateMap<ProductMaterialDTO, ProductMaterial>()
+                .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
+                .ReverseMap();
+
+            CreateMap<ProductSizeDTO, ProductSize>()
+                .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
+                .ReverseMap();
+
             CreateMap<ProductDTO, ProductEntity>().ReverseMap();
             CreateMap<CreateProductDTO, ProductEntity>();
             CreateMap<EditProductDTO, ProductEntity>();
@@ -41,8 +57,19 @@ namespace Core.Mapper
                         .ForMember(dest => dest.URLSubCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.URLName))
                         .ForMember(dest => dest.SubCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.Name_en))
                         .ForMember(dest => dest.URLMainCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.MainCategory.URLName))
-                        .ForMember(dest => dest.MainCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.MainCategory.Name_en));
-            
+                        .ForMember(dest => dest.MainCategoryName, opt => opt.MapFrom(src => src.Category.SubCategory.MainCategory.Name_en))
+                        .ForMember(dest => dest.Color_en, opt => opt.MapFrom(src => src.Color.Name_en))
+                        .ForMember(dest => dest.Season_en, opt => opt.MapFrom(src => src.Season.Name_en))
+                        .ForMember(dest => dest.Material_en, opt => opt.MapFrom(src => src.Material.Name_en))
+                        .ForMember(dest => dest.Color_uk, opt => opt.MapFrom(src => src.Color.Name_uk))
+                        .ForMember(dest => dest.Season_uk, opt => opt.MapFrom(src => src.Season.Name_uk))
+                        .ForMember(dest => dest.Material_uk, opt => opt.MapFrom(src => src.Material.Name_uk))
+                        .ForMember(dest => dest.Color_es, opt => opt.MapFrom(src => src.Color.Name_es))
+                        .ForMember(dest => dest.Season_es, opt => opt.MapFrom(src => src.Season.Name_es))
+                        .ForMember(dest => dest.Material_es, opt => opt.MapFrom(src => src.Material.Name_es))
+                        .ForMember(dest => dest.Color_fr, opt => opt.MapFrom(src => src.Color.Name_fr))
+                        .ForMember(dest => dest.Season_fr, opt => opt.MapFrom(src => src.Season.Name_fr))
+                        .ForMember(dest => dest.Material_fr, opt => opt.MapFrom(src => src.Material.Name_fr));
             CreateMap<StorageDTO, StorageEntity>().ReverseMap();
 
             CreateMap<CreateStoreDTO, StoreEntity>();
@@ -63,10 +90,10 @@ namespace Core.Mapper
 
             CreateMap<AddressDTO, AddressEntity>();
             CreateMap<InfoDTO, Info>()
-                    .ForMember(dest => dest.Options, opt => opt.MapFrom(src => src.Options))
-                    .ReverseMap();
-            CreateMap<OptionsDTO, Options>()
-                    .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
+                    .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.Colors))
+                    .ForMember(dest => dest.Season, opt => opt.MapFrom(src => src.Season))
+                    .ForMember(dest => dest.Material, opt => opt.MapFrom(src => src.Materials))
+                    .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.Sizes))
                     .ReverseMap();
 
             CreateMap<UserFavoriteProduct, UserFavoriteProductDTO>()

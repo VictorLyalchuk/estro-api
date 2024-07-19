@@ -11,7 +11,10 @@ namespace Core.Specification
             public GetAll()
             {
                 Query
-                    .Include(f => f.Options);
+                    .Include(f => f.Size)
+                    .Include(f => f.Colors)
+                    .Include(f => f.Season)
+                    .Include(f => f.Material);
             }
         }
     }

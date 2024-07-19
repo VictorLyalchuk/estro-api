@@ -48,7 +48,7 @@ namespace Core.Services
         }
         public async Task<ProductDTO>? GetProductByIDAsync(int id)
         {
-            var product = await _productRepository.GetItemBySpec(new ProductSpecification.GetMainCategory(id));
+            var product = await _productRepository.GetItemBySpec(new ProductSpecification.GetProductById(id));
             return _mapper.Map<ProductDTO>(product);
         }
         public async Task<List<ProductDTO>> GetProductByPageAsync(int page)
@@ -73,7 +73,7 @@ namespace Core.Services
                     await _imageService.EditAsync(image);
                 };
             }
-            var res = _productRepository.GetItemBySpec(new ProductSpecification.GetMainCategory(product.Id)).Result;
+            var res = _productRepository.GetItemBySpec(new ProductSpecification.GetProductById(product.Id)).Result;
             if (res?.Category?.SubCategory?.MainCategoryId == Women)
             {
                 foreach (var size in SIZEWOMEN)

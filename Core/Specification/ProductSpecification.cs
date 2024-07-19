@@ -1,7 +1,6 @@
 ﻿using Ardalis.Specification;
 using Core.DTOs.Filter;
 using Core.Entities.Product;
-using System.Buffers;
 
 namespace Core.Specification
 {
@@ -13,6 +12,9 @@ namespace Core.Specification
             {
                 Query
                     .Include(p => p.Images)
+                    .Include(p => p.Color)
+                    .Include(p => p.Season)
+                    .Include(p => p.Material)
                     .Where(p => p.CategoryId == id);
             }
         }
@@ -24,6 +26,9 @@ namespace Core.Specification
                     .Where(p => p.Id == id)
                     .Include(p => p.Images)
                     .Include(p => p.Category)
+                    .Include(p => p.Color)
+                    .Include(p => p.Season)
+                    .Include(p => p.Material)
                     .Include(p => p.Storages);
             }
         }
@@ -41,6 +46,9 @@ namespace Core.Specification
                      .Take(pageSize)
                      .Include(p => p.Images)
                      .Include(p => p.Category)
+                     .Include(p => p.Color)
+                     .Include(p => p.Season)
+                     .Include(p => p.Material)
                      .Include(p => p.Storages.OrderBy(s => s.Size));
             }
         }
@@ -51,7 +59,7 @@ namespace Core.Specification
                 List<string> Colors = filterDTO.Color ?? new List<string>();
                 List<string> Materials = filterDTO.Material ?? new List<string>();
                 List<int> Sizes = filterDTO.Size ?? new List<int>();
-                List<string> Purpose = filterDTO.Purpose ?? new List<string>();
+                List<string> Season = filterDTO.Season ?? new List<string>();
                 int page = filterDTO.Page < 1 ? 1 : filterDTO.Page;
                 string sort = filterDTO.Sort;
                 string search = filterDTO.Search;
@@ -61,6 +69,9 @@ namespace Core.Specification
                      .Include(p => p.Images)
                      .Include(p => p.Category)
                      .Include(p => p.Storages.OrderBy(p => p.Size))
+                     .Include(p => p.Color)
+                     .Include(p => p.Season)
+                     .Include(p => p.Material)
                      .Where(p => p.Storages != null && p.Storages.Any(s => s.inStock));
 
                 if (!string.IsNullOrEmpty(filterDTO.MainCategory))
@@ -77,19 +88,19 @@ namespace Core.Specification
                 }
                 if (Colors.Any())
                 {
-                    Query.Where(p => Colors.Contains(p.Color.ToLower()));
+                    Query.Where(p => Colors.Contains(p.Color.Name_en.ToLower()));
                 }
                 if (Materials.Any())
                 {
-                    Query.Where(p => Materials.Contains(p.Material.ToLower()));
+                    Query.Where(p => Materials.Contains(p.Material.Name_en.ToLower()));
                 }
                 if (Sizes.Any())
                 {
                     Query.Where(p => p.Storages != null && p.Storages.Any(s => Sizes.Contains(s.Size) && s.inStock));
                 }
-                if (Purpose.Any())
+                if (Season.Any())
                 {
-                    Query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
+                    Query.Where(p => Season.Contains(p.Season.Name_en.ToLower()));
                 }
                 if (!string.IsNullOrEmpty(search))
                 {
@@ -126,13 +137,16 @@ namespace Core.Specification
                 List<string> Colors = filterDTO.Color ?? new List<string>();
                 List<string> Materials = filterDTO.Material ?? new List<string>();
                 List<int> Sizes = filterDTO.Size ?? new List<int>();
-                List<string> Purpose = filterDTO.Purpose ?? new List<string>();
+                List<string> Season = filterDTO.Season ?? new List<string>();
                 string search = filterDTO.Search;
 
                 Query.OrderBy(p => p.Id)
                      .Include(p => p.Images)
                      .Include(p => p.Category)
                      .Include(p => p.Storages)
+                     .Include(p => p.Color)
+                     .Include(p => p.Season)
+                     .Include(p => p.Material)
                      .Where(p => p.Storages != null && p.Storages.Any(s => s.inStock));
 
                 if (!string.IsNullOrEmpty(filterDTO.MainCategory))
@@ -149,20 +163,20 @@ namespace Core.Specification
                 }
                 if (Colors.Any())
                 {
-                    Query.Where(p => Colors.Contains(p.Color.ToLower()));
+                    Query.Where(p => Colors.Contains(p.Color.Name_en.ToLower()));
                 }
 
                 if (Materials.Any())
                 {
-                    Query.Where(p => Materials.Contains(p.Material.ToLower()));
+                    Query.Where(p => Materials.Contains(p.Material.Name_en.ToLower()));
                 }
                 if (Sizes.Any())
                 {
                     Query.Where(p => p.Storages != null && p.Storages.Any(s => Sizes.Contains(s.Size) && s.inStock));
                 }
-                if (Purpose.Any())
+                if (Season.Any())
                 {
-                    Query.Where(p => Purpose.Contains(p.Purpose.ToLower()));
+                    Query.Where(p => Season.Contains(p.Season.Name_en.ToLower()));
                 }
                 if (!string.IsNullOrEmpty(search))
                 {
@@ -172,14 +186,17 @@ namespace Core.Specification
                 var results = Query;
             }
         }
-        public class GetMainCategory : Specification<ProductEntity>
+        public class GetProductById : Specification<ProductEntity>
         {
-            public GetMainCategory(int id)
+            public GetProductById(int id)
             {
                 Query
                     .Where(p => p.Id == id)
                     .Include(p => p.Images)
                     .Include(p => p.Storages.OrderBy(s => s.Size))
+                    .Include(p => p.Color)
+                    .Include(p => p.Season)
+                    .Include(p => p.Material)
                     .Include(p => p.Category)
                     .ThenInclude(p => p.SubCategory)
                     .ThenInclude(p => p.MainCategory);
@@ -192,6 +209,9 @@ namespace Core.Specification
                 Query
                     .Where(p => p.Category!.URLName == urlName)
                     .Include(p => p.Images)
+                    .Include(p => p.Color)
+                    .Include(p => p.Season)
+                    .Include(p => p.Material)
                     .Include(p => p.Category)
                     .ThenInclude(p => p.SubCategory)
                     .ThenInclude(p => p.MainCategory);

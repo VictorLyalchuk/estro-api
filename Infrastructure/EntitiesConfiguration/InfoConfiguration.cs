@@ -4,16 +4,15 @@ using Core.Entities.Product;
 
 namespace Infrastructure.EntitiesConfiguration
 {
-    public class OptionsConfiguration : IEntityTypeConfiguration<Options>
+    public class OptionsConfiguration : IEntityTypeConfiguration<ProductColors>
     {
-        public void Configure(EntityTypeBuilder<Options> builder)
+        public void Configure(EntityTypeBuilder<ProductColors> builder)
         {
             builder.HasKey(c => c.Id);
-
-            // Зв'язок між Options та Info
+            
             builder
                 .HasOne(o => o.Info)
-                .WithMany(i => i.Options)
+                .WithMany(i => i.Colors)
                 .HasForeignKey(o => o.InfoId);
         }
     }

@@ -1,5 +1,4 @@
-﻿
-namespace Core.DTOs.Storage
+﻿namespace Core.DTOs.Storage
 {
     public class StorageDTO
     {

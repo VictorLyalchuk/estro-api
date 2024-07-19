@@ -335,20 +335,92 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Options",
+                name: "ProductColor",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Label = table.Column<string>(type: "text", nullable: false),
                     Value = table.Column<string>(type: "text", nullable: false),
+                    Name_en = table.Column<string>(type: "text", nullable: true),
+                    Name_es = table.Column<string>(type: "text", nullable: true),
+                    Name_uk = table.Column<string>(type: "text", nullable: true),
+                    Name_fr = table.Column<string>(type: "text", nullable: true),
                     InfoId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Options", x => x.Id);
+                    table.PrimaryKey("PK_ProductColor", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Options_Info_InfoId",
+                        name: "FK_ProductColor_Info_InfoId",
+                        column: x => x.InfoId,
+                        principalTable: "Info",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductMaterial",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Value = table.Column<string>(type: "text", nullable: false),
+                    Name_en = table.Column<string>(type: "text", nullable: true),
+                    Name_es = table.Column<string>(type: "text", nullable: true),
+                    Name_uk = table.Column<string>(type: "text", nullable: true),
+                    Name_fr = table.Column<string>(type: "text", nullable: true),
+                    InfoId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductMaterial", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductMaterial_Info_InfoId",
+                        column: x => x.InfoId,
+                        principalTable: "Info",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductSeason",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Value = table.Column<string>(type: "text", nullable: false),
+                    Name_en = table.Column<string>(type: "text", nullable: true),
+                    Name_es = table.Column<string>(type: "text", nullable: true),
+                    Name_uk = table.Column<string>(type: "text", nullable: true),
+                    Name_fr = table.Column<string>(type: "text", nullable: true),
+                    InfoId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductSeason", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductSeason_Info_InfoId",
+                        column: x => x.InfoId,
+                        principalTable: "Info",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductSize",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Value = table.Column<string>(type: "text", nullable: false),
+                    Name_en = table.Column<string>(type: "text", nullable: true),
+                    Name_es = table.Column<string>(type: "text", nullable: true),
+                    Name_uk = table.Column<string>(type: "text", nullable: true),
+                    Name_fr = table.Column<string>(type: "text", nullable: true),
+                    InfoId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductSize", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductSize_Info_InfoId",
                         column: x => x.InfoId,
                         principalTable: "Info",
                         principalColumn: "Id");
@@ -483,9 +555,9 @@ namespace Infrastructure.Migrations
                     Description = table.Column<string>(type: "character varying(1024)", maxLength: 1024, nullable: false),
                     Highlights = table.Column<List<string>>(type: "text[]", nullable: false),
                     Details = table.Column<string>(type: "text", nullable: false),
-                    Purpose = table.Column<string>(type: "text", nullable: false),
-                    Color = table.Column<string>(type: "text", nullable: false),
-                    Material = table.Column<string>(type: "text", nullable: false),
+                    SeasonId = table.Column<int>(type: "integer", nullable: false),
+                    ColorId = table.Column<int>(type: "integer", nullable: false),
+                    MaterialId = table.Column<int>(type: "integer", nullable: false),
                     CategoryId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -495,6 +567,24 @@ namespace Infrastructure.Migrations
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductColor_ColorId",
+                        column: x => x.ColorId,
+                        principalTable: "ProductColor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductMaterial_MaterialId",
+                        column: x => x.MaterialId,
+                        principalTable: "ProductMaterial",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_ProductSeason_SeasonId",
+                        column: x => x.SeasonId,
+                        principalTable: "ProductSeason",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -675,7 +765,7 @@ namespace Infrastructure.Migrations
                     { 1, "Color", "Color", "Couleur", "Колір", "color" },
                     { 2, "Material", "Material", "Matériau", "Матеріал", "material" },
                     { 3, "Size", "Tamaño", "Taille", "Розмір", "size" },
-                    { 4, "Purpose", "Propósito", "But", "Сезон", "purpose" }
+                    { 4, "Season", "Estación", "Saison", "Сезон", "season" }
                 });
 
             migrationBuilder.InsertData(
@@ -707,40 +797,62 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Options",
-                columns: new[] { "Id", "InfoId", "Label", "Value" },
+                table: "ProductColor",
+                columns: new[] { "Id", "InfoId", "Name_en", "Name_es", "Name_fr", "Name_uk", "Value" },
                 values: new object[,]
                 {
-                    { 1, 1, "Black", "black" },
-                    { 2, 1, "Brown", "brown" },
-                    { 3, 1, "Gray", "gray" },
-                    { 4, 1, "Light Gray", "lightgray" },
-                    { 5, 1, "White", "white" },
-                    { 6, 1, "Milk", "milk" },
-                    { 7, 1, "Navi", "navi" },
-                    { 8, 1, "Blue", "blue" },
-                    { 9, 2, "Leather", "leather" },
-                    { 10, 2, "Suede", "suede" },
-                    { 11, 2, "Nubuck", "nubuck" },
-                    { 12, 2, "Textile", "textile" },
-                    { 13, 2, "Synthetic", "synthetic" },
-                    { 14, 2, "Eco Leather", "ecoleather" },
-                    { 15, 3, "35", "35" },
-                    { 16, 3, "36", "36" },
-                    { 17, 3, "37", "37" },
-                    { 18, 3, "38", "38" },
-                    { 19, 3, "39", "39" },
-                    { 20, 3, "40", "40" },
-                    { 21, 3, "41", "41" },
-                    { 25, 3, "42", "42" },
-                    { 26, 3, "43", "43" },
-                    { 27, 3, "44", "44" },
-                    { 28, 3, "45", "45" },
-                    { 29, 3, "46", "46" },
-                    { 30, 4, "Winter", "winter" },
-                    { 31, 4, "Spring", "spring" },
-                    { 32, 4, "Summer", "summer" },
-                    { 33, 4, "Autumn", "autumn" }
+                    { 1, 1, "Black", "Negro", "Noir", "Чорний", "black" },
+                    { 2, 1, "Blue", "Azul", "Bleu", "Синій", "blue" },
+                    { 3, 1, "Brown", "Marrón", "Brun", "Коричневий", "brown" },
+                    { 4, 1, "Burgundy", "Borgoña", "Bourgogne", "Бордовий", "burgundy" },
+                    { 5, 1, "Gray", "Gris", "Gris", "Сірий", "gray" },
+                    { 6, 1, "Light Gray", "Gris claro", "Gris clair", "Світло-сірий", "lightgray" },
+                    { 7, 1, "Milk", "Leche", "Lait", "Молочний", "milk" },
+                    { 8, 1, "Navi", "Navi", "Navi", "Наві", "navi" },
+                    { 9, 1, "White", "Blanco", "Blanche", "Білий", "white" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductMaterial",
+                columns: new[] { "Id", "InfoId", "Name_en", "Name_es", "Name_fr", "Name_uk", "Value" },
+                values: new object[,]
+                {
+                    { 1, 2, "Eco Leather", "Сuero ecológico", "Eco Leather", "Еко шкіра", "ecoleather" },
+                    { 2, 2, "Leather", "Сuero", "Cuir", "Шкіра", "leather" },
+                    { 3, 2, "Nubuck", "Nubuck", "Nubuck", "Нубук", "nubuck" },
+                    { 4, 2, "Synthetic", "Sintética", "Synthétique", "Синтетика", "synthetic" },
+                    { 5, 2, "Suede", "Ante", "Suède", "Замша", "suede" },
+                    { 6, 2, "Textile", "Textil", "Textile", "Текстиль", "textile" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductSeason",
+                columns: new[] { "Id", "InfoId", "Name_en", "Name_es", "Name_fr", "Name_uk", "Value" },
+                values: new object[,]
+                {
+                    { 1, 4, "Winter", "Invierno", "Hiver", "Зима", "winter" },
+                    { 2, 4, "Spring", "Primavera", "Printemps", "Весна", "spring" },
+                    { 3, 4, "Summer", "Verano", "Été", "Літо", "summer" },
+                    { 4, 4, "Autumn", "Otoño", "Automne", "Осінь", "autumn" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductSize",
+                columns: new[] { "Id", "InfoId", "Name_en", "Name_es", "Name_fr", "Name_uk", "Value" },
+                values: new object[,]
+                {
+                    { 1, 3, "35", "35", "35", "35", "35" },
+                    { 2, 3, "36", "36", "36", "36", "36" },
+                    { 3, 3, "37", "37", "37", "37", "37" },
+                    { 4, 3, "38", "38", "38", "38", "38" },
+                    { 5, 3, "39", "39", "39", "39", "39" },
+                    { 6, 3, "40", "40", "40", "40", "40" },
+                    { 7, 3, "41", "41", "41", "41", "41" },
+                    { 8, 3, "42", "42", "42", "42", "42" },
+                    { 9, 3, "43", "43", "43", "43", "43" },
+                    { 10, 3, "44", "44", "44", "44", "44" },
+                    { 11, 3, "45", "45", "45", "45", "45" },
+                    { 12, 3, "46", "46", "46", "46", "46" }
                 });
 
             migrationBuilder.InsertData(
@@ -841,24 +953,24 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Article", "CategoryId", "Color", "Description", "Details", "Highlights", "Material", "Name", "Price", "Purpose" },
+                columns: new[] { "Id", "Article", "CategoryId", "ColorId", "Description", "Details", "Highlights", "MaterialId", "Name", "Price", "SeasonId" },
                 values: new object[,]
                 {
-                    { 1, "ER00113828", 8, "Black", "These stylish black leather boots-stockings are a perfect blend of fashion and comfort. Crafted with high-quality leather, they provide a sleek and sophisticated look. Ideal for various occasions, these boots-stockings are a must-have in your wardrobe.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-stockings are black leather", 7399m, "Autumn" },
-                    { 2, "ER00112019", 8, "Brown", "Step into the season with elegance in these Autumn brown leather stretch boots. Meticulously crafted from premium leather, these boots offer both style and comfort. The stretch feature ensures a snug fit, while the rich brown color adds a touch of warmth to your autumn wardrobe. Perfect for any occasion, these boots are a fashion statement that complements your unique style. Embrace the essence of autumn with each step.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Autumn brown leather stretch boots", 8899m, "Autumn" },
-                    { 3, "ER00112018", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Autumn leather stretch boots", 8899m, "Autumn" },
-                    { 4, "ER00112022", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots autumn leather black", 9899m, "Autumn" },
-                    { 5, "ER00112011", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Black autumn leather stretch boots", 9899m, "Autumn" },
-                    { 6, "ER00113851", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Black demi-season boots", 8799m, "Autumn" },
-                    { 7, "ER00112023", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-stockings leather black", 9989m, "Autumn" },
-                    { 8, "ER00114318", 8, "Burgundy", "Estro ER00112018 Burgundy Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-pipes with wide freebies are burgundy", 9989m, "Autumn" },
-                    { 9, "ER00112298", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Black leather Cossack boots", 8799m, "Autumn" },
-                    { 10, "ER00112123", 8, "Black", "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-stockings on a stiletto are black", 8699m, "Autumn" },
-                    { 11, "ER00112122", 8, "Milk", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Milk stiletto stocking boots", 8699m, "Autumn" },
-                    { 12, "ER00114239", 8, "Brown", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-stockings on a stiletto are brown", 8399m, "Autumn" },
-                    { 13, "ER00114240", 8, "Black", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Boots-stockings on a stiletto are black", 8399m, "Autumn" },
-                    { 14, "ER00113949", 7, "Black", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Ankle boots are black", 2890m, "Autumn" },
-                    { 15, "ER00111942", 12, "Black", "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, "Leather", "Winter boots", 2290m, "Winter" }
+                    { 1, "ER00113828", 8, 1, "These stylish black leather boots-stockings are a perfect blend of fashion and comfort. Crafted with high-quality leather, they provide a sleek and sophisticated look. Ideal for various occasions, these boots-stockings are a must-have in your wardrobe.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Boots-stockings are black leather", 7399m, 4 },
+                    { 2, "ER00112019", 8, 3, "Step into the season with elegance in these Autumn brown leather stretch boots. Meticulously crafted from premium leather, these boots offer both style and comfort. The stretch feature ensures a snug fit, while the rich brown color adds a touch of warmth to your autumn wardrobe. Perfect for any occasion, these boots are a fashion statement that complements your unique style. Embrace the essence of autumn with each step.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Autumn brown leather stretch boots", 8899m, 4 },
+                    { 3, "ER00112018", 8, 1, "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Autumn leather stretch boots", 8899m, 4 },
+                    { 4, "ER00112022", 8, 1, "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Boots autumn leather black", 9899m, 4 },
+                    { 5, "ER00112011", 8, 1, "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Black autumn leather stretch boots", 9899m, 4 },
+                    { 6, "ER00113851", 8, 1, "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Black demi-season boots", 8799m, 4 },
+                    { 7, "ER00112023", 8, 1, "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Boots-stockings leather black", 9989m, 4 },
+                    { 8, "ER00114318", 8, 4, "Estro ER00112018 Burgundy Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Boots-pipes with wide freebies are burgundy", 9989m, 4 },
+                    { 9, "ER00112298", 8, 1, "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Black leather Cossack boots", 8799m, 4 },
+                    { 10, "ER00112123", 8, 1, "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Boots-stockings on a stiletto are black", 8699m, 4 },
+                    { 11, "ER00112122", 8, 7, "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Milk stiletto stocking boots", 8699m, 4 },
+                    { 12, "ER00114239", 8, 3, "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Boots-stockings on a stiletto are brown", 8399m, 4 },
+                    { 13, "ER00114240", 8, 1, "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Boots-stockings on a stiletto are black", 8399m, 4 },
+                    { 14, "ER00113949", 7, 1, "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Ankle boots are black", 2890m, 4 },
+                    { 15, "ER00111942", 12, 1, "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.", "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.", new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" }, 2, "Winter boots", 2290m, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -1130,11 +1242,6 @@ namespace Infrastructure.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Options_InfoId",
-                table: "Options",
-                column: "InfoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
                 column: "OrderId");
@@ -1160,9 +1267,44 @@ namespace Infrastructure.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductColor_InfoId",
+                table: "ProductColor",
+                column: "InfoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductMaterial_InfoId",
+                table: "ProductMaterial",
+                column: "InfoId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_ColorId",
+                table: "Products",
+                column: "ColorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_MaterialId",
+                table: "Products",
+                column: "MaterialId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_SeasonId",
+                table: "Products",
+                column: "SeasonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductSeason_InfoId",
+                table: "ProductSeason",
+                column: "InfoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductSize_InfoId",
+                table: "ProductSize",
+                column: "InfoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Storage_ProductId",
@@ -1218,10 +1360,10 @@ namespace Infrastructure.Migrations
                 name: "Images");
 
             migrationBuilder.DropTable(
-                name: "Options");
+                name: "OrderItems");
 
             migrationBuilder.DropTable(
-                name: "OrderItems");
+                name: "ProductSize");
 
             migrationBuilder.DropTable(
                 name: "Storage");
@@ -1240,9 +1382,6 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Bag");
-
-            migrationBuilder.DropTable(
-                name: "Info");
 
             migrationBuilder.DropTable(
                 name: "Orders");
@@ -1269,7 +1408,19 @@ namespace Infrastructure.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
+                name: "ProductColor");
+
+            migrationBuilder.DropTable(
+                name: "ProductMaterial");
+
+            migrationBuilder.DropTable(
+                name: "ProductSeason");
+
+            migrationBuilder.DropTable(
                 name: "SubCategories");
+
+            migrationBuilder.DropTable(
+                name: "Info");
 
             migrationBuilder.DropTable(
                 name: "MainCategories");

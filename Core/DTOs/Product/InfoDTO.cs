@@ -1,6 +1,4 @@
-﻿using Core.Entities.Product;
-
-namespace Core.DTOs.Product
+﻿namespace Core.DTOs.Product
 {
     public class InfoDTO
     {
@@ -10,6 +8,9 @@ namespace Core.DTOs.Product
         public string Name_fr { get; set; }
         public string Name_uk { get; set; }
         public string Value { get; set; }
-        public IEnumerable<OptionsDTO> Options { get; set; }
+        public IEnumerable<ProductColorsDTO> Colors { get; set; }
+        public IEnumerable<ProductSeasonDTO> Season { get; set; }
+        public IEnumerable<ProductMaterialDTO> Materials { get; set; }
+        public IEnumerable<ProductSizeDTO> Sizes { get; set; }
     }
 }

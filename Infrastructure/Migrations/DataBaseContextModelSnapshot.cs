@@ -1641,15 +1641,15 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 4,
-                            Name_en = "Purpose",
-                            Name_es = "Propósito",
-                            Name_fr = "But",
+                            Name_en = "Season",
+                            Name_es = "Estación",
+                            Name_fr = "Saison",
                             Name_uk = "Сезон",
-                            Value = "purpose"
+                            Value = "season"
                         });
                 });
 
-            modelBuilder.Entity("Core.Entities.Product.Options", b =>
+            modelBuilder.Entity("Core.Entities.Product.ProductColors", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1660,8 +1660,16 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("InfoId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Label")
-                        .IsRequired()
+                    b.Property<string>("Name_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_uk")
                         .HasColumnType("text");
 
                     b.Property<string>("Value")
@@ -1672,218 +1680,98 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("InfoId");
 
-                    b.ToTable("Options");
+                    b.ToTable("ProductColor");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             InfoId = 1,
-                            Label = "Black",
+                            Name_en = "Black",
+                            Name_es = "Negro",
+                            Name_fr = "Noir",
+                            Name_uk = "Чорний",
                             Value = "black"
                         },
                         new
                         {
                             Id = 2,
                             InfoId = 1,
-                            Label = "Brown",
-                            Value = "brown"
+                            Name_en = "Blue",
+                            Name_es = "Azul",
+                            Name_fr = "Bleu",
+                            Name_uk = "Синій",
+                            Value = "blue"
                         },
                         new
                         {
                             Id = 3,
                             InfoId = 1,
-                            Label = "Gray",
-                            Value = "gray"
+                            Name_en = "Brown",
+                            Name_es = "Marrón",
+                            Name_fr = "Brun",
+                            Name_uk = "Коричневий",
+                            Value = "brown"
                         },
                         new
                         {
                             Id = 4,
                             InfoId = 1,
-                            Label = "Light Gray",
-                            Value = "lightgray"
+                            Name_en = "Burgundy",
+                            Name_es = "Borgoña",
+                            Name_fr = "Bourgogne",
+                            Name_uk = "Бордовий",
+                            Value = "burgundy"
                         },
                         new
                         {
                             Id = 5,
                             InfoId = 1,
-                            Label = "White",
-                            Value = "white"
+                            Name_en = "Gray",
+                            Name_es = "Gris",
+                            Name_fr = "Gris",
+                            Name_uk = "Сірий",
+                            Value = "gray"
                         },
                         new
                         {
                             Id = 6,
                             InfoId = 1,
-                            Label = "Milk",
-                            Value = "milk"
+                            Name_en = "Light Gray",
+                            Name_es = "Gris claro",
+                            Name_fr = "Gris clair",
+                            Name_uk = "Світло-сірий",
+                            Value = "lightgray"
                         },
                         new
                         {
                             Id = 7,
                             InfoId = 1,
-                            Label = "Navi",
-                            Value = "navi"
+                            Name_en = "Milk",
+                            Name_es = "Leche",
+                            Name_fr = "Lait",
+                            Name_uk = "Молочний",
+                            Value = "milk"
                         },
                         new
                         {
                             Id = 8,
                             InfoId = 1,
-                            Label = "Blue",
-                            Value = "blue"
+                            Name_en = "Navi",
+                            Name_es = "Navi",
+                            Name_fr = "Navi",
+                            Name_uk = "Наві",
+                            Value = "navi"
                         },
                         new
                         {
                             Id = 9,
-                            InfoId = 2,
-                            Label = "Leather",
-                            Value = "leather"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            InfoId = 2,
-                            Label = "Suede",
-                            Value = "suede"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            InfoId = 2,
-                            Label = "Nubuck",
-                            Value = "nubuck"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            InfoId = 2,
-                            Label = "Textile",
-                            Value = "textile"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            InfoId = 2,
-                            Label = "Synthetic",
-                            Value = "synthetic"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            InfoId = 2,
-                            Label = "Eco Leather",
-                            Value = "ecoleather"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            InfoId = 3,
-                            Label = "35",
-                            Value = "35"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            InfoId = 3,
-                            Label = "36",
-                            Value = "36"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            InfoId = 3,
-                            Label = "37",
-                            Value = "37"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            InfoId = 3,
-                            Label = "38",
-                            Value = "38"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            InfoId = 3,
-                            Label = "39",
-                            Value = "39"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            InfoId = 3,
-                            Label = "40",
-                            Value = "40"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            InfoId = 3,
-                            Label = "41",
-                            Value = "41"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            InfoId = 3,
-                            Label = "42",
-                            Value = "42"
-                        },
-                        new
-                        {
-                            Id = 26,
-                            InfoId = 3,
-                            Label = "43",
-                            Value = "43"
-                        },
-                        new
-                        {
-                            Id = 27,
-                            InfoId = 3,
-                            Label = "44",
-                            Value = "44"
-                        },
-                        new
-                        {
-                            Id = 28,
-                            InfoId = 3,
-                            Label = "45",
-                            Value = "45"
-                        },
-                        new
-                        {
-                            Id = 29,
-                            InfoId = 3,
-                            Label = "46",
-                            Value = "46"
-                        },
-                        new
-                        {
-                            Id = 30,
-                            InfoId = 4,
-                            Label = "Winter",
-                            Value = "winter"
-                        },
-                        new
-                        {
-                            Id = 31,
-                            InfoId = 4,
-                            Label = "Spring",
-                            Value = "spring"
-                        },
-                        new
-                        {
-                            Id = 32,
-                            InfoId = 4,
-                            Label = "Summer",
-                            Value = "summer"
-                        },
-                        new
-                        {
-                            Id = 33,
-                            InfoId = 4,
-                            Label = "Autumn",
-                            Value = "autumn"
+                            InfoId = 1,
+                            Name_en = "White",
+                            Name_es = "Blanco",
+                            Name_fr = "Blanche",
+                            Name_uk = "Білий",
+                            Value = "white"
                         });
                 });
 
@@ -1902,9 +1790,8 @@ namespace Infrastructure.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("ColorId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -1919,9 +1806,8 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text[]");
 
-                    b.Property<string>("Material")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("MaterialId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1931,13 +1817,18 @@ namespace Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
-                    b.Property<string>("Purpose")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("SeasonId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("ColorId");
+
+                    b.HasIndex("MaterialId");
+
+                    b.HasIndex("SeasonId");
 
                     b.ToTable("Products");
 
@@ -1947,210 +1838,538 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             Article = "ER00113828",
                             CategoryId = 8,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "These stylish black leather boots-stockings are a perfect blend of fashion and comfort. Crafted with high-quality leather, they provide a sleek and sophisticated look. Ideal for various occasions, these boots-stockings are a must-have in your wardrobe.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Boots-stockings are black leather",
                             Price = 7399m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 2,
                             Article = "ER00112019",
                             CategoryId = 8,
-                            Color = "Brown",
+                            ColorId = 3,
                             Description = "Step into the season with elegance in these Autumn brown leather stretch boots. Meticulously crafted from premium leather, these boots offer both style and comfort. The stretch feature ensures a snug fit, while the rich brown color adds a touch of warmth to your autumn wardrobe. Perfect for any occasion, these boots are a fashion statement that complements your unique style. Embrace the essence of autumn with each step.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Autumn brown leather stretch boots",
                             Price = 8899m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 3,
                             Article = "ER00112018",
                             CategoryId = 8,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Autumn leather stretch boots",
                             Price = 8899m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 4,
                             Article = "ER00112022",
                             CategoryId = 8,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Boots autumn leather black",
                             Price = 9899m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 5,
                             Article = "ER00112011",
                             CategoryId = 8,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Black autumn leather stretch boots",
                             Price = 9899m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 6,
                             Article = "ER00113851",
                             CategoryId = 8,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Black demi-season boots",
                             Price = 8799m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 7,
                             Article = "ER00112023",
                             CategoryId = 8,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Boots-stockings leather black",
                             Price = 9989m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 8,
                             Article = "ER00114318",
                             CategoryId = 8,
-                            Color = "Burgundy",
+                            ColorId = 4,
                             Description = "Estro ER00112018 Burgundy Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Boots-pipes with wide freebies are burgundy",
                             Price = 9989m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 9,
                             Article = "ER00112298",
                             CategoryId = 8,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Black leather Cossack boots",
                             Price = 8799m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 10,
                             Article = "ER00112123",
                             CategoryId = 8,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Boots-stockings on a stiletto are black",
                             Price = 8699m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 11,
                             Article = "ER00112122",
                             CategoryId = 8,
-                            Color = "Milk",
+                            ColorId = 7,
                             Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Milk stiletto stocking boots",
                             Price = 8699m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 12,
                             Article = "ER00114239",
                             CategoryId = 8,
-                            Color = "Brown",
+                            ColorId = 3,
                             Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Boots-stockings on a stiletto are brown",
                             Price = 8399m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 13,
                             Article = "ER00114240",
                             CategoryId = 8,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Boots-stockings on a stiletto are black",
                             Price = 8399m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 14,
                             Article = "ER00113949",
                             CategoryId = 7,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Ankle boots are black",
                             Price = 2890m,
-                            Purpose = "Autumn"
+                            SeasonId = 4
                         },
                         new
                         {
                             Id = 15,
                             Article = "ER00111942",
                             CategoryId = 12,
-                            Color = "Black",
+                            ColorId = 1,
                             Description = "Estro ER00112018 Milk Leather Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 Milk leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Details = "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: \"Black\". Need to add an extra pop of color to your outfit? Our white tee has you covered.",
                             Highlights = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
-                            Material = "Leather",
+                            MaterialId = 2,
                             Name = "Winter boots",
                             Price = 2290m,
-                            Purpose = "Winter"
+                            SeasonId = 1
+                        });
+                });
+
+            modelBuilder.Entity("Core.Entities.Product.ProductMaterial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("InfoId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_uk")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InfoId");
+
+                    b.ToTable("ProductMaterial");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            InfoId = 2,
+                            Name_en = "Eco Leather",
+                            Name_es = "Сuero ecológico",
+                            Name_fr = "Eco Leather",
+                            Name_uk = "Еко шкіра",
+                            Value = "ecoleather"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            InfoId = 2,
+                            Name_en = "Leather",
+                            Name_es = "Сuero",
+                            Name_fr = "Cuir",
+                            Name_uk = "Шкіра",
+                            Value = "leather"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            InfoId = 2,
+                            Name_en = "Nubuck",
+                            Name_es = "Nubuck",
+                            Name_fr = "Nubuck",
+                            Name_uk = "Нубук",
+                            Value = "nubuck"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            InfoId = 2,
+                            Name_en = "Synthetic",
+                            Name_es = "Sintética",
+                            Name_fr = "Synthétique",
+                            Name_uk = "Синтетика",
+                            Value = "synthetic"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            InfoId = 2,
+                            Name_en = "Suede",
+                            Name_es = "Ante",
+                            Name_fr = "Suède",
+                            Name_uk = "Замша",
+                            Value = "suede"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            InfoId = 2,
+                            Name_en = "Textile",
+                            Name_es = "Textil",
+                            Name_fr = "Textile",
+                            Name_uk = "Текстиль",
+                            Value = "textile"
+                        });
+                });
+
+            modelBuilder.Entity("Core.Entities.Product.ProductSeason", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("InfoId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_uk")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InfoId");
+
+                    b.ToTable("ProductSeason");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            InfoId = 4,
+                            Name_en = "Winter",
+                            Name_es = "Invierno",
+                            Name_fr = "Hiver",
+                            Name_uk = "Зима",
+                            Value = "winter"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            InfoId = 4,
+                            Name_en = "Spring",
+                            Name_es = "Primavera",
+                            Name_fr = "Printemps",
+                            Name_uk = "Весна",
+                            Value = "spring"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            InfoId = 4,
+                            Name_en = "Summer",
+                            Name_es = "Verano",
+                            Name_fr = "Été",
+                            Name_uk = "Літо",
+                            Value = "summer"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            InfoId = 4,
+                            Name_en = "Autumn",
+                            Name_es = "Otoño",
+                            Name_fr = "Automne",
+                            Name_uk = "Осінь",
+                            Value = "autumn"
+                        });
+                });
+
+            modelBuilder.Entity("Core.Entities.Product.ProductSize", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("InfoId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_uk")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InfoId");
+
+                    b.ToTable("ProductSize");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            InfoId = 3,
+                            Name_en = "35",
+                            Name_es = "35",
+                            Name_fr = "35",
+                            Name_uk = "35",
+                            Value = "35"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            InfoId = 3,
+                            Name_en = "36",
+                            Name_es = "36",
+                            Name_fr = "36",
+                            Name_uk = "36",
+                            Value = "36"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            InfoId = 3,
+                            Name_en = "37",
+                            Name_es = "37",
+                            Name_fr = "37",
+                            Name_uk = "37",
+                            Value = "37"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            InfoId = 3,
+                            Name_en = "38",
+                            Name_es = "38",
+                            Name_fr = "38",
+                            Name_uk = "38",
+                            Value = "38"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            InfoId = 3,
+                            Name_en = "39",
+                            Name_es = "39",
+                            Name_fr = "39",
+                            Name_uk = "39",
+                            Value = "39"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            InfoId = 3,
+                            Name_en = "40",
+                            Name_es = "40",
+                            Name_fr = "40",
+                            Name_uk = "40",
+                            Value = "40"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            InfoId = 3,
+                            Name_en = "41",
+                            Name_es = "41",
+                            Name_fr = "41",
+                            Name_uk = "41",
+                            Value = "41"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            InfoId = 3,
+                            Name_en = "42",
+                            Name_es = "42",
+                            Name_fr = "42",
+                            Name_uk = "42",
+                            Value = "42"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            InfoId = 3,
+                            Name_en = "43",
+                            Name_es = "43",
+                            Name_fr = "43",
+                            Name_uk = "43",
+                            Value = "43"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            InfoId = 3,
+                            Name_en = "44",
+                            Name_es = "44",
+                            Name_fr = "44",
+                            Name_uk = "44",
+                            Value = "44"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            InfoId = 3,
+                            Name_en = "45",
+                            Name_es = "45",
+                            Name_fr = "45",
+                            Name_uk = "45",
+                            Value = "45"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            InfoId = 3,
+                            Name_en = "46",
+                            Name_es = "46",
+                            Name_fr = "46",
+                            Name_uk = "46",
+                            Value = "46"
                         });
                 });
 
@@ -3935,10 +4154,10 @@ namespace Infrastructure.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Core.Entities.Product.Options", b =>
+            modelBuilder.Entity("Core.Entities.Product.ProductColors", b =>
                 {
                     b.HasOne("Core.Entities.Product.Info", "Info")
-                        .WithMany("Options")
+                        .WithMany("Colors")
                         .HasForeignKey("InfoId");
 
                     b.Navigation("Info");
@@ -3952,7 +4171,58 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Core.Entities.Product.ProductColors", "Color")
+                        .WithMany()
+                        .HasForeignKey("ColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Product.ProductMaterial", "Material")
+                        .WithMany()
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.Product.ProductSeason", "Season")
+                        .WithMany()
+                        .HasForeignKey("SeasonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Category");
+
+                    b.Navigation("Color");
+
+                    b.Navigation("Material");
+
+                    b.Navigation("Season");
+                });
+
+            modelBuilder.Entity("Core.Entities.Product.ProductMaterial", b =>
+                {
+                    b.HasOne("Core.Entities.Product.Info", "Info")
+                        .WithMany("Material")
+                        .HasForeignKey("InfoId");
+
+                    b.Navigation("Info");
+                });
+
+            modelBuilder.Entity("Core.Entities.Product.ProductSeason", b =>
+                {
+                    b.HasOne("Core.Entities.Product.Info", "Info")
+                        .WithMany("Season")
+                        .HasForeignKey("InfoId");
+
+                    b.Navigation("Info");
+                });
+
+            modelBuilder.Entity("Core.Entities.Product.ProductSize", b =>
+                {
+                    b.HasOne("Core.Entities.Product.Info", "Info")
+                        .WithMany("Size")
+                        .HasForeignKey("InfoId");
+
+                    b.Navigation("Info");
                 });
 
             modelBuilder.Entity("Core.Entities.Product.StorageEntity", b =>
@@ -4139,7 +4409,13 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Core.Entities.Product.Info", b =>
                 {
-                    b.Navigation("Options");
+                    b.Navigation("Colors");
+
+                    b.Navigation("Material");
+
+                    b.Navigation("Season");
+
+                    b.Navigation("Size");
                 });
 
             modelBuilder.Entity("Core.Entities.Product.ProductEntity", b =>

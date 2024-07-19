@@ -10,10 +10,19 @@ namespace Core.DTOs.Product
         public List<string> Highlights { get; set; }
         public string Details { get; set; } = string.Empty;
         public decimal Price { get; set; }
-        public string Purpose { get; set; } = string.Empty;
-        public string Color { get; set; } = string.Empty;
+        public string Color_en { get; set; } = string.Empty;
+        public string Color_uk { get; set; } = string.Empty;
+        public string Color_es { get; set; } = string.Empty;
+        public string Color_fr { get; set; } = string.Empty;
+        public string Season_en { get; set; } = string.Empty;
+        public string Season_uk { get; set; } = string.Empty;
+        public string Season_es { get; set; } = string.Empty;
+        public string Season_fr { get; set; } = string.Empty;
+        public string Material_en { get; set; } = string.Empty;
+        public string Material_uk{ get; set; } = string.Empty;
+        public string Material_es { get; set; } = string.Empty;
+        public string Material_fr { get; set; } = string.Empty;
         public string Article { get; set; } = string.Empty;
-        public string Material { get; set; } = string.Empty;
         public List<ImageEntity>? Images { get; set; }
         public List<string>? ImagesPath { get; set; }
         public int CategoryId { get; set; }

@@ -14,12 +14,15 @@ namespace Core.Entities.Product
         public string Description { get; set; } = string.Empty;
         public List<string> Highlights { get; set; }
         public string Details { get; set; } = string.Empty;
-        public string Purpose { get; set; } = string.Empty;
-        public string Color { get; set; } = string.Empty;
-        public string Material { get; set; } = string.Empty;
-        public List<ImageEntity> Images { get; set; }
+        public int SeasonId { get; set; }
+        public ProductSeason Season { get; set; }
+        public int ColorId { get; set; }
+        public ProductColors Color { get; set; }
+        public int MaterialId { get; set; }
+        public ProductMaterial Material { get; set; }
         public int CategoryId { get; set; }
         public CategoryEntity Category { get; set; }
+        public List<ImageEntity> Images { get; set; }
         public List<StorageEntity> Storages { get; set; }
         public List<BagItems> BagItems { get; set; }
         public List<OrderItems> OrderItems { get; set; }
