@@ -5,9 +5,15 @@ namespace Core.Entities.UserInfo
     public class OrderItems
     {
         public int Id { get; set; }
-        public string? Name { get; set; }
+        public string Name_en { get; set; } = string.Empty;
+        public string Name_uk { get; set; } = string.Empty;
+        public string Name_es { get; set; } = string.Empty;
+        public string Name_fr { get; set; } = string.Empty;
+        public string Description_en { get; set; } = string.Empty;
+        public string Description_uk { get; set; } = string.Empty;
+        public string Description_es { get; set; } = string.Empty;
+        public string Description_fr { get; set; } = string.Empty;
         public decimal Price { get; set; }
-        public string? Description { get; set; }
         public int Step { get; set; }
         public string? Status { get; set; }
         public string? ImagePath { get; set; }

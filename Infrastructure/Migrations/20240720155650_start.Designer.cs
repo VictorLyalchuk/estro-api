@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240719201444_start")]
+    [Migration("20240720155650_start")]
     partial class start
     {
         /// <inheritdoc />
@@ -3983,7 +3983,20 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Article")
                         .HasColumnType("text");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Description_en")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_es")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_fr")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_uk")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DueDate")
@@ -3992,7 +4005,20 @@ namespace Infrastructure.Migrations
                     b.Property<string>("ImagePath")
                         .HasColumnType("text");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Name_en")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_es")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_fr")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name_uk")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int?>("OrderId")
@@ -4068,10 +4094,28 @@ namespace Infrastructure.Migrations
                     b.Property<decimal?>("BonusesAccrued")
                         .HasColumnType("numeric");
 
-                    b.Property<string>("BonusesDescription")
+                    b.Property<string>("BonusesDescription_en")
                         .HasColumnType("text");
 
-                    b.Property<string>("BonusesOperation")
+                    b.Property<string>("BonusesDescription_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BonusesDescription_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BonusesDescription_uk")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BonusesOperation_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BonusesOperation_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BonusesOperation_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("BonusesOperation_uk")
                         .HasColumnType("text");
 
                     b.Property<int?>("Name")

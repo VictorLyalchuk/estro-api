@@ -11,7 +11,10 @@ namespace Core.DTOs.UserInfo
         public int Quantity { get; set; }
         public int Size { get; set; }
         public int BagId { get; set; }
-        public string Name { get; set; } 
+        public string Name_en { get; set; } 
+        public string Name_uk { get; set; }
+        public string Name_es { get; set; } 
+        public string Name_fr { get; set; }
         public string Article { get; set; }
         public decimal Price { get; set; }
         public string Image { get; set; }

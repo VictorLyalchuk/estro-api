@@ -100,14 +100,20 @@ namespace Core.Services
                     OrderItems orderItems = new OrderItems()
                     {
                         Quantity = item.Quantity,
-                        Name = item.Product.Name_en,
+                        Name_en = item.Product.Name_en,
+                        Name_uk = item.Product.Name_uk,
+                        Name_es = item.Product.Name_es,
+                        Name_fr = item.Product.Name_fr,
+                        Description_en = item.Product.Description_en,
+                        Description_uk = item.Product.Description_uk,
+                        Description_es = item.Product.Description_es,
+                        Description_fr = item.Product.Description_fr,
                         Price = item.Product.Price,
                         Size = item.Size,
                         Article = item.Product.Article,
                         ImagePath = item.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath,
                         OrderId = order.Id,
                         ProductId = item.ProductId,
-                        Description = item.Product.Description_en,
                         Step = 0,
                         Status = "Order placed",
                     };
@@ -123,8 +129,14 @@ namespace Core.Services
                     UserId = user.Id,
                     Name = order.Id,
                     BonusesAccrued = accrued,
-                    BonusesDescription = "Purchase bonus",
-                    BonusesOperation = "Accrual",
+                    BonusesDescription_en = "Purchase bonus",
+                    BonusesDescription_uk = "Бонус за покупку",
+                    BonusesDescription_es = "Bono de compra",
+                    BonusesDescription_fr = "Bonus d'achat",
+                    BonusesOperation_en = "Accrual",
+                    BonusesOperation_uk = "Нарахування",
+                    BonusesOperation_es = "Devengo",
+                    BonusesOperation_fr = "Accumulation",
                 };
                 await _userBonuses.InsertAsync(bonuses);
                 await _userBonuses.SaveAsync();
