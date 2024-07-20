@@ -38,9 +38,18 @@ namespace Core.DTOs.Product
         public List<ImageEntity>? Images { get; set; }
         public List<string>? ImagesPath { get; set; }
         public int CategoryId { get; set; }
-        public string CategoryName { get; set; } = string.Empty;
-        public string SubCategoryName { get; set; } = string.Empty;
-        public string MainCategoryName { get; set; } = string.Empty;
+        public string CategoryName_en { get; set; } = string.Empty;
+        public string CategoryName_uk { get; set; } = string.Empty;
+        public string CategoryName_es { get; set; } = string.Empty;
+        public string CategoryName_fr { get; set; } = string.Empty;
+        public string SubCategoryName_en { get; set; } = string.Empty;
+        public string SubCategoryName_uk { get; set; } = string.Empty;
+        public string SubCategoryName_es { get; set; } = string.Empty;
+        public string SubCategoryName_fr { get; set; } = string.Empty;
+        public string MainCategoryName_en { get; set; } = string.Empty;
+        public string MainCategoryName_uk { get; set; } = string.Empty;
+        public string MainCategoryName_es { get; set; } = string.Empty;
+        public string MainCategoryName_fr { get; set; } = string.Empty;
         public List<StorageEntity>? Storages { get; set; }
         public int StorageQuantity { get; set; }
         public string URLCategoryName { get; set; } = string.Empty;
