@@ -12,11 +12,11 @@ namespace Infrastructure.EntitiesConfiguration
             builder.HasKey(x => x.Id);
 
             //Set Property configurations
-            builder.Property(x => x.Name)
+            builder.Property(x => x.Name_en)
                    .HasMaxLength(180)
                    .IsRequired();
 
-            builder.Property(x => x.Description)
+            builder.Property(x => x.Description_en)
                    .HasMaxLength(1024);
 
             //Set Relationship configurations

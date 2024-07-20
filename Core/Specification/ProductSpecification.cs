@@ -105,7 +105,7 @@ namespace Core.Specification
                 if (!string.IsNullOrEmpty(search))
                 {
                     search = search.Replace("_", " ");
-                    Query.Where(p => p.Name.ToLower().Contains(search.ToLower()));
+                    Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
                 }
                 switch (sort)
                 {
@@ -181,7 +181,7 @@ namespace Core.Specification
                 if (!string.IsNullOrEmpty(search))
                 {
                     search = search.Replace("_", " ");
-                    Query.Where(p => p.Name.ToLower().Contains(search.ToLower()));
+                    Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
                 }
                 var results = Query;
             }

@@ -99,7 +99,7 @@ namespace Core.Mapper
             CreateMap<UserFavoriteProduct, UserFavoriteProductDTO>()
                      .ForMember(dest => dest.ProductPrice, opt => opt.MapFrom(src => src.Product.Price))
                      .ForMember(dest => dest.ProductImage, opt => opt.MapFrom(src => src.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath))
-                     .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name))
+                     .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Name_en))
                      .ForMember(dest => dest.Storages, opt => opt.MapFrom(src => src.Product.Storages));
 
             CreateMap<UserFavoriteProductDTO, UserFavoriteProduct>();
@@ -113,7 +113,7 @@ namespace Core.Mapper
             CreateMap<BagUserDTO, Bag>().ReverseMap();
             CreateMap<BagItemsDTO, BagItems>();
             CreateMap<BagItems, BagItemsDTO>()
-                        .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Product.Name))
+                        .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Product.Name_en))
                         .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Product.Price))
                         .ForMember(dest => dest.Article, opt => opt.MapFrom(src => src.Product.Article))
                         .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath));

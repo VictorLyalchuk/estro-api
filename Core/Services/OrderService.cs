@@ -100,14 +100,14 @@ namespace Core.Services
                     OrderItems orderItems = new OrderItems()
                     {
                         Quantity = item.Quantity,
-                        Name = item.Product.Name,
+                        Name = item.Product.Name_en,
                         Price = item.Product.Price,
                         Size = item.Size,
                         Article = item.Product.Article,
                         ImagePath = item.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath,
                         OrderId = order.Id,
                         ProductId = item.ProductId,
-                        Description = item.Product.Description,
+                        Description = item.Product.Description_en,
                         Step = 0,
                         Status = "Order placed",
                     };
