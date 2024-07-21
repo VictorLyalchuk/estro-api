@@ -11,7 +11,7 @@ namespace Core.Specification
             {
                 Query
                     .Where(f => f.UserId == userId)
-                    .OrderBy(i => i.Id);
+                    .OrderByDescending(i => i.Id);
             }
         }
     }
