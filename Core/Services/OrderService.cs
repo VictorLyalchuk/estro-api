@@ -65,6 +65,14 @@ namespace Core.Services
                 await _orderPaymentRepository.SaveAsync();
 
                 decimal total = bagItems.Sum(p => p.Quantity * p.Product.Price);
+                if (total > orderCreateDTO.Discount)
+                {
+                    total -= orderCreateDTO.Discount;
+                }
+                else if (total <= orderCreateDTO.Discount)
+                {
+                    total = 0;
+                }
                 decimal tax = (bagItems.Sum(p => p.Quantity * p.Product.Price) / (100 + 20)) * 20;
                 decimal subtotal = total - tax;
                 decimal accrued = (1.0m / 100) * total;
@@ -83,7 +91,7 @@ namespace Core.Services
                     OrderTotal = total,
                     Tax = tax,
                     Subtotal = subtotal,
-                    Discount = 0,
+                    Discount = orderCreateDTO.Discount,
                 };
                 await _orderRepository.InsertAsync(order);
                 await _orderRepository.SaveAsync();
@@ -91,6 +99,7 @@ namespace Core.Services
                 if (user != null)
                 {
                     user.BagId = null;
+                    user.BonusBalance -= orderCreateDTO.Discount;
                     user.BonusBalance += accrued;
                     var result = await _userManager.UpdateAsync(user);
                 }
@@ -123,7 +132,25 @@ namespace Core.Services
                 await _bagRepository.DeleteAsync(bag.Id);
                 await _bagRepository.SaveAsync();
 
-                UserBonuses bonuses = new UserBonuses()
+                UserBonuses bonuses_Redeemed = new UserBonuses()
+                {
+                    OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
+                    UserId = user.Id,
+                    Name = order.Id,
+                    BonusesAccrued = orderCreateDTO.Discount,
+                    BonusesDescription_en = "Purchase of goods",
+                    BonusesDescription_uk = "Купівля товару",
+                    BonusesDescription_es = "Compra de bienes",
+                    BonusesDescription_fr = "Achat de biens",
+                    BonusesOperation_en = "Redeemed",
+                    BonusesOperation_uk = "Списання",
+                    BonusesOperation_es = "Redimida",
+                    BonusesOperation_fr = "Rachetée",
+                };
+                await _userBonuses.InsertAsync(bonuses_Redeemed);
+                await _userBonuses.SaveAsync();
+
+                UserBonuses bonuses_Accrual = new UserBonuses()
                 {
                     OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
                     UserId = user.Id,
@@ -138,7 +165,7 @@ namespace Core.Services
                     BonusesOperation_es = "Devengo",
                     BonusesOperation_fr = "Accumulation",
                 };
-                await _userBonuses.InsertAsync(bonuses);
+                await _userBonuses.InsertAsync(bonuses_Accrual);
                 await _userBonuses.SaveAsync();
 
             }

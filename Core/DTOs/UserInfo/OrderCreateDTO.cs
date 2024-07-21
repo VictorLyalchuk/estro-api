@@ -13,10 +13,10 @@
         public string? Street { get; set; }
         public string? Payment { get; set; }
         public string? PaymentMethod { get; set; }
+        public decimal Discount { get; set; }
         public string? CardNumber { get; set; }
         public string? CardMonthExpires { get; set; }
         public string? CardYearExpires { get; set; }
         public string? CardHolderName { get; set; }
-
     }
 }
