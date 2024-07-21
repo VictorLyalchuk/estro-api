@@ -39,6 +39,6 @@ namespace Core.Entities.Product
         public List<BagItems> BagItems { get; set; }
         public List<OrderItems> OrderItems { get; set; }
         public ICollection<UserFavoriteProduct> FavoriteProducts { get; set; }
-
+        public ICollection<UserProductReview> UserProductReview { get; set; }
     }
 }

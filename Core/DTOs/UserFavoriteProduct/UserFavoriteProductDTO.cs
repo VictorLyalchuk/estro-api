@@ -1,6 +1,6 @@
 ﻿using Core.DTOs.Storage;
 
-namespace Core.DTOs.UserInfo
+namespace Core.DTOs.UserFavoriteProduct
 {
     public class UserFavoriteProductDTO
     {

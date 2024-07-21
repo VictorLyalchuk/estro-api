@@ -4,7 +4,6 @@ using Core.Entities.Store;
 using Core.Interfaces;
 using Core.Specification;
 
-
 namespace Core.Services
 {
     public class StoreService : IStoreService

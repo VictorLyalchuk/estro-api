@@ -1,4 +1,4 @@
-﻿using Core.DTOs.UserInfo;
+﻿using Core.DTOs.UserFavoriteProduct;
 
 namespace Core.Interfaces
 {

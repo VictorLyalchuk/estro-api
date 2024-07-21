@@ -1,4 +1,4 @@
-﻿namespace Core.DTOs.UserInfo
+﻿namespace Core.DTOs.UserFavoriteProduct
 {
     public class CreateUserFavoriteProductDTO
     {

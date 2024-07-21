@@ -1,4 +1,4 @@
-﻿using Core.DTOs.UserInfo;
+﻿using Core.DTOs.UserFavoriteProduct;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

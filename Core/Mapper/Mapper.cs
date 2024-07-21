@@ -12,6 +12,8 @@ using Core.Entities.Product;
 using Core.Entities.Store;
 using Core.Entities.Address;
 using Core.DTOs.Address;
+using Core.DTOs.UserFavoriteProduct;
+using Core.DTOs.UserProductReview;
 
 namespace Core.Mapper
 {
@@ -114,6 +116,8 @@ namespace Core.Mapper
                      .ForMember(dest => dest.ProductName_fr, opt => opt.MapFrom(src => src.Product.Name_fr))
                      .ForMember(dest => dest.Storages, opt => opt.MapFrom(src => src.Product.Storages));
 
+            CreateMap<UserProductReview, UserProductReviewDTO>();
+            CreateMap<CreateUserProductReviewDTO, UserProductReview>();
             CreateMap<UserFavoriteProductDTO, UserFavoriteProduct>();
             CreateMap<UserBonuses, UserBonusesDTO>();
 

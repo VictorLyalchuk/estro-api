@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Core.DTOs.UserInfo;
 using Core.Entities.UserInfo;
 using Core.Entities.Product;
 using Core.Entities.UserEntity;
@@ -8,6 +7,7 @@ using Core.Interfaces;
 using Core.Specification;
 using Microsoft.AspNetCore.Identity;
 using System.Net;
+using Core.DTOs.UserFavoriteProduct;
 
 namespace Core.Services
 {

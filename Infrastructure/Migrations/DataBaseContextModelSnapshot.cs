@@ -2082,10 +2082,10 @@ namespace Infrastructure.Migrations
                             Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
                             Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
                             MaterialId = 2,
-                            Name_en = "Boots-pipes with wide freebies are burgundy",
-                            Name_es = "Las botas con pipas anchas son de color burdeos",
-                            Name_fr = "Les bottes-pipes avec de larges cadeaux sont bordeaux",
-                            Name_uk = "Черевики-дудочки з широкими халявами бордові",
+                            Name_en = "Boots-pipes with wide freebies",
+                            Name_es = "Las botas con pipas anchas son de color",
+                            Name_fr = "Les bottes-pipes avec de larges cadeaux",
+                            Name_uk = "Черевики-дудочки з широкими халявами",
                             Price = 9989m,
                             SeasonId = 4
                         },
@@ -4149,6 +4149,48 @@ namespace Infrastructure.Migrations
                     b.ToTable("UserFavoriteProduct");
                 });
 
+            modelBuilder.Entity("Core.Entities.UserInfo.UserProductReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Avatar")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserProductReview");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -4613,6 +4655,25 @@ namespace Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Core.Entities.UserInfo.UserProductReview", b =>
+                {
+                    b.HasOne("Core.Entities.Product.ProductEntity", "Product")
+                        .WithMany("UserProductReview")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.UserEntity.User", "User")
+                        .WithMany("UserProductReview")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -4701,6 +4762,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("OrderItems");
 
                     b.Navigation("Storages");
+
+                    b.Navigation("UserProductReview");
                 });
 
             modelBuilder.Entity("Core.Entities.UserInfo.Bag", b =>
@@ -4722,6 +4785,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("Orders");
 
                     b.Navigation("UserBonuses");
+
+                    b.Navigation("UserProductReview");
                 });
 #pragma warning restore 612, 618
         }
