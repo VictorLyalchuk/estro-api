@@ -6,9 +6,9 @@ namespace Core.Specification
 {
     public class ProductSpecification
     {
-        public class Some : Specification<ProductEntity>
+        public class GetProductByCategoryId : Specification<ProductEntity>
         {
-            public Some(int id)
+            public GetProductByCategoryId(int id)
             {
                 Query
                     .Include(p => p.Images)
@@ -123,7 +123,6 @@ namespace Core.Specification
                             Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
                             break;
                     }
-                    //Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
                 }
                 switch (sort)
                 {
@@ -217,7 +216,6 @@ namespace Core.Specification
                             Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
                             break;
                     }
-                    //Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
                 }
                 var results = Query;
             }

@@ -18,7 +18,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _product.GetSomeByIdAsync(id));
+            return Ok(await _product.GetProductByCategoryIdAsync(id));
         }
 
         [HttpGet("ProductByID/{id}")]

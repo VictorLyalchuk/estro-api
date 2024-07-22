@@ -31,9 +31,9 @@ namespace Core.Services
             _filesService = filesService;
             _imageService = imageService;
         }
-        public async Task<List<ProductDTO>?> GetSomeByIdAsync(int id)
+        public async Task<List<ProductDTO>?> GetProductByCategoryIdAsync(int id)
         {
-            var products = await _productRepository.GetListBySpec(new ProductSpecification.Some(id));
+            var products = await _productRepository.GetListBySpec(new ProductSpecification.GetProductByCategoryId(id));
             return _mapper.Map<List<ProductDTO>>(products);
         }
         public async Task<List<ProductDTO>>? GetProductByURLNameAsync(string urlName)

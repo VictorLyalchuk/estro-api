@@ -5,7 +5,7 @@ namespace Core.Interfaces
 {
     public interface IProductService
     {
-        Task<List<ProductDTO>?> GetSomeByIdAsync(int id);
+        Task<List<ProductDTO>?> GetProductByCategoryIdAsync(int id);
         Task<List<ProductDTO>>? GetProductByURLNameAsync(string urlName);
         Task<List<ProductDTO>>? FilterProductsAsync(FilterDTO? filterDTO);
         Task<List<ProductDTO>> GetProductByPageAsync(int page);
