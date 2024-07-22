@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.DTOs.Filter;
 using Core.DTOs.UserInfo;
 using Core.DTOs.UserProductReview;
 using Core.Entities.UserEntity;
@@ -74,10 +75,14 @@ namespace Core.Services
             }
             return userProductRatingDTO;
         }
-
-        public async Task<List<UserProductReviewDTO>> GetUserProductReview(int productId)
+        public async Task<int> GetQuantityUserProductReviewAsync(int productId)
         {
-            var reviews = await _productsReviewService.GetListBySpec(new UserProductReviewSpecification.GetUserProductReview(productId));
+            var reviews = await _productsReviewService.GetListBySpec(new UserProductReviewSpecification.GetQuantityUserProductReview(productId));
+            return reviews.Count();
+        }
+        public async Task<List<UserProductReviewDTO>> GetUserProductReview(int productId, int page)
+        {
+            var reviews = await _productsReviewService.GetListBySpec(new UserProductReviewSpecification.GetUserProductReview(productId, page));
             return _mapper.Map<List<UserProductReviewDTO>>(reviews);
         }
     }

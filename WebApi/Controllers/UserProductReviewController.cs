@@ -29,10 +29,20 @@ namespace WebApi.Controllers
             }
             return Ok(resutl);
         }
-        [HttpGet("getReview")]
-        public async Task<IActionResult> GetUserProductReview(int productId)
+        [HttpGet("getReview/{productId}")]
+        public async Task<IActionResult> GetUserProductReview(int productId, int page)
         {
-            var resutl = await _review.GetUserProductReview(productId);
+            var resutl = await _review.GetUserProductReview(productId, page);
+            if (resutl == null)
+            {
+                return Ok();
+            }
+            return Ok(resutl);
+        }
+        [HttpGet("getQuantityReview")]
+        public async Task<IActionResult> GetQuantityUserProductReviewAsync(int productId)
+        {
+            var resutl = await _review.GetQuantityUserProductReviewAsync(productId);
             if (resutl == null)
             {
                 return Ok();
