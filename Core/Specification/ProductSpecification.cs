@@ -105,7 +105,25 @@ namespace Core.Specification
                 if (!string.IsNullOrEmpty(search))
                 {
                     search = search.Replace("_", " ");
-                    Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
+                    switch (filterDTO.Language)
+                    {
+                        case "en":
+                            Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
+                            break;
+                        case "uk":
+                            Query.Where(p => p.Name_uk.ToLower().Contains(search.ToLower()));
+                            break;
+                        case "es":
+                            Query.Where(p => p.Name_es.ToLower().Contains(search.ToLower()));
+                            break;
+                        case "fr":
+                            Query.Where(p => p.Name_fr.ToLower().Contains(search.ToLower()));
+                            break;
+                        default:
+                            Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
+                            break;
+                    }
+                    //Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
                 }
                 switch (sort)
                 {
@@ -181,7 +199,25 @@ namespace Core.Specification
                 if (!string.IsNullOrEmpty(search))
                 {
                     search = search.Replace("_", " ");
-                    Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
+                    switch (filterDTO.Language)
+                    {
+                        case "en":
+                            Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
+                            break;
+                        case "uk":
+                            Query.Where(p => p.Name_uk.ToLower().Contains(search.ToLower()));
+                            break;
+                        case "es":
+                            Query.Where(p => p.Name_es.ToLower().Contains(search.ToLower()));
+                            break;
+                        case "fr":
+                            Query.Where(p => p.Name_fr.ToLower().Contains(search.ToLower()));
+                            break;
+                        default:
+                            Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
+                            break;
+                    }
+                    //Query.Where(p => p.Name_en.ToLower().Contains(search.ToLower()));
                 }
                 var results = Query;
             }
