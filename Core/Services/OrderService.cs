@@ -60,142 +60,6 @@ namespace Core.Services
             }
         }
 
-        //public async Task CreateAsync(OrderCreateDTO orderCreateDTO)
-        //{
-        //    var user = await _userManager.FindByEmailAsync(orderCreateDTO.EmailUser);
-        //    var bag = await _bagRepository.GetItemBySpec(new BagSpecification.GetBagByUserEmail(orderCreateDTO.EmailUser));
-        //    var bagItems = await _bagItemsRepository.GetListBySpec(new BagItemsSpecification.GetBagItemsByBagEmail(orderCreateDTO.EmailUser));
-
-        //    if (bag != null)
-        //    {
-        //        AddressEntity address = new AddressEntity()
-        //        {
-        //            Country = orderCreateDTO.Country,
-        //            City = orderCreateDTO.City,
-        //            State = orderCreateDTO.State,
-        //            Street = orderCreateDTO.Street,
-        //        };
-        //        await _addressRepository.InsertAsync(address);
-        //        await _addressRepository.SaveAsync();
-
-        //        OrderPayment orderPayment = new OrderPayment()
-        //        {
-        //            Payment = orderCreateDTO.Payment,
-        //            PaymentMethod = orderCreateDTO.PaymentMethod,
-        //            CardHolderName = orderCreateDTO.CardHolderName,
-        //            CardNumber = orderCreateDTO.CardNumber,
-        //            CardMonthExpires = orderCreateDTO.CardMonthExpires,
-        //            CardYearExpires = orderCreateDTO.CardYearExpires,
-        //        };
-        //        await _orderPaymentRepository.InsertAsync(orderPayment); 
-        //        await _orderPaymentRepository.SaveAsync();
-
-        //        decimal total = bagItems.Sum(p => p.Quantity * p.Product.Price);
-        //        if (total > orderCreateDTO.Discount)
-        //        {
-        //            total -= orderCreateDTO.Discount;
-        //        }
-        //        else if (total <= orderCreateDTO.Discount)
-        //        {
-        //            total = 0;
-        //        }
-        //        decimal tax = (bagItems.Sum(p => p.Quantity * p.Product.Price) / (100 + 20)) * 20;
-        //        decimal subtotal = total - tax;
-        //        decimal accrued = (1.0m / 100) * total;
-
-        //        Order order = new Order()
-        //        {
-        //            AddressId = address.Id,
-        //            Email = orderCreateDTO.Email,
-        //            EmailUser = orderCreateDTO.EmailUser,
-        //            FirstName = orderCreateDTO.FirstName,
-        //            LastName = orderCreateDTO.LastName,
-        //            OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
-        //            PhoneNumber = orderCreateDTO.PhoneNumber,
-        //            UserId = user.Id,
-        //            OrderPaymentId = orderPayment.Id,
-        //            OrderTotal = total,
-        //            Tax = tax,
-        //            Subtotal = subtotal,
-        //            Discount = orderCreateDTO.Discount,
-        //        };
-        //        await _orderRepository.InsertAsync(order);
-        //        await _orderRepository.SaveAsync();
-
-        //        if (user != null)
-        //        {
-        //            user.BagId = null;
-        //            user.BonusBalance -= orderCreateDTO.Discount;
-        //            user.BonusBalance += accrued;
-        //            var result = await _userManager.UpdateAsync(user);
-        //        }
-
-        //        foreach (var item in bagItems)
-        //        {
-        //            OrderItems orderItems = new OrderItems()
-        //            {
-        //                Quantity = item.Quantity,
-        //                Name_en = item.Product.Name_en,
-        //                Name_uk = item.Product.Name_uk,
-        //                Name_es = item.Product.Name_es,
-        //                Name_fr = item.Product.Name_fr,
-        //                Description_en = item.Product.Description_en,
-        //                Description_uk = item.Product.Description_uk,
-        //                Description_es = item.Product.Description_es,
-        //                Description_fr = item.Product.Description_fr,
-        //                Price = item.Product.Price,
-        //                Size = item.Size,
-        //                Article = item.Product.Article,
-        //                ImagePath = item.Product.Images.OrderBy(img => img.Id).FirstOrDefault().ImagePath,
-        //                OrderId = order.Id,
-        //                ProductId = item.ProductId,
-        //                Step = 0,
-        //                Status = "Order placed",
-        //            };
-        //            await _orderItemsRepository.InsertAsync(orderItems);
-        //            await _orderItemsRepository.SaveAsync();
-        //        }
-        //        await _bagRepository.DeleteAsync(bag.Id);
-        //        await _bagRepository.SaveAsync();
-
-        //        UserBonuses bonuses_Redeemed = new UserBonuses()
-        //        {
-        //            OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
-        //            UserId = user.Id,
-        //            Name = order.Id,
-        //            BonusesAccrued = orderCreateDTO.Discount,
-        //            BonusesDescription_en = "Purchase of goods",
-        //            BonusesDescription_uk = "Купівля товару",
-        //            BonusesDescription_es = "Compra de bienes",
-        //            BonusesDescription_fr = "Achat de biens",
-        //            BonusesOperation_en = "Redeemed",
-        //            BonusesOperation_uk = "Списання",
-        //            BonusesOperation_es = "Redimida",
-        //            BonusesOperation_fr = "Rachetée",
-        //        };
-        //        await _userBonuses.InsertAsync(bonuses_Redeemed);
-        //        await _userBonuses.SaveAsync();
-
-        //        UserBonuses bonuses_Accrual = new UserBonuses()
-        //        {
-        //            OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
-        //            UserId = user.Id,
-        //            Name = order.Id,
-        //            BonusesAccrued = accrued,
-        //            BonusesDescription_en = "Purchase bonus",
-        //            BonusesDescription_uk = "Бонус за покупку",
-        //            BonusesDescription_es = "Bono de compra",
-        //            BonusesDescription_fr = "Bonus d'achat",
-        //            BonusesOperation_en = "Accrual",
-        //            BonusesOperation_uk = "Нарахування",
-        //            BonusesOperation_es = "Devengo",
-        //            BonusesOperation_fr = "Accumulation",
-        //        };
-        //        await _userBonuses.InsertAsync(bonuses_Accrual);
-        //        await _userBonuses.SaveAsync();
-
-        //    }
-        //}
         public async Task<List<OrderDTO>> GetAllOrdersAsync()
         {
             var result = await _orderRepository.GetListBySpec(new OrderSpecification.GetAllOrders());
@@ -315,23 +179,27 @@ namespace Core.Services
 
         private async Task CreateUserBonusesAsync(string userId, int orderId, decimal discount, decimal accrued)
         {
-            UserBonuses bonuses_Redeemed = new UserBonuses()
+            if (discount != 0)
             {
-                OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
-                UserId = userId,
-                Name = orderId,
-                BonusesAccrued = discount,
-                BonusesDescription_en = "Purchase of goods",
-                BonusesDescription_uk = "Купівля товару",
-                BonusesDescription_es = "Compra de bienes",
-                BonusesDescription_fr = "Achat de biens",
-                BonusesOperation_en = "Redeemed",
-                BonusesOperation_uk = "Списання",
-                BonusesOperation_es = "Redimida",
-                BonusesOperation_fr = "Rachetée",
-            };
-            await _userBonuses.InsertAsync(bonuses_Redeemed);
-            await _userBonuses.SaveAsync();
+
+                UserBonuses bonuses_Redeemed = new UserBonuses()
+                {
+                    OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
+                    UserId = userId,
+                    Name = orderId,
+                    BonusesAccrued = discount,
+                    BonusesDescription_en = "Purchase of goods",
+                    BonusesDescription_uk = "Купівля товару",
+                    BonusesDescription_es = "Compra de bienes",
+                    BonusesDescription_fr = "Achat de biens",
+                    BonusesOperation_en = "Redeemed",
+                    BonusesOperation_uk = "Списання",
+                    BonusesOperation_es = "Redimida",
+                    BonusesOperation_fr = "Rachetée",
+                };
+                await _userBonuses.InsertAsync(bonuses_Redeemed);
+                await _userBonuses.SaveAsync();
+            }
 
             UserBonuses bonuses_Accrual = new UserBonuses()
             {
