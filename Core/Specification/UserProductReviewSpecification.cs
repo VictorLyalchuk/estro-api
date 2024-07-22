@@ -11,7 +11,7 @@ namespace Core.Specification
             {
                 Query
                     .Where(f => f.ProductId == productId)
-                    .OrderBy(f => f.OrderDate);
+                    .OrderByDescending(f => f.OrderDate);
             }
         }
         public class GetUserProductRating : Specification<UserProductReview>
@@ -20,7 +20,7 @@ namespace Core.Specification
             {
                 Query
                     .Where(f => f.ProductId == productId)
-                    .OrderBy(f => f.OrderDate);
+                    .OrderByDescending(f => f.OrderDate);
             }
         }
     }
