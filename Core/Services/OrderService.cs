@@ -109,7 +109,7 @@ namespace Core.Services
             total = total > discount ? total - discount : 0;
             decimal tax = (bagItems.Sum(p => p.Quantity * p.Product.Price) / (100 + 20)) * 20;
             decimal subtotal = total - tax;
-            decimal accrued = (1.0m / 100) * total;
+            decimal accrued = (0.50m / 100) * total;
             return (total, tax, subtotal, accrued);
         }
         private async Task<Order> CreateOrderAsync(OrderCreateDTO orderCreateDTO, int addressId, string userId, int orderPaymentId, decimal total, decimal tax, decimal subtotal)

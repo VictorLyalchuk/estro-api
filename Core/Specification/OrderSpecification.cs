@@ -25,7 +25,7 @@ namespace Core.Specification
                 }
                 int pageSize = 1;
 
-                var query = Query.OrderBy(p => p.Id)
+                var query = Query.OrderByDescending(p => p.Id)
                      .Where(p => p.UserId == Id)
                      .Include(p => p.OrderItems)
                      .Include(p => p.Address)
