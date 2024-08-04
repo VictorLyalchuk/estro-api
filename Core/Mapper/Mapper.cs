@@ -121,9 +121,11 @@ namespace Core.Mapper
             CreateMap<UserFavoriteProductDTO, UserFavoriteProduct>();
             CreateMap<UserBonuses, UserBonusesDTO>();
 
+            CreateMap<OrderPayment, OrderPaymentDTO>().ReverseMap();
+            CreateMap<AddressEntity, AddressDTO>().ReverseMap();
+
+            CreateMap<OrderItemsDTO, OrderItems>().ReverseMap();
             CreateMap<OrderDTO, Order>().ReverseMap();
-            CreateMap<OrderItemsDTO, OrderItems>();
-            CreateMap<OrderItems, OrderItemsDTO>();
 
             CreateMap<BagDTO, Bag>().ReverseMap();
             CreateMap<BagUserDTO, Bag>().ReverseMap();

@@ -59,7 +59,6 @@ namespace Core.Services
                 await CreateUserBonusesAsync(user.Id, order.Id, orderCreateDTO.Discount, accrued);
             }
         }
-
         public async Task<List<OrderDTO>> GetAllOrdersAsync()
         {
             var result = await _orderRepository.GetListBySpec(new OrderSpecification.GetAllOrders());
@@ -75,7 +74,6 @@ namespace Core.Services
             var orders = await _orderRepository.GetListBySpec(new GetOrderCountByIdSpecification(Id));
             return orders.Count();
         }
-
         private async Task<AddressEntity> CreateAddressAsync(OrderCreateDTO orderCreateDTO)
         {
             AddressEntity address = new AddressEntity()
@@ -176,7 +174,6 @@ namespace Core.Services
             await _bagRepository.DeleteAsync(bagId);
             await _bagRepository.SaveAsync();
         }
-
         private async Task CreateUserBonusesAsync(string userId, int orderId, decimal discount, decimal accrued)
         {
             if (discount != 0)
