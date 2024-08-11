@@ -14,7 +14,7 @@ namespace WebApi.Controllers
             _image = image;
         }
         [HttpPost("CreateImage")]
-        public async Task<IActionResult> CreateImage(IFormFile ImageFile)
+        public async Task<IActionResult> CreateImage([FromForm] IFormFile ImageFile)
         {
             var result = await _image.CreateImageAsync(ImageFile);
             return Ok(result);
