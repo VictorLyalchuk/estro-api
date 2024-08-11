@@ -22,5 +22,45 @@ namespace WebApi.Controllers
             }
             return Ok(filters);
         }
+        [HttpGet("GetSeason")]
+        public async Task<IActionResult> GetSeasonAsync()
+        {
+            var filters = await _info.GetSeason();
+            if (filters == null)
+            {
+                return NotFound();
+            }
+            return Ok(filters);
+        }
+        [HttpGet("GetColors")]
+        public async Task<IActionResult> GetColorsAsync()
+        {
+            var colors = await _info.GetColors();
+            if (colors == null)
+            {
+                return NotFound();
+            }
+            return Ok(colors);
+        }
+        [HttpGet("GetMaterials")]
+        public async Task<IActionResult> GetMaterialsAsync()
+        {
+            var materials = await _info.GetMaterials();
+            if (materials == null)
+            {
+                return NotFound();
+            }
+            return Ok(materials);
+        }
+        [HttpGet("GetSizes")]
+        public async Task<IActionResult> GetSizesAsync()
+        {
+            var sizes = await _info.GetSizes();
+            if (sizes == null)
+            {
+                return NotFound();
+            }
+            return Ok(sizes);
+        }
     }
 }

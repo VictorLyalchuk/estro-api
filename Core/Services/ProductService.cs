@@ -12,10 +12,10 @@ namespace Core.Services
 {
     public class ProductService : IProductService
     {
-        private readonly int[] SIZEWOMEN = { 35, 36, 37, 38, 39, 40, 42 };
-        private readonly int[] SIZEMEN = { 39, 40, 41, 42, 43, 44, 45, 46 };
-        private readonly int Women = 1;
-        private readonly int Men = 2;
+        //private readonly int[] SIZEWOMEN = { 35, 36, 37, 38, 39, 40, 42 };
+        //private readonly int[] SIZEMEN = { 39, 40, 41, 42, 43, 44, 45, 46 };
+        //private readonly int Women = 1;
+        //private readonly int Men = 2;
         private readonly IMapper _mapper;
         private readonly IRepository<ProductEntity> _productRepository;
         private readonly IRepository<StorageEntity> _storageRepository;
@@ -74,9 +74,9 @@ namespace Core.Services
                 };
             }
             var res = _productRepository.GetItemBySpec(new ProductSpecification.GetProductById(product.Id)).Result;
-            if (res?.Category?.SubCategory?.MainCategoryId == Women)
-            {
-                foreach (var size in SIZEWOMEN)
+            //if (res?.Category?.SubCategory?.MainCategoryId == Women)
+            //{
+                foreach (var size in createProductDTO?.Sizes)
                 {
                     StorageEntity storage = new StorageEntity()
                     {
@@ -87,20 +87,20 @@ namespace Core.Services
                     await _storageRepository.InsertAsync(storage);
                     await _storageRepository.SaveAsync();
                 }
-            }
-            else
-            {
-                foreach (var size in SIZEMEN)
-                {
-                    StorageEntity storage = new StorageEntity()
-                    {
-                        ProductId = res.Id,
-                        Size = size,
-                    };
-                    await _storageRepository.InsertAsync(storage);
-                    await _storageRepository.SaveAsync();
-                }
-            }
+            //}
+            //else
+            //{
+            //    foreach (var size in SIZEMEN)
+            //    {
+            //        StorageEntity storage = new StorageEntity()
+            //        {
+            //            ProductId = res.Id,
+            //            Size = size,
+            //        };
+            //        await _storageRepository.InsertAsync(storage);
+            //        await _storageRepository.SaveAsync();
+            //    }
+            //}
         }
         public async Task DeleteProductByIDAsync(int id)
         {
