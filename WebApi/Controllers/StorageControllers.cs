@@ -1,5 +1,6 @@
 ﻿using Core.DTOs.Storage;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -14,6 +15,7 @@ namespace WebApi.Controllers
             _storage = storage;
         }
         [HttpPost("AddQuantityStorage")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> AddQuantityStorage(StorageDTO [] storagesDTO)
         {
             await _storage.AddQuantityStorageAsync(storagesDTO);

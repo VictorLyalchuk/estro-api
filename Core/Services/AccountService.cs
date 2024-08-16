@@ -122,6 +122,7 @@ namespace Core.Services
 
             var token = new JwtSecurityToken(
                 issuer: jwtOptions.Issuer,
+                audience: jwtOptions.Audience,
                 claims: claimsList,
                 expires: DateTime.Now.AddMinutes(jwtOptions.LifeTime),
                 signingCredentials: signinCredentials
@@ -185,6 +186,7 @@ namespace Core.Services
 
             var token = new JwtSecurityToken(
                 issuer: jwtOptions.Issuer,
+                audience: jwtOptions.Audience,
                 claims: claimsList,
                 expires: DateTime.Now.AddMinutes(jwtOptions.LifeTime),
                 signingCredentials: signinCredentials
@@ -550,6 +552,7 @@ namespace Core.Services
 
             var token = new JwtSecurityToken(
                 issuer: jwtOptions.Issuer,
+                audience: jwtOptions.Audience,
                 claims: claimsList,
                 expires: DateTime.Now.AddMinutes(jwtOptions.LifeTime),
                 signingCredentials: signinCredentials

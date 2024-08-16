@@ -3,7 +3,6 @@ using Core.DTOs.Filter;
 using Core.DTOs.Image;
 using Core.DTOs.Product;
 using Core.DTOs.Storage;
-using Core.Entities.Category;
 using Core.Entities.Product;
 using Core.Interfaces;
 using Core.Specification;
@@ -12,17 +11,14 @@ namespace Core.Services
 {
     public class ProductService : IProductService
     {
-        //private readonly int[] SIZEWOMEN = { 35, 36, 37, 38, 39, 40, 42 };
-        //private readonly int[] SIZEMEN = { 39, 40, 41, 42, 43, 44, 45, 46 };
-        //private readonly int Women = 1;
-        //private readonly int Men = 2;
         private readonly IMapper _mapper;
         private readonly IRepository<ProductEntity> _productRepository;
         private readonly IRepository<StorageEntity> _storageRepository;
         private readonly IRepository<ImageEntity> _imageRepository;
+        private readonly IRepository<ProductSize> _productSizesRepository;
         private readonly IFilesService _filesService;
         private readonly IImageService _imageService;
-        public ProductService(IMapper mapper, IRepository<ProductEntity> productRepository, IFilesService filesService, IImageService imageService, IRepository<StorageEntity> storageRepository, IRepository<ImageEntity> imageRepository)
+        public ProductService(IMapper mapper, IRepository<ProductEntity> productRepository, IFilesService filesService, IImageService imageService, IRepository<StorageEntity> storageRepository, IRepository<ImageEntity> imageRepository, IRepository<ProductSize> productSizesRepository)
         {
             _mapper = mapper;
             _productRepository = productRepository;
@@ -30,6 +26,7 @@ namespace Core.Services
             _imageRepository = imageRepository;
             _filesService = filesService;
             _imageService = imageService;
+            _productSizesRepository = productSizesRepository;
         }
         public async Task<List<ProductDTO>?> GetProductByCategoryIdAsync(int id)
         {
@@ -74,33 +71,18 @@ namespace Core.Services
                 };
             }
             var res = _productRepository.GetItemBySpec(new ProductSpecification.GetProductById(product.Id)).Result;
-            //if (res?.Category?.SubCategory?.MainCategoryId == Women)
-            //{
-                foreach (var size in createProductDTO?.Sizes)
+            foreach (var size in createProductDTO?.Sizes)
+            {
+                StorageEntity storage = new StorageEntity()
                 {
-                    StorageEntity storage = new StorageEntity()
-                    {
-                        ProductId = res.Id,
-                        Size = size,
-                        ProductQuantity = 0,
-                    };
-                    await _storageRepository.InsertAsync(storage);
-                    await _storageRepository.SaveAsync();
-                }
-            //}
-            //else
-            //{
-            //    foreach (var size in SIZEMEN)
-            //    {
-            //        StorageEntity storage = new StorageEntity()
-            //        {
-            //            ProductId = res.Id,
-            //            Size = size,
-            //        };
-            //        await _storageRepository.InsertAsync(storage);
-            //        await _storageRepository.SaveAsync();
-            //    }
-            //}
+                    ProductId = res.Id,
+                    Size = size.Name_en,
+                    ProductQuantity = 0,
+                    SortOrder = size.SortOrder,
+                };
+                await _storageRepository.InsertAsync(storage);
+                await _storageRepository.SaveAsync();
+            }
         }
         public async Task DeleteProductByIDAsync(int id)
         {
@@ -135,6 +117,35 @@ namespace Core.Services
                 await _productRepository.SaveAsync();
             }
         }
+        public async Task<ProductDTOEdit> GetEditProductById(int id)
+        {
+            var product = await _productRepository.GetItemBySpec(new ProductSpecification.GetProductById(id));
+            var allProductSizes = await _productSizesRepository.GetAsync();
+
+            var availableSizes = product.Storages
+                .Select(storage => storage.Size)
+                .Distinct()
+                .ToList();
+
+            var sizesDTO = allProductSizes
+                 .Where(size => availableSizes.Contains(size.Value))
+                 .Select(size => new ProductSizeDTO
+                 {
+                     Id = size.Id,
+                     Name_en = size.Name_en,
+                     Name_es = size.Name_es,
+                     Name_uk = size.Name_uk,
+                     Name_fr = size.Name_fr,
+                     Value = size.Value,
+                     SortOrder = size.SortOrder,
+                 })
+                 .ToList();
+
+            var productDTO = _mapper.Map<ProductDTOEdit>(product);
+            productDTO.Sizes = sizesDTO;
+
+            return productDTO;
+        }
         public async Task EditAsync(EditProductDTO editProductDTO)
         {
             var product = _mapper.Map<ProductEntity>(editProductDTO);
@@ -152,6 +163,51 @@ namespace Core.Services
                     await _imageService.EditAsync(image);
                 };
             }
+
+
+
+            // Отримання існуючих розмірів продукту з бази даних
+            var existingStorages = await _storageRepository.GetListBySpec(new StorageSpecification.GetStorageByProductId(product.Id));
+            var existingSizes = existingStorages.ToDictionary(s => s.Size);
+
+            // Додавання нових розмірів та оновлення існуючих
+            var sizesToKeep = new HashSet<string>(editProductDTO.Sizes?.Select(s => s.Name_en) ?? new List<string>());
+            var sizesToRemove = new List<StorageEntity>();
+
+            foreach (var size in editProductDTO?.Sizes ?? new List<ProductSizeDTO>())
+            {
+                if (existingSizes.TryGetValue(size.Name_en, out var existingStorage))
+                {
+                    // Оновлюємо існуючий розмір
+                    existingStorage.SortOrder = size.SortOrder;
+                    await _storageRepository.UpdateAsync(existingStorage);
+                    existingSizes.Remove(size.Name_en); // Видаляємо зі списку існуючих розмірів
+                }
+                else
+                {
+                    // Додаємо новий розмір
+                    var newStorage = new StorageEntity()
+                    {
+                        ProductId = product.Id,
+                        Size = size.Name_en,
+                        ProductQuantity = 0,
+                        SortOrder = size.SortOrder,
+                    };
+                    await _storageRepository.InsertAsync(newStorage);
+                }
+            }
+
+            // Визначаємо розміри, які треба видалити
+            sizesToRemove.AddRange(existingSizes.Values);
+
+            // Видалення старих розмірів
+            foreach (var storage in sizesToRemove)
+            {
+                await _storageRepository.DeleteAsync(storage);
+            }
+
+            await _storageRepository.SaveAsync();
+
         }
         public async Task<int> ProductQuantity()
         {

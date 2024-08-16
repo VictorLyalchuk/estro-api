@@ -8,7 +8,7 @@ namespace Core.DTOs.UserInfo
         [Key]
         public int Id { get; set; }
         public int ProductId { get; set; }
-        public int Size { get; set; }
+        public string Size { get; set; } = string.Empty;
         public DateTime OrderDate { get; set; }
         public List<BagItems>? BagItems { get; set; }
         public string UserEmail { get; set; } = string.Empty;

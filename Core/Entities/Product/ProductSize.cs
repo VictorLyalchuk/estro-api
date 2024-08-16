@@ -12,6 +12,7 @@ namespace Core.Entities.Product
         public string? Name_es { get; set; }
         public string? Name_uk { get; set; }
         public string? Name_fr { get; set; }
+        public int SortOrder { get; set; }
         public int? InfoId { get; set; }
         public Info? Info { get; set; }
     }

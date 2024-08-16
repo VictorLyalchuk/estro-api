@@ -7,9 +7,10 @@ namespace Core.Entities.Product
         [Key]
         public int Id { get; set; }
         public int? ProductQuantity { get; set; }
-        public int Size { get; set; }
-        public int ProductId { get; set; }
+        public string Size { get; set; }
         public bool inStock  { get; set; } = false;
+        public int SortOrder { get; set; }
+        public int ProductId { get; set; }
         public ProductEntity? Product { get; set; }
     }
 }
