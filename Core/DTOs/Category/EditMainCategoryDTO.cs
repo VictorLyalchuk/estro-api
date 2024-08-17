@@ -1,12 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Core.Entities.Category
+﻿namespace Core.DTOs.Category
 {
-    public class MainCategory
+    public class EditMainCategoryDTO
     {
-        [Key]
         public int Id { get; set; }
-        [Required]
         public string Name_en { get; set; }
         public string Name_es { get; set; }
         public string Name_uk { get; set; }
@@ -17,6 +13,5 @@ namespace Core.Entities.Category
         public string? Description_fr { get; set; }
         public string URLName { get; set; }
         public string? ImagePath { get; set; }
-        public ICollection<SubCategory> SubCategories { get; set; } = new List<SubCategory>();
     }
 }

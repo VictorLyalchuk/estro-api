@@ -27,6 +27,9 @@ namespace Core.Mapper
             CreateMap<UserRegistrationDTO, User>().ReverseMap();
 
             CreateMap<MainCategoryDTO, MainCategory>().ReverseMap();
+            CreateMap<CreateMainCategoryDTO, MainCategory>().ReverseMap();
+            CreateMap<EditMainCategoryDTO, MainCategory>().ReverseMap();
+
             CreateMap<SubCategoryDTO, SubCategory>().ReverseMap();
             CreateMap<CategoryDTO, CategoryEntity>()
                 .ForMember(dest => dest.SubCategory, opt => opt.MapFrom(src => new SubCategory { Id = src.MainCategoryId.GetValueOrDefault() }));

@@ -369,7 +369,7 @@ namespace Core.Services
             {
                 User updatedUser = _mapper.Map<User>(user);
                 updatedUser.ImagePath = editDTO.ImagePath;
-                var result = await _userManager.UpdateAsync(updatedUser);
+                await _userManager.UpdateAsync(updatedUser);
             }
         }
         public async Task ForgotPasswordAsync(string email)

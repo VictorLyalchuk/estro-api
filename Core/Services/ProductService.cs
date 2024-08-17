@@ -53,6 +53,45 @@ namespace Core.Services
             var products = await _productRepository.GetListBySpec(new ProductSpecification.ProductByPage(page));
             return _mapper.Map<List<ProductDTO>>(products);
         }
+        public async Task<ProductDTOEdit> GetEditProductById(int id)
+        {
+            var product = await _productRepository.GetItemBySpec(new ProductSpecification.GetProductById(id));
+            var allProductSizes = await _productSizesRepository.GetAsync();
+
+            var availableSizes = product.Storages
+                .Select(storage => storage.Size)
+                .Distinct()
+                .ToList();
+
+            var sizesDTO = allProductSizes
+                 .Where(size => availableSizes.Contains(size.Value))
+                 .Select(size => new ProductSizeDTO
+                 {
+                     Id = size.Id,
+                     Name_en = size.Name_en,
+                     Name_es = size.Name_es,
+                     Name_uk = size.Name_uk,
+                     Name_fr = size.Name_fr,
+                     Value = size.Value,
+                     SortOrder = size.SortOrder,
+                 })
+                 .ToList();
+
+            var productDTO = _mapper.Map<ProductDTOEdit>(product);
+            productDTO.Sizes = sizesDTO;
+
+            return productDTO;
+        }
+        public async Task<int> ProductQuantity()
+        {
+            var products = await _productRepository.GetAsync();
+            return products.Count();
+        }
+        public async Task<int> ProductQuantityByFiltersAsync(FilterDTO filterDTO)
+        {
+            var products = await _productRepository.GetListBySpec(new ProductSpecification.ProductQuantityByFiltersAsync(filterDTO));
+            return products.Count();
+        }
         public async Task CreateAsync(CreateProductDTO createProductDTO)
         {
             var product = _mapper.Map<ProductEntity>(createProductDTO);
@@ -84,68 +123,6 @@ namespace Core.Services
                 await _storageRepository.SaveAsync();
             }
         }
-        public async Task DeleteProductByIDAsync(int id)
-        {
-            var product = await _productRepository.GetItemBySpec(new ProductSpecification.ProductById(id));
-            var imageClass = await _imageService.GetImageByIDProductAsync(id)!;
-            if (imageClass != null)
-            {
-                foreach (var image in imageClass)
-                {
-                    await _filesService.DeleteProductImage(image.ImagePath!);
-                }
-                foreach (var image in imageClass)
-                {
-                    await _imageRepository.DeleteAsync(image.Id);
-                    await _imageRepository.SaveAsync();
-                }
-            }
-            var storages = await _storageRepository.GetListBySpec(new StorageSpecification.GetStorageByProductId(id));
-            var res = _mapper.Map<List<StorageDTO>>(storages);
-            if (res != null)
-            {
-                foreach (var storage in res)
-                {
-                    await _storageRepository.DeleteAsync(storage.Id);
-                    await _storageRepository.SaveAsync();
-                }
-            }
-            var productToDelete = await _productRepository.GetByIDAsync(id);
-            if (productToDelete != null)
-            {
-                await _productRepository.DeleteAsync(productToDelete);
-                await _productRepository.SaveAsync();
-            }
-        }
-        public async Task<ProductDTOEdit> GetEditProductById(int id)
-        {
-            var product = await _productRepository.GetItemBySpec(new ProductSpecification.GetProductById(id));
-            var allProductSizes = await _productSizesRepository.GetAsync();
-
-            var availableSizes = product.Storages
-                .Select(storage => storage.Size)
-                .Distinct()
-                .ToList();
-
-            var sizesDTO = allProductSizes
-                 .Where(size => availableSizes.Contains(size.Value))
-                 .Select(size => new ProductSizeDTO
-                 {
-                     Id = size.Id,
-                     Name_en = size.Name_en,
-                     Name_es = size.Name_es,
-                     Name_uk = size.Name_uk,
-                     Name_fr = size.Name_fr,
-                     Value = size.Value,
-                     SortOrder = size.SortOrder,
-                 })
-                 .ToList();
-
-            var productDTO = _mapper.Map<ProductDTOEdit>(product);
-            productDTO.Sizes = sizesDTO;
-
-            return productDTO;
-        }
         public async Task EditAsync(EditProductDTO editProductDTO)
         {
             var product = _mapper.Map<ProductEntity>(editProductDTO);
@@ -163,8 +140,6 @@ namespace Core.Services
                     await _imageService.EditAsync(image);
                 };
             }
-
-
 
             // Отримання існуючих розмірів продукту з бази даних
             var existingStorages = await _storageRepository.GetListBySpec(new StorageSpecification.GetStorageByProductId(product.Id));
@@ -209,15 +184,37 @@ namespace Core.Services
             await _storageRepository.SaveAsync();
 
         }
-        public async Task<int> ProductQuantity()
+        public async Task DeleteProductByIDAsync(int id)
         {
-            var products = await _productRepository.GetAsync();
-            return products.Count();
-        }
-        public async Task<int> ProductQuantityByFiltersAsync(FilterDTO filterDTO)
-        {
-            var products = await _productRepository.GetListBySpec(new ProductSpecification.ProductQuantityByFiltersAsync(filterDTO));
-            return products.Count();
+            var imageClass = await _imageService.GetImageByIDProductAsync(id)!;
+            if (imageClass != null)
+            {
+                foreach (var image in imageClass)
+                {
+                    await _filesService.DeleteProductImage(image.ImagePath!);
+                }
+                foreach (var image in imageClass)
+                {
+                    await _imageRepository.DeleteAsync(image.Id);
+                    await _imageRepository.SaveAsync();
+                }
+            }
+            var storages = await _storageRepository.GetListBySpec(new StorageSpecification.GetStorageByProductId(id));
+            var res = _mapper.Map<List<StorageDTO>>(storages);
+            if (res != null)
+            {
+                foreach (var storage in res)
+                {
+                    await _storageRepository.DeleteAsync(storage.Id);
+                    await _storageRepository.SaveAsync();
+                }
+            }
+            var productToDelete = await _productRepository.GetByIDAsync(id);
+            if (productToDelete != null)
+            {
+                await _productRepository.DeleteAsync(productToDelete);
+                await _productRepository.SaveAsync();
+            }
         }
     }
 }

@@ -729,6 +729,18 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_uk")
+                        .HasColumnType("text");
+
                     b.Property<string>("ImagePath")
                         .HasColumnType("text");
 
@@ -764,6 +776,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            ImagePath = "800_home_page_16.webp",
                             Name_en = "Women",
                             Name_es = "Mujer",
                             Name_fr = "Femme",
@@ -773,6 +786,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 2,
+                            ImagePath = "800_home_page_17.webp",
                             Name_en = "Men",
                             Name_es = "Hombre",
                             Name_fr = "Homme",

@@ -136,6 +136,10 @@ namespace Infrastructure.Migrations
                     Name_es = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
                     Name_uk = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
                     Name_fr = table.Column<string>(type: "character varying(180)", maxLength: 180, nullable: false),
+                    Description_en = table.Column<string>(type: "text", nullable: true),
+                    Description_uk = table.Column<string>(type: "text", nullable: true),
+                    Description_es = table.Column<string>(type: "text", nullable: true),
+                    Description_fr = table.Column<string>(type: "text", nullable: true),
                     URLName = table.Column<string>(type: "text", nullable: false),
                     ImagePath = table.Column<string>(type: "text", nullable: true)
                 },
@@ -823,11 +827,11 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "MainCategories",
-                columns: new[] { "Id", "ImagePath", "Name_en", "Name_es", "Name_fr", "Name_uk", "URLName" },
+                columns: new[] { "Id", "Description_en", "Description_es", "Description_fr", "Description_uk", "ImagePath", "Name_en", "Name_es", "Name_fr", "Name_uk", "URLName" },
                 values: new object[,]
                 {
-                    { 1, null, "Women", "Mujer", "Femme", "Жіноче", "women" },
-                    { 2, null, "Men", "Hombre", "Homme", "Чоловіче", "men" }
+                    { 1, null, null, null, null, "800_home_page_16.webp", "Women", "Mujer", "Femme", "Жіноче", "women" },
+                    { 2, null, null, null, null, "800_home_page_17.webp", "Men", "Hombre", "Homme", "Чоловіче", "men" }
                 });
 
             migrationBuilder.InsertData(
