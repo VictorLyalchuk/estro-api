@@ -279,7 +279,16 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Description_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_uk")
                         .HasColumnType("text");
 
                     b.Property<string>("ImagePath")
@@ -802,6 +811,18 @@ namespace Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_uk")
+                        .HasColumnType("text");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("text");

@@ -22,5 +22,8 @@ namespace Core.Interfaces
         Task ConfirmEmailAsync(ConfirmEmailDTO model);
         Task ConfirmEmailAsync(string email);
         Task<string> RefreshTokenAsync(string oldToken);
+        Task<List<UserDTO>> UsersyByPageAsync(int page);
+        Task<int> UsersQuantity();
+        Task DeleteUserByIDAsync(string id);
     }
 }

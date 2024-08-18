@@ -31,12 +31,18 @@ namespace Core.Mapper
             CreateMap<EditMainCategoryDTO, MainCategory>().ReverseMap();
 
             CreateMap<SubCategoryDTO, SubCategory>().ReverseMap();
+            CreateMap<CreateSubCategoryDTO, SubCategory>().ReverseMap();
+            CreateMap<EditSubCategoryDTO, SubCategory>().ReverseMap();
+
             CreateMap<CategoryDTO, CategoryEntity>()
                 .ForMember(dest => dest.SubCategory, opt => opt.MapFrom(src => new SubCategory { Id = src.MainCategoryId.GetValueOrDefault() }));
 
             CreateMap<CategoryEntity, CategoryDTO>()
                 .ForMember(dest => dest.SubCategoryId, opt => opt.MapFrom(src => src.SubCategoryId))
                 .ForMember(dest => dest.MainCategoryId, opt => opt.MapFrom(src => src.SubCategory.MainCategoryId));
+
+            CreateMap<CreateCategoryDTO, CategoryEntity>().ReverseMap();
+            CreateMap<EditCategoryDTO, CategoryEntity>().ReverseMap();
 
             CreateMap<ProductColorsDTO, ProductColors>()
                     .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))

@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240817214444_start")]
+    [Migration("20240818124404_start")]
     partial class start
     {
         /// <inheritdoc />
@@ -282,7 +282,16 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Description_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_uk")
                         .HasColumnType("text");
 
                     b.Property<string>("ImagePath")
@@ -805,6 +814,18 @@ namespace Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_uk")
+                        .HasColumnType("text");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("text");

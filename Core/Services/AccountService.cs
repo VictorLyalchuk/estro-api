@@ -3,6 +3,7 @@ using Core.DTOs.User;
 using Core.Entities.UserEntity;
 using Core.Helpers;
 using Core.Interfaces;
+using Core.Specification;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
@@ -11,7 +12,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
-using System.Runtime;
 using System.Security.Claims;
 using System.Text;
 using Twilio.Rest.Verify.V2.Service;
@@ -23,12 +23,13 @@ namespace Core.Services
         private readonly UserManager<User> _userManager;
 
         private readonly EmailService _emailService;
+        private readonly IFilesService _filesService;
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
         private readonly IImageService _image;
         private readonly IWebHostEnvironment _env;
         public string VerificationCode { get; set; }
-        public AccountService(UserManager<User> userManager, IConfiguration configuration, IMapper mapper, IImageService image, EmailService emailService, IWebHostEnvironment env)
+        public AccountService(UserManager<User> userManager, IConfiguration configuration, IMapper mapper, IImageService image, EmailService emailService, IWebHostEnvironment env, IFilesService filesService)
         {
             _userManager = userManager;
             _configuration = configuration;
@@ -36,6 +37,7 @@ namespace Core.Services
             _image = image;
             _emailService = emailService;
             _env = env;
+            _filesService = filesService;
         }
         private string GenerateRandomVerificationCode()
         {
@@ -353,13 +355,11 @@ namespace Core.Services
         }
         public async Task DeleteUserImage(string email)
         {
-
             var user = await _userManager.FindByEmailAsync(email);
             if (user != null)
             {
                 user.ImagePath = "";
                 await _userManager.UpdateAsync(user);
-
             }
         }
         public async Task EditUserImageAsync(ImageUserEditDTO editDTO)
@@ -559,6 +559,44 @@ namespace Core.Services
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        //Admin Panel
+        public async Task<List<UserDTO>> UsersyByPageAsync(int page)
+        {
+            var usersQuery = _userManager.Users.UsersByPage(page);
+
+            var users = usersQuery.ToList();
+            if (users == null || !users.Any())
+            {
+                return null;
+            }
+            var userDtos = new List<UserDTO>();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync((User)user);
+                var userDto = _mapper.Map<UserDTO>(user);
+                userDto.Role = roles.FirstOrDefault()!;
+                userDtos.Add(userDto);
+            }
+            return userDtos;
+        }
+        public async Task<int> UsersQuantity()
+        {
+            return _userManager.Users.Count();
+        }
+        public async Task DeleteUserByIDAsync(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                if (user.ImagePath != null)
+                {
+                    await _filesService.DeleteUserImageAsync(user.ImagePath!);
+                }
+                await _userManager.DeleteAsync(user);
+            }
         }
     }
 }

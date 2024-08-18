@@ -1,6 +1,7 @@
 ﻿using Core.DTOs.User;
 using Core.Helpers;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -157,6 +158,38 @@ namespace WebApi.Controllers
         {
             var newToken = await _accountService.RefreshTokenAsync(refreshToken.Token);
             return Ok(newToken);
+        }
+
+
+        // CRUD Category
+        [HttpGet("UsersByPage/{page}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> UsersByPage(int page)
+        {
+            var users = await _accountService.UsersyByPageAsync(page);
+            if (users == null)
+            {
+                return NotFound();
+            }
+            return Ok(users);
+        }
+        [HttpGet("UsersQuantity")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> UsersQuantity()
+        {
+            var quantity = await _accountService.UsersQuantity();
+            return Ok(quantity);
+        }
+        [HttpDelete("DeleteUserByID/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> DeleteUserByIDAsync(string id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _accountService.DeleteUserByIDAsync(id);
+            return Ok();
         }
     }
 }

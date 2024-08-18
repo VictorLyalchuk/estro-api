@@ -40,6 +40,7 @@ namespace WebApi.Controllers
             return Ok(await _category.CategoryGetWithSubAsync(subName));
         }
 
+        // CRUD Main Category
         [HttpGet("MainCategoryByPage/{page}")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> MainCategoryByPageAsync(int page)
@@ -105,6 +106,144 @@ namespace WebApi.Controllers
                 return BadRequest(ModelState);
             }
             await _category.DeleteMainCategoryByIDAsync(id);
+            return Ok();
+        }
+
+        // CRUD Sub Category
+        [HttpGet("SubCategoryByPage/{page}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> SubCategoryByPageAsync(int page)
+        {
+            var subCategory = await _category.SubCategoryByPageAsync(page);
+            if (subCategory == null)
+            {
+                return NotFound();
+            }
+            return Ok(subCategory);
+        }
+
+        [HttpGet("GetSubCategoryById/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> GetSubCategoryByIdAsync(int id)
+        {
+            var subCategory = await _category.GetSubCategoryByIdAsync(id);
+            if (subCategory == null)
+            {
+                return NotFound();
+            }
+            return Ok(subCategory);
+        }
+
+        [HttpGet("SubCategoryQuantity")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> SubCategoryQuantityAsync()
+        {
+            var quantity = await _category.SubCategoryQuantityAsync();
+            return Ok(quantity);
+        }
+
+        [HttpPost("CreateSubCategory")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> CreateSubCategoryAsync(CreateSubCategoryDTO createSubCategoryDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _category.CreateSubCategoryAsync(createSubCategoryDTO);
+            return Ok();
+        }
+
+        [HttpPost("EditSubCategory")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> EditSubCategoryAsync(EditSubCategoryDTO editSubCategoryDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _category.EditSubCategoryAsync(editSubCategoryDTO);
+            return Ok();
+        }
+
+        [HttpDelete("DeleteSubCategoryByID/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> DeleteSubCategoryByIDAsync(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _category.DeleteSubCategoryByIDAsync(id);
+            return Ok();
+        }
+
+        // CRUD Category
+        [HttpGet("CategoryByPage/{page}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> CategoryByPageAsync(int page)
+        {
+            var category = await _category.CategoryByPageAsync(page);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return Ok(category);
+        }
+
+        [HttpGet("GetCategoryById/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> GetCategoryByIdAsync(int id)
+        {
+            var category = await _category.GetCategoryByIdAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return Ok(category);
+        }
+
+        [HttpGet("CategoryQuantity")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> CategoryQuantityAsync()
+        {
+            var quantity = await _category.CategoryQuantityAsync();
+            return Ok(quantity);
+        }
+
+        [HttpPost("CreateCategory")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> CreateCategoryAsync(CreateCategoryDTO createCategoryDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _category.CreateCategoryAsync(createCategoryDTO);
+            return Ok();
+        }
+
+        [HttpPost("EditCategory")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> EditCategoryAsync(EditCategoryDTO editCategoryDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _category.EditCategoryAsync(editCategoryDTO);
+            return Ok();
+        }
+
+        [HttpDelete("DeleteCategoryByID/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> DeleteCategoryByIDAsync(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _category.DeleteCategoryByIDAsync(id);
             return Ok();
         }
     }
