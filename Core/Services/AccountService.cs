@@ -21,7 +21,6 @@ namespace Core.Services
     public class AccountService : IAccountService
     {
         private readonly UserManager<User> _userManager;
-
         private readonly EmailService _emailService;
         private readonly IFilesService _filesService;
         private readonly IConfiguration _configuration;
@@ -585,6 +584,105 @@ namespace Core.Services
         public async Task<int> UsersQuantity()
         {
             return _userManager.Users.Count();
+        }
+        public async Task CreateUserAsync(UserRegistrationDTO userRegistrationDTO)
+        {
+            User user = _mapper.Map<User>(userRegistrationDTO);
+
+            if (user.AuthType == "standard")
+            {
+                var userExist = await _userManager.FindByEmailAsync(userRegistrationDTO.Email);
+                if (userExist != null)
+                {
+                    throw new CustomHttpException("Email already exists", HttpStatusCode.BadRequest);
+                }
+
+                user.UserName = userRegistrationDTO.Email;
+
+                if (userRegistrationDTO.ImageFile != null)
+                {
+                    user.ImagePath = await _image.CreateUserImageAsync(userRegistrationDTO.ImageFile);
+                }
+
+                var result = await _userManager.CreateAsync(user, userRegistrationDTO.Password);
+                if(userRegistrationDTO.Role != null)
+                {
+                    _userManager.AddToRoleAsync(user, userRegistrationDTO.Role).Wait();
+                }
+
+                if (result.Succeeded)
+                {
+                    _userManager.AddToRoleAsync(user, "User").Wait();
+                }
+
+                await SendConfirmationEmailAsync(userRegistrationDTO.Email);
+
+                if (!result.Succeeded)
+                {
+                    var messageError = string.Join(",", result.Errors.Select(er => er.Description));
+                    throw new CustomHttpException(messageError, System.Net.HttpStatusCode.BadRequest);
+                }
+                return;
+            }
+        }
+        public async Task EditUserAsync(UserEditDTO userEditDTO)
+        {
+            if (userEditDTO.ID != null)
+            {
+                var user = await _userManager.FindByIdAsync(userEditDTO.ID);
+                if (user.AuthType == "standard")
+                {
+                    if (user.Email != userEditDTO.Email)
+                    {
+                        user.EmailConfirmed = false;
+                        await _userManager.UpdateAsync(user);
+                    }
+
+                    if (!string.IsNullOrEmpty(userEditDTO.NewPassword))
+                    {
+                        user.Password = userEditDTO.NewPassword;
+                        var result = await _userManager.ChangePasswordAsync(user, userEditDTO.Password, userEditDTO.NewPassword);
+                        await _userManager.UpdateAsync(user);
+                        if (!result.Succeeded)
+                        {
+                            throw new CustomHttpException("Failed to change password", HttpStatusCode.BadRequest);
+                        }
+                    }
+
+                    if (user != null)
+                    {
+                        User updatedUser = _mapper.Map<User>(user);
+                        updatedUser.UserName = userEditDTO.Email;
+                        updatedUser.Email = userEditDTO.Email;
+                        updatedUser.FirstName = userEditDTO.FirstName;
+                        updatedUser.LastName = userEditDTO.LastName;
+                        updatedUser.PhoneNumber = userEditDTO.PhoneNumber;
+                        updatedUser.ImagePath = userEditDTO.ImagePath;
+                        updatedUser.Birthday = userEditDTO.Birthday;
+                        var result = await _userManager.UpdateAsync(updatedUser);
+                        if (!result.Succeeded)
+                        {
+                            throw new CustomHttpException("Failed to update user", HttpStatusCode.BadRequest);
+                        }
+                    }
+                    if (userEditDTO.Role != null)
+                    {
+                        var currentRoles = await _userManager.GetRolesAsync(user);
+
+                        var removeResult = await _userManager.RemoveFromRolesAsync(user, currentRoles);
+                        if (!removeResult.Succeeded)
+                        {
+                            throw new CustomHttpException("Failed to remove user from roles", HttpStatusCode.BadRequest);
+                        }
+
+                        var addResult = await _userManager.AddToRoleAsync(user, userEditDTO.Role);
+                        if (!addResult.Succeeded)
+                        {
+                            throw new CustomHttpException("Failed to add user to role", HttpStatusCode.BadRequest);
+                        }
+                    }
+                }
+            }
         }
         public async Task DeleteUserByIDAsync(string id)
         {

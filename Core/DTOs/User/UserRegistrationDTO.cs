@@ -11,6 +11,7 @@ namespace Core.DTOs.User
         public string? Password { get; set; }
         public string? PhoneNumber { get; set; }
         public string? AuthType { get; set; }
+        public string? Role { get; set; }
         public IFormFile? ImageFile { get; set; }
         public string? ImagePath { get; set; }
         public string? ClientId { get; set; }

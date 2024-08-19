@@ -180,6 +180,30 @@ namespace WebApi.Controllers
             var quantity = await _accountService.UsersQuantity();
             return Ok(quantity);
         }
+        [HttpPost("CreateUser")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> CreateUserAsync(UserRegistrationDTO userRegistrationDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _accountService.CreateUserAsync(userRegistrationDTO);
+            return Ok();
+        }
+
+        [HttpPost("EditUser")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> EditUserAsync(UserEditDTO userEditDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _accountService.EditUserAsync(userEditDTO);
+            return Ok();
+        }
+
         [HttpDelete("DeleteUserByID/{id}")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteUserByIDAsync(string id)

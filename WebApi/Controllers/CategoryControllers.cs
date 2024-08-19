@@ -1,5 +1,4 @@
 ﻿using Core.DTOs.Category;
-using Core.DTOs.Product;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
