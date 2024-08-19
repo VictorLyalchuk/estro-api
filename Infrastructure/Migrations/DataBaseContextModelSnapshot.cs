@@ -279,7 +279,16 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Description_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_uk")
                         .HasColumnType("text");
 
                     b.Property<string>("ImagePath")
@@ -729,6 +738,18 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_uk")
+                        .HasColumnType("text");
+
                     b.Property<string>("ImagePath")
                         .HasColumnType("text");
 
@@ -764,6 +785,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
+                            ImagePath = "800_home_page_16.webp",
                             Name_en = "Women",
                             Name_es = "Mujer",
                             Name_fr = "Femme",
@@ -773,6 +795,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 2,
+                            ImagePath = "800_home_page_17.webp",
                             Name_en = "Men",
                             Name_es = "Hombre",
                             Name_fr = "Homme",
@@ -788,6 +811,18 @@ namespace Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description_en")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_es")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_fr")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description_uk")
+                        .HasColumnType("text");
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("text");
@@ -1821,19 +1856,15 @@ namespace Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<List<string>>("Highlights_en")
-                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.Property<List<string>>("Highlights_es")
-                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.Property<List<string>>("Highlights_fr")
-                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.Property<List<string>>("Highlights_uk")
-                        .IsRequired()
                         .HasColumnType("text[]");
 
                     b.Property<int>("MaterialId")
@@ -1880,7 +1911,7 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             Article = "ER00113828",
                             CategoryId = 8,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "These stylish black leather boots-stockings are a perfect blend of fashion and comfort. Crafted with high-quality leather, they provide a sleek and sophisticated look. Ideal for various occasions, these boots-stockings are a must-have in your wardrobe.",
                             Description_es = "Estas elegantes botas-medias de cuero negro son una combinación perfecta de moda y comodidad. Confeccionadas con cuero de alta calidad, brindan una apariencia elegante y sofisticada. Ideales para varias ocasiones, estas botas-medias son imprescindibles en tu guardarropa.",
                             Description_fr = "Ces bottes-bas élégantes en cuir noir sont un mélange parfait de mode et de confort. Confectionnées dans un cuir de haute qualité, elles offrent un look élégant et sophistiqué. Idéales pour diverses occasions, ces bottes-bas sont un incontournable de votre garde-robe.",
@@ -1902,7 +1933,7 @@ namespace Infrastructure.Migrations
                             Id = 2,
                             Article = "ER00112019",
                             CategoryId = 8,
-                            ColorId = 3,
+                            ColorId = 4,
                             Description_en = "Step into the season with elegance in these Autumn brown leather stretch boots. Meticulously crafted from premium leather, these boots offer both style and comfort. The stretch feature ensures a snug fit, while the rich brown color adds a touch of warmth to your autumn wardrobe. Perfect for any occasion, these boots are a fashion statement that complements your unique style. Embrace the essence of autumn with each step.",
                             Description_es = "Entra en la temporada con elegancia con estas botas elásticas de cuero marrón Autumn. Meticulosamente elaboradas con cuero de primera calidad, estas botas ofrecen estilo y comodidad. La característica elástica garantiza un ajuste cómodo, mientras que el rico color marrón añade un toque de calidez a tu guardarropa de otoño. Perfectas para cualquier ocasión, estas botas son una declaración de moda que complementa tu estilo único. Abraza la esencia del otoño en cada paso.",
                             Description_fr = "Entrez dans la saison avec élégance avec ces bottes stretch en cuir marron d'automne. Méticuleusement confectionnées à partir de cuir de première qualité, ces bottes offrent à la fois style et confort. La fonction extensible assure un ajustement parfait, tandis que la riche couleur marron ajoute une touche de chaleur à votre garde-robe d'automne. Parfaites pour toutes les occasions, ces bottes sont une déclaration de mode qui complète votre style unique. Embrassez l’essence de l’automne à chaque étape.",
@@ -1924,7 +1955,7 @@ namespace Infrastructure.Migrations
                             Id = 3,
                             Article = "ER00112018",
                             CategoryId = 8,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "Estro ER00112018 Black Leather Stretch Boots\r\n\r\nElevate your autumn style with the Estro ER00112018 black leather stretch boots. Crafted with a blend of high-quality leather and stretch material, these boots seamlessly marry fashion and comfort. The stretch element provides elasticity, ensuring a snug and flexible fit for easy wear. The sleek black color adds versatility, allowing for effortless pairing with various outfit styles.",
                             Description_es = "Estro ER00112018 Botas elásticas de cuero negro\r\n\r\nEleva tu estilo otoñal con las botas elásticas de cuero negro Estro ER00112018. Confeccionadas con una mezcla de cuero de alta calidad y material elástico, estas botas combinan a la perfección moda y comodidad. El elemento elástico proporciona elasticidad, lo que garantiza un ajuste ceñido y flexible para facilitar su uso. El elegante color negro añade versatilidad y permite combinarlo sin esfuerzo con varios estilos de vestimenta.",
                             Description_fr = "Estro ER00112018 Bottes stretch en cuir noir\\r\\n\\r\\nÉlevez votre style automnal avec les bottes Estro ER00112018 en cuir stretch noir. Fabriquées avec un mélange de cuir de haute qualité et de matériaux extensibles, ces bottes allient harmonieusement mode et confort. L'élément extensible offre de l'élasticité, assurant un ajustement serré et flexible pour un port facile. La couleur noire élégante ajoute de la polyvalence, permettant une association sans effort avec différents styles de tenues.",
@@ -1946,7 +1977,7 @@ namespace Infrastructure.Migrations
                             Id = 4,
                             Article = "ER00112022",
                             CategoryId = 8,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "Demi-season boots of black color made of durable shoe leather will become reliable companions in all your adventures, travels, and beautiful companions for parties with friends. Stable heels in the shape of a trapezoid - not too high, and not too low. Seven centimeters of comfort and confidence in your walk. The grooved sole will protect against any inconvenience that may occur on the way - be it dirt, gravel, cobblestones or slippery surfaces. Nothing will prevent you from feeling confident.",
                             Description_es = "Las botas de entretiempo en color negro hechas de cuero duradero para zapatos se convertirán en compañeras confiables en todas tus aventuras, viajes y hermosas compañeras para fiestas con amigos. Tacones estables en forma de trapezoide, ni demasiado altos ni demasiado bajos. Siete centímetros de comodidad y confianza en tu caminar. La suela estriada protegerá contra cualquier inconveniente que pueda surgir en el camino, ya sea tierra, grava, adoquines o superficies resbaladizas. Nada te impedirá sentirte seguro.",
                             Description_fr = "Les bottes demi-saison de couleur noire en cuir de chaussure durable deviendront des compagnons fiables dans toutes vos aventures, voyages et de beaux compagnons pour les fêtes entre amis. Talons stables en forme de trapèze – ni trop hauts ni trop bas. Sept centimètres de confort et de confiance dans votre marche. La semelle rainurée protégera contre tous les désagréments pouvant survenir sur le chemin, qu'il s'agisse de saleté, de graviers, de pavés ou de surfaces glissantes. Rien ne vous empêchera de vous sentir en confiance.",
@@ -1968,7 +1999,7 @@ namespace Infrastructure.Migrations
                             Id = 5,
                             Article = "ER00112011",
                             CategoryId = 8,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -1990,7 +2021,7 @@ namespace Infrastructure.Migrations
                             Id = 6,
                             Article = "ER00113851",
                             CategoryId = 8,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -2012,7 +2043,7 @@ namespace Infrastructure.Migrations
                             Id = 7,
                             Article = "ER00112023",
                             CategoryId = 8,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -2034,7 +2065,7 @@ namespace Infrastructure.Migrations
                             Id = 8,
                             Article = "ER00114318",
                             CategoryId = 8,
-                            ColorId = 4,
+                            ColorId = 5,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -2056,7 +2087,7 @@ namespace Infrastructure.Migrations
                             Id = 9,
                             Article = "ER00112298",
                             CategoryId = 8,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -2078,7 +2109,7 @@ namespace Infrastructure.Migrations
                             Id = 10,
                             Article = "ER00112123",
                             CategoryId = 8,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -2100,7 +2131,7 @@ namespace Infrastructure.Migrations
                             Id = 11,
                             Article = "ER00112122",
                             CategoryId = 8,
-                            ColorId = 7,
+                            ColorId = 8,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -2122,7 +2153,7 @@ namespace Infrastructure.Migrations
                             Id = 12,
                             Article = "ER00114239",
                             CategoryId = 8,
-                            ColorId = 3,
+                            ColorId = 4,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -2144,7 +2175,7 @@ namespace Infrastructure.Migrations
                             Id = 13,
                             Article = "ER00114240",
                             CategoryId = 8,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -2166,7 +2197,7 @@ namespace Infrastructure.Migrations
                             Id = 14,
                             Article = "ER00113949",
                             CategoryId = 7,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -2188,7 +2219,7 @@ namespace Infrastructure.Migrations
                             Id = 15,
                             Article = "ER00111942",
                             CategoryId = 12,
-                            ColorId = 1,
+                            ColorId = 2,
                             Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
                             Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
                             Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
@@ -2402,6 +2433,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Name_uk")
                         .HasColumnType("text");
 
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Value")
                         .IsRequired()
                         .HasColumnType("text");
@@ -2421,6 +2455,7 @@ namespace Infrastructure.Migrations
                             Name_es = "35",
                             Name_fr = "35",
                             Name_uk = "35",
+                            SortOrder = 1,
                             Value = "35"
                         },
                         new
@@ -2431,6 +2466,7 @@ namespace Infrastructure.Migrations
                             Name_es = "36",
                             Name_fr = "36",
                             Name_uk = "36",
+                            SortOrder = 2,
                             Value = "36"
                         },
                         new
@@ -2441,6 +2477,7 @@ namespace Infrastructure.Migrations
                             Name_es = "37",
                             Name_fr = "37",
                             Name_uk = "37",
+                            SortOrder = 3,
                             Value = "37"
                         },
                         new
@@ -2451,6 +2488,7 @@ namespace Infrastructure.Migrations
                             Name_es = "38",
                             Name_fr = "38",
                             Name_uk = "38",
+                            SortOrder = 4,
                             Value = "38"
                         },
                         new
@@ -2461,6 +2499,7 @@ namespace Infrastructure.Migrations
                             Name_es = "39",
                             Name_fr = "39",
                             Name_uk = "39",
+                            SortOrder = 5,
                             Value = "39"
                         },
                         new
@@ -2471,6 +2510,7 @@ namespace Infrastructure.Migrations
                             Name_es = "40",
                             Name_fr = "40",
                             Name_uk = "40",
+                            SortOrder = 6,
                             Value = "40"
                         },
                         new
@@ -2481,6 +2521,7 @@ namespace Infrastructure.Migrations
                             Name_es = "41",
                             Name_fr = "41",
                             Name_uk = "41",
+                            SortOrder = 7,
                             Value = "41"
                         },
                         new
@@ -2491,6 +2532,7 @@ namespace Infrastructure.Migrations
                             Name_es = "42",
                             Name_fr = "42",
                             Name_uk = "42",
+                            SortOrder = 8,
                             Value = "42"
                         },
                         new
@@ -2501,6 +2543,7 @@ namespace Infrastructure.Migrations
                             Name_es = "43",
                             Name_fr = "43",
                             Name_uk = "43",
+                            SortOrder = 9,
                             Value = "43"
                         },
                         new
@@ -2511,6 +2554,7 @@ namespace Infrastructure.Migrations
                             Name_es = "44",
                             Name_fr = "44",
                             Name_uk = "44",
+                            SortOrder = 10,
                             Value = "44"
                         },
                         new
@@ -2521,6 +2565,7 @@ namespace Infrastructure.Migrations
                             Name_es = "45",
                             Name_fr = "45",
                             Name_uk = "45",
+                            SortOrder = 11,
                             Value = "45"
                         },
                         new
@@ -2531,7 +2576,74 @@ namespace Infrastructure.Migrations
                             Name_es = "46",
                             Name_fr = "46",
                             Name_uk = "46",
+                            SortOrder = 12,
                             Value = "46"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            InfoId = 3,
+                            Name_en = "XS",
+                            Name_es = "XS",
+                            Name_fr = "XS",
+                            Name_uk = "XS",
+                            SortOrder = 13,
+                            Value = "XS"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            InfoId = 3,
+                            Name_en = "S",
+                            Name_es = "S",
+                            Name_fr = "S",
+                            Name_uk = "S",
+                            SortOrder = 14,
+                            Value = "S"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            InfoId = 3,
+                            Name_en = "M",
+                            Name_es = "M",
+                            Name_fr = "M",
+                            Name_uk = "M",
+                            SortOrder = 15,
+                            Value = "M"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            InfoId = 3,
+                            Name_en = "L",
+                            Name_es = "L",
+                            Name_fr = "L",
+                            Name_uk = "L",
+                            SortOrder = 16,
+                            Value = "L"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            InfoId = 3,
+                            Name_en = "XL",
+                            Name_es = "XL",
+                            Name_fr = "XL",
+                            Name_uk = "XL",
+                            SortOrder = 17,
+                            Value = "XL"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            InfoId = 3,
+                            Name_en = "XXL",
+                            Name_es = "XXL",
+                            Name_fr = "XXL",
+                            Name_uk = "XXL",
+                            SortOrder = 18,
+                            Value = "XXL"
                         });
                 });
 
@@ -2549,7 +2661,11 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("ProductQuantity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Size")
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("SortOrder")
                         .HasColumnType("integer");
 
                     b.Property<bool>("inStock")
@@ -2567,7 +2683,8 @@ namespace Infrastructure.Migrations
                             Id = 1,
                             ProductId = 1,
                             ProductQuantity = 8,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = true
                         },
                         new
@@ -2575,7 +2692,8 @@ namespace Infrastructure.Migrations
                             Id = 2,
                             ProductId = 1,
                             ProductQuantity = 20,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = true
                         },
                         new
@@ -2583,7 +2701,8 @@ namespace Infrastructure.Migrations
                             Id = 3,
                             ProductId = 1,
                             ProductQuantity = 40,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = true
                         },
                         new
@@ -2591,7 +2710,8 @@ namespace Infrastructure.Migrations
                             Id = 4,
                             ProductId = 1,
                             ProductQuantity = 10,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = true
                         },
                         new
@@ -2599,7 +2719,8 @@ namespace Infrastructure.Migrations
                             Id = 5,
                             ProductId = 1,
                             ProductQuantity = 10,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = true
                         },
                         new
@@ -2607,7 +2728,8 @@ namespace Infrastructure.Migrations
                             Id = 6,
                             ProductId = 1,
                             ProductQuantity = 10,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = true
                         },
                         new
@@ -2615,7 +2737,8 @@ namespace Infrastructure.Migrations
                             Id = 7,
                             ProductId = 2,
                             ProductQuantity = 12,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = true
                         },
                         new
@@ -2623,7 +2746,8 @@ namespace Infrastructure.Migrations
                             Id = 8,
                             ProductId = 2,
                             ProductQuantity = 10,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = true
                         },
                         new
@@ -2631,7 +2755,8 @@ namespace Infrastructure.Migrations
                             Id = 9,
                             ProductId = 2,
                             ProductQuantity = 40,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = true
                         },
                         new
@@ -2639,7 +2764,8 @@ namespace Infrastructure.Migrations
                             Id = 10,
                             ProductId = 2,
                             ProductQuantity = 30,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = true
                         },
                         new
@@ -2647,7 +2773,8 @@ namespace Infrastructure.Migrations
                             Id = 11,
                             ProductId = 2,
                             ProductQuantity = 40,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = true
                         },
                         new
@@ -2655,7 +2782,8 @@ namespace Infrastructure.Migrations
                             Id = 12,
                             ProductId = 2,
                             ProductQuantity = 20,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = true
                         },
                         new
@@ -2663,7 +2791,8 @@ namespace Infrastructure.Migrations
                             Id = 13,
                             ProductId = 3,
                             ProductQuantity = 0,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = false
                         },
                         new
@@ -2671,7 +2800,8 @@ namespace Infrastructure.Migrations
                             Id = 14,
                             ProductId = 3,
                             ProductQuantity = 1,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = true
                         },
                         new
@@ -2679,7 +2809,8 @@ namespace Infrastructure.Migrations
                             Id = 15,
                             ProductId = 3,
                             ProductQuantity = 1,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = true
                         },
                         new
@@ -2687,7 +2818,8 @@ namespace Infrastructure.Migrations
                             Id = 16,
                             ProductId = 3,
                             ProductQuantity = 1,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = true
                         },
                         new
@@ -2695,7 +2827,8 @@ namespace Infrastructure.Migrations
                             Id = 17,
                             ProductId = 3,
                             ProductQuantity = 0,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = false
                         },
                         new
@@ -2703,7 +2836,8 @@ namespace Infrastructure.Migrations
                             Id = 18,
                             ProductId = 3,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -2711,7 +2845,8 @@ namespace Infrastructure.Migrations
                             Id = 19,
                             ProductId = 4,
                             ProductQuantity = 9,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = true
                         },
                         new
@@ -2719,7 +2854,8 @@ namespace Infrastructure.Migrations
                             Id = 20,
                             ProductId = 4,
                             ProductQuantity = 8,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = true
                         },
                         new
@@ -2727,7 +2863,8 @@ namespace Infrastructure.Migrations
                             Id = 21,
                             ProductId = 4,
                             ProductQuantity = 8,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = true
                         },
                         new
@@ -2735,7 +2872,8 @@ namespace Infrastructure.Migrations
                             Id = 22,
                             ProductId = 4,
                             ProductQuantity = 0,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = false
                         },
                         new
@@ -2743,7 +2881,8 @@ namespace Infrastructure.Migrations
                             Id = 23,
                             ProductId = 4,
                             ProductQuantity = 0,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = false
                         },
                         new
@@ -2751,7 +2890,8 @@ namespace Infrastructure.Migrations
                             Id = 24,
                             ProductId = 4,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -2759,7 +2899,8 @@ namespace Infrastructure.Migrations
                             Id = 25,
                             ProductId = 5,
                             ProductQuantity = 7,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = true
                         },
                         new
@@ -2767,7 +2908,8 @@ namespace Infrastructure.Migrations
                             Id = 26,
                             ProductId = 5,
                             ProductQuantity = 0,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = false
                         },
                         new
@@ -2775,7 +2917,8 @@ namespace Infrastructure.Migrations
                             Id = 27,
                             ProductId = 5,
                             ProductQuantity = 8,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = true
                         },
                         new
@@ -2783,7 +2926,8 @@ namespace Infrastructure.Migrations
                             Id = 28,
                             ProductId = 5,
                             ProductQuantity = 9,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = true
                         },
                         new
@@ -2791,7 +2935,8 @@ namespace Infrastructure.Migrations
                             Id = 29,
                             ProductId = 5,
                             ProductQuantity = 0,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = false
                         },
                         new
@@ -2799,7 +2944,8 @@ namespace Infrastructure.Migrations
                             Id = 30,
                             ProductId = 5,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -2807,7 +2953,8 @@ namespace Infrastructure.Migrations
                             Id = 31,
                             ProductId = 6,
                             ProductQuantity = 9,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = true
                         },
                         new
@@ -2815,7 +2962,8 @@ namespace Infrastructure.Migrations
                             Id = 32,
                             ProductId = 6,
                             ProductQuantity = 8,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = true
                         },
                         new
@@ -2823,7 +2971,8 @@ namespace Infrastructure.Migrations
                             Id = 33,
                             ProductId = 6,
                             ProductQuantity = 0,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = false
                         },
                         new
@@ -2831,7 +2980,8 @@ namespace Infrastructure.Migrations
                             Id = 34,
                             ProductId = 6,
                             ProductQuantity = 0,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = false
                         },
                         new
@@ -2839,7 +2989,8 @@ namespace Infrastructure.Migrations
                             Id = 35,
                             ProductId = 6,
                             ProductQuantity = 0,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = false
                         },
                         new
@@ -2847,7 +2998,8 @@ namespace Infrastructure.Migrations
                             Id = 36,
                             ProductId = 6,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -2855,7 +3007,8 @@ namespace Infrastructure.Migrations
                             Id = 37,
                             ProductId = 7,
                             ProductQuantity = 0,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = false
                         },
                         new
@@ -2863,7 +3016,8 @@ namespace Infrastructure.Migrations
                             Id = 38,
                             ProductId = 7,
                             ProductQuantity = 8,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = true
                         },
                         new
@@ -2871,7 +3025,8 @@ namespace Infrastructure.Migrations
                             Id = 39,
                             ProductId = 7,
                             ProductQuantity = 0,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = false
                         },
                         new
@@ -2879,7 +3034,8 @@ namespace Infrastructure.Migrations
                             Id = 40,
                             ProductId = 7,
                             ProductQuantity = 9,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = true
                         },
                         new
@@ -2887,7 +3043,8 @@ namespace Infrastructure.Migrations
                             Id = 41,
                             ProductId = 7,
                             ProductQuantity = 8,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = false
                         },
                         new
@@ -2895,7 +3052,8 @@ namespace Infrastructure.Migrations
                             Id = 42,
                             ProductId = 7,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -2903,7 +3061,8 @@ namespace Infrastructure.Migrations
                             Id = 43,
                             ProductId = 8,
                             ProductQuantity = 0,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = false
                         },
                         new
@@ -2911,7 +3070,8 @@ namespace Infrastructure.Migrations
                             Id = 44,
                             ProductId = 8,
                             ProductQuantity = 4,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = true
                         },
                         new
@@ -2919,7 +3079,8 @@ namespace Infrastructure.Migrations
                             Id = 45,
                             ProductId = 8,
                             ProductQuantity = 0,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = false
                         },
                         new
@@ -2927,7 +3088,8 @@ namespace Infrastructure.Migrations
                             Id = 46,
                             ProductId = 8,
                             ProductQuantity = 8,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = true
                         },
                         new
@@ -2935,7 +3097,8 @@ namespace Infrastructure.Migrations
                             Id = 47,
                             ProductId = 8,
                             ProductQuantity = 0,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = false
                         },
                         new
@@ -2943,7 +3106,8 @@ namespace Infrastructure.Migrations
                             Id = 48,
                             ProductId = 8,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -2951,7 +3115,8 @@ namespace Infrastructure.Migrations
                             Id = 49,
                             ProductId = 9,
                             ProductQuantity = 5,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = true
                         },
                         new
@@ -2959,7 +3124,8 @@ namespace Infrastructure.Migrations
                             Id = 50,
                             ProductId = 9,
                             ProductQuantity = 0,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = false
                         },
                         new
@@ -2967,7 +3133,8 @@ namespace Infrastructure.Migrations
                             Id = 51,
                             ProductId = 9,
                             ProductQuantity = 0,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = false
                         },
                         new
@@ -2975,7 +3142,8 @@ namespace Infrastructure.Migrations
                             Id = 52,
                             ProductId = 9,
                             ProductQuantity = 0,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = false
                         },
                         new
@@ -2983,7 +3151,8 @@ namespace Infrastructure.Migrations
                             Id = 53,
                             ProductId = 9,
                             ProductQuantity = 7,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = true
                         },
                         new
@@ -2991,7 +3160,8 @@ namespace Infrastructure.Migrations
                             Id = 54,
                             ProductId = 9,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -2999,7 +3169,8 @@ namespace Infrastructure.Migrations
                             Id = 55,
                             ProductId = 10,
                             ProductQuantity = 0,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = false
                         },
                         new
@@ -3007,7 +3178,8 @@ namespace Infrastructure.Migrations
                             Id = 56,
                             ProductId = 10,
                             ProductQuantity = 0,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = false
                         },
                         new
@@ -3015,7 +3187,8 @@ namespace Infrastructure.Migrations
                             Id = 57,
                             ProductId = 10,
                             ProductQuantity = 10,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = true
                         },
                         new
@@ -3023,7 +3196,8 @@ namespace Infrastructure.Migrations
                             Id = 58,
                             ProductId = 10,
                             ProductQuantity = 10,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = true
                         },
                         new
@@ -3031,7 +3205,8 @@ namespace Infrastructure.Migrations
                             Id = 59,
                             ProductId = 10,
                             ProductQuantity = 0,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = false
                         },
                         new
@@ -3039,7 +3214,8 @@ namespace Infrastructure.Migrations
                             Id = 60,
                             ProductId = 10,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -3047,7 +3223,8 @@ namespace Infrastructure.Migrations
                             Id = 61,
                             ProductId = 11,
                             ProductQuantity = 0,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = false
                         },
                         new
@@ -3055,7 +3232,8 @@ namespace Infrastructure.Migrations
                             Id = 62,
                             ProductId = 11,
                             ProductQuantity = 10,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = true
                         },
                         new
@@ -3063,7 +3241,8 @@ namespace Infrastructure.Migrations
                             Id = 63,
                             ProductId = 11,
                             ProductQuantity = 10,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = true
                         },
                         new
@@ -3071,7 +3250,8 @@ namespace Infrastructure.Migrations
                             Id = 64,
                             ProductId = 11,
                             ProductQuantity = 10,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = true
                         },
                         new
@@ -3079,7 +3259,8 @@ namespace Infrastructure.Migrations
                             Id = 65,
                             ProductId = 11,
                             ProductQuantity = 0,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = false
                         },
                         new
@@ -3087,7 +3268,8 @@ namespace Infrastructure.Migrations
                             Id = 66,
                             ProductId = 11,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -3095,7 +3277,8 @@ namespace Infrastructure.Migrations
                             Id = 67,
                             ProductId = 12,
                             ProductQuantity = 0,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = false
                         },
                         new
@@ -3103,7 +3286,8 @@ namespace Infrastructure.Migrations
                             Id = 68,
                             ProductId = 12,
                             ProductQuantity = 10,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = true
                         },
                         new
@@ -3111,7 +3295,8 @@ namespace Infrastructure.Migrations
                             Id = 69,
                             ProductId = 12,
                             ProductQuantity = 50,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = true
                         },
                         new
@@ -3119,7 +3304,8 @@ namespace Infrastructure.Migrations
                             Id = 70,
                             ProductId = 12,
                             ProductQuantity = 10,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = true
                         },
                         new
@@ -3127,7 +3313,8 @@ namespace Infrastructure.Migrations
                             Id = 71,
                             ProductId = 12,
                             ProductQuantity = 0,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = false
                         },
                         new
@@ -3135,7 +3322,8 @@ namespace Infrastructure.Migrations
                             Id = 72,
                             ProductId = 12,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -3143,7 +3331,8 @@ namespace Infrastructure.Migrations
                             Id = 73,
                             ProductId = 13,
                             ProductQuantity = 0,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = false
                         },
                         new
@@ -3151,7 +3340,8 @@ namespace Infrastructure.Migrations
                             Id = 74,
                             ProductId = 13,
                             ProductQuantity = 0,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = false
                         },
                         new
@@ -3159,7 +3349,8 @@ namespace Infrastructure.Migrations
                             Id = 75,
                             ProductId = 13,
                             ProductQuantity = 10,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = true
                         },
                         new
@@ -3167,7 +3358,8 @@ namespace Infrastructure.Migrations
                             Id = 76,
                             ProductId = 13,
                             ProductQuantity = 0,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = false
                         },
                         new
@@ -3175,7 +3367,8 @@ namespace Infrastructure.Migrations
                             Id = 77,
                             ProductId = 13,
                             ProductQuantity = 10,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = true
                         },
                         new
@@ -3183,7 +3376,8 @@ namespace Infrastructure.Migrations
                             Id = 78,
                             ProductId = 13,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -3191,7 +3385,8 @@ namespace Infrastructure.Migrations
                             Id = 79,
                             ProductId = 14,
                             ProductQuantity = 0,
-                            Size = 36,
+                            Size = "36",
+                            SortOrder = 2,
                             inStock = false
                         },
                         new
@@ -3199,7 +3394,8 @@ namespace Infrastructure.Migrations
                             Id = 80,
                             ProductId = 14,
                             ProductQuantity = 15,
-                            Size = 37,
+                            Size = "37",
+                            SortOrder = 3,
                             inStock = true
                         },
                         new
@@ -3207,7 +3403,8 @@ namespace Infrastructure.Migrations
                             Id = 81,
                             ProductId = 14,
                             ProductQuantity = 10,
-                            Size = 38,
+                            Size = "38",
+                            SortOrder = 4,
                             inStock = true
                         },
                         new
@@ -3215,7 +3412,8 @@ namespace Infrastructure.Migrations
                             Id = 82,
                             ProductId = 14,
                             ProductQuantity = 10,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = true
                         },
                         new
@@ -3223,7 +3421,8 @@ namespace Infrastructure.Migrations
                             Id = 83,
                             ProductId = 14,
                             ProductQuantity = 10,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = true
                         },
                         new
@@ -3231,7 +3430,8 @@ namespace Infrastructure.Migrations
                             Id = 84,
                             ProductId = 14,
                             ProductQuantity = 0,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = false
                         },
                         new
@@ -3239,7 +3439,8 @@ namespace Infrastructure.Migrations
                             Id = 85,
                             ProductId = 15,
                             ProductQuantity = 0,
-                            Size = 39,
+                            Size = "39",
+                            SortOrder = 5,
                             inStock = false
                         },
                         new
@@ -3247,7 +3448,8 @@ namespace Infrastructure.Migrations
                             Id = 86,
                             ProductId = 15,
                             ProductQuantity = 15,
-                            Size = 40,
+                            Size = "40",
+                            SortOrder = 6,
                             inStock = true
                         },
                         new
@@ -3255,7 +3457,8 @@ namespace Infrastructure.Migrations
                             Id = 87,
                             ProductId = 15,
                             ProductQuantity = 10,
-                            Size = 41,
+                            Size = "41",
+                            SortOrder = 7,
                             inStock = true
                         },
                         new
@@ -3263,7 +3466,8 @@ namespace Infrastructure.Migrations
                             Id = 88,
                             ProductId = 15,
                             ProductQuantity = 10,
-                            Size = 42,
+                            Size = "42",
+                            SortOrder = 8,
                             inStock = true
                         },
                         new
@@ -3271,7 +3475,8 @@ namespace Infrastructure.Migrations
                             Id = 89,
                             ProductId = 15,
                             ProductQuantity = 10,
-                            Size = 43,
+                            Size = "43",
+                            SortOrder = 9,
                             inStock = true
                         },
                         new
@@ -3279,7 +3484,8 @@ namespace Infrastructure.Migrations
                             Id = 90,
                             ProductId = 15,
                             ProductQuantity = 0,
-                            Size = 44,
+                            Size = "44",
+                            SortOrder = 10,
                             inStock = false
                         },
                         new
@@ -3287,7 +3493,8 @@ namespace Infrastructure.Migrations
                             Id = 91,
                             ProductId = 15,
                             ProductQuantity = 0,
-                            Size = 45,
+                            Size = "45",
+                            SortOrder = 11,
                             inStock = false
                         },
                         new
@@ -3295,7 +3502,8 @@ namespace Infrastructure.Migrations
                             Id = 92,
                             ProductId = 15,
                             ProductQuantity = 0,
-                            Size = 46,
+                            Size = "46",
+                            SortOrder = 12,
                             inStock = false
                         });
                 });
@@ -3833,8 +4041,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Size")
-                        .HasColumnType("integer");
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -3964,8 +4173,8 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Size")
-                        .HasColumnType("integer");
+                    b.Property<string>("Size")
+                        .HasColumnType("text");
 
                     b.Property<string>("Status")
                         .HasColumnType("text");

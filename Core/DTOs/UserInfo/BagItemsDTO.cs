@@ -9,7 +9,7 @@ namespace Core.DTOs.UserInfo
         public int Id { get; set; }
         public int ProductId { get; set; }
         public int Quantity { get; set; }
-        public int Size { get; set; }
+        public string Size { get; set; }
         public int BagId { get; set; }
         public string Name_en { get; set; } 
         public string Name_uk { get; set; }

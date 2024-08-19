@@ -2,7 +2,7 @@
 {
     public class FilterDTO
     {
-        public List<int>? Size { get; set; }
+        public List<string>? Size { get; set; }
         public List<string>? Material { get; set; }
         public List<string>? Color { get; set; }
         public List<string>? Season { get; set; }

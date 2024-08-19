@@ -25,18 +25,32 @@ namespace WebApi.Controllers
             await _image.DeleteImageAsync(imageDTO);
             return Ok();
         }
-        [HttpPost("DeleteUserImage")]
-        public async Task<IActionResult> DeleteUserImageAsync([FromForm] string image)
-        {
-            await _image.DeleteUserImageAsync(image);
-            return Ok();
-        }
+
         [HttpPost("CreateUserImage")]
         public async Task<IActionResult> CreateUserImageAsync([FromForm] IFormFile ImageFile)
         {
             var result = await _image.CreateUserImageAsync(ImageFile);
             return Ok(result);
         }
+        [HttpPost("DeleteUserImage")]
+        public async Task<IActionResult> DeleteUserImageAsync([FromForm] string image)
+        {
+            await _image.DeleteUserImageAsync(image);
+            return Ok();
+        }
 
+        
+        [HttpPost("CreateCategoryImage")]
+        public async Task<IActionResult> CreateCategoryImageAsync([FromForm] IFormFile ImageFile)
+        {
+            var result = await _image.CreateCategoryImageAsync(ImageFile);
+            return Ok(result);
+        }
+        [HttpPost("DeleteCategoryImage")]
+        public async Task<IActionResult> DeleteCategoryImageAsync([FromForm] string ImagePath)
+        {
+            await _image.DeleteCategoryImageAsync(ImagePath);
+            return Ok();
+        }
     }
 }

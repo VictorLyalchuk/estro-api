@@ -41,6 +41,47 @@ namespace Core.Specification
                     .OrderBy(p => p.Id);
             }
         }
-
+        public class MainCategoryByPageAsync : Specification<MainCategory>
+        {
+            public MainCategoryByPageAsync(int page)
+            {
+                if (page < 1)
+                {
+                    page = 1;
+                }
+                int pageSize = 10;
+                Query.OrderBy(p => p.Id)
+                     .Skip((page - 1) * pageSize)
+                     .Take(pageSize);
+            }
+        }
+        public class SubCategoryByPageAsync : Specification<SubCategory>
+        {
+            public SubCategoryByPageAsync(int page)
+            {
+                if (page < 1)
+                {
+                    page = 1;
+                }
+                int pageSize = 10;
+                Query.OrderBy(p => p.Id)
+                     .Skip((page - 1) * pageSize)
+                     .Take(pageSize);
+            }
+        }
+        public class CategoryByPageAsync : Specification<CategoryEntity>
+        {
+            public CategoryByPageAsync(int page)
+            {
+                if (page < 1)
+                {
+                    page = 1;
+                }
+                int pageSize = 10;
+                Query.OrderBy(p => p.Id)
+                     .Skip((page - 1) * pageSize)
+                     .Take(pageSize);
+            }
+        }
     }
 }

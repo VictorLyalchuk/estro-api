@@ -64,19 +64,29 @@ namespace Core.Services
             await _filesService.DeleteProductImage(imageDTO.ImagePath!);
             await DeleteAsync(imageDTO.Id);
         }
+
+        public async Task<string> CreateUserImageAsync(IFormFile ImageFile)
+        {
+            return await _filesService.SaveUserImageAsync(ImageFile);
+        }
         public async Task DeleteUserImageAsync(string image)
         {
             await _filesService.DeleteUserImageAsync(image);
 
         }
-        public async Task<string> CreateUserImageAsync(IFormFile ImageFile)
-        {
-            return await _filesService.SaveUserImageAsync(ImageFile);
-        }
         public async Task<string> SaveImageFromUrlAsync(string url)
         {
             return await _filesService.SaveImageFromUrlAsync(url);
+        }
 
+        public async Task<string> CreateCategoryImageAsync(IFormFile ImageFile)
+        {
+            return await _filesService.SaveUserImageAsync(ImageFile);
+        }
+
+        public async Task DeleteCategoryImageAsync(string ImagePath)
+        {
+            await _filesService.DeleteUserImageAsync(ImagePath!);
         }
     }
 }

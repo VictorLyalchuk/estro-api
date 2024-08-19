@@ -14,8 +14,11 @@ namespace Core.Interfaces
         Task<ImageDTO> GetByIdAsync(int id);
         Task EditAsync(ImageDTO imageDTO);
 
-        Task DeleteUserImageAsync(string image);
         Task<string> CreateUserImageAsync(IFormFile ImageFile);
+        Task DeleteUserImageAsync(string image);
         Task<string> SaveImageFromUrlAsync(string url);
+
+        Task <string> CreateCategoryImageAsync(IFormFile ImageFile);
+        Task DeleteCategoryImageAsync(string ImagePath);
     }
 }

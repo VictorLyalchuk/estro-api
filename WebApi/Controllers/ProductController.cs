@@ -1,6 +1,7 @@
 ﻿using Core.DTOs.Filter;
 using Core.DTOs.Product;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -43,45 +44,6 @@ namespace WebApi.Controllers
             return Ok(products);
         }
 
-        [HttpGet("ProductByPage/{page}")]
-        public async Task<IActionResult> ProductByPageAsync(int page)
-        {
-            var product = await _product.GetProductByPageAsync(page);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return Ok(product);
-        }
-
-        [HttpPost("CreateProduct")]
-        public async Task<IActionResult> CreateProduct(CreateProductDTO createProductDTO)
-        {
-            await _product.CreateAsync(createProductDTO);
-            return Ok();
-        }
-
-        [HttpDelete("DeleteProductByID/{id}")]
-        public async Task<IActionResult> DeleteProductByIDAsync(int id)
-        {
-            await _product.DeleteProductByIDAsync(id);
-            return Ok();
-        }
-
-        [HttpPost("EditProduct")]
-        public async Task<IActionResult> EditProduct(EditProductDTO editProductDTO)
-        {
-            await _product.EditAsync(editProductDTO);
-            return Ok();
-        }
-        
-        [HttpGet("ProductQuantity")]
-        public async Task<IActionResult> ProductQuantity()
-        {
-            var quantity = await _product.ProductQuantity();
-            return Ok(quantity);
-        }
-
         [HttpGet("ProductQuantityByFilters")]
         public async Task<IActionResult> ProductQuantityByFiltersAsync([FromQuery] FilterDTO? filterDTO)
         {
@@ -109,6 +71,75 @@ namespace WebApi.Controllers
                 return NotFound();
             }
             return Ok(product);
+        }
+
+        //CRUD Admin
+        [HttpGet("ProductByPage/{page}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> ProductByPageAsync(int page)
+        {
+            var product = await _product.GetProductByPageAsync(page);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
+        [HttpGet("GetEditProductById/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> GetEditProductById(int id)
+        {
+            var product = await _product.GetEditProductById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
+        }
+
+        [HttpGet("ProductQuantity")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> ProductQuantity()
+        {
+            var quantity = await _product.ProductQuantity();
+            return Ok(quantity);
+        }
+
+        [HttpPost("CreateProduct")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> CreateProduct(CreateProductDTO createProductDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _product.CreateAsync(createProductDTO);
+            return Ok();
+        }
+
+        [HttpPost("EditProduct")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> EditProduct(EditProductDTO editProductDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _product.EditAsync(editProductDTO);
+            return Ok();
+        }
+
+        [HttpDelete("DeleteProductByID/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> DeleteProductByIDAsync(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            await _product.DeleteProductByIDAsync(id);
+            return Ok();
         }
     }
 }

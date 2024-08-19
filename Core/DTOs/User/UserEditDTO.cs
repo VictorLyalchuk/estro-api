@@ -12,6 +12,7 @@ namespace Core.DTOs.User
         public string? Password { get; set; }
         public string? NewPassword { get; set; }
         public string? ConfirmNewPassword { get; set; }
+        public string? Role { get; set; }
         public string? ImagePath { get; set; }
         public string? PhoneNumber { get; set; }
         public DateTime Birthday { get; set; }

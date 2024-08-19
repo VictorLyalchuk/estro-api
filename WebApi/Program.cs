@@ -35,7 +35,15 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthenticationWithOptions(builder.Configuration);
 
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost5173",
+        builder => builder.WithOrigins("http://localhost:5173")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod());
+});
+
+//builder.Services.AddCors();
 
 var app = builder.Build();
 

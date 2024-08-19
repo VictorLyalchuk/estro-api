@@ -45,7 +45,7 @@ namespace Core.Specification
             public GetSizes()
             {
                 Query
-                    .OrderBy(f => f.Name_en);
+                    .OrderBy(f => f.Id);
             }
         }
     }

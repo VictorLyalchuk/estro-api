@@ -1,8 +1,6 @@
-﻿using Core.Entities.Category;
-
-namespace Core.DTOs.Category
+﻿namespace Core.DTOs.Category
 {
-    public class SubCategoryDTO
+    public class EditCategoryDTO
     {
         public int Id { get; set; }
         public string Name_en { get; set; } = string.Empty;
@@ -15,9 +13,6 @@ namespace Core.DTOs.Category
         public string? Description_fr { get; set; }
         public string URLName { get; set; }
         public string? ImagePath { get; set; }
-        public IEnumerable<CategoryEntity> Categories { get; set; } = new List<CategoryEntity>();
-        public int? MainCategoryId { get; set; }
-        public MainCategory? MainCategory { get; set; }
+        public int? SubCategoryId { get; set; }
     }
-};
-
+}

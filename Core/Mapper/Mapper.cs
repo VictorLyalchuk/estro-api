@@ -26,16 +26,27 @@ namespace Core.Mapper
             CreateMap<UserEditDTO, User>().ReverseMap();
             CreateMap<UserRegistrationDTO, User>().ReverseMap();
 
-
             CreateMap<MainCategoryDTO, MainCategory>().ReverseMap();
+            CreateMap<CreateMainCategoryDTO, MainCategory>().ReverseMap();
+            CreateMap<EditMainCategoryDTO, MainCategory>().ReverseMap();
+
             CreateMap<SubCategoryDTO, SubCategory>().ReverseMap();
-            CreateMap<CategoryDTO, CategoryEntity>().ReverseMap();
+            CreateMap<CreateSubCategoryDTO, SubCategory>().ReverseMap();
+            CreateMap<EditSubCategoryDTO, SubCategory>().ReverseMap();
+
             CreateMap<CategoryDTO, CategoryEntity>()
                 .ForMember(dest => dest.SubCategory, opt => opt.MapFrom(src => new SubCategory { Id = src.MainCategoryId.GetValueOrDefault() }));
 
+            CreateMap<CategoryEntity, CategoryDTO>()
+                .ForMember(dest => dest.SubCategoryId, opt => opt.MapFrom(src => src.SubCategoryId))
+                .ForMember(dest => dest.MainCategoryId, opt => opt.MapFrom(src => src.SubCategory.MainCategoryId));
+
+            CreateMap<CreateCategoryDTO, CategoryEntity>().ReverseMap();
+            CreateMap<EditCategoryDTO, CategoryEntity>().ReverseMap();
+
             CreateMap<ProductColorsDTO, ProductColors>()
-                .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
-                .ReverseMap();
+                    .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
+                    .ReverseMap();
 
             CreateMap<ProductSeasonDTO, ProductSeason>()
                 .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
@@ -49,7 +60,14 @@ namespace Core.Mapper
                 .ForMember(dest => dest.InfoId, opt => opt.MapFrom(src => src.Info))
                 .ReverseMap();
 
-            CreateMap<ProductDTO, ProductEntity>().ReverseMap();
+            CreateMap<ProductEntity, ProductDTOEdit>()
+                        .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.Color.Id))
+                        .ForMember(dest => dest.Season, opt => opt.MapFrom(src => src.Season.Id))
+                        .ForMember(dest => dest.Material, opt => opt.MapFrom(src => src.Material.Id))
+                        .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.CategoryId));
+
+
+            CreateMap<ProductDTO, ProductEntity>();
             CreateMap<CreateProductDTO, ProductEntity>();
             CreateMap<EditProductDTO, ProductEntity>();
             CreateMap<ProductEntity, ProductDTO>()

@@ -12,6 +12,7 @@ namespace Core.Interfaces
         Task<ProductDTO>? GetProductByIDAsync(int id);
         Task CreateAsync (CreateProductDTO createProductDTO);
         Task DeleteProductByIDAsync(int id);
+        Task<ProductDTOEdit>? GetEditProductById(int id);
         Task EditAsync(EditProductDTO editProductDTO);
         Task <int> ProductQuantity();
         Task <int> ProductQuantityByFiltersAsync(FilterDTO filterDTO);

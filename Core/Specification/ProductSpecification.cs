@@ -49,7 +49,7 @@ namespace Core.Specification
                      .Include(p => p.Color)
                      .Include(p => p.Season)
                      .Include(p => p.Material)
-                     .Include(p => p.Storages.OrderBy(s => s.Size));
+                     .Include(p => p.Storages.OrderBy(s => s.SortOrder));
             }
         }
         public class FilterProducts : Specification<ProductEntity>
@@ -58,7 +58,7 @@ namespace Core.Specification
             {
                 List<string> Colors = filterDTO.Color ?? new List<string>();
                 List<string> Materials = filterDTO.Material ?? new List<string>();
-                List<int> Sizes = filterDTO.Size ?? new List<int>();
+                List<string> Sizes = filterDTO.Size ?? new List<string>();
                 List<string> Season = filterDTO.Season ?? new List<string>();
                 int page = filterDTO.Page < 1 ? 1 : filterDTO.Page;
                 string sort = filterDTO.Sort;
@@ -68,7 +68,7 @@ namespace Core.Specification
                 Query
                      .Include(p => p.Images)
                      .Include(p => p.Category)
-                     .Include(p => p.Storages.OrderBy(p => p.Size))
+                     .Include(p => p.Storages.OrderBy(p => p.SortOrder))
                      .Include(p => p.Color)
                      .Include(p => p.Season)
                      .Include(p => p.Material)
@@ -153,7 +153,7 @@ namespace Core.Specification
             {
                 List<string> Colors = filterDTO.Color ?? new List<string>();
                 List<string> Materials = filterDTO.Material ?? new List<string>();
-                List<int> Sizes = filterDTO.Size ?? new List<int>();
+                List<string> Sizes = filterDTO.Size ?? new List<string>();
                 List<string> Season = filterDTO.Season ?? new List<string>();
                 string search = filterDTO.Search;
 
@@ -227,7 +227,7 @@ namespace Core.Specification
                 Query
                     .Where(p => p.Id == id)
                     .Include(p => p.Images)
-                    .Include(p => p.Storages.OrderBy(s => s.Size))
+                    .Include(p => p.Storages.OrderBy(s => s.SortOrder))
                     .Include(p => p.Color)
                     .Include(p => p.Season)
                     .Include(p => p.Material)

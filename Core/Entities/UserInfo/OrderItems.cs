@@ -20,7 +20,7 @@ namespace Core.Entities.UserInfo
         public DateTime DueDate { get; set; }
         public string? Article { get; set; }
         public int Quantity { get; set; }
-        public int Size { get; set; }
+        public string? Size { get; set; }
         public int? OrderId { get; set; }
         public Order? Order { get; set; }
         public int ProductId { get; set; }

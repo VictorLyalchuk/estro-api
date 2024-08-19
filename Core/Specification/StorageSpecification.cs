@@ -11,7 +11,7 @@ namespace Core.Specification
             {
                 Query
                     .Where(p => p.ProductId == id)
-                    .OrderByDescending(p => p.Size);
+                    .OrderBy(p => p.SortOrder);
             }
         }
     }

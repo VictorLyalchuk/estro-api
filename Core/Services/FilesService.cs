@@ -84,21 +84,6 @@ namespace Core.Services
             return fileName;
         }
 
-
-
-        public async Task DeleteUserImageAsync(string imagePath)
-        {
-            await Task.Run(() =>
-            {
-                string root = _environment.WebRootPath;
-                string fullRoot = Path.Combine(root, imageFolder);
-                string imageFullPath = Path.Combine(fullRoot, imagePath);
-                if (File.Exists(imageFullPath))
-                {
-                    File.Delete(imageFullPath);
-                }
-            });
-        }
         public async Task<string> SaveUserImageAsync(IFormFile file)
         {
             try
@@ -129,7 +114,19 @@ namespace Core.Services
                 return ex.Message;
             }
         }
-
+        public async Task DeleteUserImageAsync(string imagePath)
+        {
+            await Task.Run(() =>
+            {
+                string root = _environment.WebRootPath;
+                string fullRoot = Path.Combine(root, imageFolder);
+                string imageFullPath = Path.Combine(fullRoot, imagePath);
+                if (File.Exists(imageFullPath))
+                {
+                    File.Delete(imageFullPath);
+                }
+            });
+        }
         public async Task<string> SaveImageFromUrlAsync(string url)
         {
             try
