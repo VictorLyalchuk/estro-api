@@ -14,6 +14,25 @@ namespace Infrastructure.Initializers
             {
                 var context = serviceScope.ServiceProvider.GetService<DataBaseContext>();
                 UserManager<User> userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<User>>();
+                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+                if (!await roleManager.RoleExistsAsync("Administrator"))
+                {
+                    await roleManager.CreateAsync(new IdentityRole
+                    {
+                        Name = "Administrator",
+                        NormalizedName = "ADMINISTRATOR"
+                    });
+                }
+
+                if (!await roleManager.RoleExistsAsync("User"))
+                {
+                    await roleManager.CreateAsync(new IdentityRole
+                    {
+                        Name = "User",
+                        NormalizedName = "USER"
+                    });
+                }
 
                 if (userManager.FindByEmailAsync("admin@ukr.net").Result == null)
                 {
@@ -29,18 +48,18 @@ namespace Infrastructure.Initializers
                         AuthType = "standard",
                     };
 
-                    context.Roles.AddRange(
-                        new IdentityRole()
-                        {
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new IdentityRole()
-                        {
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
-                    await context.SaveChangesAsync();
+                    //context.Roles.AddRange(
+                    //    new IdentityRole()
+                    //    {
+                    //        Name = "Administrator",
+                    //        NormalizedName = "ADMINISTRATOR"
+                    //    },
+                    //    new IdentityRole()
+                    //    {
+                    //        Name = "User",
+                    //        NormalizedName = "USER"
+                    //    });
+                    //await context.SaveChangesAsync();
 
                     IdentityResult adminResult = userManager.CreateAsync(admin, "Qwerty-7").Result;
                     if (adminResult.Succeeded)

@@ -16,5 +16,6 @@
         public decimal BonusBalance { get; set; }
         public DateTime Birthday { get; set; }
         public string AuthType { get; set; } = string.Empty;
+        public bool? IsBlocked { get; set; }
     }
 }

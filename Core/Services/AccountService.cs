@@ -147,6 +147,13 @@ namespace Core.Services
             }
             var user = await _userManager.FindByEmailAsync(loginDTO.Email);
 
+
+            bool isUserLockedOut = user.LockoutEnd.HasValue && user.LockoutEnd.Value > DateTime.UtcNow;
+            if (isUserLockedOut)
+            {
+                throw new CustomHttpException("User if blocked", HttpStatusCode.BadRequest);
+            }
+
             if (loginDTO.AuthType == "standard")
             {
                 if (user == null || !(await _userManager.CheckPasswordAsync(user, loginDTO.Password)))
@@ -350,7 +357,7 @@ namespace Core.Services
                         }
                     }
                 }
-                
+
                 if (user.AuthType == "phone")
                 {
 
@@ -388,7 +395,6 @@ namespace Core.Services
                         }
                     }
                 }
-
             }
         }
         public async Task DeleteUserImage(string email)
@@ -690,7 +696,15 @@ namespace Core.Services
                     updatedUser.ImagePath = userEditDTO.ImagePath;
                     updatedUser.Birthday = userEditDTO.Birthday;
                     updatedUser.AuthType = userEditDTO.AuthType;
+
+                    if (userEditDTO.IsBlocked.HasValue)
+                    {
+                        user.LockoutEnd = userEditDTO.IsBlocked.Value ? DateTime.UtcNow.AddYears(100) : (DateTime?)null;
+                        //userEditDTO.IsBlocked.Value ? DateTime.SpecifyKind(DateTime.MaxValue, DateTimeKind.Utc) : null;
+                    }
+
                     var result = await _userManager.UpdateAsync(updatedUser);
+                    
                     if (!result.Succeeded)
                     {
                         throw new CustomHttpException("Failed to update user", HttpStatusCode.BadRequest);
@@ -735,6 +749,9 @@ namespace Core.Services
                 var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
                 if (currentRole != null)
                     currentUser.Role = currentRole;
+
+                bool isUserLockedOut = await _userManager.IsLockedOutAsync(user);
+                currentUser.IsBlocked = isUserLockedOut;
 
                 return currentUser;
             }
