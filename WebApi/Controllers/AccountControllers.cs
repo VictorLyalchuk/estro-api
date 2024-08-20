@@ -173,6 +173,17 @@ namespace WebApi.Controllers
             }
             return Ok(users);
         }
+        [HttpGet("GetUserById/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> GetUserByIdAsync(string id)
+        {
+            var user = await _accountService.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
         [HttpGet("UsersQuantity")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UsersQuantity()
@@ -182,13 +193,13 @@ namespace WebApi.Controllers
         }
         [HttpPost("CreateUser")]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> CreateUserAsync(UserRegistrationDTO userRegistrationDTO)
+        public async Task<IActionResult> CreateUserAsync(UserCreateDTO userCreateDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            await _accountService.CreateUserAsync(userRegistrationDTO);
+            await _accountService.CreateUserAsync(userCreateDTO);
             return Ok();
         }
 

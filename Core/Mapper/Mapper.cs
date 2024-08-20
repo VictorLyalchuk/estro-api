@@ -25,6 +25,7 @@ namespace Core.Mapper
             CreateMap<UserDTO, User>().ReverseMap();
             CreateMap<UserEditDTO, User>().ReverseMap();
             CreateMap<UserRegistrationDTO, User>().ReverseMap();
+            CreateMap<UserCreateDTO, User>().ReverseMap();
 
             CreateMap<MainCategoryDTO, MainCategory>().ReverseMap();
             CreateMap<CreateMainCategoryDTO, MainCategory>().ReverseMap();
