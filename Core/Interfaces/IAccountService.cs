@@ -24,8 +24,9 @@ namespace Core.Interfaces
         Task<string> RefreshTokenAsync(string oldToken);
         Task<List<UserDTO>> UsersyByPageAsync(int page);
         Task<int> UsersQuantity();
-        Task CreateUserAsync(UserRegistrationDTO userRegistrationDTO);
+        Task CreateUserAsync(UserCreateDTO userCreateDTO);
         Task EditUserAsync(UserEditDTO userEditDTO);
         Task DeleteUserByIDAsync(string id);
+        Task <UserDTO> GetUserByIdAsync(string id);
     }
 }
