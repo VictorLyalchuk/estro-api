@@ -151,7 +151,7 @@ namespace Core.Services
             bool isUserLockedOut = user.LockoutEnd.HasValue && user.LockoutEnd.Value > DateTime.UtcNow;
             if (isUserLockedOut)
             {
-                throw new CustomHttpException("User if blocked", HttpStatusCode.BadRequest);
+                throw new CustomHttpException("User is blocked", HttpStatusCode.BadRequest);
             }
 
             if (loginDTO.AuthType == "standard")
