@@ -12,6 +12,7 @@ namespace WebApi.Controllers
         {
             _userBonuses = userBonuses;
         }
+        
         [HttpGet("getBonuses")]
         public async Task<IActionResult> GetUserBonuses(string userId)
         {

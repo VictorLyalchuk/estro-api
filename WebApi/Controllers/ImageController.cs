@@ -13,12 +13,14 @@ namespace WebApi.Controllers
         {
             _image = image;
         }
+        
         [HttpPost("CreateImage")]
         public async Task<IActionResult> CreateImage([FromForm] IFormFile ImageFile)
         {
             var result = await _image.CreateImageAsync(ImageFile);
             return Ok(result);
         }
+        
         [HttpPost("DeleteImage")]
         public async Task<IActionResult> DeleteImage(ImageDTO imageDTO)
         {
@@ -32,20 +34,21 @@ namespace WebApi.Controllers
             var result = await _image.CreateUserImageAsync(ImageFile);
             return Ok(result);
         }
+        
         [HttpPost("DeleteUserImage")]
         public async Task<IActionResult> DeleteUserImageAsync([FromForm] string image)
         {
             await _image.DeleteUserImageAsync(image);
             return Ok();
         }
-
-        
+                
         [HttpPost("CreateCategoryImage")]
         public async Task<IActionResult> CreateCategoryImageAsync([FromForm] IFormFile ImageFile)
         {
             var result = await _image.CreateCategoryImageAsync(ImageFile);
             return Ok(result);
         }
+        
         [HttpPost("DeleteCategoryImage")]
         public async Task<IActionResult> DeleteCategoryImageAsync([FromForm] string ImagePath)
         {

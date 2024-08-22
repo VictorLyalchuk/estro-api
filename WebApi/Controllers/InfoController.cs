@@ -12,6 +12,7 @@ namespace WebApi.Controllers
         {
             _info = info;
         }
+        
         [HttpGet("GetInfo")]
         public async Task<IActionResult> GetInfoAsync()
         {
@@ -22,6 +23,7 @@ namespace WebApi.Controllers
             }
             return Ok(filters);
         }
+        
         [HttpGet("GetSeason")]
         public async Task<IActionResult> GetSeasonAsync()
         {
@@ -32,6 +34,7 @@ namespace WebApi.Controllers
             }
             return Ok(filters);
         }
+        
         [HttpGet("GetColors")]
         public async Task<IActionResult> GetColorsAsync()
         {
@@ -42,6 +45,7 @@ namespace WebApi.Controllers
             }
             return Ok(colors);
         }
+        
         [HttpGet("GetMaterials")]
         public async Task<IActionResult> GetMaterialsAsync()
         {
@@ -52,6 +56,7 @@ namespace WebApi.Controllers
             }
             return Ok(materials);
         }
+        
         [HttpGet("GetSizes")]
         public async Task<IActionResult> GetSizesAsync()
         {

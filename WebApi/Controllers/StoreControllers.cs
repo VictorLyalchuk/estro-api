@@ -1,5 +1,6 @@
 ﻿using Core.DTOs.Store;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -16,35 +17,6 @@ namespace WebApi.Controllers
             _address = address;
         }
 
-        [HttpPost("CreateStore")]
-        public async Task<IActionResult> CreateProduct(CreateStoreDTO createStoreDTO)
-        {
-            await _store.CreateAsync(createStoreDTO);
-            return Ok();
-        }
-        [HttpDelete("DeleteStore/{id}")]
-        public async Task<IActionResult> DeleteStoreAsync(int id)
-        {
-            await _store.DeleteAsync(id);
-            return Ok();
-        }
-
-        [HttpPost("EditStore")]
-        public async Task<IActionResult> EditProduct(EditStoreDTO editStoreDTO)
-        {
-            await _store.EditAsync(editStoreDTO);
-            return Ok();
-        }
-        [HttpGet("StoreByPage")]
-        public async Task<IActionResult> StoreByPage(int page)
-        {
-            var stores = await _store.GetAllByPageAsync(page);
-            if (stores == null)
-            {
-                return NotFound();
-            }
-            return Ok(stores);
-        }
         [HttpGet("StoreAll")]
         public async Task<IActionResult> StoreAll()
         {
@@ -55,16 +27,7 @@ namespace WebApi.Controllers
             }
             return Ok(stores);
         }
-        [HttpGet("StoreById")]
-        public async Task<IActionResult> StoreById(int id)
-        {
-            var store = await _store.GetStoreByIDAsync(id);
-            if (store == null)
-            {
-                return NotFound();
-            }
-            return Ok(store);
-        }
+
         [HttpGet("getCountry")]
         public async Task<IActionResult> GetCountry()
         {
@@ -75,8 +38,9 @@ namespace WebApi.Controllers
             }
             return Ok(country);
         }
+
         [HttpGet("getCity")]
-        public async Task<IActionResult> getCity()
+        public async Task<IActionResult> GetCity()
         {
             var city = await _address.GetCity();
             if (city == null)
@@ -84,6 +48,63 @@ namespace WebApi.Controllers
                 return NotFound();
             }
             return Ok(city);
+        }
+
+        // CRUD Store
+        [HttpGet("StoreByPage/{page}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> StoreByPageAsync(int page)
+        {
+            var stores = await _store.StoreByPageAsync(page);
+            if (stores == null)
+            {
+                return NotFound();
+            }
+            return Ok(stores);
+        }
+
+        [HttpGet("StoreQuantity")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> StoreQuantityAsync()
+        {
+            var quantity = await _store.StoreQuantityAsync();
+            return Ok(quantity);
+        }
+        
+        [HttpGet("StoreById/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> GetStoreByIDAsync(int id)
+        {
+            var store = await _store.GetStoreByIDAsync(id);
+            if (store == null)
+            {
+                return NotFound();
+            }
+            return Ok(store);
+        }
+        
+        [HttpPost("CreateStore")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> CreateAsync(CreateStoreDTO createStoreDTO)
+        {
+            await _store.CreateAsync(createStoreDTO);
+            return Ok();
+        }
+        
+        [HttpPost("EditStore")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> EditAsync(EditStoreDTO editStoreDTO)
+        {
+            await _store.EditAsync(editStoreDTO);
+            return Ok();
+        }
+
+        [HttpDelete("DeleteStore/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> DeleteStoreAsync(int id)
+        {
+            await _store.DeleteAsync(id);
+            return Ok();
         }
     }
 }

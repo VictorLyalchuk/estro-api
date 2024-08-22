@@ -13,12 +13,14 @@ namespace WebApi.Controllers
         {
             _order = order;
         }
+        
         [HttpPost("CreateOrder")]
         public async Task<IActionResult> CreateProductAsync(OrderCreateDTO orderCreateDTO)
         {
             await _order.CreateAsync(orderCreateDTO);
             return Ok();
         }
+        
         [HttpGet("GetAllOrders")]
         public async Task<IActionResult> GetAllOrdersAsync()
         {
@@ -29,6 +31,7 @@ namespace WebApi.Controllers
             }
             return Ok();
         }
+        
         [HttpGet("GetOrderById/{Id}")]
         public async Task<IActionResult> GetOrderByIdAsync(string Id, int page)
         {
@@ -39,6 +42,7 @@ namespace WebApi.Controllers
             }
             return Ok();
         }
+        
         [HttpGet("GetCountOrderById/{Id}")]
         public async Task<IActionResult> GetCountOrderByIdAsync(string Id)
         {

@@ -12,6 +12,7 @@ namespace WebApi.Controllers
         {
             _imageForHome = imageForHome;
         }
+        
         [HttpGet("GetAllImageAsync")]
         public async Task<IActionResult> GetAllImageAsync()
         {
@@ -21,7 +22,6 @@ namespace WebApi.Controllers
                 return Ok(images);
             }
             return Ok();
-
         }
     }
 }

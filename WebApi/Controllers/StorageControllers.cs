@@ -14,6 +14,7 @@ namespace WebApi.Controllers
         {
             _storage = storage;
         }
+        
         [HttpPost("AddQuantityStorage")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> AddQuantityStorage(StorageDTO [] storagesDTO)
