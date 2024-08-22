@@ -14,5 +14,6 @@
         public string WorkingHours { get; set; } = string.Empty;
         public string MapLink { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
+        public int CityId { get; set; }
     }
 }

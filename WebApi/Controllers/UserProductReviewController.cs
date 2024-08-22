@@ -13,12 +13,14 @@ namespace WebApi.Controllers
         {
             _review = review;
         }
+        
         [HttpPost("addReview")]
         public async Task<IActionResult> AddUserProductReview(CreateUserProductReviewDTO createUserProductReviewDTO)
         {
             await _review.AddUserProductReview(createUserProductReviewDTO);
             return Ok();
         }
+        
         [HttpGet("getRating")]
         public async Task<IActionResult> GetUserProductRating(int productId)
         {
@@ -29,6 +31,7 @@ namespace WebApi.Controllers
             }
             return Ok(resutl);
         }
+        
         [HttpGet("getReview/{productId}")]
         public async Task<IActionResult> GetUserProductReview(int productId, int page)
         {
@@ -39,6 +42,7 @@ namespace WebApi.Controllers
             }
             return Ok(resutl);
         }
+        
         [HttpGet("getQuantityReview")]
         public async Task<IActionResult> GetQuantityUserProductReviewAsync(int productId)
         {

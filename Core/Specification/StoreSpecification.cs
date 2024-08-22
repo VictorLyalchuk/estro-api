@@ -14,7 +14,8 @@ namespace Core.Specification
                     page = 1;
                 }
                 int pageSize = 10;
-                Query.OrderBy(p => p.Id)
+                Query.OrderBy(p => p.City.Country.CountryName_en) 
+                     .ThenBy(p => p.City.CityName_en)            
                      .Skip((page - 1) * pageSize)
                      .Take(pageSize)
                      .Include(p => p.City)

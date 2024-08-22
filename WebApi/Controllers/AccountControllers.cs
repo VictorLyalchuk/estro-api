@@ -33,6 +33,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
         }
+
         [HttpGet("GetByPhone")]
         public async Task<IActionResult> GetByPhone(string phone)
         {
@@ -50,6 +51,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
         }
+
         [HttpPost("SendSMS")]
         public async Task<IActionResult> SendSMS(string phone)
         {
@@ -63,24 +65,28 @@ namespace WebApi.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
         [HttpPost("Login")]
         public async Task<IActionResult> Login(UserLoginDTO loginDTO)
         {
             var token = await _accountService.Login(loginDTO);
             return Ok(new { token });
         }
+
         [HttpPost("LoginByPhone")]
         public async Task<IActionResult> LoginByPhone(string phone)
         {
             var token = await _accountService.LoginByPhone(phone);
             return Ok(new { token });
         }
+
         [HttpPost("Registration")]
         public async Task<IActionResult> Registration(UserRegistrationDTO registrationDTO)
         {
             await _accountService.Registration(registrationDTO);
             return Ok();
         }
+
       
         [HttpPost("Edit")]
         public async Task<IActionResult> Edit(UserEditDTO editDTO)
@@ -88,12 +94,14 @@ namespace WebApi.Controllers
             await _accountService.Edit(editDTO);
             return Ok();
         }
+
         [HttpPost("DeleteUserImage")]
         public async Task<IActionResult> DeleteUserImageAsync([FromForm] string email)
         {
             await _accountService.DeleteUserImage(email);
             return Ok();
         }
+        
         [HttpPost("EditUserImage")]
         public async Task<IActionResult> EditUserImageAsync(ImageUserEditDTO editDTO)
         {
@@ -114,6 +122,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
         }
+        
         [HttpPost("ResetPassword")]
         public async Task<IActionResult> ResetPassword(ResetPasswordDTO model)
         {
@@ -127,6 +136,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
         }
+        
         [HttpPost("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(ConfirmEmailDTO model)
         {
@@ -140,6 +150,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
         }
+        
         [HttpPost("ConfirmMyEmail")]
         public async Task<IActionResult> ConfirmEmail([FromBody] string email)
         {
@@ -153,6 +164,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
         }
+        
         [HttpPut("refresh-token")]
         public async Task<IActionResult> RefreshTokenAsync([FromBody] RefreshTokenDTO refreshToken)
         {
@@ -173,6 +185,7 @@ namespace WebApi.Controllers
             }
             return Ok(users);
         }
+        
         [HttpGet("GetUserById/{id}")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetUserByIdAsync(string id)
@@ -184,6 +197,7 @@ namespace WebApi.Controllers
             }
             return Ok(user);
         }
+        
         [HttpGet("UsersQuantity")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UsersQuantity()
@@ -191,6 +205,7 @@ namespace WebApi.Controllers
             var quantity = await _accountService.UsersQuantity();
             return Ok(quantity);
         }
+        
         [HttpPost("CreateUser")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> CreateUserAsync(UserCreateDTO userCreateDTO)

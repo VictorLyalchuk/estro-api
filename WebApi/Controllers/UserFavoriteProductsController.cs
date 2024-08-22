@@ -13,6 +13,7 @@ namespace WebApi.Controllers
         {
             _favoriteProducts = favoriteProducts;
         }
+        
         [HttpPost("addFavorite")]
         public async Task<IActionResult> AddUserFavoriteProduct(CreateUserFavoriteProductDTO createFavoriteProductDTO)
         {
