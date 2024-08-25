@@ -1,5 +1,4 @@
 ﻿using Core.DTOs.Address;
-using Core.Entities.Address;
 
 namespace Core.Interfaces
 {

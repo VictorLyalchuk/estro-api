@@ -18,8 +18,6 @@ namespace Core.Entities.UserInfo
         public decimal? Tax { get; set; }
         public decimal? Discount { get; set; }
         public decimal? OrderTotal { get; set; }
-        public int? OrderPaymentId { get; set; }
-        public OrderPayment? OrderPayment { get; set; }
         public int? AddressId { get; set; }
         public AddressEntity? Address { get; set; }
         public string? UserId { get; set; }

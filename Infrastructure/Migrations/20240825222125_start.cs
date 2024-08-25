@@ -294,6 +294,40 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    EmailUser = table.Column<string>(type: "text", nullable: true),
+                    Subtotal = table.Column<decimal>(type: "numeric", nullable: true),
+                    Tax = table.Column<decimal>(type: "numeric", nullable: true),
+                    Discount = table.Column<decimal>(type: "numeric", nullable: true),
+                    OrderTotal = table.Column<decimal>(type: "numeric", nullable: true),
+                    AddressId = table.Column<int>(type: "integer", nullable: true),
+                    UserId = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AddressEntity_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "AddressEntity",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserBonuses",
                 columns: table => new
                 {
@@ -462,46 +496,6 @@ namespace Infrastructure.Migrations
                         name: "FK_SubCategories_MainCategories_MainCategoryId",
                         column: x => x.MainCategoryId,
                         principalTable: "MainCategories",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    FirstName = table.Column<string>(type: "text", nullable: true),
-                    LastName = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
-                    Email = table.Column<string>(type: "text", nullable: true),
-                    EmailUser = table.Column<string>(type: "text", nullable: true),
-                    Subtotal = table.Column<decimal>(type: "numeric", nullable: true),
-                    Tax = table.Column<decimal>(type: "numeric", nullable: true),
-                    Discount = table.Column<decimal>(type: "numeric", nullable: true),
-                    OrderTotal = table.Column<decimal>(type: "numeric", nullable: true),
-                    OrderPaymentId = table.Column<int>(type: "integer", nullable: true),
-                    AddressId = table.Column<int>(type: "integer", nullable: true),
-                    UserId = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Orders_AddressEntity_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "AddressEntity",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Orders_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Orders_OrderPayment_OrderPaymentId",
-                        column: x => x.OrderPaymentId,
-                        principalTable: "OrderPayment",
                         principalColumn: "Id");
                 });
 
@@ -686,11 +680,17 @@ namespace Infrastructure.Migrations
                     Quantity = table.Column<int>(type: "integer", nullable: false),
                     Size = table.Column<string>(type: "text", nullable: true),
                     OrderId = table.Column<int>(type: "integer", nullable: true),
+                    OrderPaymentId = table.Column<int>(type: "integer", nullable: true),
                     ProductId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_OrderPayment_OrderPaymentId",
+                        column: x => x.OrderPaymentId,
+                        principalTable: "OrderPayment",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_OrderItems_Orders_OrderId",
                         column: x => x.OrderId,
@@ -1453,6 +1453,11 @@ namespace Infrastructure.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderItems_OrderPaymentId",
+                table: "OrderItems",
+                column: "OrderPaymentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_ProductId",
                 table: "OrderItems",
                 column: "ProductId");
@@ -1461,11 +1466,6 @@ namespace Infrastructure.Migrations
                 name: "IX_Orders_AddressId",
                 table: "Orders",
                 column: "AddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_OrderPaymentId",
-                table: "Orders",
-                column: "OrderPaymentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserId",
@@ -1603,6 +1603,9 @@ namespace Infrastructure.Migrations
                 name: "Bag");
 
             migrationBuilder.DropTable(
+                name: "OrderPayment");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
@@ -1616,9 +1619,6 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "OrderPayment");
 
             migrationBuilder.DropTable(
                 name: "Country");

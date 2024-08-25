@@ -23,6 +23,8 @@ namespace Core.Entities.UserInfo
         public string? Size { get; set; }
         public int? OrderId { get; set; }
         public Order? Order { get; set; }
+        public int? OrderPaymentId { get; set; }
+        public OrderPayment? OrderPayment { get; set; }
         public int ProductId { get; set; }
         public ProductEntity? Product { get; set; }
     }

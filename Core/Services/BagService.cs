@@ -8,7 +8,6 @@ using Core.Specification;
 using Microsoft.AspNetCore.Identity;
 using System.Net;
 
-
 namespace Core.Services
 {
     public class BagService : IBagService

@@ -1,7 +1,4 @@
 using Core.DTOs.User;
-using Core.Services;
-using Microsoft.AspNetCore.Identity;
-
 
 namespace Core.Interfaces
 {
