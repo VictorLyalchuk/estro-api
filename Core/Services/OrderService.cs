@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.DTOs.Filter;
 using Core.DTOs.UserInfo;
 using Core.Entities.Address;
 using Core.Entities.UserEntity;
@@ -6,6 +7,7 @@ using Core.Entities.UserInfo;
 using Core.Interfaces;
 using Core.Specification;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.VisualBasic;
 using static Core.Specification.OrderSpecification;
 
 namespace Core.Services
@@ -21,7 +23,8 @@ namespace Core.Services
         private readonly IRepository<AddressEntity> _addressRepository;
         private readonly IRepository<UserBonuses> _userBonuses;
         private readonly UserManager<User> _userManager;
-        public OrderService(IRepository<Order> repositoryRepository, IMapper mapper, IRepository<Bag> bagRepository, UserManager<User> userManager, IRepository<BagItems> bagItemsRepository, IRepository<OrderItems> orderItemsRepository, IRepository<AddressEntity> addressRepository, IRepository<UserBonuses> userBonuses, IRepository<OrderPayment> orderPaymentRepository)
+        private readonly IStorageService _storageService;
+        public OrderService(IRepository<Order> repositoryRepository, IMapper mapper, IRepository<Bag> bagRepository, UserManager<User> userManager, IRepository<BagItems> bagItemsRepository, IRepository<OrderItems> orderItemsRepository, IRepository<AddressEntity> addressRepository, IRepository<UserBonuses> userBonuses, IRepository<OrderPayment> orderPaymentRepository, IStorageService storageService)
         {
             _mapper = mapper;
             _orderRepository = repositoryRepository;
@@ -32,6 +35,7 @@ namespace Core.Services
             _addressRepository = addressRepository;
             _userBonuses = userBonuses;
             _orderPaymentRepository = orderPaymentRepository;
+            _storageService = storageService;
         }
         public async Task CreateAsync(OrderCreateDTO orderCreateDTO)
         {
@@ -162,6 +166,7 @@ namespace Core.Services
                     ImagePath = item.Product.Images.OrderBy(img => img.Id).FirstOrDefault()?.ImagePath,
                     OrderId = orderId,
                     ProductId = item.ProductId,
+                    DueDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
                     Step = 0,
                     Status = "Order placed",
                 };
@@ -215,6 +220,88 @@ namespace Core.Services
             };
             await _userBonuses.InsertAsync(bonuses_Accrual);
             await _userBonuses.SaveAsync();
+        }
+
+        public async Task<List<OrderItemsDTO>> OrderByPageAsync(int page, int pageSize, int[] step)
+        {
+            var orderItems = await _orderItemsRepository.GetListBySpec(new OrderItemsSpecification.GetOrderItemsSpecificationByStep(page, pageSize, step));
+            return _mapper.Map<List<OrderItemsDTO>>(orderItems);
+        }
+
+        public async Task<int> OrderQuantityAsync(int[] step)
+        {
+            var orderItems = await _orderItemsRepository.GetListBySpec(new OrderItemsSpecification.GetOrderQuantitySpecificationByStep(step));
+            return orderItems.Count();
+        }
+
+        public async Task EditOrderItemsAsync(OrderItemsDTO orderItemsDTO)
+        {
+            OrderItems orderItems = await _orderItemsRepository.GetByIDAsync(orderItemsDTO.Id);
+
+            if (orderItemsDTO.Status != null)
+            {
+                switch (orderItemsDTO.Status)
+                {
+                    case "Order placed":
+                        orderItems.Step = 0;
+                        break;
+                    case "Processing":
+                        if (orderItems.Step < 1)
+                        {
+                            await _storageService.ChangeDecreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
+                        }
+                        orderItems.Step = 1;
+                        break;
+                    case "Shipped":
+                        if (orderItems.Step < 2)
+                        {
+                            if (orderItems.Step < 1)
+                            {
+                                await _storageService.ChangeDecreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
+                            }
+                            orderItems.Step = 2;
+                        }
+                        break;
+                    case "Delivered":
+                        if (orderItems.Step < 3)
+                        {
+                            if (orderItems.Step < 1)
+                            {
+                                await _storageService.ChangeDecreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
+                            }
+                            orderItems.Step = 3;
+                        }
+                        break;
+                    case "Cancelled":
+                        if (orderItems.Step >= 1 && orderItems.Step <= 4)
+                        {
+                            await _storageService.ChangeIncreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
+                        }
+                        orderItems.Step = 4;
+                        break;
+                    case "Returned":
+                        if (orderItems.Step >= 1 && orderItems.Step <= 4)
+                        {
+                            orderItems.Step = 5;
+                            await _storageService.ChangeIncreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                try
+                {
+                    orderItems.Status = orderItemsDTO.Status;
+                    orderItems.DueDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
+                    await _orderItemsRepository.UpdateAsync(orderItems);
+                    await _orderItemsRepository.SaveAsync();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                    throw new Exception();
+                }
+            }
         }
     }
 }
