@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240822124338_4")]
-    partial class _4
+    [Migration("20240824213313_start")]
+    partial class start
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -5736,6 +5736,36 @@ namespace Infrastructure.Migrations
                             Name_fr = "Kyoto Tower",
                             Name_uk = "Кіото Тауер",
                             WorkingHours = "10:00 - 19:00"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            Address_en = "al. Wyzwolenia 18",
+                            Address_es = "al. Wyzwolenia 18",
+                            Address_fr = "al. Wyzwolenia 18",
+                            Address_uk = "ал. Визволення 18",
+                            CityId = 34,
+                            MapLink = "Link to map",
+                            Name_en = "Galaxy Centrum",
+                            Name_es = "Galaxy Centrum",
+                            Name_fr = "Galaxy Centrum",
+                            Name_uk = "Галаксі Центрум",
+                            WorkingHours = "10:00 - 21:00"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            Address_en = "al. Jana Pawła II 42",
+                            Address_es = "al. Jana Pawła II 42",
+                            Address_fr = "al. Jana Pawła II 42",
+                            Address_uk = "ал. Яна Павла II 42",
+                            CityId = 34,
+                            MapLink = "Link to map",
+                            Name_en = "Kaskada",
+                            Name_es = "Kaskada",
+                            Name_fr = "Kaskada",
+                            Name_uk = "Каскада",
+                            WorkingHours = "10:00 - 20:00"
                         });
                 });
 

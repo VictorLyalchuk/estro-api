@@ -45,6 +45,34 @@ namespace Core.Services
             var storages = await _storageRepository.GetListBySpec(new StorageSpecification.GetStorageByProductId(productId));
             return _mapper.Map<List<StorageDTO>>(storages);
         }
+        public async Task ChangeDecreaseQuantityStorageAsync(int productId, string size, int quantity)
+        {
+            var storage = await _storageRepository.GetItemBySpec(new StorageSpecification.GetStorageByIdAsync(productId, size));
+            
+            if(storage != null && storage.ProductQuantity >= quantity)
+            {
+                storage.ProductQuantity -= quantity;
+                if (storage.ProductQuantity == 0)
+                    storage.inStock = false;
 
+                await _storageRepository.UpdateAsync(storage);
+                await _storageRepository.SaveAsync();
+            }
+        }
+
+        public async Task ChangeIncreaseQuantityStorageAsync(int productId, string size, int quantity)
+        {
+            var storage = await _storageRepository.GetItemBySpec(new StorageSpecification.GetStorageByIdAsync(productId, size));
+
+            if (storage != null)
+            {
+                storage.ProductQuantity += quantity;
+                if (storage.ProductQuantity > 0)
+                    storage.inStock = true;
+
+                await _storageRepository.UpdateAsync(storage);
+                await _storageRepository.SaveAsync();
+            }
+        }
     }
 }

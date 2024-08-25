@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Core.DTOs.Filter;
-using Core.DTOs.UserInfo;
 using Core.DTOs.UserProductReview;
 using Core.Entities.UserEntity;
 using Core.Entities.UserInfo;
@@ -84,6 +82,28 @@ namespace Core.Services
         {
             var reviews = await _productsReviewService.GetListBySpec(new UserProductReviewSpecification.GetUserProductReview(productId, page));
             return _mapper.Map<List<UserProductReviewDTO>>(reviews);
+        }
+
+        public async Task<List<UserProductReviewDTO>> ReviewsByPageAsync(int page, int pageSize)
+        {
+            var reviews = await _productsReviewService.GetListBySpec(new UserProductReviewSpecification.GetReviewsByPage(page, pageSize));
+            return _mapper.Map<List<UserProductReviewDTO>>(reviews);
+        }
+
+        public async Task <int> ReviewQuantityAsync()
+        {
+            var reviews = await _productsReviewService.GetAsync();
+            return reviews.Count();
+        }
+
+        public async Task DeleteReviewByIDAsync(int id)
+        {
+            var productReviewToDelete = await _productsReviewService.GetByIDAsync(id);
+            if (productReviewToDelete != null)
+            {
+                await _productsReviewService.DeleteAsync(productReviewToDelete);
+                await _productsReviewService.SaveAsync();
+            }
         }
     }
 }
