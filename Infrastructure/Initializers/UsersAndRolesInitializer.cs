@@ -48,19 +48,6 @@ namespace Infrastructure.Initializers
                         AuthType = "standard",
                     };
 
-                    //context.Roles.AddRange(
-                    //    new IdentityRole()
-                    //    {
-                    //        Name = "Administrator",
-                    //        NormalizedName = "ADMINISTRATOR"
-                    //    },
-                    //    new IdentityRole()
-                    //    {
-                    //        Name = "User",
-                    //        NormalizedName = "USER"
-                    //    });
-                    //await context.SaveChangesAsync();
-
                     IdentityResult adminResult = userManager.CreateAsync(admin, "Qwerty-7").Result;
                     if (adminResult.Succeeded)
                     {

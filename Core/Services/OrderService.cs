@@ -44,18 +44,18 @@ namespace Core.Services
             if (bag != null)
             {
                 var address = await CreateAddressAsync(orderCreateDTO);
-                var orderPayment = await CreateOrderPaymentAsync(orderCreateDTO);
+
 
                 var (total, tax, subtotal, accrued) = CalculateOrderTotals(bagItems, orderCreateDTO.Discount);
 
-                var order = await CreateOrderAsync(orderCreateDTO, address.Id, user.Id, orderPayment.Id, total, tax, subtotal);
+                var order = await CreateOrderAsync(orderCreateDTO, address.Id, user.Id, total, tax, subtotal);
 
                 if (user != null)
                 {
                     await UpdateUserAsync(user, orderCreateDTO.Discount, accrued);
                 }
 
-                await CreateOrderItemsAsync(bagItems, order.Id);
+                await CreateOrderItemsAsync(bagItems, order.Id, orderCreateDTO);
                 await ClearBagAsync(bag.Id);
 
                 await CreateUserBonusesAsync(user.Id, order.Id, orderCreateDTO.Discount, accrued);
@@ -114,7 +114,7 @@ namespace Core.Services
             decimal accrued = (0.50m / 100) * total;
             return (total, tax, subtotal, accrued);
         }
-        private async Task<Order> CreateOrderAsync(OrderCreateDTO orderCreateDTO, int addressId, string userId, int orderPaymentId, decimal total, decimal tax, decimal subtotal)
+        private async Task<Order> CreateOrderAsync(OrderCreateDTO orderCreateDTO, int addressId, string userId, decimal total, decimal tax, decimal subtotal)
         {
             Order order = new Order()
             {
@@ -126,7 +126,6 @@ namespace Core.Services
                 OrderDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
                 PhoneNumber = orderCreateDTO.PhoneNumber,
                 UserId = userId,
-                OrderPaymentId = orderPaymentId,
                 OrderTotal = total,
                 Tax = tax,
                 Subtotal = subtotal,
@@ -143,10 +142,11 @@ namespace Core.Services
             user.BonusBalance += accrued;
             await _userManager.UpdateAsync(user);
         }
-        private async Task CreateOrderItemsAsync(IEnumerable<BagItems> bagItems, int orderId)
+        private async Task CreateOrderItemsAsync(IEnumerable<BagItems> bagItems, int orderId, OrderCreateDTO orderCreateDTO)
         {
             foreach (var item in bagItems)
             {
+                var orderPayment = await CreateOrderPaymentAsync(orderCreateDTO);
                 OrderItems orderItems = new OrderItems()
                 {
                     Quantity = item.Quantity,
@@ -167,6 +167,7 @@ namespace Core.Services
                     DueDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
                     Step = 0,
                     Status = "Order placed",
+                    OrderPaymentId = orderPayment.Id,
                 };
                 await _orderItemsRepository.InsertAsync(orderItems);
                 await _orderItemsRepository.SaveAsync();
@@ -275,7 +276,7 @@ namespace Core.Services
                         {
                             await _storageService.ChangeIncreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
                         }
-                        var paymentCancelled = await _orderPaymentRepository.GetByIDAsync(orderItems.OrderId);
+                        var paymentCancelled = await _orderPaymentRepository.GetByIDAsync(orderItems.Id);
                         paymentCancelled.Payment = "The money was returned";
                         await _orderPaymentRepository.UpdateAsync(paymentCancelled);
                         await _orderPaymentRepository.SaveAsync();
@@ -286,7 +287,7 @@ namespace Core.Services
                         {
                             orderItems.Step = 5;
                             await _storageService.ChangeIncreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
-                            var paymentReturned = await _orderPaymentRepository.GetByIDAsync(orderItems.OrderId);
+                            var paymentReturned = await _orderPaymentRepository.GetByIDAsync(orderItems.Id);
                             paymentReturned.Payment = "The money was returned";
                             await _orderPaymentRepository.UpdateAsync(paymentReturned);
                             await _orderPaymentRepository.SaveAsync();

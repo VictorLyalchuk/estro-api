@@ -23,7 +23,7 @@ namespace Core.Specification
                      .Where(p => step.Contains(p.Step))
                      .Include(p => p.Product)
                      .Include(p => p.Order)
-                     .ThenInclude(p => p.OrderPayment)
+                     .Include(p => p.OrderPayment)
                      .Include(p => p.Order)
                      .ThenInclude(p => p.Address)
                      .Include(p => p.Product)

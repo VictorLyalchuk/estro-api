@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240824213313_start")]
+    [Migration("20240825222125_start")]
     partial class start
     {
         /// <inheritdoc />
@@ -5859,9 +5859,6 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("OrderPaymentId")
-                        .HasColumnType("integer");
-
                     b.Property<decimal?>("OrderTotal")
                         .HasColumnType("numeric");
 
@@ -5880,8 +5877,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
-
-                    b.HasIndex("OrderPaymentId");
 
                     b.HasIndex("UserId");
 
@@ -5940,6 +5935,9 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("OrderId")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("OrderPaymentId")
+                        .HasColumnType("integer");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
@@ -5961,6 +5959,8 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("OrderPaymentId");
 
                     b.HasIndex("ProductId");
 
@@ -6514,17 +6514,11 @@ namespace Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("AddressId");
 
-                    b.HasOne("Core.Entities.UserInfo.OrderPayment", "OrderPayment")
-                        .WithMany()
-                        .HasForeignKey("OrderPaymentId");
-
                     b.HasOne("Core.Entities.UserEntity.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId");
 
                     b.Navigation("Address");
-
-                    b.Navigation("OrderPayment");
 
                     b.Navigation("User");
                 });
@@ -6535,6 +6529,10 @@ namespace Infrastructure.Migrations
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
 
+                    b.HasOne("Core.Entities.UserInfo.OrderPayment", "OrderPayment")
+                        .WithMany()
+                        .HasForeignKey("OrderPaymentId");
+
                     b.HasOne("Core.Entities.Product.ProductEntity", "Product")
                         .WithMany("OrderItems")
                         .HasForeignKey("ProductId")
@@ -6542,6 +6540,8 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
+
+                    b.Navigation("OrderPayment");
 
                     b.Navigation("Product");
                 });

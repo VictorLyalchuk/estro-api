@@ -22,8 +22,10 @@ namespace Core.DTOs.UserInfo
         public int Quantity { get; set; }
         public string? Size { get; set; }
         public int? OrderId { get; set; }
-        public int ProductId { get; set; }
         public OrderDTO? Order { get; set; }
+        public int? OrderPaymentId { get; set; }
+        public OrderPaymentDTO? OrderPayment { get; set; }
+        public int ProductId { get; set; }
         public ProductDTO? Product { get; set; }
     }
 }
