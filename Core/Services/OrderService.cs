@@ -277,6 +277,10 @@ namespace Core.Services
                         {
                             await _storageService.ChangeIncreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
                         }
+                        var paymentCancelled = await _orderPaymentRepository.GetByIDAsync(orderItems.OrderId);
+                        paymentCancelled.Payment = "The money was returned";
+                        await _orderPaymentRepository.UpdateAsync(paymentCancelled);
+                        await _orderPaymentRepository.SaveAsync();
                         orderItems.Step = 4;
                         break;
                     case "Returned":
@@ -284,6 +288,10 @@ namespace Core.Services
                         {
                             orderItems.Step = 5;
                             await _storageService.ChangeIncreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
+                            var paymentReturned = await _orderPaymentRepository.GetByIDAsync(orderItems.OrderId);
+                            paymentReturned.Payment = "The money was returned";
+                            await _orderPaymentRepository.UpdateAsync(paymentReturned);
+                            await _orderPaymentRepository.SaveAsync();
                         }
                         break;
                     default:
