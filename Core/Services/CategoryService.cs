@@ -3,7 +3,6 @@ using Core.DTOs.Category;
 using Core.Entities.Category;
 using Core.Interfaces;
 using Core.Specification;
-using System.Collections.Generic;
 
 namespace Core.Services
 {

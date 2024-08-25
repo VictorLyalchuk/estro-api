@@ -1,5 +1,4 @@
 ﻿using Core.DTOs.Category;
-using System.Collections.Generic;
 
 namespace Core.Interfaces
 {

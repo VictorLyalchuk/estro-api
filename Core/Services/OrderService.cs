@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Core.DTOs.Filter;
 using Core.DTOs.UserInfo;
 using Core.Entities.Address;
 using Core.Entities.UserEntity;
@@ -7,7 +6,6 @@ using Core.Entities.UserInfo;
 using Core.Interfaces;
 using Core.Specification;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.VisualBasic;
 using static Core.Specification.OrderSpecification;
 
 namespace Core.Services
