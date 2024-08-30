@@ -239,17 +239,20 @@ namespace Core.Services
 
             if (orderItemsDTO.Status != null)
             {
+                var IsStock = await _storageService.GetStorageSizeByProductIdAsync(orderItems.ProductId, orderItems.Size);
                 switch (orderItemsDTO.Status)
                 {
                     case "Order placed":
                         orderItems.Step = 0;
                         break;
                     case "Processing":
-                        if (orderItems.Step < 1)
+                        if (orderItems.Step < 1 && IsStock.ProductQuantity >= orderItems.Quantity)
                         {
                             await _storageService.ChangeDecreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
+                            orderItems.Step = 1;
+                            orderItems.Status = orderItemsDTO.Status;
+                            orderItems.DueDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
                         }
-                        orderItems.Step = 1;
                         break;
                     case "Shipped":
                         if (orderItems.Step < 2)
@@ -259,6 +262,8 @@ namespace Core.Services
                                 await _storageService.ChangeDecreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
                             }
                             orderItems.Step = 2;
+                            orderItems.Status = orderItemsDTO.Status;
+                            orderItems.DueDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
                         }
                         break;
                     case "Delivered":
@@ -269,6 +274,8 @@ namespace Core.Services
                                 await _storageService.ChangeDecreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
                             }
                             orderItems.Step = 3;
+                            orderItems.Status = orderItemsDTO.Status;
+                            orderItems.DueDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
                         }
                         break;
                     case "Cancelled":
@@ -276,16 +283,20 @@ namespace Core.Services
                         {
                             await _storageService.ChangeIncreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
                         }
+                        orderItems.Step = 4;
+                        orderItems.Status = orderItemsDTO.Status;
+                        orderItems.DueDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
                         var paymentCancelled = await _orderPaymentRepository.GetByIDAsync(orderItems.Id);
                         paymentCancelled.Payment = "The money was returned";
                         await _orderPaymentRepository.UpdateAsync(paymentCancelled);
                         await _orderPaymentRepository.SaveAsync();
-                        orderItems.Step = 4;
                         break;
                     case "Returned":
                         if (orderItems.Step >= 1 && orderItems.Step <= 4)
                         {
                             orderItems.Step = 5;
+                            orderItems.Status = orderItemsDTO.Status;
+                            orderItems.DueDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
                             await _storageService.ChangeIncreaseQuantityStorageAsync(orderItemsDTO.ProductId, orderItemsDTO.Size, orderItemsDTO.Quantity);
                             var paymentReturned = await _orderPaymentRepository.GetByIDAsync(orderItems.Id);
                             paymentReturned.Payment = "The money was returned";
@@ -298,8 +309,6 @@ namespace Core.Services
                 }
                 try
                 {
-                    orderItems.Status = orderItemsDTO.Status;
-                    orderItems.DueDate = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
                     await _orderItemsRepository.UpdateAsync(orderItems);
                     await _orderItemsRepository.SaveAsync();
                 }
