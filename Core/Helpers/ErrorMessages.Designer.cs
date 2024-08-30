@@ -61,11 +61,29 @@ namespace Core.Helpers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid user.
+        /// </summary>
+        internal static string ErrorLogin {
+            get {
+                return ResourceManager.GetString("ErrorLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid user or password.
         /// </summary>
         internal static string ErrorLoginorPassword {
             get {
                 return ResourceManager.GetString("ErrorLoginorPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password incorrect.
+        /// </summary>
+        internal static string ErrorPassword {
+            get {
+                return ResourceManager.GetString("ErrorPassword", resourceCulture);
             }
         }
         

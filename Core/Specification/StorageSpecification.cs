@@ -14,6 +14,15 @@ namespace Core.Specification
                     .OrderBy(p => p.SortOrder);
             }
         }
+        public class GetStorageSizeByProductId : Specification<StorageEntity>
+        {
+            public GetStorageSizeByProductId(int id, string size)
+            {
+                Query
+                    .Where(p => p.ProductId == id && p.Size == size);
+
+            }
+        }
         public class GetStorageByIdAsync : Specification<StorageEntity>
         {
             public GetStorageByIdAsync(int productId, string size)
