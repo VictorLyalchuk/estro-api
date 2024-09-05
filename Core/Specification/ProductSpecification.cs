@@ -67,11 +67,13 @@ namespace Core.Specification
 
                 Query
                      .Include(p => p.Images)
-                     .Include(p => p.Category)
                      .Include(p => p.Storages.OrderBy(p => p.SortOrder))
                      .Include(p => p.Color)
                      .Include(p => p.Season)
                      .Include(p => p.Material)
+                     .Include(p => p.Category)
+                     .ThenInclude(p => p.SubCategory)
+                     .ThenInclude(p => p.MainCategory)
                      .Where(p => p.Storages != null && p.Storages.Any(s => s.inStock));
 
                 if (!string.IsNullOrEmpty(filterDTO.MainCategory))
