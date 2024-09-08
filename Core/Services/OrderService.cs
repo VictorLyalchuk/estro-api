@@ -6,6 +6,7 @@ using Core.Entities.UserInfo;
 using Core.Interfaces;
 using Core.Specification;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using static Core.Specification.OrderSpecification;
 
 namespace Core.Services
@@ -61,6 +62,96 @@ namespace Core.Services
                 await CreateUserBonusesAsync(user.Id, order.Id, orderCreateDTO.Discount, accrued);
             }
         }
+        public async Task<decimal> GetOrderTotalForDayAsync(string week, int day)
+        {
+            DateTime startOfWeek;
+            DateTime endOfWeek;
+
+            if (week == "current")
+            {
+                startOfWeek = GetStartOfWeek(DateTime.Today);
+                endOfWeek = startOfWeek.AddDays(6);
+            }
+            else if (week == "previous")
+            {
+                startOfWeek = GetStartOfWeek(DateTime.Today.AddDays(-7));
+                endOfWeek = startOfWeek.AddDays(6);
+            }
+            else
+            {
+                throw new ArgumentException("Invalid week parameter. Use 'current' or 'previous'.");
+            }
+
+            // Calculate the specific date for the given day of the week
+            DateTime targetDate = startOfWeek.AddDays(day - 1);
+
+            // Query the database for the total amount of orders on the target date
+            decimal totalAmount = _orderRepository.GetListBySpec(new OrderSpecification.GetAllOrders()).Result
+                .Where(o => o.OrderDate.Date == targetDate.Date)
+                .Sum(o => o.OrderTotal ?? 0);  // Using OrderTotal from OrderDTO
+
+            return totalAmount;
+        }
+
+        private DateTime GetStartOfWeek(DateTime date)
+        {
+            int diff = (7 + (date.DayOfWeek - DayOfWeek.Monday)) % 7;
+            return date.AddDays(-1 * diff).Date;
+        }
+
+        public async Task<ActionResult<decimal>> GetMonthlyOrderTotal(int month)
+        {
+            var today = DateTime.UtcNow;
+            var startOfMonth = new DateTime(today.Year, month, 1);
+            var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
+
+            var totalAmount = _orderRepository.GetListBySpec(new OrderSpecification.GetAllOrders()).Result
+                .Where(order => order.OrderDate >= startOfMonth && order.OrderDate <= endOfMonth)
+                .Sum(order => order.OrderTotal ?? 0);
+
+            return totalAmount;
+        }
+
+        public async Task<ActionResult<DailyOrderTotalDTO>> GetOrderTotalForSpecificDay(int day)
+        {
+            var today = DateTime.UtcNow;
+            var startOfMonth = new DateTime(today.Year, today.Month, 1);
+
+            if (day < 1 || day > DateTime.DaysInMonth(today.Year, today.Month))
+            {
+                return null;
+            }
+
+            var targetDate = startOfMonth.AddDays(day - 1); // Calculate the specific date
+
+            // Fetch orders for the specific day
+            var dailyTotal = _orderRepository.GetListBySpec(new OrderSpecification.GetAllOrders()).Result
+                .Where(order => order.OrderDate.Date == targetDate.Date)
+                .GroupBy(order => order.OrderDate.Date)
+                .Select(group => new DailyOrderTotalDTO
+                {
+                    Date = group.Key,
+                    TotalOrders = group.Count(),
+                    TotalAmount = group.Sum(order => order.OrderTotal ?? 0)
+                })
+                .FirstOrDefault();
+
+            if (dailyTotal == null)
+            {
+                // If no orders found for the day, return 0 total
+                dailyTotal = new DailyOrderTotalDTO
+                {
+                    Date = targetDate.Date,
+                    TotalOrders = 0,
+                    TotalAmount = 0
+                };
+            }
+
+            return dailyTotal;
+        }
+
+
+
         public async Task<List<OrderDTO>> GetAllOrdersAsync()
         {
             var result = await _orderRepository.GetListBySpec(new OrderSpecification.GetAllOrders());
