@@ -1,5 +1,6 @@
 ﻿using Core.DTOs.UserInfo;
 using Core.Interfaces;
+using Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -33,7 +34,34 @@ namespace WebApi.Controllers
             }
             return Ok();
         }
-        
+        [HttpGet("GetTotalByMonth")]
+        public async Task<ActionResult<decimal>> GetMonthlyOrderTotal(int month)
+        {
+            var result = await _order.GetMonthlyOrderTotal(month);
+            return result;
+        }
+        [HttpGet("GetTotalByDay")]
+        public async Task<ActionResult<DailyOrderTotalDTO>> GetOrderTotalsForSpecificDay(int day)
+        {
+            var result = await _order.GetOrderTotalForSpecificDay(day);
+            return result; // This returns the ActionResult that already has Ok() inside it
+        }
+        [HttpGet("GetTotalByWeek")]
+        public async Task<IActionResult> GetDailyOrderTotal([FromQuery] string week, [FromQuery] int day)
+        {
+            if (string.IsNullOrEmpty(week) || day < 1 || day > 7)
+                return BadRequest("Invalid parameters. Week should be 'current' or 'previous', and day should be between 1 and 7.");
+
+            try
+            {
+                var totalAmount = await _order.GetOrderTotalForDayAsync(week, day);
+                return Ok(totalAmount);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
         [HttpGet("GetOrderById/{Id}")]
         public async Task<IActionResult> GetOrderByIdAsync(string Id, int page)
         {
