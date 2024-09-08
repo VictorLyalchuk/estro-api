@@ -143,30 +143,33 @@ namespace Core.Services
         {
             if (loginDTO == null)
             {
-                throw new CustomHttpException("LoginDTO cannot be null", HttpStatusCode.BadRequest);
+                throw new CustomHttpException("Login or password cannot be null", HttpStatusCode.BadRequest);
             }
             var user = await _userManager.FindByEmailAsync(loginDTO.Email);
 
-
-            bool isUserLockedOut = user.LockoutEnd.HasValue && user.LockoutEnd.Value > DateTime.UtcNow;
-            if (isUserLockedOut)
-            {
-                throw new CustomHttpException("User is blocked", HttpStatusCode.BadRequest);
-            }
-
             if (loginDTO.AuthType == "standard")
             {
-                if (user == null || !(await _userManager.CheckPasswordAsync(user, loginDTO.Password)))
+                if (user == null)
                 {
-                    throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                    throw new CustomHttpException(ErrorMessages.ErrorLogin, HttpStatusCode.BadRequest);
+                }
+                if (!(await _userManager.CheckPasswordAsync(user, loginDTO.Password)))
+                {
+                    throw new CustomHttpException(ErrorMessages.ErrorPassword, HttpStatusCode.BadRequest);
                 }
             }
             else if (loginDTO.AuthType == "google")
             {
                 if (user == null)
                 {
-                    throw new CustomHttpException(ErrorMessages.UserNotFoundById, HttpStatusCode.BadRequest);
+                    throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
                 }
+            }
+
+            bool isUserLockedOut = user.LockoutEnd.HasValue && user.LockoutEnd.Value > DateTime.UtcNow;
+            if (isUserLockedOut)
+            {
+                throw new CustomHttpException("User is blocked", HttpStatusCode.BadRequest);
             }
 
             var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
