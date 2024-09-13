@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Core.DTOs.Product;
 using Core.DTOs.UserInfo;
 using Core.Entities.Address;
+using Core.Entities.Category;
+using Core.Entities.Product;
 using Core.Entities.UserEntity;
 using Core.Entities.UserInfo;
 using Core.Interfaces;
@@ -15,6 +18,11 @@ namespace Core.Services
     {
         private readonly IMapper _mapper;
         private readonly IRepository<Order> _orderRepository;
+        private readonly IRepository<ProductEntity> _productRepository;
+        private readonly IRepository<CategoryEntity> _categoryRepository;
+        private readonly IRepository<SubCategory> _subcategoryRepository;
+        private readonly IRepository<MainCategory> _mainCategoryRepository;
+
         private readonly IRepository<OrderPayment> _orderPaymentRepository;
         private readonly IRepository<OrderItems> _orderItemsRepository;
         private readonly IRepository<Bag> _bagRepository;
@@ -23,7 +31,9 @@ namespace Core.Services
         private readonly IRepository<UserBonuses> _userBonuses;
         private readonly UserManager<User> _userManager;
         private readonly IStorageService _storageService;
-        public OrderService(IRepository<Order> repositoryRepository, IMapper mapper, IRepository<Bag> bagRepository, UserManager<User> userManager, IRepository<BagItems> bagItemsRepository, IRepository<OrderItems> orderItemsRepository, IRepository<AddressEntity> addressRepository, IRepository<UserBonuses> userBonuses, IRepository<OrderPayment> orderPaymentRepository, IStorageService storageService)
+        public OrderService(IRepository<CategoryEntity> categoryRepository,
+            IRepository<SubCategory> subcategoryRepository,
+            IRepository<MainCategory> mainCategoryRepository, IRepository<ProductEntity> productRepository, IRepository<Order> repositoryRepository, IMapper mapper, IRepository<Bag> bagRepository, UserManager<User> userManager, IRepository<BagItems> bagItemsRepository, IRepository<OrderItems> orderItemsRepository, IRepository<AddressEntity> addressRepository, IRepository<UserBonuses> userBonuses, IRepository<OrderPayment> orderPaymentRepository, IStorageService storageService)
         {
             _mapper = mapper;
             _orderRepository = repositoryRepository;
@@ -35,6 +45,10 @@ namespace Core.Services
             _userBonuses = userBonuses;
             _orderPaymentRepository = orderPaymentRepository;
             _storageService = storageService;
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
+            _subcategoryRepository = subcategoryRepository;
+            _mainCategoryRepository = mainCategoryRepository;
         }
         public async Task CreateAsync(OrderCreateDTO orderCreateDTO)
         {
@@ -62,6 +76,173 @@ namespace Core.Services
                 await CreateUserBonusesAsync(user.Id, order.Id, orderCreateDTO.Discount, accrued);
             }
         }
+
+        public async Task<List<PopularProductDTO>> GetTopPopularProductsAsync()
+        {
+            var orderItems = await _orderItemsRepository.GetAsync(
+                includeProperties: "Product"
+            );
+
+            var totalCount = orderItems.Count();
+
+            var productCounts = orderItems
+                .GroupBy(o => new
+                {
+                    o.Product.Name_en,
+                    o.Product.Name_fr,
+                    o.Product.Name_es,
+                    o.Product.Name_uk
+                })
+                .Select(g => new
+                {
+                    Name_en = g.Key.Name_en,
+                    Name_fr = g.Key.Name_fr,
+                    Name_es = g.Key.Name_es,
+                    Name_uk = g.Key.Name_uk,
+                    Count = g.Count(),
+                    Percentage = g.Count() / (double)totalCount * 100
+                })
+                .OrderByDescending(p => p.Count)
+                .ToList();
+
+            // Get top 4 products
+            var topProducts = productCounts.Take(4).ToList();
+
+            // Calculate "Other" category
+            var otherCategory = new
+            {
+                Name_en = "Other",
+                Name_fr = "Autre",
+                Name_es = "Otro",
+                Name_uk = "Інше",
+                Count = productCounts.Skip(4).Sum(p => p.Count),
+                Percentage = productCounts.Skip(4).Sum(p => p.Percentage)
+            };
+
+            // Add "Other" category to the list
+            topProducts.Add(otherCategory);
+
+            // Convert to the DTO
+            return topProducts.Select(p => new PopularProductDTO
+            {
+                ProductName_en = p.Name_en,
+                ProductName_fr = p.Name_fr,
+                ProductName_es = p.Name_es,
+                ProductName_uk = p.Name_uk,
+                Count = p.Count,
+                Percentage = p.Percentage
+            }).ToList();
+        }
+
+        public async Task<IActionResult> GetPopularCategoriesAsync()
+        {
+            // Fetch all order items with product and category information
+            var orderItems = await _orderItemsRepository.GetAsync(
+                includeProperties: "Product.Category.SubCategory.MainCategory"
+            );
+
+            // Group by category ID and count the occurrences
+            var categoryCounts = orderItems
+                .GroupBy(item => item.Product.Category.Id)
+                .Select(group => new
+                {
+                    CategoryId = group.Key,
+                    Count = group.Count()
+                })
+                .ToList();
+
+            // Get the top 4 categories
+            var topCategories = categoryCounts
+                .OrderByDescending(c => c.Count)
+                .Take(4)
+                .ToList();
+
+            // Get the remaining categories for the "Other" category
+            var remainingCategories = categoryCounts
+                .Except(topCategories)
+                .Sum(c => c.Count);
+
+            var result = new List<CategoryDistributionDTO>();
+
+            // Add the top 4 categories to the result
+            foreach (var category in topCategories)
+            {
+                var categoryEntity = orderItems
+                    .Select(item => item.Product.Category)
+                    .FirstOrDefault(cat => cat.Id == category.CategoryId);
+
+                result.Add(new CategoryDistributionDTO
+                {
+                    Name_en = categoryEntity?.Name_en ?? "Unknown",
+                    Name_fr = categoryEntity?.Name_fr ?? "Unknown",
+                    Name_es = categoryEntity?.Name_es ?? "Unknown",
+                    Name_uk = categoryEntity?.Name_uk ?? "Unknown",
+                    Count = category.Count,
+                    Percentage = category.Count * 100.0 / orderItems.Count()
+                });
+            }
+
+            // Add the "Other" category
+            result.Add(new CategoryDistributionDTO
+            {
+                Name_en = "Other",
+                Name_fr = "Autre",
+                Name_es = "Otro",
+                Name_uk = "Інше",
+                Count = remainingCategories,
+                Percentage = remainingCategories * 100.0 / orderItems.Count()
+            });
+
+            return new OkObjectResult(result);
+        }
+
+
+        public async Task<(int WomenCount, int MenCount, double WomenPercentage, double MenPercentage)> GetGenderDataForChartAsync()
+        {
+            // Fetch all order items
+            var orderItems = await _orderItemsRepository.GetAsync(
+                includeProperties: "Product.Category.SubCategory.MainCategory"
+            );
+
+            int womenCount = 0;
+            int menCount = 0;
+
+            // Analyze order items
+            foreach (var item in orderItems)
+            {
+                var product = item.Product;
+
+                if (product != null)
+                {
+                    var mainCategory = product.Category?.SubCategory?.MainCategory;
+
+                    if (mainCategory != null)
+                    {
+                        // Check if the product's main category indicates "women" or "men"
+                        if (mainCategory.URLName.Contains("women", StringComparison.OrdinalIgnoreCase))
+                        {
+                            womenCount++;
+                        }
+                        else if (mainCategory.URLName.Contains("men", StringComparison.OrdinalIgnoreCase))
+                        {
+                            menCount++;
+                        }
+                    }
+                }
+            }
+
+            int totalCount = womenCount + menCount;
+            double womenPercentage = totalCount > 0 ? (double)womenCount / totalCount * 100 : 0;
+            double menPercentage = totalCount > 0 ? (double)menCount / totalCount * 100 : 0;
+
+            return (womenCount, menCount, womenPercentage, menPercentage);
+        }
+
+
+
+
+
+
         public async Task<decimal> GetOrderTotalForDayAsync(string week, int day)
         {
             DateTime startOfWeek;
@@ -150,7 +331,7 @@ namespace Core.Services
             return dailyTotal;
         }
 
-
+        
 
         public async Task<List<OrderDTO>> GetAllOrdersAsync()
         {

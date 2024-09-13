@@ -23,7 +23,44 @@ namespace WebApi.Controllers
             await _order.CreateAsync(orderCreateDTO);
             return Ok();
         }
-        
+        [HttpGet("GetTopPopularProducts")]
+        public async Task<IActionResult> GetTopPopularProducts()
+        {
+            var topProducts = await _order.GetTopPopularProductsAsync();
+            return Ok(new { value = topProducts });
+        }
+        [HttpGet("GetTopFourCategories")]
+        public async Task<ActionResult<List<CategoryDistributionDTO>>> GetTopFourCategories()
+        {
+            try
+            {
+                var topCategories = await _order.GetPopularCategoriesAsync();
+                return Ok(topCategories);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (e.g., using a logging framework)
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
+        }
+
+        [HttpGet("GetGenderPercentage")]
+        public async Task<IActionResult> GetGenderDataForChart()
+        {
+
+            var result = await _order.GetGenderDataForChartAsync();
+
+            var response = new GenderDataResponse
+            {
+                WomenCount = result.WomenCount,
+                MenCount = result.MenCount,
+                WomenPercentage = result.WomenPercentage,
+                MenPercentage = result.MenPercentage
+            };
+
+            return Ok(response);
+        }
+
         [HttpGet("GetAllOrders")]
         public async Task<IActionResult> GetAllOrdersAsync()
         {
