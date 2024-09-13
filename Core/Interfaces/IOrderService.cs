@@ -15,6 +15,11 @@ namespace Core.Interfaces
         Task<ActionResult<DailyOrderTotalDTO>> GetOrderTotalForSpecificDay(int day);
         Task<ActionResult<decimal>> GetMonthlyOrderTotal(int month);
         Task<decimal> GetOrderTotalForDayAsync(string week, int day);
+        Task<(int WomenCount, int MenCount, double WomenPercentage, double MenPercentage)> GetGenderDataForChartAsync();
+        Task<IActionResult> GetPopularCategoriesAsync();
+        Task<List<PopularProductDTO>> GetTopPopularProductsAsync();
+
+
 
     }
 }
