@@ -1,5 +1,6 @@
 ﻿using Core.DTOs.UserInfo;
 using Core.Interfaces;
+using Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -22,7 +23,44 @@ namespace WebApi.Controllers
             await _order.CreateAsync(orderCreateDTO);
             return Ok();
         }
-        
+        [HttpGet("GetTopPopularProducts")]
+        public async Task<IActionResult> GetTopPopularProducts()
+        {
+            var topProducts = await _order.GetTopPopularProductsAsync();
+            return Ok(new { value = topProducts });
+        }
+        [HttpGet("GetTopFourCategories")]
+        public async Task<ActionResult<List<CategoryDistributionDTO>>> GetTopFourCategories()
+        {
+            try
+            {
+                var topCategories = await _order.GetPopularCategoriesAsync();
+                return Ok(topCategories);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (e.g., using a logging framework)
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
+        }
+
+        [HttpGet("GetGenderPercentage")]
+        public async Task<IActionResult> GetGenderDataForChart()
+        {
+
+            var result = await _order.GetGenderDataForChartAsync();
+
+            var response = new GenderDataResponse
+            {
+                WomenCount = result.WomenCount,
+                MenCount = result.MenCount,
+                WomenPercentage = result.WomenPercentage,
+                MenPercentage = result.MenPercentage
+            };
+
+            return Ok(response);
+        }
+
         [HttpGet("GetAllOrders")]
         public async Task<IActionResult> GetAllOrdersAsync()
         {
@@ -33,7 +71,34 @@ namespace WebApi.Controllers
             }
             return Ok();
         }
-        
+        [HttpGet("GetTotalByMonth")]
+        public async Task<ActionResult<decimal>> GetMonthlyOrderTotal(int month)
+        {
+            var result = await _order.GetMonthlyOrderTotal(month);
+            return result;
+        }
+        [HttpGet("GetTotalByDay")]
+        public async Task<ActionResult<DailyOrderTotalDTO>> GetOrderTotalsForSpecificDay(int day)
+        {
+            var result = await _order.GetOrderTotalForSpecificDay(day);
+            return result; // This returns the ActionResult that already has Ok() inside it
+        }
+        [HttpGet("GetTotalByWeek")]
+        public async Task<IActionResult> GetDailyOrderTotal([FromQuery] string week, [FromQuery] int day)
+        {
+            if (string.IsNullOrEmpty(week) || day < 1 || day > 7)
+                return BadRequest("Invalid parameters. Week should be 'current' or 'previous', and day should be between 1 and 7.");
+
+            try
+            {
+                var totalAmount = await _order.GetOrderTotalForDayAsync(week, day);
+                return Ok(totalAmount);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
         [HttpGet("GetOrderById/{Id}")]
         public async Task<IActionResult> GetOrderByIdAsync(string Id, int page)
         {
