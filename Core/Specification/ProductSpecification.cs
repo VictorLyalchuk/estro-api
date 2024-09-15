@@ -141,7 +141,7 @@ namespace Core.Specification
                         Query.OrderByDescending(p => p.Price);
                         break;
                     default:
-                        Query.OrderBy(p => p.Id);
+                        Query.OrderByDescending(p => p.Id);
                         break;
                 }
 
