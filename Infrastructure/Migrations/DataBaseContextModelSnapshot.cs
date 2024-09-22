@@ -3043,6 +3043,366 @@ namespace Infrastructure.Migrations
                             Id = 287,
                             ImagePath = "Product77_3.webp",
                             ProductId = 77
+                        },
+                        new
+                        {
+                            Id = 288,
+                            ImagePath = "Product78_1.webp",
+                            ProductId = 78
+                        },
+                        new
+                        {
+                            Id = 289,
+                            ImagePath = "Product78_2.webp",
+                            ProductId = 78
+                        },
+                        new
+                        {
+                            Id = 290,
+                            ImagePath = "Product78_3.webp",
+                            ProductId = 78
+                        },
+                        new
+                        {
+                            Id = 291,
+                            ImagePath = "Product79_1.webp",
+                            ProductId = 79
+                        },
+                        new
+                        {
+                            Id = 292,
+                            ImagePath = "Product79_2.webp",
+                            ProductId = 79
+                        },
+                        new
+                        {
+                            Id = 293,
+                            ImagePath = "Product79_3.webp",
+                            ProductId = 79
+                        },
+                        new
+                        {
+                            Id = 294,
+                            ImagePath = "Product80_1.webp",
+                            ProductId = 80
+                        },
+                        new
+                        {
+                            Id = 295,
+                            ImagePath = "Product80_2.webp",
+                            ProductId = 80
+                        },
+                        new
+                        {
+                            Id = 296,
+                            ImagePath = "Product80_3.webp",
+                            ProductId = 80
+                        },
+                        new
+                        {
+                            Id = 297,
+                            ImagePath = "Product81_1.webp",
+                            ProductId = 81
+                        },
+                        new
+                        {
+                            Id = 298,
+                            ImagePath = "Product81_2.webp",
+                            ProductId = 81
+                        },
+                        new
+                        {
+                            Id = 299,
+                            ImagePath = "Product81_3.webp",
+                            ProductId = 81
+                        },
+                        new
+                        {
+                            Id = 300,
+                            ImagePath = "Product82_1.webp",
+                            ProductId = 82
+                        },
+                        new
+                        {
+                            Id = 301,
+                            ImagePath = "Product82_2.webp",
+                            ProductId = 82
+                        },
+                        new
+                        {
+                            Id = 302,
+                            ImagePath = "Product82_3.webp",
+                            ProductId = 82
+                        },
+                        new
+                        {
+                            Id = 303,
+                            ImagePath = "Product83_1.webp",
+                            ProductId = 83
+                        },
+                        new
+                        {
+                            Id = 304,
+                            ImagePath = "Product83_2.webp",
+                            ProductId = 83
+                        },
+                        new
+                        {
+                            Id = 305,
+                            ImagePath = "Product83_3.webp",
+                            ProductId = 83
+                        },
+                        new
+                        {
+                            Id = 306,
+                            ImagePath = "Product84_1.webp",
+                            ProductId = 84
+                        },
+                        new
+                        {
+                            Id = 307,
+                            ImagePath = "Product84_2.webp",
+                            ProductId = 84
+                        },
+                        new
+                        {
+                            Id = 308,
+                            ImagePath = "Product84_3.webp",
+                            ProductId = 84
+                        },
+                        new
+                        {
+                            Id = 309,
+                            ImagePath = "Product85_1.webp",
+                            ProductId = 85
+                        },
+                        new
+                        {
+                            Id = 310,
+                            ImagePath = "Product85_2.webp",
+                            ProductId = 85
+                        },
+                        new
+                        {
+                            Id = 311,
+                            ImagePath = "Product85_3.webp",
+                            ProductId = 85
+                        },
+                        new
+                        {
+                            Id = 312,
+                            ImagePath = "Product86_1.webp",
+                            ProductId = 86
+                        },
+                        new
+                        {
+                            Id = 313,
+                            ImagePath = "Product86_2.webp",
+                            ProductId = 86
+                        },
+                        new
+                        {
+                            Id = 314,
+                            ImagePath = "Product87_1.webp",
+                            ProductId = 87
+                        },
+                        new
+                        {
+                            Id = 315,
+                            ImagePath = "Product87_2.webp",
+                            ProductId = 87
+                        },
+                        new
+                        {
+                            Id = 316,
+                            ImagePath = "Product88_1.webp",
+                            ProductId = 88
+                        },
+                        new
+                        {
+                            Id = 317,
+                            ImagePath = "Product88_2.webp",
+                            ProductId = 88
+                        },
+                        new
+                        {
+                            Id = 318,
+                            ImagePath = "Product89_1.webp",
+                            ProductId = 89
+                        },
+                        new
+                        {
+                            Id = 319,
+                            ImagePath = "Product89_2.webp",
+                            ProductId = 89
+                        },
+                        new
+                        {
+                            Id = 320,
+                            ImagePath = "Product90_1.webp",
+                            ProductId = 90
+                        },
+                        new
+                        {
+                            Id = 321,
+                            ImagePath = "Product90_2.webp",
+                            ProductId = 90
+                        },
+                        new
+                        {
+                            Id = 322,
+                            ImagePath = "Product91_1.webp",
+                            ProductId = 91
+                        },
+                        new
+                        {
+                            Id = 323,
+                            ImagePath = "Product91_2.webp",
+                            ProductId = 91
+                        },
+                        new
+                        {
+                            Id = 324,
+                            ImagePath = "Product92_1.webp",
+                            ProductId = 92
+                        },
+                        new
+                        {
+                            Id = 325,
+                            ImagePath = "Product92_2.webp",
+                            ProductId = 92
+                        },
+                        new
+                        {
+                            Id = 326,
+                            ImagePath = "Product93_1.webp",
+                            ProductId = 93
+                        },
+                        new
+                        {
+                            Id = 327,
+                            ImagePath = "Product93_2.webp",
+                            ProductId = 93
+                        },
+                        new
+                        {
+                            Id = 328,
+                            ImagePath = "Product94_1.webp",
+                            ProductId = 94
+                        },
+                        new
+                        {
+                            Id = 329,
+                            ImagePath = "Product94_2.webp",
+                            ProductId = 94
+                        },
+                        new
+                        {
+                            Id = 330,
+                            ImagePath = "Product95_1.webp",
+                            ProductId = 95
+                        },
+                        new
+                        {
+                            Id = 331,
+                            ImagePath = "Product95_2.webp",
+                            ProductId = 95
+                        },
+                        new
+                        {
+                            Id = 332,
+                            ImagePath = "Product96_1.webp",
+                            ProductId = 96
+                        },
+                        new
+                        {
+                            Id = 333,
+                            ImagePath = "Product96_2.webp",
+                            ProductId = 96
+                        },
+                        new
+                        {
+                            Id = 334,
+                            ImagePath = "Product97_1.webp",
+                            ProductId = 97
+                        },
+                        new
+                        {
+                            Id = 335,
+                            ImagePath = "Product97_2.webp",
+                            ProductId = 97
+                        },
+                        new
+                        {
+                            Id = 336,
+                            ImagePath = "Product97_3.webp",
+                            ProductId = 97
+                        },
+                        new
+                        {
+                            Id = 337,
+                            ImagePath = "Product98_1.webp",
+                            ProductId = 98
+                        },
+                        new
+                        {
+                            Id = 338,
+                            ImagePath = "Product98_2.webp",
+                            ProductId = 98
+                        },
+                        new
+                        {
+                            Id = 339,
+                            ImagePath = "Product99_1.webp",
+                            ProductId = 99
+                        },
+                        new
+                        {
+                            Id = 340,
+                            ImagePath = "Product99_2.webp",
+                            ProductId = 99
+                        },
+                        new
+                        {
+                            Id = 341,
+                            ImagePath = "Product100_1.webp",
+                            ProductId = 100
+                        },
+                        new
+                        {
+                            Id = 342,
+                            ImagePath = "Product100_2.webp",
+                            ProductId = 100
+                        },
+                        new
+                        {
+                            Id = 343,
+                            ImagePath = "Product101_1.webp",
+                            ProductId = 101
+                        },
+                        new
+                        {
+                            Id = 344,
+                            ImagePath = "Product101_2.webp",
+                            ProductId = 101
+                        },
+                        new
+                        {
+                            Id = 345,
+                            ImagePath = "Product102_1.webp",
+                            ProductId = 102
+                        },
+                        new
+                        {
+                            Id = 346,
+                            ImagePath = "Product102_2.webp",
+                            ProductId = 102
+                        },
+                        new
+                        {
+                            Id = 347,
+                            ImagePath = "Product103_1.webp",
+                            ProductId = 103
                         });
                 });
 
@@ -5135,6 +5495,578 @@ namespace Infrastructure.Migrations
                             Name_uk = "Байкерська куртка шкіряна сірий вінтаж",
                             Price = 500m,
                             SeasonId = 2
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Article = "ER00113914",
+                            CategoryId = 19,
+                            ColorId = 8,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 8,
+                            Name_en = "Milk sweater with a wide collar",
+                            Name_es = "Jersey de leche con cuello ancho",
+                            Name_fr = "Pull lait à col large",
+                            Name_uk = "Кофта з широким коміром молочна",
+                            Price = 100m,
+                            SeasonId = 4
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Article = "ER00114029",
+                            CategoryId = 19,
+                            ColorId = 4,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 9,
+                            Name_en = "Brown jumper",
+                            Name_es = "Jersey marrón",
+                            Name_fr = "Pull marron",
+                            Name_uk = "Джемпер коричневий",
+                            Price = 120m,
+                            SeasonId = 2
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Article = "ER00114027",
+                            CategoryId = 19,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 9,
+                            Name_en = "Black jumper",
+                            Name_es = "Jersey negro",
+                            Name_fr = "Pull noir",
+                            Name_uk = "Джемпер чорний",
+                            Price = 120m,
+                            SeasonId = 2
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Article = "ER00115955",
+                            CategoryId = 19,
+                            ColorId = 7,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 9,
+                            Name_en = "Light gray sweater",
+                            Name_es = "Jersey gris claro",
+                            Name_fr = "Pull gris clair",
+                            Name_uk = "Светр світло-сірий",
+                            Price = 40m,
+                            SeasonId = 4
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Article = "ER00115941",
+                            CategoryId = 19,
+                            ColorId = 10,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 9,
+                            Name_en = "White sweater",
+                            Name_es = "Jersey blanco",
+                            Name_fr = "Pull blanc",
+                            Name_uk = "Светр білий",
+                            Price = 40m,
+                            SeasonId = 4
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Article = "ER00115942",
+                            CategoryId = 19,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 10,
+                            Name_en = "Black sweater",
+                            Name_es = "Jersey negro",
+                            Name_fr = "Pull noir",
+                            Name_uk = "Светр чорний",
+                            Price = 50m,
+                            SeasonId = 4
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Article = "ER00113207",
+                            CategoryId = 19,
+                            ColorId = 4,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 9,
+                            Name_en = "Duffle",
+                            Name_es = "Muletón",
+                            Name_fr = "Sac de sport",
+                            Name_uk = "Спортивний костюм",
+                            Price = 60m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Article = "ER00115390",
+                            CategoryId = 20,
+                            ColorId = 8,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 8,
+                            Name_en = "Ribbed top",
+                            Name_es = "Top acanalado",
+                            Name_fr = "Haut côtelé",
+                            Name_uk = "Топ в рубчик",
+                            Price = 20m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Article = "ER00115394",
+                            CategoryId = 20,
+                            ColorId = 8,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 8,
+                            Name_en = "Milk striped T-shirt",
+                            Name_es = "Camiseta rayas leche",
+                            Name_fr = "T-shirt rayé lait",
+                            Name_uk = "Футболка в рубчик молочна",
+                            Price = 40m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Article = "ER00112729",
+                            CategoryId = 20,
+                            ColorId = 8,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 7,
+                            Name_en = "Crop top",
+                            Name_es = "Top corto",
+                            Name_fr = "Haut court",
+                            Name_uk = "Кроп топ",
+                            Price = 20m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Article = "ER00113479",
+                            CategoryId = 21,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 7,
+                            Name_en = "Black Scarf",
+                            Name_es = "Bufanda negra",
+                            Name_fr = "Écharpe noire",
+                            Name_uk = "Хустинка чорна",
+                            Price = 5m,
+                            SeasonId = 2
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Article = "ER00113862",
+                            CategoryId = 22,
+                            ColorId = 4,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 9,
+                            Name_en = "Brown cap",
+                            Name_es = "Gorra marrón",
+                            Name_fr = "Casquette marron",
+                            Name_uk = "Шапка коричнева",
+                            Price = 80m,
+                            SeasonId = 1
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Article = "ER00113847",
+                            CategoryId = 22,
+                            ColorId = 6,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 9,
+                            Name_en = "Gray cap",
+                            Name_es = "Gorra gris",
+                            Name_fr = "Casquette grise",
+                            Name_uk = "Шапка сіра",
+                            Price = 80m,
+                            SeasonId = 1
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Article = "ER00110446",
+                            CategoryId = 23,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 2,
+                            Name_en = "Leather gloves",
+                            Name_es = "Guantes de cuero",
+                            Name_fr = "Gants en cuir",
+                            Name_uk = "Рукавички шкіряні",
+                            Price = 60m,
+                            SeasonId = 1
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Article = "ER00112968",
+                            CategoryId = 24,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 11,
+                            Name_en = "Black tights Relax 20 den Legs",
+                            Name_es = "Medias negras Relax 20 den Piernas",
+                            Name_fr = "Collants noirs Relax 20 den Jambes",
+                            Name_uk = "Колготи чорні Relax 20 den Legs",
+                            Price = 3m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Article = "ER00113639",
+                            CategoryId = 24,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 11,
+                            Name_en = "Tights black Slip 30 den Mura",
+                            Name_es = "Medias negras Slip 30 den Mura",
+                            Name_fr = "Collants noirs Slip 30 den Mura",
+                            Name_uk = "Колготи чорні Slip 30 den Mura",
+                            Price = 10m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Article = "ER00114036",
+                            CategoryId = 24,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 11,
+                            Name_en = "Tights with shine black Shine 30 den Miss Marilyn",
+                            Name_es = "Medias con brillo negro Shine 30 den Miss Marilyn",
+                            Name_fr = "Collants avec brillance noir Shine 30 den Miss Marilyn",
+                            Name_uk = "Колготи з блиском чорні Shine 30 den Miss Marilyn",
+                            Price = 7m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Article = "ER00114839",
+                            CategoryId = 31,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 12,
+                            Name_en = "Glasses",
+                            Name_es = "Anteojos",
+                            Name_fr = "Lunettes",
+                            Name_uk = "Окуляри",
+                            Price = 40m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Article = "ER00114856",
+                            CategoryId = 31,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 12,
+                            Name_en = "Glasses Neo",
+                            Name_es = "Anteojos Neo",
+                            Name_fr = "Lunettes Neo",
+                            Name_uk = "Окуляри Neo",
+                            Price = 50m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Article = "ER00113620",
+                            CategoryId = 32,
+                            ColorId = 10,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 13,
+                            Name_en = "Glasses Neo",
+                            Name_es = "Anteojos Neo",
+                            Name_fr = "Lunettes Neo",
+                            Name_uk = "Окуляри Neo",
+                            Price = 30m,
+                            SeasonId = 1
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Article = "ER00114297",
+                            CategoryId = 33,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 2,
+                            Name_en = "A small leather handbag",
+                            Name_es = "Un pequeño bolso de cuero",
+                            Name_fr = "Un petit sac à main en cuir",
+                            Name_uk = "Маленька сумочка шкіряна",
+                            Price = 80m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Article = "ER00114430",
+                            CategoryId = 33,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 2,
+                            Name_en = "Leather shoulder bag",
+                            Name_es = "Bolso bandolera de piel",
+                            Name_fr = "Sac bandoulière en cuir",
+                            Name_uk = "Сумка на плече шкіряна",
+                            Price = 70m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Article = "ER00115345",
+                            CategoryId = 34,
+                            ColorId = 8,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 1,
+                            Name_en = "Backpack beige Ermanno Firenze",
+                            Name_es = "Mochila beige Ermanno Firenze",
+                            Name_fr = "Sac à dos Ermanno Firenze beige",
+                            Name_uk = "Рюкзак бежевий Ermanno Firenze",
+                            Price = 200m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Article = "ER00110828",
+                            CategoryId = 35,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 7,
+                            Name_en = "Covers are reusable from rain and dirt",
+                            Name_es = "Las fundas son reutilizables contra la lluvia y la suciedad",
+                            Name_fr = "Les housses sont réutilisables contre la pluie et la saleté",
+                            Name_uk = "Чохли багаторазові від дощу та бруду",
+                            Price = 50m,
+                            SeasonId = 4
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Article = "ER00111958",
+                            CategoryId = 35,
+                            ColorId = 10,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 12,
+                            Name_en = "Cleaner for white soles",
+                            Name_es = "Limpiador para suelas blancas",
+                            Name_fr = "Nettoyant pour semelles blanches",
+                            Name_uk = "Очисник для білої підошви",
+                            Price = 10m,
+                            SeasonId = 3
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Article = "ER00111958",
+                            CategoryId = 35,
+                            ColorId = 2,
+                            Description_en = "The most relevant women's shoes this fall are low-cut casual boots. They perfectly fit an active lifestyle: long walks, meetings, trips to work and on business. The knee height guarantees you warmth and protection from the piercing autumn wind. Pleasant to the touch pile and genuine leather with a smooth shiny surface - a good tandem for exquisite boots. The tractor sole with a small stable ring guarantees comfort and ease when walking. The highlight of this pair is the through lock that runs from the back of the calf and wraps around the foot. It is incredibly comfortable to wear and fix the leg with such a long zipper.",
+                            Description_es = "El calzado de mujer más relevante este otoño son las botas casual de caña baja. Se adaptan perfectamente a un estilo de vida activo: largos paseos, reuniones, viajes al trabajo y de negocios. La altura de la rodilla te garantiza calidez y protección contra el penetrante viento otoñal. Pelo agradable al tacto y cuero genuino con una superficie lisa y brillante: un buen tándem para botas exquisitas. La suela del tractor con un pequeño anillo estable garantiza comodidad y facilidad al caminar. Lo más destacado de este par es el cierre pasante que va desde la parte posterior de la pantorrilla y envuelve el pie. Es increíblemente cómodo de llevar y fijar la pierna con una cremallera tan larga.",
+                            Description_fr = "Les chaussures pour femmes les plus pertinentes cet automne sont les bottes basses décontractées. Ils s'adaptent parfaitement à un mode de vie actif : longues promenades, réunions, déplacements professionnels et professionnels. La hauteur des genoux vous garantit chaleur et protection contre le vent perçant de l'automne. Pile agréable au toucher et cuir véritable avec une surface lisse et brillante - un bon tandem pour des bottes exquises. La semelle du tracteur avec un petit anneau stable garantit confort et facilité de marche. Le point fort de cette paire est le verrou traversant qui part de l'arrière du mollet et s'enroule autour du pied. Il est incroyablement confortable à porter et à fixer la jambe avec une fermeture éclair aussi longue.",
+                            Description_uk = "Найактуальніше жіноче взуття цієї осені. Вони ідеально пасують до активного стилю життя: тривалих прогулянок,  зустрічей, походів на роботу та у справах. Висота за коліно гарантує вам тепло і захищеність від пронизливого осіннього вітру. Приємний на дотик ворсин та натуральна шкіра з гладенькою блискучою поверхнею. Тракторна підошва з невеличким стійким каблучком гарантує зручність та легкість при ходьбі. Родзинка цієї пари — наскрізний замок, який йде ззаду від литки та загортається хвилькою по стопі. Неймовірно комфортно одягати та фіксувати ногу при такій довжині блискавки.",
+                            Highlights_en = new List<string> { "Hand cut and sewn locally", "Dyed with our proprietary colors", "Pre-washed & pre-shrunk", "Ultra-soft 100% cotton" },
+                            Highlights_es = new List<string> { "Cortado y cosido a mano localmente", "Teñido con nuestros colores patentados", "Prelavado y preencogido", "Ultra suave 100% algodón" },
+                            Highlights_fr = new List<string> { "Coupé et cousu à la main localement", "Teint avec nos couleurs exclusives", "Pré-lavé et pré-rétréci", "Ultra-doux 100% coton" },
+                            Highlights_uk = new List<string> { "Вирізані вручну та зшиті на місці", "Пофарбовано в наші фірмові кольори", "Попереднє прання та усадка", "Надм’яка 100% бавовна" },
+                            MaterialId = 12,
+                            Name_en = "Spray for patent leather",
+                            Name_es = "Spray para charol",
+                            Name_fr = "Spray pour cuir verni",
+                            Name_uk = "Спрей для лакованої шкіри",
+                            Price = 40m,
+                            SeasonId = 3
                         });
                 });
 
@@ -5241,6 +6173,66 @@ namespace Infrastructure.Migrations
                             Name_fr = "Polyester",
                             Name_uk = "Поліестер",
                             Value = "polyester"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            InfoId = 2,
+                            Name_en = "Viscose",
+                            Name_es = "Viscose",
+                            Name_fr = "Viscose",
+                            Name_uk = "Віскоза",
+                            Value = "viscose"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            InfoId = 2,
+                            Name_en = "Cotton",
+                            Name_es = "Cotton",
+                            Name_fr = "Cotton",
+                            Name_uk = "Бавовна",
+                            Value = "cotton"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            InfoId = 2,
+                            Name_en = "Wool",
+                            Name_es = "Lana",
+                            Name_fr = "Laine",
+                            Name_uk = "Шерсть",
+                            Value = "wool"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            InfoId = 2,
+                            Name_en = "Polyamide",
+                            Name_es = "Poliamida",
+                            Name_fr = "Polyamide",
+                            Name_uk = "Поліамід",
+                            Value = "polyamide"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            InfoId = 2,
+                            Name_en = "Artificial materials",
+                            Name_es = "Materiales artificiales",
+                            Name_fr = "Matériaux artificiels",
+                            Name_uk = "Штучні матеріали",
+                            Value = "artificial"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            InfoId = 2,
+                            Name_en = "Artificial fur",
+                            Name_es = "Pieles artificiales",
+                            Name_fr = "Fourrure artificielle",
+                            Name_uk = "Штучне хутро",
+                            Value = "artificialfur"
                         });
                 });
 
@@ -9773,6 +10765,780 @@ namespace Infrastructure.Migrations
                             ProductQuantity = 10,
                             Size = "XXL",
                             SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 465,
+                            ProductId = 78,
+                            ProductQuantity = 10,
+                            Size = "XS",
+                            SortOrder = 13,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 466,
+                            ProductId = 78,
+                            ProductQuantity = 15,
+                            Size = "S",
+                            SortOrder = 14,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 467,
+                            ProductId = 78,
+                            ProductQuantity = 10,
+                            Size = "M",
+                            SortOrder = 15,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 468,
+                            ProductId = 78,
+                            ProductQuantity = 10,
+                            Size = "L",
+                            SortOrder = 16,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 469,
+                            ProductId = 78,
+                            ProductQuantity = 10,
+                            Size = "XL",
+                            SortOrder = 17,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 470,
+                            ProductId = 78,
+                            ProductQuantity = 10,
+                            Size = "XXL",
+                            SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 471,
+                            ProductId = 79,
+                            ProductQuantity = 10,
+                            Size = "XS",
+                            SortOrder = 13,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 472,
+                            ProductId = 79,
+                            ProductQuantity = 15,
+                            Size = "S",
+                            SortOrder = 14,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 473,
+                            ProductId = 79,
+                            ProductQuantity = 10,
+                            Size = "M",
+                            SortOrder = 15,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 474,
+                            ProductId = 79,
+                            ProductQuantity = 10,
+                            Size = "L",
+                            SortOrder = 16,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 475,
+                            ProductId = 79,
+                            ProductQuantity = 10,
+                            Size = "XL",
+                            SortOrder = 17,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 476,
+                            ProductId = 79,
+                            ProductQuantity = 10,
+                            Size = "XXL",
+                            SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 477,
+                            ProductId = 80,
+                            ProductQuantity = 10,
+                            Size = "XS",
+                            SortOrder = 13,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 478,
+                            ProductId = 80,
+                            ProductQuantity = 15,
+                            Size = "S",
+                            SortOrder = 14,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 479,
+                            ProductId = 80,
+                            ProductQuantity = 10,
+                            Size = "M",
+                            SortOrder = 15,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 480,
+                            ProductId = 80,
+                            ProductQuantity = 10,
+                            Size = "L",
+                            SortOrder = 16,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 481,
+                            ProductId = 80,
+                            ProductQuantity = 10,
+                            Size = "XL",
+                            SortOrder = 17,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 482,
+                            ProductId = 80,
+                            ProductQuantity = 10,
+                            Size = "XXL",
+                            SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 483,
+                            ProductId = 81,
+                            ProductQuantity = 10,
+                            Size = "XS",
+                            SortOrder = 13,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 484,
+                            ProductId = 81,
+                            ProductQuantity = 15,
+                            Size = "S",
+                            SortOrder = 14,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 485,
+                            ProductId = 81,
+                            ProductQuantity = 10,
+                            Size = "M",
+                            SortOrder = 15,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 486,
+                            ProductId = 81,
+                            ProductQuantity = 10,
+                            Size = "L",
+                            SortOrder = 16,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 487,
+                            ProductId = 81,
+                            ProductQuantity = 10,
+                            Size = "XL",
+                            SortOrder = 17,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 488,
+                            ProductId = 81,
+                            ProductQuantity = 10,
+                            Size = "XXL",
+                            SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 489,
+                            ProductId = 82,
+                            ProductQuantity = 10,
+                            Size = "XS",
+                            SortOrder = 13,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 490,
+                            ProductId = 82,
+                            ProductQuantity = 15,
+                            Size = "S",
+                            SortOrder = 14,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 491,
+                            ProductId = 82,
+                            ProductQuantity = 10,
+                            Size = "M",
+                            SortOrder = 15,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 492,
+                            ProductId = 82,
+                            ProductQuantity = 10,
+                            Size = "L",
+                            SortOrder = 16,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 493,
+                            ProductId = 82,
+                            ProductQuantity = 10,
+                            Size = "XL",
+                            SortOrder = 17,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 494,
+                            ProductId = 82,
+                            ProductQuantity = 10,
+                            Size = "XXL",
+                            SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 495,
+                            ProductId = 83,
+                            ProductQuantity = 10,
+                            Size = "XS",
+                            SortOrder = 13,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 496,
+                            ProductId = 83,
+                            ProductQuantity = 15,
+                            Size = "S",
+                            SortOrder = 14,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 497,
+                            ProductId = 83,
+                            ProductQuantity = 10,
+                            Size = "M",
+                            SortOrder = 15,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 498,
+                            ProductId = 83,
+                            ProductQuantity = 10,
+                            Size = "L",
+                            SortOrder = 16,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 499,
+                            ProductId = 83,
+                            ProductQuantity = 10,
+                            Size = "XL",
+                            SortOrder = 17,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 500,
+                            ProductId = 83,
+                            ProductQuantity = 10,
+                            Size = "XXL",
+                            SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 501,
+                            ProductId = 84,
+                            ProductQuantity = 10,
+                            Size = "XS",
+                            SortOrder = 13,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 502,
+                            ProductId = 84,
+                            ProductQuantity = 15,
+                            Size = "S",
+                            SortOrder = 14,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 503,
+                            ProductId = 84,
+                            ProductQuantity = 10,
+                            Size = "M",
+                            SortOrder = 15,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 504,
+                            ProductId = 84,
+                            ProductQuantity = 10,
+                            Size = "L",
+                            SortOrder = 16,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 505,
+                            ProductId = 84,
+                            ProductQuantity = 10,
+                            Size = "XL",
+                            SortOrder = 17,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 506,
+                            ProductId = 84,
+                            ProductQuantity = 10,
+                            Size = "XXL",
+                            SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 507,
+                            ProductId = 85,
+                            ProductQuantity = 10,
+                            Size = "XS",
+                            SortOrder = 13,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 508,
+                            ProductId = 85,
+                            ProductQuantity = 15,
+                            Size = "S",
+                            SortOrder = 14,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 509,
+                            ProductId = 85,
+                            ProductQuantity = 10,
+                            Size = "M",
+                            SortOrder = 15,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 510,
+                            ProductId = 85,
+                            ProductQuantity = 10,
+                            Size = "L",
+                            SortOrder = 16,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 511,
+                            ProductId = 85,
+                            ProductQuantity = 10,
+                            Size = "XL",
+                            SortOrder = 17,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 512,
+                            ProductId = 85,
+                            ProductQuantity = 10,
+                            Size = "XXL",
+                            SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 513,
+                            ProductId = 86,
+                            ProductQuantity = 10,
+                            Size = "XS",
+                            SortOrder = 13,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 514,
+                            ProductId = 86,
+                            ProductQuantity = 15,
+                            Size = "S",
+                            SortOrder = 14,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 515,
+                            ProductId = 86,
+                            ProductQuantity = 10,
+                            Size = "M",
+                            SortOrder = 15,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 516,
+                            ProductId = 86,
+                            ProductQuantity = 10,
+                            Size = "L",
+                            SortOrder = 16,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 517,
+                            ProductId = 86,
+                            ProductQuantity = 10,
+                            Size = "XL",
+                            SortOrder = 17,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 518,
+                            ProductId = 86,
+                            ProductQuantity = 10,
+                            Size = "XXL",
+                            SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 519,
+                            ProductId = 87,
+                            ProductQuantity = 10,
+                            Size = "XS",
+                            SortOrder = 13,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 520,
+                            ProductId = 87,
+                            ProductQuantity = 15,
+                            Size = "S",
+                            SortOrder = 14,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 521,
+                            ProductId = 87,
+                            ProductQuantity = 10,
+                            Size = "M",
+                            SortOrder = 15,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 522,
+                            ProductId = 87,
+                            ProductQuantity = 10,
+                            Size = "L",
+                            SortOrder = 16,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 523,
+                            ProductId = 87,
+                            ProductQuantity = 10,
+                            Size = "XL",
+                            SortOrder = 17,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 524,
+                            ProductId = 87,
+                            ProductQuantity = 10,
+                            Size = "XXL",
+                            SortOrder = 18,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 525,
+                            ProductId = 88,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 526,
+                            ProductId = 89,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 527,
+                            ProductId = 90,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 528,
+                            ProductId = 91,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 529,
+                            ProductId = 92,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 530,
+                            ProductId = 93,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 531,
+                            ProductId = 94,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 532,
+                            ProductId = 95,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 533,
+                            ProductId = 96,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 534,
+                            ProductId = 97,
+                            ProductQuantity = 10,
+                            Size = "36",
+                            SortOrder = 2,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 535,
+                            ProductId = 97,
+                            ProductQuantity = 15,
+                            Size = "37",
+                            SortOrder = 3,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 536,
+                            ProductId = 97,
+                            ProductQuantity = 10,
+                            Size = "38",
+                            SortOrder = 4,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 537,
+                            ProductId = 97,
+                            ProductQuantity = 10,
+                            Size = "39",
+                            SortOrder = 5,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 538,
+                            ProductId = 97,
+                            ProductQuantity = 10,
+                            Size = "40",
+                            SortOrder = 6,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 539,
+                            ProductId = 97,
+                            ProductQuantity = 10,
+                            Size = "41",
+                            SortOrder = 7,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 540,
+                            ProductId = 98,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 541,
+                            ProductId = 99,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 542,
+                            ProductId = 100,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 543,
+                            ProductId = 101,
+                            ProductQuantity = 10,
+                            Size = "36",
+                            SortOrder = 2,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 544,
+                            ProductId = 101,
+                            ProductQuantity = 15,
+                            Size = "37",
+                            SortOrder = 3,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 545,
+                            ProductId = 101,
+                            ProductQuantity = 10,
+                            Size = "38",
+                            SortOrder = 4,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 546,
+                            ProductId = 101,
+                            ProductQuantity = 10,
+                            Size = "39",
+                            SortOrder = 5,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 547,
+                            ProductId = 101,
+                            ProductQuantity = 10,
+                            Size = "40",
+                            SortOrder = 6,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 548,
+                            ProductId = 101,
+                            ProductQuantity = 10,
+                            Size = "41",
+                            SortOrder = 7,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 549,
+                            ProductId = 102,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
+                            inStock = true
+                        },
+                        new
+                        {
+                            Id = 550,
+                            ProductId = 103,
+                            ProductQuantity = 10,
+                            Size = "One Size",
+                            SortOrder = 19,
                             inStock = true
                         });
                 });
