@@ -90,11 +90,11 @@ namespace Core.Specification
                 }
                 if (Colors.Any())
                 {
-                    Query.Where(p => Colors.Contains(p.Color.Name_en.ToLower()));
+                    Query.Where(p => Colors.Contains(p.Color.Value.ToLower()));
                 }
                 if (Materials.Any())
                 {
-                    Query.Where(p => Materials.Contains(p.Material.Name_en.ToLower()));
+                    Query.Where(p => Materials.Contains(p.Material.Value.ToLower()));
                 }
                 if (Sizes.Any())
                 {
