@@ -299,7 +299,7 @@ namespace Core.Services
                     var pass = await _userManager.CheckPasswordAsync(user, editDTO.Password);
                     if (user == null || !pass)
                     {
-                        throw new CustomHttpException(ErrorMessages.ErrorLoginorPassword, HttpStatusCode.BadRequest);
+                        throw new CustomHttpException(ErrorMessages.ErrorPassword, HttpStatusCode.BadRequest);
                     }
                     if (user.Email != editDTO.Email)
                     {
