@@ -62,23 +62,23 @@ namespace WebApi.Controllers
             return Ok(products);
         }
 
-        [HttpGet("FilterProductsByPage")]
-        public async Task<IActionResult> FilterProductsByPage(int page)
-        {
-            var product = await _product.GetProductByPageAsync(page);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return Ok(product);
-        }
+        //[HttpGet("FilterProductsByPage")]
+        //public async Task<IActionResult> FilterProductsByPage(int page, string? search)
+        //{
+        //    var product = await _product.GetProductByPageAsync(page, search);
+        //    if (product == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(product);
+        //}
 
         //CRUD Admin
         [HttpGet("ProductByPage/{page}")]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> ProductByPageAsync(int page)
+        public async Task<IActionResult> ProductByPageAsync(int page, string? search)
         {
-            var product = await _product.GetProductByPageAsync(page);
+            var product = await _product.GetProductByPageAsync(page, search);
             if (product == null)
             {
                 return NotFound();
@@ -100,9 +100,9 @@ namespace WebApi.Controllers
 
         [HttpGet("ProductQuantity")]
         [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> ProductQuantity()
+        public async Task<IActionResult> ProductQuantity(string? search)
         {
-            var quantity = await _product.ProductQuantity();
+            var quantity = await _product.ProductQuantity(search);
             return Ok(quantity);
         }
 
