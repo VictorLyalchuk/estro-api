@@ -331,7 +331,7 @@ namespace Core.Services
             return dailyTotal;
         }
 
-        
+
 
         public async Task<List<OrderDTO>> GetAllOrdersAsync()
         {

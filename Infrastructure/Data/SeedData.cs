@@ -9,8 +9,8 @@ namespace Infrastructure.Data
     {
         public static List<MainCategory> SeedMainCategory() =>
         new List<MainCategory>() {
-            new MainCategory(){ Id = 1, Name_en = "Women", Name_uk = "Жіноче", Name_fr = "Femme", Name_es = "Mujer", URLName = "women", ImagePath = "800_home_page_16.webp" },
-            new MainCategory(){ Id = 2, Name_en = "Men", Name_uk = "Чоловіче", Name_fr = "Homme", Name_es = "Hombre", URLName = "men", ImagePath = "800_home_page_17.webp"},
+            new MainCategory(){ Id = 1, Name_en = "Women", Name_uk = "Жіноче", Name_fr = "Femme", Name_es = "Mujer", URLName = "women", ImagePath = "women.webp" },
+            new MainCategory(){ Id = 2, Name_en = "Men", Name_uk = "Чоловіче", Name_fr = "Homme", Name_es = "Hombre", URLName = "men", ImagePath = "men.webp"},
         };
         public static List<SubCategory> SeedSubCategory() =>
         new List<SubCategory>() {

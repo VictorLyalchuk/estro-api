@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class _1 : Migration
+    public partial class start : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -837,8 +837,8 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "Description_en", "Description_es", "Description_fr", "Description_uk", "ImagePath", "Name_en", "Name_es", "Name_fr", "Name_uk", "URLName" },
                 values: new object[,]
                 {
-                    { 1, null, null, null, null, "800_home_page_16.webp", "Women", "Mujer", "Femme", "Жіноче", "women" },
-                    { 2, null, null, null, null, "800_home_page_17.webp", "Men", "Hombre", "Homme", "Чоловіче", "men" }
+                    { 1, null, null, null, null, "women.webp", "Women", "Mujer", "Femme", "Жіноче", "women" },
+                    { 2, null, null, null, null, "men.webp", "Men", "Hombre", "Homme", "Чоловіче", "men" }
                 });
 
             migrationBuilder.InsertData(
