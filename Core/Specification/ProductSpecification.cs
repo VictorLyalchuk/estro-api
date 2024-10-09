@@ -34,13 +34,19 @@ namespace Core.Specification
         }
         public class ProductByPage : Specification<ProductEntity>
         {
-            public ProductByPage(int page)
+            public ProductByPage(int page, string search)
             {
                 if (page < 1)
                 {
                     page = 1;
                 }
                 int pageSize = 10;
+
+                if (!string.IsNullOrEmpty(search))
+                {
+                    search = search.Replace("_", " ");
+                    Query.Where(p => p.Article.ToLower().Contains(search.ToLower()));
+                }
                 Query.OrderBy(p => p.Id)
                      .Skip((page - 1) * pageSize)
                      .Take(pageSize)
@@ -52,6 +58,20 @@ namespace Core.Specification
                      .Include(p => p.Storages.OrderBy(s => s.SortOrder));
             }
         }
+
+        public class ProductQuantityByPage : Specification<ProductEntity>
+        {
+            public ProductQuantityByPage(string search)
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    search = search.Replace("_", " ");
+                    Query.Where(p => p.Article.ToLower().Contains(search.ToLower()));
+                }
+                Query.OrderBy(p => p.Id);
+            }
+        }
+
         public class FilterProducts : Specification<ProductEntity>
         {
             public FilterProducts(FilterDTO? filterDTO)
@@ -145,7 +165,7 @@ namespace Core.Specification
                         break;
                 }
 
-                 Query.Skip((page - 1) * pageSize)
+                Query.Skip((page - 1) * pageSize)
                      .Take(pageSize);
             }
         }
