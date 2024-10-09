@@ -19,7 +19,7 @@ namespace Core.Specification
                     .Include(f => f.BagItems)
                     //.ThenInclude(f => f.Product)
                     .Where(f => f.UserEmail == userEmail);
-                    
+
             }
         }
         public class GetBagByItemsID : Specification<Bag>

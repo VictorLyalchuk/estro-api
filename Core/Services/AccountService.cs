@@ -44,36 +44,38 @@ namespace Core.Services
             VerificationCode = generator.Next(100000, 999999).ToString("D6"); // Generate a 6-digit random number
             return VerificationCode;
         }
-        public async Task<UserDTO> GetByEmail(string email)
+        public async Task<UserDTO> GetByEmailOrPhone(string email = null, string phone = null)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+
+
+            // Fetch user by email or phone
+            var user = !string.IsNullOrEmpty(email)
+                ? await _userManager.FindByEmailAsync(email)
+                : _userManager.Users.FirstOrDefault(x => x.PhoneNumber == phone);
+
+            // Check if user was found
             if (user != null)
             {
+                // Map to DTO
                 var currentUser = _mapper.Map<UserDTO>(user);
+
+                // Get user role
                 var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
-                if (currentRole != null)
-                    currentUser.Role = currentRole;
+                currentUser.Role = currentRole;
 
                 return currentUser;
             }
             else
             {
-                throw new CustomHttpException(ErrorMessages.UserNotFoundByEmail, HttpStatusCode.NotFound);
-            }
-        }
-        public async Task<UserDTO> GetByPhone(string phone)
-        {
-            var user = _userManager.Users.Where(x => x.PhoneNumber == phone).FirstOrDefault();
-            if (user != null)
-            {
-                return _mapper.Map<UserDTO>(user);
-            }
+                // Throw appropriate exception based on which parameter was used
+                var errorMessage = !string.IsNullOrEmpty(email)
+                    ? ErrorMessages.UserNotFoundByEmail
+                    : ErrorMessages.UserNotFoundByPhone;
 
-            else
-            {
-                throw new CustomHttpException(ErrorMessages.UserNotFoundByPhone, HttpStatusCode.NotFound);
+                throw new CustomHttpException(errorMessage, HttpStatusCode.NotFound);
             }
         }
+
         public async Task<string> SendSMS(string phone)
         {
             string verifyCode = GenerateRandomVerificationCode();
@@ -88,7 +90,6 @@ namespace Core.Services
         public async Task<LoginByPhoneResultDTO> LoginByPhone(string phone)
         {
             var user = _userManager.Users.Where(x => x.PhoneNumber == phone).FirstOrDefault();
-
             if (user == null)
             {
                 throw new CustomHttpException(ErrorMessages.UserNotFoundByPhone, HttpStatusCode.BadRequest);
@@ -244,11 +245,8 @@ namespace Core.Services
 
             else if (user.AuthType == "phone")
             {
-                var userExist = await _userManager.FindByEmailAsync(registrationDTO.Email);
-                if (userExist == null)
-                {
-                    throw new CustomHttpException("Email already exists", HttpStatusCode.BadRequest);
-                }
+
+           
                 user.UserName = registrationDTO.FirstName;
 
                 user.PhoneNumberConfirmed = true;

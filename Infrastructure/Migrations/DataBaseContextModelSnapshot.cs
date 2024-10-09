@@ -1153,7 +1153,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ImagePath = "800_home_page_16.webp",
+                            ImagePath = "women.webp",
                             Name_en = "Women",
                             Name_es = "Mujer",
                             Name_fr = "Femme",
@@ -1163,7 +1163,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            ImagePath = "800_home_page_17.webp",
+                            ImagePath = "men.webp",
                             Name_en = "Men",
                             Name_es = "Hombre",
                             Name_fr = "Homme",
