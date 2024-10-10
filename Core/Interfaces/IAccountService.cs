@@ -4,8 +4,7 @@ namespace Core.Interfaces
 {
     public interface IAccountService
     {
-        Task<UserDTO> GetByEmail(string email);
-        Task<UserDTO> GetByPhone(string phone);
+        Task<UserDTO> GetByEmailOrPhone(string email = null, string phone = null);
         Task<string> SendSMS(string phone);
         Task<string> Login(UserLoginDTO loginDTO);
         Task<LoginByPhoneResultDTO> LoginByPhone(string phone);

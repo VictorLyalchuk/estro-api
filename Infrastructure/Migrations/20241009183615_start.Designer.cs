@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20240923190526_1")]
-    partial class _1
+    [Migration("20241009183615_start")]
+    partial class start
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1156,7 +1156,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ImagePath = "800_home_page_16.webp",
+                            ImagePath = "women.webp",
                             Name_en = "Women",
                             Name_es = "Mujer",
                             Name_fr = "Femme",
@@ -1166,7 +1166,7 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 2,
-                            ImagePath = "800_home_page_17.webp",
+                            ImagePath = "men.webp",
                             Name_en = "Men",
                             Name_es = "Hombre",
                             Name_fr = "Homme",

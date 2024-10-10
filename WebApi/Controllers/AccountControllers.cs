@@ -16,43 +16,32 @@ namespace WebApi.Controllers
         {
             _accountService = accountService;
         }
-        [HttpGet("{email}")]
-        public async Task<IActionResult> Get([FromRoute] string email)
+        [HttpGet("get-by-email-or-phone")]
+        public async Task<IActionResult> GetUserByEmailOrPhone([FromQuery] string email = null, [FromQuery] string phone = null)
         {
+            if (string.IsNullOrEmpty(email) && string.IsNullOrEmpty(phone))
+            {
+                return BadRequest(new { Message = "You must provide either an email or a phone number." });
+            }
+
             try
             {
-                var user = await _accountService.GetByEmail(email);
-                if (user == null)
-                {
-                    return NotFound();
-                }
+                // Call the service method with either email or phone
+                var user = await _accountService.GetByEmailOrPhone(email, phone);
+
                 return Ok(user);
             }
             catch (CustomHttpException ex)
             {
-                return NotFound();
+                return StatusCode((int)ex.StatusCode, new { Message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { Message = "An unexpected error occurred." });
             }
         }
-
-        [HttpGet("GetByPhone")]
-        public async Task<IActionResult> GetByPhone(string phone)
-        {
-            try
-            {
-                var user = await _accountService.GetByPhone(phone);
-                if (user == null)
-                {
-                    return NotFound();
-                }
-                return Ok(user);
-            }
-            catch (CustomHttpException ex)
-            {
-                return NotFound();
-            }
-        }
-
-        [HttpPost("SendSMS")]
+    
+    [HttpPost("SendSMS")]
         public async Task<IActionResult> SendSMS(string phone)
         {
             try
