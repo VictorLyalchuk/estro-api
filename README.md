@@ -22,6 +22,8 @@ docker pull novakvova/estro-api:latest
 docker ps -a
 docker run -d --restart=always --name estro_container -p 5088:8080 novakvova/estro-api
 
+docker run -d --restart=always -v /volumes/estro/uploads:/app/wwwroot/uploads -v /volumes/estro/email:/app/wwwroot/email --name estro_container -p 5088:8080 novakvova/estro-api
+
 
 docker pull novakvova/estro-api:latest
 docker images --all
